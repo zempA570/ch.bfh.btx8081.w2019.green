@@ -4,6 +4,7 @@ import '@vaadin/vaadin-text-field/src/vaadin-text-field.js';
 import '@vaadin/vaadin-date-picker/src/vaadin-date-picker.js';
 import '@vaadin/vaadin-radio-button/src/vaadin-radio-group.js';
 import '@vaadin/vaadin-radio-button/src/vaadin-radio-button.js';
+import '@vaadin/vaadin-ordered-layout/src/vaadin-horizontal-layout.js';
 import '@vaadin/vaadin-button/src/vaadin-button.js';
 
 class CreateTodo extends PolymerElement {
@@ -22,21 +23,26 @@ class CreateTodo extends PolymerElement {
  <vaadin-date-picker label="Datum" placeholder="Datum waehlen" id="datum"></vaadin-date-picker>
  <vaadin-radio-group value="foo" id="vaadinRadioGroup" style="align-self: center; flex-shrink: 0;">
   <vaadin-radio-button name="foo" id="vaadinRadioButton">
-   woechentlich
+    woechentlich 
   </vaadin-radio-button>
   <vaadin-radio-button name="bar" id="vaadinRadioButton1">
-   monatlich
+    monatlich 
   </vaadin-radio-button>
   <vaadin-radio-button name="baz" id="vaadinRadioButton2" tabindex="0" checked>
-   jaehrlich
+    jaehrlich 
   </vaadin-radio-button>
   <vaadin-radio-button name="baz" checked id="vaadinRadioButton3">
-   einmalig
+    einmalig 
   </vaadin-radio-button>
  </vaadin-radio-group>
- <vaadin-button id="vaadinButton" anlegen="">
-  <label id="label1">anlegen</label>
- </vaadin-button>
+ <vaadin-horizontal-layout id="vaadinHorizontalLayout">
+  <vaadin-button id="vaadinButton" anlegen="">
+   <label id="label1">anlegen</label>
+  </vaadin-button>
+  <vaadin-button id="vaadinButton" anlegen="">
+   <label id="label1">entfernen</label>
+  </vaadin-button>
+ </vaadin-horizontal-layout>
 </vaadin-vertical-layout>
 `;
     }

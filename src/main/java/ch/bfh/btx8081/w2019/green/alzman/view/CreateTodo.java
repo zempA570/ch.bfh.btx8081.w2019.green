@@ -11,6 +11,7 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.radiobutton.RadioButtonGroup;
 import com.vaadin.flow.component.radiobutton.RadioButton;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 
 /**
  * A Designer generated component for the create-todo template.
@@ -42,6 +43,8 @@ public class CreateTodo extends PolymerTemplate<CreateTodo.CreateTodoModel> {
 	private RadioButton<String> vaadinRadioButton3;
 	@Id("label1")
 	private Label label1;
+	@Id("vaadinHorizontalLayout")
+	private HorizontalLayout vaadinHorizontalLayout;
 
 	/**
      * Creates a new CreateTodo.
