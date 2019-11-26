@@ -16,9 +16,10 @@ class EntryImportantnotes extends PolymerElement {
                 }
             </style>
 <label>Wichtige Information erfassen</label>
-<vaadin-vertical-layout style="width: 100%; height: 100%; align-items: flex-start;">
- <vaadin-date-picker label="Wann ist es vorgefallen" placeholder="Datum auswählen"></vaadin-date-picker>
- <vaadin-text-field placeholder="Username"> // DropDown Liste?
+<vaadin-vertical-layout style="width: 100%; height: 100%; align-items: center;">
+ <vaadin-date-picker label="Wann ist es vorgefallen" placeholder="Datum auswaehlen"></vaadin-date-picker>
+ <vaadin-text-field placeholder="Username">
+   // DropDown Liste? 
   <iron-icon icon="lumo:user" slot="prefix"></iron-icon>
  </vaadin-text-field>
  <vaadin-text-field label="Titel" placeholder="Titel"></vaadin-text-field>
