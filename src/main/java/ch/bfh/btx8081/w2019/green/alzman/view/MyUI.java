@@ -1,4 +1,4 @@
-package ch.bfh.btx8081.w2019.green.alzman;
+package ch.bfh.btx8081.w2019.green.alzman.view;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.notification.Notification;
@@ -17,6 +17,9 @@ public class MyUI extends VerticalLayout {
         Button button = new Button("Click me",
                 event -> Notification.show("Clicked!"));
         add(button);
+        
+        add(new CalendarGui());
+        
     }
     
 }

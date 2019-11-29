@@ -1,0 +1,151 @@
+﻿Schauen Sie Bitte bei "Projektlogbuch_Green.xlsx" nach.
+
+Arbeit:
+"Aufgabe definieren".
+
+Personen:
+ET = Emily Torresan
+JD = Jasmitha Devarasa
+SA = Simon Adams
+MA = Mootaas Abu Baker
+TS = Thevian Sinnappa
+ZA = Zemp Adrian
+GU = Gausegan Uthayathas
+
+Datum:
+An diesem Tag wurde/muss die Aufgaben beendet.
+
+Aufwand:
+"Zahl" = Aufgerundet auf die Stunde.
+
+Status:
+Offen oder erledigt
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Task 1
+
+1
+"Interviewpartner suchen" ET 25.10.19 "2h" erledigt
+
+2
+"Literaturrechere Krankheitsbild ermitteln (Behandlung, Diagnostik, Beeinträchtigungen, verschiedene Typen)" SA	28.10.19 "3h" erledigt
+
+3
+"Wissenschaftliche Studien suchen und lesen" SA	28.10.19 "3h" erledigt
+
+4
+"Bereits vorhandene Systeme, Apps, etc. heraussuchen" GU 31.10.19 "3h" erledigt
+
+5
+"Interviewfragen aufstellen" JD, ET 28.10.19 "3h" erledigt
+
+6
+Interview durchführen JD, ET, GU 29.10.19 "3h" erledigt
+
+7
+"Ergebnisse von Paket 1 bis 6 zusammenstellen" TS 29.10.19 "3h" erledigt
+
+8
+"Persona erstellen (Anwender)"	TS 29.10.19 "2h" erledigt
+
+9
+"Anforderungskatalog erstellen"	ZA 29.10.19 "2h" erledigt
+
+10
+"Mind. 2 Storyboard erstellen" MA 29.10.19 "4h" erledigt
+
+11
+"Resultat Storyboard erstellen (inkl. Kurze Beschreibung)" MA 30.10.19 "1h" erledigt
+
+12
+"Mind. 3 Cardbased Prototypes erstellen (Verkn. Mit Storyboard)" TS,ZA 30.10.19 "5h" erledigt
+
+13
+"Feedback vom Interviewpartner einholen" EM 30.10.19 "1h" erledigt
+
+14
+"Präsentation der Ergebnisse erstellen" SA, EM 30.10.19 "3h" erledigt
+
+15
+Ausblick Task 2 30.10.19 "2h" erledigt
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Task 2
+
+16
+"UML Domain Model" SA 04.11.19 "5h" erledigt
+
+17
+"Zwei UML-Sequenzdiagramme" TS, ZA 06.11.19 "8h" erledigt
+
+18
+"Vereinfachen des UML Klassen Models" GU, MA 08.11.19 "3h" erledigt
+
+19
+"Alle Dokumente auf Powerpoint und OneDrive Hochladen" Alle 11.11.19 "1h" erledigt
+
+20
+"Powerpoint fertigstellen" TS, ZA, (JD, ET) 12.11.19 "1h" erledigt
+
+21
+"Dokumentation" JD, ET 13.11.19 "1h" erledigt
+
+22
+"Präsentation" SA, ET 14.11.19 "10min" erledigt
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Task 3
+
+23
+"UML component diagram (high level) AND Class diagram" SA, ZA 18.11.19 "5h" erledigt
+
+24
+"UML deployment diagram (detailed)" GU, MA 18.11.19 "3h" erledigt
+
+25
+"Documentation"	JD, TS 20.11.19 "1h" erledigt
+
+26
+"Presentation" ET 20.11.19 "1h" erledigt
+					
+27
+"IDE installieren" Alle	18.11.19 "30min" erledigt
+
+28
+"Zugriff auf Github sicherstellen" Alle 18.11.19 "1h" erledigt
+
+29
+"Vaadin installieren" Alle 18.11.19 "2h" erledigt
+
+30
+"Projektstruktur einrichten" Einer 18.11.19 "1h" erledigt
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Task 4
+
+31
+"Scrum Rollen verteilen" Alle 15.11.19. "10min" erledigt
+
+32
+"Product backlog" AZ 15.11.19 "2h" erledigt
+
+33
+"Sprint backlog" Alle 18.11.19 "2h" erledigt
+
+34
+"Sprint 1 Planung" Alle 15.11.19 "2h" erledigt
+
+35
+"Documentation"	JD 20.11.19 "1h" erledigt
+
+36
+"Presentation"	ET 20.11.19 "1h" erledigt
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Task 5
+
