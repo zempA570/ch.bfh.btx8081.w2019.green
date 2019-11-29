@@ -1,7 +1,5 @@
 package ch.bfh.btx8081.w2019.green.alzman.view;
 
-import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.PWA;
@@ -13,14 +11,15 @@ import com.vaadin.flow.server.PWA;
 @PWA(name = "Project Base for Vaadin", shortName = "Project Base")
 public class MyUI extends VerticalLayout {
 
-    public MyUI() {
-        Button button = new Button("Click me",
-                event -> Notification.show("Clicked!"));
-        add(button);
-        
-        add(new CalendarGui());
-        
-    }
-    
-}
+	public MyUI() {
+//		Button button = new Button("Click me", event -> Notification.show("Clicked!"));
+//		add(button);
 
+		add(new DashboardGui());
+		add(new CalendarGui());
+		add(new InfoboxStart());
+		add(new RegisterPerson());
+
+	}
+
+}

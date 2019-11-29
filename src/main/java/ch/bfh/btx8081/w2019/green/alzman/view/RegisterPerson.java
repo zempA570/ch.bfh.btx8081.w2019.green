@@ -1,29 +1,30 @@
+package ch.bfh.btx8081.w2019.green.alzman.view;
 import com.vaadin.flow.templatemodel.TemplateModel;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
 
 /**
- * A Designer generated component for the infobox-add template.
+ * A Designer generated component for the register-person template.
  *
  * Designer will add and remove fields with @Id mappings but
  * does not overwrite or otherwise change this file.
  */
-@Tag("infobox-add")
-@JsModule("./src/infobox-add.js")
-public class InfoboxAdd extends PolymerTemplate<InfoboxAdd.InfoboxAddModel> {
+@Tag("register-person")
+@JsModule("./src/register-person.js")
+public class RegisterPerson extends PolymerTemplate<RegisterPerson.RegisterPersonModel> {
 
     /**
-     * Creates a new InfoboxAdd.
+     * Creates a new RegisterPerson.
      */
-    public InfoboxAdd() {
+    public RegisterPerson() {
         // You can initialise any data required for the connected UI components here.
     }
 
     /**
-     * This model binds properties between InfoboxAdd and infobox-add
+     * This model binds properties between RegisterPerson and register-person
      */
-    public interface InfoboxAddModel extends TemplateModel {
+    public interface RegisterPersonModel extends TemplateModel {
         // Add setters and getters for template properties here.
     }
 }
