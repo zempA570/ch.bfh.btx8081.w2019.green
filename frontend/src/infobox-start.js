@@ -1,8 +1,8 @@
 import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
 import '@polymer/iron-icon/iron-icon.js';
 import '@vaadin/vaadin-ordered-layout/src/vaadin-horizontal-layout.js';
-import '@vaadin/vaadin-button/src/vaadin-button.js';
 import '@vaadin/vaadin-ordered-layout/src/vaadin-vertical-layout.js';
+import '@vaadin/vaadin-button/src/vaadin-button.js';
 
 class InfoboxStart extends PolymerElement {
 
@@ -15,9 +15,12 @@ class InfoboxStart extends PolymerElement {
                 }
             </style>
 <vaadin-vertical-layout style="width: 100%; height: 100%;">
+ <vaadin-vertical-layout theme="margin" style="align-self: center;">
+  <h1>Infobox</h1>
+ </vaadin-vertical-layout>
  <vaadin-horizontal-layout theme="margin" style="align-self: stretch; justify-content: space-between;">
   <vaadin-button>
-   &lt; Back
+    &lt; Back 
   </vaadin-button>
   <vaadin-button theme="icon" aria-label="Add new">
    <iron-icon icon="lumo:plus"></iron-icon>
