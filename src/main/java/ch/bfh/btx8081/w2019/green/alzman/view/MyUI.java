@@ -17,6 +17,9 @@ public class MyUI extends VerticalLayout {
         Button button = new Button("Click me",
                 event -> Notification.show("Clicked!"));
         add(button);
+        
+        add(new CalendarGui());
+        
     }
     
 }
