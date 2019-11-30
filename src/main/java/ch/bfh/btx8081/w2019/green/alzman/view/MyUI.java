@@ -12,13 +12,18 @@ import com.vaadin.flow.server.PWA;
 public class MyUI extends VerticalLayout {
 
 	public MyUI() {
-//		Button button = new Button("Click me", event -> Notification.show("Clicked!"));
-//		add(button);
 
 		add(new DashboardGui());
 		add(new CalendarGui());
 		add(new InfoboxStart());
 		add(new RegisterPerson());
+		add(new ImportantNotes());
+		add(new CreateTodo());
+		add(new LoginUi());
+		add(new RegisterUser());
+		add(new TodoList());
+//		missing todo-list-overview.js
+//		add(new TodolistOverview());
 
 	}
 
