@@ -22,34 +22,34 @@ class DashboardGui extends PolymerElement {
   <vaadin-text-field label="" placeholder="Dashboard" style="flex-grow: 1;"></vaadin-text-field>
  </vaadin-horizontal-layout>
  <vaadin-horizontal-layout>
-  <vaadin-button theme="icon" aria-label="Add new">
+  <vaadin-button theme="icon" aria-label="Add new" id="btnUser">
    <iron-icon icon="lumo:user"></iron-icon>
   </vaadin-button>
-  <vaadin-text-field placeholder="Add User">
+  <vaadin-text-field placeholder="Add User" id="tfUser">
    <iron-icon icon="lumo:chevron-down" slot="prefix"></iron-icon>
    <vaadin-combo-box-dropdown-wrapper></vaadin-combo-box-dropdown-wrapper>
   </vaadin-text-field>
  </vaadin-horizontal-layout>
  <vaadin-horizontal-layout style="width: 100%; flex-grow: 1; flex-shrink: 1; flex-basis: auto;" id="vaadinHorizontalLayout">
   <vaadin-vertical-layout class="sidebar" style="flex-basis: calc(7*var(--lumo-size-s)); flex-shrink: 0; background-color: var(--lumo-contrast-0pct);" id="vaadinVerticalLayout">
-   <vaadin-button theme="icon" aria-label="Add new" id="vaadinButton" style="flex-grow: 0;">
+   <vaadin-button theme="icon" aria-label="Add new" id="btnCalendar" style="flex-grow: 0;">
     <iron-icon icon="lumo:calendar" id="ironIcon"></iron-icon>
    </vaadin-button>
-   <vaadin-button theme="icon" aria-label="Add new" id="vaadinButton1">
+   <vaadin-button theme="icon" aria-label="Add new" id="btnStatus">
     <iron-icon icon="lumo:user" id="ironIcon1"></iron-icon>
    </vaadin-button>
-   <vaadin-button theme="icon" aria-label="Add new" id="vaadinButton2">
+   <vaadin-button theme="icon" aria-label="Add new" id="btnImportantNotes">
     <iron-icon icon="lumo:eye" id="ironIcon2"></iron-icon>
    </vaadin-button>
   </vaadin-vertical-layout>
   <vaadin-vertical-layout class="content" style="flex-grow: 1; flex-shrink: 1; flex-basis: auto;" id="vaadinVerticalLayout1">
-   <vaadin-button theme="icon" aria-label="Add new" id="vaadinButton3">
+   <vaadin-button theme="icon" aria-label="Add new" id="btnDiary">
     <iron-icon icon="lumo:edit" id="ironIcon3"></iron-icon>
    </vaadin-button>
-   <vaadin-button theme="icon" aria-label="Add new" id="vaadinButton4">
+   <vaadin-button theme="icon" aria-label="Add new" id="btnToDoList">
     <iron-icon icon="lumo:checkmark" id="ironIcon4"></iron-icon>
    </vaadin-button>
-   <vaadin-button theme="icon" aria-label="Add new">
+   <vaadin-button theme="icon" aria-label="Add new" id="btnInfoBox">
     <iron-icon icon="lumo:error"></iron-icon>
    </vaadin-button>
   </vaadin-vertical-layout>

@@ -40,7 +40,7 @@ class RegisterPerson extends PolymerElement {
   </vaadin-horizontal-layout>
  </vaadin-horizontal-layout>
 </vaadin-vertical-layout>
-`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$"></vaadin-email-field>
+</vaadin-email-field>
  </vaadin-vertical-layout>
  <vaadin-horizontal-layout theme="margin">
   <vaadin-checkbox>
