@@ -1,8 +1,7 @@
 package ch.bfh.btx8081.w2019.green.alzman.view;
 
-import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.notification.Notification;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.timepicker.TimePicker;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.PWA;
 
@@ -11,12 +10,16 @@ import com.vaadin.flow.server.PWA;
  */
 @Route("")
 @PWA(name = "Project Base for Vaadin", shortName = "Project Base")
-public class MyUI extends VerticalLayout {
+@CssImport(value = "./styles/shared-styles.css", include = "common-styles")
+public class MyUI extends TemplateView {
 
 	public MyUI() {
 
-		Button button = new Button("Click me", event -> Notification.show("Clicked!"));
-		add(button);
+		super.setHeaderTitle("SchnäbiZägg");
+
+		TimePicker timePicker = new TimePicker();
+
+		super.addContent(timePicker);
 
 	}
 
