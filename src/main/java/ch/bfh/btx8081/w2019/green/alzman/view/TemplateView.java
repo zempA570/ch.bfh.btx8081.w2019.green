@@ -5,10 +5,15 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
-import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
+/**
+ * Abstract class for any future views, includes header and footer.
+ * 
+ * @author Adrian
+ *
+ */
 public abstract class TemplateView extends VerticalLayout {
 
 	private HorizontalLayout header;
@@ -18,22 +23,27 @@ public abstract class TemplateView extends VerticalLayout {
 
 	public TemplateView() {
 
+		// instantiate
 		header = new HorizontalLayout();
 		content = new VerticalLayout();
 		footer = new HorizontalLayout();
 
+		// set id for styling in .css file
 		header.setId("headerStyle");
 		content.setId("contentStyle");
 		footer.setId("footerStyle");
 
+		// add the three parts to the vertical layout
 		add(header);
 		add(content);
 		add(footer);
 
+		// fill the header and footer with stuff
 		createStandardHeader();
 		createStandardFooter();
 
-		header.setAlignItems(FlexComponent.Alignment.CENTER);
+//		Doesn't do anything (yet)
+//		header.setAlignItems(FlexComponent.Alignment.CENTER);
 	}
 
 	private void createStandardHeader() {
@@ -53,10 +63,20 @@ public abstract class TemplateView extends VerticalLayout {
 
 	}
 
+	/**
+	 * Adds new components to the "content" area of the site
+	 * 
+	 * @param component The component to be added to the content
+	 */
 	public void addContent(Component component) {
 		content.add(component);
 	}
 
+	/**
+	 * Changes the title in the header
+	 * 
+	 * @param newTitle
+	 */
 	public void setHeaderTitle(String newTitle) {
 		title.setText(newTitle);
 	}
