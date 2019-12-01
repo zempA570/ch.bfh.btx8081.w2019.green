@@ -8,13 +8,11 @@ import com.vaadin.flow.component.listbox.ListBox;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.server.PWA;
 
 /**
  * The user management view will be used to add and remove users of the app
  */
-@Route("user-management-view")
-@PWA(name = "Project Base for Vaadin", shortName = "Project Base")
+@Route("usermanagementview")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class UserManagementView extends TemplateView {
 
