@@ -1,0 +1,16 @@
+@charset "ISO-8859-1";
+
+#headerStyle, #footerStyle {
+	background-color: lightgreen;
+	width: 100%;
+	padding: 20px;
+}
+
+#footerStyle {
+	position: fixed;
+	bottom: 0px;
+}
+
+#contentStyle {
+	background-color: lightblue;
+}
