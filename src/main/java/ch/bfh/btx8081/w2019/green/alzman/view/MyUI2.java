@@ -11,9 +11,9 @@ import com.vaadin.flow.server.PWA;
  */
 @Route("")
 @PWA(name = "Project Base for Vaadin", shortName = "Project Base")
-public class MyUI extends VerticalLayout {
+public class MyUI2 extends VerticalLayout {
 
-    public MyUI() {
+    public MyUI2() {
        // Button button = new Button("Click me",
          //       event -> Notification.show("Clicked!"));
        // add(button);
