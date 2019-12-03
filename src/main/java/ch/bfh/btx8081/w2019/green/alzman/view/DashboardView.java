@@ -4,10 +4,13 @@ import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.PWA;
 
@@ -17,6 +20,8 @@ import com.vaadin.flow.server.PWA;
 @PWA(name = "Project Base for Vaadin", shortName = "Project Base")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class DashboardView extends TemplateView {
+
+	private Button message;
 
 	public DashboardView() {
 
@@ -75,15 +80,39 @@ public class DashboardView extends TemplateView {
 	
 	Icon infoBoxIcon = new Icon(VaadinIcon.INFO_CIRCLE);
 	
+	// change Icon Size and Shape
+	calendarIcon.setSize("80px");
+	calendarIcon.setColor("burgundy");
+	statusIcon.setSize("80px");
+	importantNotesIcon.setSize("80px");
+	diaryIcon.setSize("80px");
+	todoIcon.setSize("80px");
+	infoBoxIcon.setSize("80px");
+	
+	// Test Clicks implementation
+	Div message = new Div();
+	calendarIcon.getStyle().set("cursor", "pointer");
+	calendarIcon.addClickListener(event ->
+	message.setText("Calendar has been selected"));
+	
+	//creating labels to label the icons
+	Label calendarText = new Label("Calendar");
+	Label statusText = new Label("Status");
+	Label importantNotesText = new Label("Key-Notes");
+	Label diaryText = new Label("Diary");
+	Label todoText = new Label("To-Do-List");
+	Label infoBoxText = new Label("Infobox");
 	
 	
 	
 	
 	
 	
-	VerticalLayout iconViewLeft = new VerticalLayout(calendarIcon, statusIcon, importantNotesIcon);
-	VerticalLayout iconViewRight = new VerticalLayout(diaryIcon, todoIcon,infoBoxIcon);
-	HorizontalLayout userBar = new HorizontalLayout(chooseUserBox, userIcon);
+	
+	//configuring the layout
+	VerticalLayout iconViewLeft = new VerticalLayout(calendarText, calendarIcon, statusText, statusIcon, importantNotesText,importantNotesIcon);
+	VerticalLayout iconViewRight = new VerticalLayout(diaryText, diaryIcon, todoText,todoIcon,infoBoxText,infoBoxIcon);
+	HorizontalLayout userBar = new HorizontalLayout(chooseUserBox);
 	HorizontalLayout iconViewCentral = new HorizontalLayout(iconViewLeft,iconViewRight);
 
 	//adding Stuff to the Objects
