@@ -1,6 +1,7 @@
 package ch.bfh.btx8081.w2019.green.alzman.view;
 
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.icon.Icon;
@@ -50,6 +51,7 @@ public abstract class TemplateView extends VerticalLayout {
 
 		Button btnBack = new Button("Back", new Icon(VaadinIcon.CHEVRON_LEFT_SMALL));
 		header.add(btnBack);
+		btnBack.addClickListener(e -> UI.getCurrent().navigate(DashboardView.class));
 
 		title = new H2("blank");
 		header.add(title);
