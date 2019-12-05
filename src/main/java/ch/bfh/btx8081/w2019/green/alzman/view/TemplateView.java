@@ -33,7 +33,7 @@ public abstract class TemplateView extends VerticalLayout {
 		content.setId("contentStyle");
 		footer.setId("footerStyle");
 
-		// add the three parts to the vertical layout
+		// add the three parts to the vertical layout.
 		add(header);
 		add(content);
 		add(footer);
