@@ -15,7 +15,7 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.PWA;
 
 
-@Route("")
+@Route("dfhjdhfj")
 
 @PWA(name = "Project Base for Vaadin", shortName = "Project Base")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
@@ -122,8 +122,6 @@ public class DashboardView extends TemplateView {
 		
 		
 	}
-	
-	
 	}
 
 
