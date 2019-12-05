@@ -14,11 +14,9 @@ import com.vaadin.flow.server.PWA;
 public class MyUI extends VerticalLayout {
 
     public MyUI() {
-        Button button = new Button("Click me",
-                event -> Notification.show("Clicked!"));
-        add(button);
+     
         
-        add(new CalendarGui());
+        add(new CalendarView());
         
     }
     
