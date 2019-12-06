@@ -15,7 +15,7 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.PWA;
 
 
-@Route("")
+@Route("Dashboard")
 
 @PWA(name = "Project Base for Vaadin", shortName = "Project Base")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
