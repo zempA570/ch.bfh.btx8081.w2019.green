@@ -1,85 +1,96 @@
 package ch.bfh.btx8081.w2019.green.alzman.view;
 
-
-import java.security.Provider.Service;
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import org.vaadin.stefan.fullcalendar.Entry;
+import org.vaadin.stefan.fullcalendar.FullCalendar;
+import org.vaadin.stefan.fullcalendar.FullCalendarBuilder;
+import org.vaadin.stefan.fullcalendar.Resource;
+
+import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-
 import com.vaadin.flow.component.charts.model.Label;
+import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.listbox.ListBox;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.textfield.TextArea;
-import com.vaadin.flow.router.BeforeEnterEvent;
-import com.vaadin.flow.router.BeforeEnterObserver;
+import com.vaadin.flow.component.progressbar.ProgressBar;
+import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 
 
-@Route("Kalender")
+/**
+ * 
+ * @author Thevian
+ * 
+ * This is a Calendargui
+ *
+ */
 
-public class CalendarView extends VerticalLayout implements BeforeEnterObserver {
-
+@Route("Calendar")
+@CssImport(value = "./styles/shared-styles.css", include = "common-styles")
+public class CalendarView extends TemplateView {
 	
-	private static final long serialVersionUID = 1L;
 
-	private Label month;
 
-	
-	private Calendar calendar;
 
-	
 	public CalendarView() {
-		this.initView();
-		this.initCal();
-	}
-	
-	private void initView() {
 
-		VerticalLayout verticallay = new VerticalLayout();
-		verticallay.setWidth("350px");
+		// Change title in header
+		super.setHeaderTitle("Calendar");
+		ProgressBar progressBar = new ProgressBar();
+		
+		// add a progressbar
+		
+		progressBar.setIndeterminate(true);
+		super.add(progressBar);
+		
+		//Create and build a calendar
+		FullCalendar calendar = FullCalendarBuilder.create().build();
+		
+		super.addContent(calendar);
+		
+		// Create a initial sample entry
+		Entry entry = new Entry();
+		entry.setTitle("Some event");
+		entry.setStart(LocalDate.now().withDayOfMonth(3).atTime(10, 0), calendar.getTimezone());
+		entry.setEnd(entry.getStart().plusHours(2), calendar.getTimezone());
+		entry.setColor("#ff3333");
 
-		HorizontalLayout hl1 = new HorizontalLayout();
-		hl1.setWidth("100%");
-		hl1.setHeight("100%");
+		calendar.addEntry(entry);
+		
+		calendar.addTimeslotsSelectedListener((event) -> {
+		    entry.setStart(calendar.getTimezone().convertToUTC(event.getStartDateTime()));
+		    entry.setEnd(calendar.getTimezone().convertToUTC(event.getEndDateTime()));
+		    entry.setAllDay(event.isAllDay());
+
+		    entry.setColor("dodgerblue");
+
+		    // ... show and editor
+		});
+		
 		
 
-		this.add(hl1);
-
-	}
-
-
-	private void initCal() {
-		this.calendar = new GregorianCalendar();
-		this.calendar.set(Calendar.DAY_OF_MONTH, 1);
-		this.month.setText(this.parseMonth(this.calendar.get(Calendar.MONTH)));
+		//Create a horizontal Layout with two button. The button "calAdd" is for add an appointment. 
+		// The Button "calDel" ist for delete an entry.
 		
-		while (!this.calendar.getTime().toString().substring(0, 3).equals("Mon")) {
-			this.theDayBefore();
-		}
-
-	}
-
-	private String parseMonth(int i) {
-		String[] months = { "Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September",
-				"Oktober", "November", "Dezember" };
-		return months[i];
-	}
-
-	
-	private void theDayBefore() {
-		this.calendar.set(Calendar.DATE, this.calendar.get(Calendar.DATE) - 1);
-	}
-
-	@Override
-	public void beforeEnter(BeforeEnterEvent event) {
-		// TODO Auto-generated method stub
+		HorizontalLayout horiLay = new HorizontalLayout();
+		Button calAdd = new Button("Eintrag hinzufügen", event -> Notification.show("Funktion noch nicht verfügbar"));
+		Button calDel = new Button("Eintrag löschen", event -> Notification.show("Funktion noch nicht verfügbar"));
+		horiLay.add(calAdd, calDel);
 		
+		super.add(horiLay);
+		super.add();
+		
+
+		
+
 	}
 
 }
