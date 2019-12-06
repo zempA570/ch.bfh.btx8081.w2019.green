@@ -35,6 +35,7 @@ public class UserManagementView extends TemplateView {
 
 		// Adding two components to horizontal layout
 		hLAddUser.add(username, btnAddUser);
+		
 
 		// Adding components to content space
 		super.addContent(listBox);
