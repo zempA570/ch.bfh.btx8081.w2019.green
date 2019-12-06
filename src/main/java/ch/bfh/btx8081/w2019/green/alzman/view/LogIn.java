@@ -1,5 +1,6 @@
 package ch.bfh.btx8081.w2019.green.alzman.view;
 
+import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.charts.model.Label;
 import com.vaadin.flow.component.dependency.CssImport;
@@ -15,30 +16,38 @@ import com.vaadin.flow.router.Route;
 /**
  * The user management view will be used to add and remove users of the app
  */
-@Route("usermanagementview")
+@Route("")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class LogIn extends TemplateView {
 
 	public LogIn() {
 
 		// Change title in header
-		super.setHeaderTitle("LogIn");
+		super.setHeaderTitle("Login");
 
 		// Creating elements
-		Label uname = new Label("Benutzername eingeben"); 
-		TextField enter = new TextField("Login"); 
+		TextField username = new TextField();
+		username.setLabel("Benutzername");
+		
+		
+		TextField enter = new TextField("Login");
+		enter.setLabel("Benuzername");
 		PasswordField pw = new PasswordField("Password"); 
 		
 		Button submit = new Button("einloggen");
 
-//		Creating Vertical layout
-		VerticalLayout feld = new VerticalLayout();
-
+		//Creating Vertical layout
+		VerticalLayout verticalLay = new VerticalLayout();
+		
 		// Adding all components to vertical layout
-		feld.add(uname, enter, pw);
+		verticalLay.add(enter , pw, submit);
+
+		
+		
 
 		// Adding components to content space
-		super.addContent(feld);
+	
+		super.addContent(verticalLay);
 	
 
 	}
