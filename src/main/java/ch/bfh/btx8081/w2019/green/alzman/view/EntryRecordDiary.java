@@ -9,6 +9,7 @@ import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.listbox.ListBox;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
@@ -18,25 +19,27 @@ import com.vaadin.flow.router.Route;
  */
 @Route("")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
-public class myview extends TemplateView {
+public class EntryRecordDiary extends TemplateView {
 
-	public myview() {
+	public EntryRecordDiary() {
 
+		//Creating a new Datepicker.  
 		DatePicker datePicker = new DatePicker();
-		datePicker.setLabel("Select a day within this month");
-		datePicker.setPlaceholder("Date within this month");
-
-		LocalDate now = LocalDate.now();
-
-		datePicker.setMin(now.withDayOfMonth(1));
-		datePicker.setMax(now.withDayOfMonth(now.lengthOfMonth()));
-
-		TextArea textArea = new TextArea("Description");
-		textArea.setPlaceholder("Write here ...");
+		datePicker.setLabel("Date");
+		datePicker.setPlaceholder("Select a Date");
 		
-		Button button = new Button();	
-		super.addContent(button);
-		super.addContent(datePicker);
-		super.addContent(textArea);	
+		//Creating a new Textarea
+		TextArea textArea = new TextArea("Comment");
+		textArea.setPlaceholder("Write here  ...");
+		
+		//Creating a new Button
+		Button button = new Button("Add", new Icon(VaadinIcon.PLUS));
+		
+		//Creating a new Vertical Layout
+		VerticalLayout verticalLayout = new VerticalLayout(datePicker,button, textArea);
+		
+		//Adding components to content space
+		super.addContent(verticalLayout);
+
 	}
 }
