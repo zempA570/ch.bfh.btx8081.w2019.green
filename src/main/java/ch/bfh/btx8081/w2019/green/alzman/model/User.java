@@ -13,13 +13,13 @@ import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 /**
  * This class is used to store information about the users/relatives of patients.
  * 
- * @author Roman
+ * @author Adrian
  *
  */
 //@Entity means this class should be a table in the database
-@Entity
 //@Table(name = ..) sets the name for the table. The table name "User" is not allowed so we have to change it.
 //normally this doesn't have to be set, the class name will be used as table name.
+@Entity
 @Table(name = "Relative")
 public class User {
 
