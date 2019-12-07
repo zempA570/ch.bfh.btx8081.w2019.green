@@ -16,7 +16,7 @@ import com.vaadin.flow.router.Route;
 /**
  * The user management view will be used to add and remove users of the app
  */
-@Route("")
+@Route("InfoboxaddView")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class InfoboxaddView extends TemplateView {
 	
