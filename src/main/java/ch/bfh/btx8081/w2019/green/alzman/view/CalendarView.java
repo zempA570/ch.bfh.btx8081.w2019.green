@@ -20,7 +20,7 @@ import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.Route;
 
-@Route("")
+@Route("calendarview")
 public class CalendarView extends TemplateView {
 
 	public CalendarView() {
