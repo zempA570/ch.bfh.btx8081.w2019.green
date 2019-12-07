@@ -20,46 +20,44 @@ public class UserManagementView extends TemplateView {
 
 		// Change title in header
 		super.setHeaderTitle("User Management");
+		
+		// Create components to choose and delete users
+		ComboBox<String> cmbbxUserSelection = new ComboBox<>("Choose your user");
+		cmbbxUserSelection.setItems("TEST", "DUMMY", "BOT");
+		Button btnDeleteUser = new Button("Delete User", new Icon(VaadinIcon.TRASH));
+		
+		// Put components in horizontal layout
+		HorizontalLayout hlChooseDeleteUser = new HorizontalLayout();
+		hlChooseDeleteUser.add(cmbbxUserSelection, btnDeleteUser);
+		hlChooseDeleteUser.setAlignItems(Alignment.BASELINE);
+
+		// This will be used as soon as logic is implemented
+//		TextField asdf = new TextField();
+//		cmbbxUserSelection.addValueChangeListener(event -> {
+//			if (event.getSource().isEmpty()) {
+//				asdf.setPlaceholder(("The current User is TEST"));
+//			} else {
+//				asdf.setPlaceholder("The current User is" + event.getValue());
+//			}
+//		});
+//		super.addContent(asdf);
+
 
 		// Create components for adding users
-		TextField tfUsername = new TextField();
-		tfUsername.setLabel("Username");
+		TextField tfFirstName = new TextField();
+		tfFirstName.setLabel("Firstname");
+		TextField tfLastName = new TextField();
+		tfLastName.setLabel("Lastname");
 		Button btnAddUser = new Button("Add User", new Icon(VaadinIcon.PLUS));
 
 		// Put components in horizontal layout
 		HorizontalLayout hlAddUser = new HorizontalLayout();
-		hlAddUser.add(tfUsername, btnAddUser);
+		hlAddUser.add(tfFirstName, tfLastName, btnAddUser);
 		hlAddUser.setAlignItems(Alignment.BASELINE);
 
-		/**
-		 * If we opt for multiple users we can add a collection to the combobox below
-		 * like in the example:
-		 * 
-		 * EXAMPLE ComboBox(String label, Collection<T> items)
-		 * 
-		 * Creates a combo box with the defined label and populated with the items in
-		 * the collection.
-		 * 
-		 * 
-		 * NOTE: if we do choose to work with multiple users, code must be changed to
-		 * work for objects and not strings
-		 */
-		ComboBox<String> cmbbxUserSelection = new ComboBox<>("Choose your user");
-		cmbbxUserSelection.setItems("TEST", "DUMMY", "BOT");
-
-		TextField asdf = new TextField();
-		cmbbxUserSelection.addValueChangeListener(event -> {
-			if (event.getSource().isEmpty()) {
-				asdf.setPlaceholder(("The current User is TEST"));
-			} else {
-				asdf.setPlaceholder("The current User is" + event.getValue());
-			}
-		});
-
 		// Adding components to content space
-		super.addContent(cmbbxUserSelection);
+		super.addContent(hlChooseDeleteUser);
 		super.addContent(hlAddUser);
-//		super.addContent(asdf);
 
 	}
 
