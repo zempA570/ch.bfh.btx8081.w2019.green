@@ -82,5 +82,4 @@ public abstract class TemplateView extends VerticalLayout {
 	public void setHeaderTitle(String newTitle) {
 		title.setText(newTitle);
 	}
-
 }
