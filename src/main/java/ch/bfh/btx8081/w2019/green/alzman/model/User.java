@@ -1,12 +1,18 @@
 package ch.bfh.btx8081.w2019.green.alzman.model;
 
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Persistence;
+import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
+import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
+
 @Entity
-public class Relative {
+@Table(name = "Relative")
+public class User {
 
 	/* Liste der Parameter */
 	@TableGenerator(name = "userIDGenerator", allocationSize = 1, initialValue = 1)
@@ -16,13 +22,14 @@ public class Relative {
 	String lastname;
 	String firstname;
 
-	public Relative(String lastname, String firstname) {
+	public User(String lastname, String firstname) {
 		this.lastname = lastname;
 		this.firstname = firstname;
 	}
 
-	public Relative() {
-
+	public User() {
+		
+		
 	}
 
 	public String getLastname() {
