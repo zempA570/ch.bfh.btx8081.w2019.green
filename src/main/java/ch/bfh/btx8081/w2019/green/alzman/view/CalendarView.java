@@ -78,7 +78,7 @@ public class CalendarView extends TemplateView {
 		
 
 		//Create a horizontal Layout with two button. The button "calAdd" is for add an appointment. 
-		// The Button "calDel" ist for delete an entry.
+		// The Button "calDel" is for delete an entry.
 		
 		HorizontalLayout horiLay = new HorizontalLayout();
 		Button calAdd = new Button("Eintrag hinzufügen", event -> Notification.show("Funktion noch nicht verfügbar"));
