@@ -70,7 +70,7 @@ public class CalendarView extends TemplateView {
 		    entry.setEnd(calendar.getTimezone().convertToUTC(event.getEndDateTime()));
 		    entry.setAllDay(event.isAllDay());
 
-		    entry.setColor("dodgerblue");
+		    entry.setColor("green");
 
 		    // ... show and editor
 		});
