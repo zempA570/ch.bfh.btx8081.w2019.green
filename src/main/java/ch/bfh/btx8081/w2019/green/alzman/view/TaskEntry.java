@@ -18,7 +18,7 @@ import com.vaadin.flow.router.Route;
 /**
  * The user management view will be used to add and remove users of the app
  */
-@Route("taskEntry")
+@Route("")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class TaskEntry extends TemplateView {
 
@@ -43,17 +43,23 @@ public class TaskEntry extends TemplateView {
 		// icon which can be clicked to clead the value
 		datePick.setClearButtonVisible(true);
 		
-
-		Button add = new Button("Add task", new Icon(VaadinIcon.PLUS));
+        //add button
+		Button add = new Button ("add Note", new Icon(VaadinIcon.PLUS)); 
+		
 
 		// Creating horizontal layout
-		VerticalLayout adding = new VerticalLayout(newtask, choice, datum, datePick, add);
+		HorizontalLayout adding = new HorizontalLayout(newtask, choice);
+		VerticalLayout adding2 = new VerticalLayout(datum, datePick, add);
 
-		// Adding two components to horizontal layout
-		//adding.add(newtask, choice, datum, datePick, add);
 
+		// space
+//		Label space2 = new Label("  "); 
+//		HorizontalLayout spacing = new HorizontalLayout(space2); 
+		
+		
 		// Adding components to content space
 		super.addContent(adding);
+		super.addContent(adding2);
 
 
 	}
