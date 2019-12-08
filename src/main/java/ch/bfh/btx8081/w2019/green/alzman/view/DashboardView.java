@@ -35,11 +35,6 @@ public class DashboardView extends TemplateView {
 		Icon todoIcon = new Icon(VaadinIcon.TASKS);
 		Icon infoBoxIcon = new Icon(VaadinIcon.INFO_CIRCLE);
 
-		// Test Clicks implementation
-		Div message = new Div();
-		calendarIcon.getStyle().set("cursor", "pointer");
-		calendarIcon.addClickListener(event -> message.setText("Calendar has been selected"));
-
 		// change Icon Size and Shape
 		calendarIcon.setSize("80px");
 		statusIcon.setSize("80px");
@@ -63,7 +58,6 @@ public class DashboardView extends TemplateView {
 				infoBoxIcon);
 		HorizontalLayout iconViewCentral = new HorizontalLayout(iconViewLeft, iconViewRight);
 
-		// adding Stuff to the Objects
 		super.addContent(iconViewCentral);
 
 	}
