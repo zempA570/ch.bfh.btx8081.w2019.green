@@ -26,12 +26,9 @@ public class LogIn extends TemplateView {
 		super.setHeaderTitle("Login");
 
 		// Creating elements
-		TextField username = new TextField();
-		username.setLabel("Benutzername");
-		
-		
+				
 		TextField enter = new TextField("Login");
-		enter.setLabel("Benuzername");
+		enter.setLabel("Username");
 		PasswordField pw = new PasswordField("Password"); 
 		
 		Button submit = new Button("einloggen");
