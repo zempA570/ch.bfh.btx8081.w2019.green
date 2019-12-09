@@ -24,10 +24,10 @@ import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 public class User {
 
 	//@TableGenerator creates a generator with the chosen name, value etc.
-	@TableGenerator(name = "userIDGenerator", allocationSize = 1, initialValue = 1)
 	//@Id mean this variable is the primary key in the table
-	@Id
 	//@GeneratedValue means the value of this variable will be generated in the database by the "userIDGenerator"
+	@TableGenerator(name = "userIDGenerator", allocationSize = 1, initialValue = 1)
+	@Id
 	@GeneratedValue(generator = "userIDGenerator")
 	int id;
 	
@@ -36,9 +36,9 @@ public class User {
 	String firstname;
 
 	// Constructor to create Users in code
-	public User(String lastname, String firstname) {
-		this.lastname = lastname;
+	public User(String firstname, String lastname) {
 		this.firstname = firstname;
+		this.lastname = lastname;
 	}
 
 	// No-Args constructor is required by JPA
@@ -64,6 +64,10 @@ public class User {
 
 	public String getLastname() {
 		return lastname;
+	}
+	
+	public String getFullName() {
+		return firstname + " " + lastname;
 	}
 
 	public int getId() {
