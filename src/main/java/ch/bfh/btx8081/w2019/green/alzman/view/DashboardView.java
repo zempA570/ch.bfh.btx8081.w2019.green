@@ -90,10 +90,10 @@ public class DashboardView extends TemplateView {
 				importantNotesText, importantNotesButton);
 		VerticalLayout iconViewRight = new VerticalLayout(diaryText, diaryButton, todoText, todoButton, infoBoxText,
 				infoBoxButton);
+
 		HorizontalLayout iconViewCentral = new HorizontalLayout(iconViewLeft, iconViewRight);
 		
-		//configuring the icons so they can be clicked on
-		
+		//configuring the icons so they can be clicked on		
 		/**
 		 * the code below is working, waiting for the other View Classes to be finished so they can be
 		 * implemented just as the one below
