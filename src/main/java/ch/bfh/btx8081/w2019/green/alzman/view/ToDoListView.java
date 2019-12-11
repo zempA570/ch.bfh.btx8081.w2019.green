@@ -16,8 +16,6 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 
-import jdk.internal.joptsimple.internal.Strings;
-
 /**
  * The user management view will be used to add and remove users of the app
  */
@@ -50,7 +48,7 @@ public class ToDoListView extends TemplateView {
 
 		// specialtasks shown in listbox
 
-		ListBox<Strings> list1 = new ListBox<>();
+		ListBox<String> list1 = new ListBox<>();
 		list1.add(row);
 		
 		//order in vertical
