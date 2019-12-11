@@ -56,6 +56,7 @@ public class DashboardView extends TemplateView {
 				importantNotesText, importantNotesIcon);
 		VerticalLayout iconViewRight = new VerticalLayout(diaryText, diaryIcon, todoText, todoIcon, infoBoxText,
 				infoBoxIcon);
+
 		HorizontalLayout iconViewCentral = new HorizontalLayout(iconViewLeft, iconViewRight);
 
 		super.addContent(iconViewCentral);
