@@ -17,12 +17,14 @@ import com.vaadin.flow.router.Route;
 /**
  * The user management view will be used to add and remove users of the app
  */
-@Route("")
+@Route("entryrecorddiary")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class EntryRecordDiary extends TemplateView {
 
 	public EntryRecordDiary() {
 
+		super.setHeaderTitle("Entry Record Diary");
+		
 		//Creating a new Datepicker.  
 		DatePicker datePicker = new DatePicker();
 		datePicker.setLabel("Date");

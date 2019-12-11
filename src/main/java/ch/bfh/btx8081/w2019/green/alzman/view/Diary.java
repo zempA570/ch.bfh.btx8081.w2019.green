@@ -22,6 +22,8 @@ import com.vaadin.flow.router.Route;
 public class Diary extends TemplateView {
 
 	public Diary() {
+		
+		super.setHeaderTitle("Diary");
 
 		//Creating a new Textarea
 		TextArea textArea = new TextArea("");
@@ -31,7 +33,7 @@ public class Diary extends TemplateView {
 		Button button = new Button("Add new Diary", new Icon(VaadinIcon.PLUS));
 		
 		//Creating a new Vertical Layout
-		VerticalLayout verticalLayout = new VerticalLayout(button, textArea);
+		VerticalLayout verticalLayout = new VerticalLayout(textArea, button);
 		
 		//Adding components to content space
 		super.addContent(verticalLayout);
