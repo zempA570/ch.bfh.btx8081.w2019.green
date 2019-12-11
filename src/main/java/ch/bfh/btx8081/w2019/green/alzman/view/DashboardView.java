@@ -17,13 +17,17 @@ import com.vaadin.flow.server.PWA;
 import com.vaadin.server.BrowserWindowOpener;
 import com.vaadin.ui.renderers.ImageRenderer;
 
+import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
+
 @Route("")
 @PWA(name = "Project Base for Vaadin", shortName = "Project Base")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class DashboardView extends TemplateView {
 
 	public DashboardView() {
-
+		
+		DbService.init();
+		
 		// displays the Title of this Component
 		super.setHeaderTitle("Dashboard");
 
