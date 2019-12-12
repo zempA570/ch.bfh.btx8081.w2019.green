@@ -17,12 +17,12 @@ import com.vaadin.flow.router.Route;
  */
 @Route("AddAdressInfobox")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
-public class AddAdressInfobox extends TemplateView {
+public class AddAdressInfoboxView extends TemplateView {
 
 	// variabel for the suptitel Add Adress
 	private H4 title1;
 
-	public AddAdressInfobox() {
+	public AddAdressInfoboxView() {
 
 		// Change title in header
 		super.setHeaderTitle("Infobox");
