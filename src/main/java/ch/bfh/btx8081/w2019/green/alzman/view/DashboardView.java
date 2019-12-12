@@ -1,7 +1,5 @@
 package ch.bfh.btx8081.w2019.green.alzman.view;
 
-import org.vaadin.stefan.fullcalendar.CalendarView;
-
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
@@ -103,6 +101,12 @@ public class DashboardView extends TemplateView {
 		 * implemented just as the one below
 		 */
 		infoBoxButton.addClickListener(event -> UI.getCurrent().navigate(InfoboxView.class));
+		todoButton.addClickListener(e -> UI.getCurrent().navigate(ToDoListView.class));
+		diaryButton.addClickListener(e -> UI.getCurrent().navigate(Diary.class));
+		importantNotesButton.addClickListener(e -> UI.getCurrent().navigate(NotesView.class));
+//		statusButton.addClickListener(e -> UI.getCurrent().navigate(UserManagementView.class));
+		calendarButton.addClickListener(e -> UI.getCurrent().navigate(CalendarView.class));
+
 		
 		
 
