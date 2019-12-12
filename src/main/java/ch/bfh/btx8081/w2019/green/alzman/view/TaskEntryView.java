@@ -18,11 +18,11 @@ import com.vaadin.flow.router.Route;
 /**
  * The user management view will be used to add and remove users of the app
  */
-@Route("")
+@Route("oke")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
-public class TaskEntry extends TemplateView {
+public class TaskEntryView extends TemplateView {
 
-	public TaskEntry() {
+	public TaskEntryView() {
 
 		// Change title in header
 		super.setHeaderTitle("Aufgabe einfügen");

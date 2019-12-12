@@ -3,6 +3,7 @@ package ch.bfh.btx8081.w2019.green.alzman.view;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.accordion.Accordion;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
@@ -21,7 +22,7 @@ import jdk.internal.joptsimple.internal.Strings;
 /**
  * The user management view will be used to add and remove users of the app
  */
-@Route("listView")
+@Route("")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class ToDoListView extends TemplateView {
 
@@ -77,7 +78,7 @@ public class ToDoListView extends TemplateView {
 
 		// add monthly section
 		Label monthly = new Label("monthly");
-		Label d2 = new Label("done"); 
+		Label d2 = new Label("Done"); 
 		HorizontalLayout title2 = new HorizontalLayout(d2, monthly);
 
 		//weekly tasks in form of checkbox'
@@ -96,7 +97,7 @@ public class ToDoListView extends TemplateView {
 		
 		// add annualy section
 		Label annualy = new Label("annualy");
-		Label d3 = new Label("done"); 
+		Label d3 = new Label("Done"); 
 		HorizontalLayout title3 = new HorizontalLayout(d3, annualy);
 
 		//weekly tasks in form of checkbox'
@@ -115,6 +116,9 @@ public class ToDoListView extends TemplateView {
 		
 		Label space1 = new Label ("     ");
 		HorizontalLayout space = new HorizontalLayout(); 
+		
+		Button addNewTask = new Button(new Icon(VaadinIcon.PLUS)); 
+		addNewTask.addClickListener(e -> UI.getCurrent().navigate(TaskEntryView.class)); 
 
 		// adding components to content space
 		super.addContent(vertical);
@@ -122,6 +126,7 @@ public class ToDoListView extends TemplateView {
 		super.addContent(vertical2);
 		super.addContent(vertical3);
 		super.addContent(space); 
+		super.addContent(addNewTask);
 
 	}
 
