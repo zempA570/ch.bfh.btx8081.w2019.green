@@ -9,63 +9,89 @@ import javax.persistence.TableGenerator;
 @Entity
 @Table(name = "ImportantAdress")
 public class AddAdress {
-	
+
 	@TableGenerator(name = "ImportantAdressIDGenerator", allocationSize = 1, initialValue = 1)
 	@Id
 	@GeneratedValue(generator = "ImportantAdressIDGenerator")
 	int id;
-	
+
 	String name;
 	String adress;
 	String adressNr;
 	String postcode;
 	String city;
 	String phonenummber;
-	
+
+	public AddAdress() {
+
+	}
+
+	public AddAdress(int id, String name, String adress, String adressNr, String postcode, String city,
+			String phonenummber) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.adress = adress;
+		this.adressNr = adressNr;
+		this.postcode = postcode;
+		this.city = city;
+		this.phonenummber = phonenummber;
+	}
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getAdress() {
 		return adress;
 	}
+
 	public void setAdress(String adress) {
 		this.adress = adress;
 	}
+
 	public String getAdressNr() {
 		return adressNr;
 	}
+
 	public void setAdressNr(String adressNr) {
 		this.adressNr = adressNr;
 	}
+
 	public String getPostcode() {
 		return postcode;
 	}
+
 	public void setPostcode(String postcode) {
 		this.postcode = postcode;
 	}
+
 	public String getCity() {
 		return city;
 	}
+
 	public void setCity(String city) {
 		this.city = city;
 	}
+
 	public String getPhonenummber() {
 		return phonenummber;
 	}
+
 	public void setPhonenummber(String phonenummber) {
 		this.phonenummber = phonenummber;
 	}
-	
-	
-	
 
 }
