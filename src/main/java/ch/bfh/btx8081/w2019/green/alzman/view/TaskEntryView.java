@@ -2,6 +2,7 @@ package ch.bfh.btx8081.w2019.green.alzman.view;
 
 import java.time.LocalDate;
 
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.datepicker.DatePicker;
@@ -45,6 +46,7 @@ public class TaskEntryView extends TemplateView {
 		
         //add button
 		Button add = new Button ("add Note", new Icon(VaadinIcon.PLUS)); 
+		add.addClickListener(e -> UI.getCurrent().navigate(ToDoListView.class));
 		
 
 		// Creating horizontal layout
