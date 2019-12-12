@@ -7,12 +7,12 @@ import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
 @Entity
-@Table(name = "ImportantPerson")
+@Table(name = "ImportantAdress")
 public class AddAdress {
 	
-	@TableGenerator(name = "ImportantPersonIDGenerator", allocationSize = 1, initialValue = 1)
+	@TableGenerator(name = "ImportantAdressIDGenerator", allocationSize = 1, initialValue = 1)
 	@Id
-	@GeneratedValue(generator = "ImportantPersonIDGenerator")
+	@GeneratedValue(generator = "ImportantAdressIDGenerator")
 	int id;
 	
 	String name;
