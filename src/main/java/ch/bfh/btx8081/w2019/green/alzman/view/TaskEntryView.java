@@ -18,7 +18,7 @@ import com.vaadin.flow.router.Route;
 /**
  * The user management view will be used to add and remove users of the app
  */
-@Route("oke")
+@Route("TaskEntry")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class TaskEntryView extends TemplateView {
 
