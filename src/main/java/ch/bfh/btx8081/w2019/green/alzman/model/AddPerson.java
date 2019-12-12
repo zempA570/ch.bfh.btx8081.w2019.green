@@ -15,6 +15,7 @@ public class AddPerson {
 	@GeneratedValue(generator = "ImportantPersonIDGenerator")
 	int id;
 
+	String gender;
 	String firstname;
 	String lastname;
 	String adress;
@@ -27,10 +28,11 @@ public class AddPerson {
 
 	}
 
-	public AddPerson(int id, String firstname, String lastname, String adress, String adressNr, String postcode,
-			String city, String phonenummber) {
+	public AddPerson(int id, String gender, String firstname, String lastname, String adress, String adressNr,
+			String postcode, String city, String phonenummber) {
 		super();
 		this.id = id;
+		this.gender = gender;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.adress = adress;
@@ -46,6 +48,14 @@ public class AddPerson {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
 	public String getFirstname() {

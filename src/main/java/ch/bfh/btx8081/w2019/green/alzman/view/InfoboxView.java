@@ -1,5 +1,6 @@
 package ch.bfh.btx8081.w2019.green.alzman.view;
 
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.accordion.Accordion;
 import com.vaadin.flow.component.accordion.AccordionPanel;
 import com.vaadin.flow.component.button.Button;
@@ -40,6 +41,7 @@ public class InfoboxView extends TemplateView {
 
 		// Button for to Add a important Person
 		Button btnImportantPer = new Button("Add User");
+		btnImportantPer.addClickListener(event -> UI.getCurrent().navigate(AddPersonInfoboxView.class));
 		super.addContent(btnImportantPer);
 
 		
@@ -51,6 +53,7 @@ public class InfoboxView extends TemplateView {
 		
 		//Button for to Add a important adress
 		Button btnImportantAdr = new Button("Add Adresse");
+		btnImportantAdr.addClickListener(event -> UI.getCurrent().navigate(AddAdressInfoboxView.class));
 		super.addContent(btnImportantAdr);
 
 		

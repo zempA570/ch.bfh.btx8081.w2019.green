@@ -63,7 +63,7 @@ public class AddAdressInfoboxView extends TemplateView {
 		Button cancel = new Button("Cancel");
 
 		// the name will be in the first position
-		VerticalLayout position1 = new VerticalLayout();
+		HorizontalLayout position1 = new HorizontalLayout();
 		position1.add(name);
 
 		// the adresse and adress number will be in the second position because the
@@ -77,18 +77,19 @@ public class AddAdressInfoboxView extends TemplateView {
 		position3.add(plz, city);
 
 		// the telephone number will be in the fourt position
-		VerticalLayout position4 = new VerticalLayout();
+		HorizontalLayout position4 = new HorizontalLayout();
 		position4.add(telNr);
 
 		// the Buttons are under postcode and city, the items are next by
 		HorizontalLayout position5 = new HorizontalLayout();
 		position5.add(add, cancel);
+		
+		VerticalLayout ende = new VerticalLayout();
+		ende.add(position1,position2,position3,position4,position5);
 
-		// add the four contents
-		super.addContent(position1);
-		super.addContent(position2);
-		super.addContent(position3);
-		super.addContent(position4);
+		// add the contents one the View
+		super.addContent(ende);
+		
 
 	}
 
