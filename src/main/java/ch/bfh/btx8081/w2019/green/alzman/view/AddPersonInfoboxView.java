@@ -19,7 +19,7 @@ import com.vaadin.flow.router.Route;
 @Route("AddPersonInfoboxView")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class AddPersonInfoboxView extends TemplateView {
-	
+
 	// variabel for the suptitel Add person
 	private H4 title1;
 
@@ -70,33 +70,30 @@ public class AddPersonInfoboxView extends TemplateView {
 
 		// Button for cancel the prosses for to add person in the Infobox
 		Button cancel = new Button("Cancel");
-		
+
 		HorizontalLayout position1 = new HorizontalLayout();
 		position1.add(gender);
-		
+
 		HorizontalLayout position2 = new HorizontalLayout();
-		position2.add(name,vorname);
-		
+		position2.add(name, vorname);
+
 		HorizontalLayout position3 = new HorizontalLayout();
-		position3.add(adress,adrNr);
-		
+		position3.add(adress, adrNr);
+
 		HorizontalLayout position4 = new HorizontalLayout();
-		position4.add(plz,city);
-		
+		position4.add(plz, city);
+
 		HorizontalLayout position5 = new HorizontalLayout();
 		position5.add(telNr);
-		
+
 		HorizontalLayout position6 = new HorizontalLayout();
 		position6.add(add, cancel);
-		
+
 		VerticalLayout ende = new VerticalLayout();
-		ende.add(position1,position2,position3,position4,position5,position6);
-		
-		
-		
+		ende.add(position1, position2, position3, position4, position5, position6);
+
 		// add the contents in the View
 		super.addContent(ende);
-		
 
 	}
 }
