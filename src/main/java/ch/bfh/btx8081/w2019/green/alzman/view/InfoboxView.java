@@ -22,6 +22,10 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
+import com.vaadin.training.grid.solutions.ex1.Person;
+import com.vaadin.training.grid.solutions.ex1.PersonService;
+
+import ch.bfh.btx8081.w2019.green.alzman.model.AddPerson;
 
 /**
  * The user management view will be used to add and remove users of the app
@@ -34,6 +38,8 @@ public class InfoboxView extends TemplateView {
 	private H4 title2;
 	private Grid<String> gridPerson;
 	private Grid<String> gridAdress;
+	
+	
 
 	public InfoboxView() {
 
@@ -49,10 +55,17 @@ public class InfoboxView extends TemplateView {
 		Button btnImportantPer = new Button("Add User");
 		btnImportantPer.addClickListener(event -> UI.getCurrent().navigate(AddPersonInfoboxView.class));
 		super.addContent(btnImportantPer);
+		
+		//Test
+		final PersonService service = new PersonService();
+		
+		final PersonService servie = new PersonService();
 
-		gridPerson = new Grid<>();
-
-		super.addContent(gridPerson);
+		final List<AddPerson> persons = service.getAllPersons();
+		final Grid<AddPerson> grid = new Grid<>();
+		add(grid);
+		grid.setItems(persons);
+		
 
 		
 
