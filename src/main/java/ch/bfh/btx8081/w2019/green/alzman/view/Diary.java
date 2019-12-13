@@ -2,6 +2,7 @@ package ch.bfh.btx8081.w2019.green.alzman.view;
 
 import java.time.LocalDate;
 
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.dependency.CssImport;
@@ -17,7 +18,7 @@ import com.vaadin.flow.router.Route;
 /**
  * The user management view will be used to add and remove users of the app
  */
-@Route("Diary")
+@Route("")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class Diary extends TemplateView {
 
@@ -31,6 +32,7 @@ public class Diary extends TemplateView {
 		
 		// Add a new Diary
 		Button button = new Button("Add new Diary", new Icon(VaadinIcon.PLUS));
+		button.addClickListener(e -> UI.getCurrent().navigate(EntryRecordDiary.class));
 		
 		//Creating a new Vertical Layout
 		VerticalLayout verticalLayout = new VerticalLayout(button, textArea);
