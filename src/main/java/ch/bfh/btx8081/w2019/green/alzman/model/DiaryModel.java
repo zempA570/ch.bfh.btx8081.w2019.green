@@ -21,15 +21,22 @@ public class DiaryModel {
 	String author;
 	String Entry;
 	
-	public DiaryModel(DatePicker date, String author, String Entry ) {
-		this.date =date;
-		this.author=author;
-		this.Entry = Entry;
-		
+	public void setId(int id) {
+		this.id = id;
 	}
+		
+	
 	public DiaryModel() {
 		
 	}
+	
+	public DiaryModel(int id, DatePicker date, String author, String entry) {
+		this.id = id;
+		this.date = date;
+		this.author = author;
+		Entry = entry;
+	}
+	
 	
 	public void setDate(DatePicker date) {
 		this.date= date;
@@ -40,7 +47,6 @@ public class DiaryModel {
 		return date;
 	}
 	
-
 	public String setAuthor(String author) {
 	return this.author= author;
 	
