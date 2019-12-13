@@ -33,6 +33,7 @@ public class EntryRecordDiary extends TemplateView {
 		//Creating a new Textarea
 		TextArea textArea = new TextArea("Comment");
 		textArea.setPlaceholder("Write here  ...");
+		textArea.setLabel("Geschrieben von..");
 		
 		//Creating a new Button
 		Button button = new Button("Add new Record", new Icon(VaadinIcon.PLUS));
