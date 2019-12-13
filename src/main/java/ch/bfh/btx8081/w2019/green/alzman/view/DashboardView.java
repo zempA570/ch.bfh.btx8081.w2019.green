@@ -16,6 +16,7 @@ import com.vaadin.server.BrowserWindowOpener;
 import com.vaadin.ui.renderers.ImageRenderer;
 
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
+import usermanagement.UserManagementViewImpl;
 
 @Route("")
 @PWA(name = "Project Base for Vaadin", shortName = "Project Base")
@@ -32,7 +33,7 @@ public class DashboardView extends TemplateView {
 		// create and add icon to header
 		Icon userIcon = new Icon(VaadinIcon.USERS);
 		userIcon.setSize("40px");
-		userIcon.addClickListener(e -> UI.getCurrent().navigate(UserManagementView.class));
+		userIcon.addClickListener(e -> UI.getCurrent().navigate(UserManagementViewImpl.class));
 		super.addHeader(userIcon);
 
 		

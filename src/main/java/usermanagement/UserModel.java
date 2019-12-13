@@ -1,4 +1,4 @@
-package ch.bfh.btx8081.w2019.green.alzman.model;
+package usermanagement;
 
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
@@ -21,7 +21,7 @@ import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 //normally this doesn't have to be set, the class name will be used as table name.
 @Entity
 @Table(name = "Relative")
-public class User {
+public class UserModel {
 
 	//@TableGenerator creates a generator with the chosen name, value etc.
 	//@Id mean this variable is the primary key in the table
@@ -36,13 +36,13 @@ public class User {
 	String firstname;
 
 	// Constructor to create Users in code
-	public User(String firstname, String lastname) {
+	public UserModel(String firstname, String lastname) {
 		this.firstname = firstname;
 		this.lastname = lastname;
 	}
 
 	// No-Args constructor is required by JPA
-	public User() {
+	public UserModel() {
 		
 	}
 	

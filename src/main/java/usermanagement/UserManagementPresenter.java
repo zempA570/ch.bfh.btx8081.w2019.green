@@ -1,4 +1,4 @@
-package ch.bfh.btx8081.w2019.green.alzman.presenter;
+package usermanagement;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,39 +6,43 @@ import java.util.Objects;
 
 import javax.persistence.Query;
 
-import ch.bfh.btx8081.w2019.green.alzman.model.User;
+import com.vaadin.flow.component.button.Button;
+
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
-import ch.bfh.btx8081.w2019.green.alzman.view.UserManagementView;
 
 /**
  * 
  * @author Adrian
  *
  */
-public class UserManagementPresenter {
+public class UserManagementPresenter implements UserManagementView.UserManagagementViewListener {
 
 	private UserManagementView view;
-	private List<User> users;
+	private UserModel model;
+	private List<UserModel> users;
 
 	// constructor for the presenter
-	public UserManagementPresenter(UserManagementView userManagementView) {
-		this.view = userManagementView;
+	public UserManagementPresenter(UserManagementView view, UserModel model) {
+		this.view = view;
+		this.model = model;
+		view.addListener(this);
 
 		fillComboboxWithUsers();
-
 	}
 
-	public void deleteUser(String userIdFullname) {
+	public void deleteUser() {
+		
+		String comboboxValue = view.getComboboxValue();
 
 		DbService.em.getTransaction().begin();
 
 		// get the id number of the user which is at the beginning of the string
-		int userId = Integer.parseInt(userIdFullname.substring(0, userIdFullname.indexOf(" ")));
+		int userId = Integer.parseInt(comboboxValue.substring(0, comboboxValue.indexOf(" ")));
 
-		User userToDelete = null;
+		UserModel userToDelete = null;
 
 		// for every user we have in our list
-		for (User user : users) {
+		for (UserModel user : users) {
 			// if the id of that user is the same as the id we got from the userIdFullname
 			if (Objects.equals(user.getId(), userId)) {
 				// this is the user we want to delete
@@ -59,10 +63,13 @@ public class UserManagementPresenter {
 
 	}
 
-	public void addUser(String firstName, String lastName) {
+	public void addUser() {
+
+		String firstName = view.getFirstname();
+		String lastName = view.getLastname();
 
 		// create new user
-		User newUser = new User(firstName, lastName);
+		UserModel newUser = new UserModel(firstName, lastName);
 
 		// DB stuff
 		DbService.em.getTransaction().begin();
@@ -81,22 +88,41 @@ public class UserManagementPresenter {
 	private void fillComboboxWithUsers() {
 
 		// DB stuff where we get all the users
-		Query query = DbService.em.createNativeQuery("SELECT * FROM Relative", User.class);
+		Query query = DbService.em.createNativeQuery("SELECT * FROM Relative", UserModel.class);
 
 		// get list of users out of the query
 		users = query.getResultList();
 
 		List<String> userNames = new ArrayList<String>();
 		// for every user in our list
-		for (User user : users) {
+		for (UserModel user : users) {
 			// we add the id and fullname of that user to our List<String>
 			userNames.add(user.getId() + " " + user.getFullName());
 		}
 
 		// then we tell the view to fill the combobox with the List<String>
-		view.fillComboboxWithUsers(userNames);
+		view.setComboboxItems(userNames);
 
 //		TODO message to user that was deleted?
+
+	}
+
+	@Override
+	public void buttonClick(Button button) {
+
+		String buttonText = button.getText();
+
+		switch (buttonText) {
+		case "Add User":
+			addUser();
+			;
+		case "Delete User":
+			deleteUser();
+			;
+		default:
+			// TODO
+			;
+		}
 
 	}
 

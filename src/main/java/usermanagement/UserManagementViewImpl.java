@@ -1,9 +1,7 @@
-package ch.bfh.btx8081.w2019.green.alzman.view;
+package usermanagement;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.persistence.Query;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
@@ -14,9 +12,7 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 
-import ch.bfh.btx8081.w2019.green.alzman.model.User;
-import ch.bfh.btx8081.w2019.green.alzman.presenter.UserManagementPresenter;
-import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
+import ch.bfh.btx8081.w2019.green.alzman.view.TemplateView;
 
 /**
  * The user management view will be used to add and remove users of the app
@@ -25,14 +21,14 @@ import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
  */
 @Route("usermanagementview")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
-public class UserManagementView extends TemplateView {
+public class UserManagementViewImpl extends TemplateView implements UserManagementView {
 
-	private UserManagementPresenter presenter;
+	private List<UserManagagementViewListener> listeners = new ArrayList<UserManagagementViewListener>();
 	private ComboBox<String> cmbbxUserSelection;
 	private TextField tfFirstName;
 	private TextField tfLastName;
 
-	public UserManagementView() {
+	public UserManagementViewImpl() {
 
 		// Change title in header
 		super.setHeaderTitle("User Management");
@@ -41,9 +37,11 @@ public class UserManagementView extends TemplateView {
 //		TODO make combobox value first of available values (default value)
 		cmbbxUserSelection = new ComboBox<>("Choose your user");
 
-//		TODO do this differently
 		Button btnDeleteUser = new Button("Delete User", new Icon(VaadinIcon.TRASH));
-		btnDeleteUser.addClickListener(e -> presenter.deleteUser(cmbbxUserSelection.getValue()));
+		btnDeleteUser.addClickListener(event -> {
+			for (UserManagagementViewListener listener : listeners)
+				listener.buttonClick(event.getSource());
+		});
 
 		// Put components in horizontal layout
 		HorizontalLayout hlChooseDeleteUser = new HorizontalLayout();
@@ -57,7 +55,10 @@ public class UserManagementView extends TemplateView {
 		tfLastName.setLabel("Lastname");
 
 		Button btnAddUser = new Button("Add User", new Icon(VaadinIcon.PLUS));
-		btnAddUser.addClickListener(e -> presenter.addUser(tfFirstName.getValue(), tfLastName.getValue()));
+		btnAddUser.addClickListener(event -> {
+			for (UserManagagementViewListener listener : listeners)
+				listener.buttonClick(event.getSource());
+		});
 
 		// Put components in horizontal layout
 		HorizontalLayout hlAddUser = new HorizontalLayout();
@@ -68,47 +69,37 @@ public class UserManagementView extends TemplateView {
 		super.addContent(hlChooseDeleteUser);
 		super.addContent(hlAddUser);
 
-		// instantiate the presenter with this view
-		presenter = new UserManagementPresenter(this);
-
 	}
 
-	public void fillComboboxWithUsers(List<String> userNames) {
+	@Override
+	public String getFirstname() {
+		return tfFirstName.getValue();
+	}
 
+	@Override
+	public String getLastname() {
+		return tfLastName.getValue();
+	}
+
+	@Override
+	public void setComboboxItems(List<String> userNames) {
 		cmbbxUserSelection.setItems(userNames);
-
 	}
-
+	
+	@Override
 	public void clearTextfields() {
 		tfFirstName.clear();
 		tfLastName.clear();
 	}
 
-//	************* OLD STUFF WILL BE DELETED BEFORE RELEASE ********************
-	// User u1 = new User("First", "User");
-	// User u2 = new User("Second", "User");
-	// User u3 = new User("Third", "User");
-	//
-	// DbService.init();
-	// DbService.em.getTransaction().begin();
-	// DbService.em.persist(u1);
-	// DbService.em.persist(u2);
-	// DbService.em.persist(u3);
-	// DbService.em.getTransaction().commit();
-	// DbService.em.close();
-	// users.stream().forEach(e -> e.getFullName())
-	// cmbbxUserSelection.setItems("TEST", "DUMMY", "BOT");
-	// cmbbxUserSelection.setItems((persons..stream()));
+	@Override
+	public void addListener(UserManagagementViewListener listener) {
+		listeners.add(listener);
+	}
 
-	// This will be used as soon as logic is implemented
-	// TextField asdf = new TextField();
-	// cmbbxUserSelection.addValueChangeListener(event -> {
-	//		if (event.getSource().isEmpty()) {
-	//			asdf.setPlaceholder(("The current User is TEST"));
-	//		} else {
-	//			asdf.setPlaceholder("The current User is" + event.getValue());
-	//		}
-	// });
-	// super.addContent(asdf);
+	@Override
+	public String getComboboxValue() {
+		return cmbbxUserSelection.getValue();
+	}
 
 }
