@@ -19,9 +19,17 @@ import com.vaadin.flow.router.Route;
 @Route("AddPersonInfoboxView")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class AddPersonInfoboxView extends TemplateView {
-	
+
 	// variabel for the suptitel Add person
 	private H4 title1;
+	private RadioButtonGroup gender;
+	private TextField name;
+	private TextField vorname;
+	private TextField telNr;
+	private TextField adress;
+	private TextField adrNr;
+	private TextField plz;
+	private TextField city;
 
 	public AddPersonInfoboxView() {
 
@@ -63,35 +71,49 @@ public class AddPersonInfoboxView extends TemplateView {
 
 		// Textfield for city
 		TextField city = new TextField();
-		city.setLabel("Telefonnummer");
+		city.setLabel("Ort");
 
 		// Button for add the person in the Infobox
 		Button add = new Button("Add");
 
 		// Button for cancel the prosses for to add person in the Infobox
 		Button cancel = new Button("Cancel");
-		
-		// the gender, name, prename and telephone number will be in the first  position because every item is under each item
-		VerticalLayout position1 = new VerticalLayout();
-		position1.add(gender, name, vorname, telNr);
-		
-		// the adresse and adress number will be in the second position because the items are next by
-		HorizontalLayout position2 = new HorizontalLayout();
-		position2.add(adress, adrNr);
-		
-		// the postcode and city will be in the third position because the items are under adress and adress number and the items are next by
-		HorizontalLayout position3 = new HorizontalLayout();
-		position3.add(plz, city);
-		
-		// the Buttons are under postcode  and city, the items are next by
-		HorizontalLayout position4 = new HorizontalLayout();
-		position4.add(add, cancel);
-		
-		// add the four contents
-		super.addContent(position1);
-		super.addContent(position2);
-		super.addContent(position3);
-		super.addContent(position4);
 
+		HorizontalLayout position1 = new HorizontalLayout();
+		position1.add(gender);
+
+		HorizontalLayout position2 = new HorizontalLayout();
+		position2.add(name, vorname);
+
+		HorizontalLayout position3 = new HorizontalLayout();
+		position3.add(adress, adrNr);
+
+		HorizontalLayout position4 = new HorizontalLayout();
+		position4.add(plz, city);
+
+		HorizontalLayout position5 = new HorizontalLayout();
+		position5.add(telNr);
+
+		HorizontalLayout position6 = new HorizontalLayout();
+		position6.add(add, cancel);
+
+		VerticalLayout ende = new VerticalLayout();
+		ende.add(position1, position2, position3, position4, position5, position6);
+
+		// add the contents in the View
+		super.addContent(ende);
+
+	}
+	
+	public void clearTextfieldsPerson() {
+		gender.clear();
+		name.clear();
+		vorname.clear();
+		telNr.clear();
+		adress.clear();
+		adrNr.clear();
+		plz.clear();
+		city.clear();
+		
 	}
 }
