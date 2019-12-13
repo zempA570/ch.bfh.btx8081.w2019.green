@@ -1,10 +1,15 @@
 package ch.bfh.btx8081.w2019.green.alzman.view;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.accordion.Accordion;
 import com.vaadin.flow.component.accordion.AccordionPanel;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.H4;
@@ -27,6 +32,8 @@ public class InfoboxView extends TemplateView {
 
 	private H4 title1;
 	private H4 title2;
+	private Grid<String> gridPerson;
+	private Grid<String> gridAdress;
 
 	public InfoboxView() {
 
@@ -40,52 +47,34 @@ public class InfoboxView extends TemplateView {
 
 		// Button for to Add a important Person
 		Button btnImportantPer = new Button("Add User");
+		btnImportantPer.addClickListener(event -> UI.getCurrent().navigate(AddPersonInfoboxView.class));
 		super.addContent(btnImportantPer);
 
-		// Accordion Component from Vaddin to show the list of the important persons
-		Accordion accordion1 = new Accordion();
-		
-		//List of the members of the important person
-		VerticalLayout importentNr = new VerticalLayout();
-		importentNr.add(new Label("Geschlecht"), new Label("Name"),new Label("Vorname"), new Label("Telefonnummer"),
-				new Label("Adresse"),new Label("Nr"), new Label("Platz"),new Label("Ort"), new Button("Delete"));
-		accordion1.add("Hans Muster", importentNr);
+		gridPerson = new Grid<>();
 
-		super.addContent(accordion1);
-		
-		//List of the members of the important person
-		VerticalLayout importentNr1 = new VerticalLayout();
-		importentNr1.add(new Label("Geschlecht"), new Label("Name"),new Label("Vorname"), new Label("Telefonnummer"),
-				new Label("Adresse"),new Label("Nr"), new Label("Platz"),new Label("Ort"), new Button("Delete"));
-		accordion1.add("Friz Hugo", importentNr1);
+		super.addContent(gridPerson);
 
-		super.addContent(accordion1);
 		
-		//Suptitel in H4 format for important adres
+
+		// Suptitel in H4 format for important adres
 		title2 = new H4();
 		title2.setText("Wichtige Adressen");
 		super.addContent(title2);
-		
-		//Button for to Add a important adress
+
+		// Button for to Add a important adress
 		Button btnImportantAdr = new Button("Add Adresse");
+		btnImportantAdr.addClickListener(event -> UI.getCurrent().navigate(AddAdressInfoboxView.class));
 		super.addContent(btnImportantAdr);
 
-		// Accordion Component from Vaddin to show the list of the important Adresses
-		Accordion accordion2 = new Accordion();
-		
-		//List of the members of the important adres
-		VerticalLayout importentAdr = new VerticalLayout();
-		importentAdr.add(new Label("Name"), new Label("Adresse"), new Label("Nr"), new Label("Platz"), new Label("Ort"),
-				new Label("Telefonnummer"), new Button("Delete"));
-		accordion2.add("Inselspital", importentAdr);
+		gridAdress = new Grid<>();
 
-		super.addContent(accordion2);
-		
-		//List of the members of the important adres
-		VerticalLayout importentAdr1 = new VerticalLayout();
-		importentAdr1.add(new Label("Name"), new Label("Adresse"), new Label("Nr"), new Label("Platz"),
-				new Label("Ort"), new Label("Telefonnummer"), new Button("Delete"));
-		accordion2.add("Hirslanden Klinik", importentAdr1);
+		super.addContent(gridAdress);
+
+	}
+
+	public void fillGridWithPerson(List<String> person) {
+
+		gridPerson.setItems(person);
 
 	}
 
