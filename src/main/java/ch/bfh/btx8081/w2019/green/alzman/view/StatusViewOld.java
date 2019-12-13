@@ -28,9 +28,9 @@ import com.vaadin.flow.router.Route;
 @Route("Statusview")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 
-public class StatusView extends TemplateView {
+public class StatusViewOld extends TemplateView {
 
-	public StatusView() {
+	public StatusViewOld() {
 
 		// Change title in header
 		super.setHeaderTitle("Status");

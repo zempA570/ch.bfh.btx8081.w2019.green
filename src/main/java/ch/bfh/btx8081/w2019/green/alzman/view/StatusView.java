@@ -76,6 +76,7 @@ public class StatusView extends TemplateView{
 		
 		detailsLayout.add(infocomponent01, infocomponent02, infocomponent03);
 		super.addContent(detailsLayout);
+		
 //---------------------------------------------------------------------------------
 		FormLayout textLayout04 = new FormLayout();
 		
@@ -116,8 +117,6 @@ public class StatusView extends TemplateView{
 		check03.setSize("25px");
 		check03.setColor("blue");
 		check03.setVisible(false);
-		
-
 //-----------------------------------------------------------------------------------	
 		
 		FormLayout textLayout05 = new FormLayout();
@@ -149,7 +148,6 @@ public class StatusView extends TemplateView{
 textLayout05.add( textFieldDep, check01, textFieldIndep, check02, textFieldWhelp, check03);
 		
 		super.add(textLayout05);
-		
 		
 //----------------------------------------------------------------------------------		
 		plus01.addClickListener( event -> textFieldDep.setVisible(true));	
@@ -186,7 +184,6 @@ textLayout05.add( textFieldDep, check01, textFieldIndep, check02, textFieldWhelp
 		columnC = new HorizontalLayout();
 		columnC.addClassNames("column", "column-c");
 		columnCWrapper.add(new Label("Dependent"), columnC);
-		
 		
 		super.add(columnAWrapper, columnBWrapper, columnCWrapper);
 		
