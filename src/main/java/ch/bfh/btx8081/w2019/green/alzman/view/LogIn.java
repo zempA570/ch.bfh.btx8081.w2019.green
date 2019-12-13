@@ -12,6 +12,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
+import com.vaadin.ui.UI;
 
 /**
  * The user management view will be used to add and remove users of the app
@@ -32,6 +33,9 @@ public class LogIn extends TemplateView {
 		PasswordField pw = new PasswordField("Password"); 
 		
 		Button submit = new Button("einloggen");
+		
+		//this is just a temporary solution, clicking on submit leads to the dashboard
+		
 
 		//Creating Vertical layout
 		VerticalLayout verticalLay = new VerticalLayout();

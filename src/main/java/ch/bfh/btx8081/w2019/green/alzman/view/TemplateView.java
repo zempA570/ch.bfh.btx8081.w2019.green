@@ -62,7 +62,7 @@ public abstract class TemplateView extends VerticalLayout {
 
 		Button btnLogOut = new Button("Logout", new Icon(VaadinIcon.CLOSE_CIRCLE_O));
 		footer.add(btnLogOut);
-
+		btnLogOut.addClickListener(e -> UI.getCurrent().navigate(LogIn.class));
 	}
 
 	/**
