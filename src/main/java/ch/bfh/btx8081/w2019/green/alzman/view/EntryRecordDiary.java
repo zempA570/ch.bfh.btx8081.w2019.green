@@ -23,6 +23,8 @@ public class EntryRecordDiary extends TemplateView {
 
 	public EntryRecordDiary() {
 
+		super.setHeaderTitle("Entry Record");
+		
 		//Creating a new Datepicker.  
 		DatePicker datePicker = new DatePicker();
 		datePicker.setLabel("Date");
@@ -33,10 +35,10 @@ public class EntryRecordDiary extends TemplateView {
 		textArea.setPlaceholder("Write here  ...");
 		
 		//Creating a new Button
-		Button button = new Button("Add", new Icon(VaadinIcon.PLUS));
+		Button button = new Button("Add new Record", new Icon(VaadinIcon.PLUS));
 		
 		//Creating a new Vertical Layout
-		VerticalLayout verticalLayout = new VerticalLayout(datePicker,button, textArea);
+		VerticalLayout verticalLayout = new VerticalLayout(datePicker, textArea,button);
 		
 		//Adding components to content space
 		super.addContent(verticalLayout);

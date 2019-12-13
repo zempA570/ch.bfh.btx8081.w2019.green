@@ -22,6 +22,8 @@ import com.vaadin.flow.router.Route;
 public class Diary extends TemplateView {
 
 	public Diary() {
+		
+		super.setHeaderTitle("Diary");
 
 		//Creating a new Textarea
 		TextArea textArea = new TextArea("");
