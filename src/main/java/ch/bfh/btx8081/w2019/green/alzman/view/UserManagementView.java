@@ -1,45 +1,114 @@
 package ch.bfh.btx8081.w2019.green.alzman.view;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.Query;
+
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
-import com.vaadin.flow.component.listbox.ListBox;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 
+import ch.bfh.btx8081.w2019.green.alzman.model.User;
+import ch.bfh.btx8081.w2019.green.alzman.presenter.UserManagementPresenter;
+import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
+
 /**
  * The user management view will be used to add and remove users of the app
+ * 
+ * @author Adrian
  */
 @Route("usermanagementview")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class UserManagementView extends TemplateView {
+
+	private UserManagementPresenter presenter;
+	private ComboBox<String> cmbbxUserSelection;
+	private TextField tfFirstName;
+	private TextField tfLastName;
 
 	public UserManagementView() {
 
 		// Change title in header
 		super.setHeaderTitle("User Management");
 
-		// Creating elements
-		ListBox<String> listBox = new ListBox<>();
-		listBox.setItems("Relative 1", "Relative 2", "Relative 3");
+		// Create components to choose and delete users
+//		TODO make combobox value first of available values (default value)
+		cmbbxUserSelection = new ComboBox<>("Choose your user");
 
-		TextField username = new TextField();
-		username.setLabel("Username");
+//		TODO do this differently
+		Button btnDeleteUser = new Button("Delete User", new Icon(VaadinIcon.TRASH));
+		btnDeleteUser.addClickListener(e -> presenter.deleteUser(cmbbxUserSelection.getValue()));
+
+		// Put components in horizontal layout
+		HorizontalLayout hlChooseDeleteUser = new HorizontalLayout();
+		hlChooseDeleteUser.add(cmbbxUserSelection, btnDeleteUser);
+		hlChooseDeleteUser.setAlignItems(Alignment.BASELINE);
+
+		// Create components for adding users
+		tfFirstName = new TextField();
+		tfFirstName.setLabel("Firstname");
+		tfLastName = new TextField();
+		tfLastName.setLabel("Lastname");
 
 		Button btnAddUser = new Button("Add User", new Icon(VaadinIcon.PLUS));
+		btnAddUser.addClickListener(e -> presenter.addUser(tfFirstName.getValue(), tfLastName.getValue()));
 
-		// Creating horizontal layout
-		HorizontalLayout hLAddUser = new HorizontalLayout();
-
-		// Adding two components to horizontal layout
-		hLAddUser.add(username, btnAddUser);
+		// Put components in horizontal layout
+		HorizontalLayout hlAddUser = new HorizontalLayout();
+		hlAddUser.add(tfFirstName, tfLastName, btnAddUser);
+		hlAddUser.setAlignItems(Alignment.BASELINE);
 
 		// Adding components to content space
-		super.addContent(listBox);
-		super.addContent(hLAddUser);
+		super.addContent(hlChooseDeleteUser);
+		super.addContent(hlAddUser);
+
+		// instantiate the presenter with this view
+		presenter = new UserManagementPresenter(this);
 
 	}
+
+	public void fillComboboxWithUsers(List<String> userNames) {
+
+		cmbbxUserSelection.setItems(userNames);
+
+	}
+
+	public void clearTextfields() {
+		tfFirstName.clear();
+		tfLastName.clear();
+	}
+
+//	************* OLD STUFF WILL BE DELETED BEFORE RELEASE ********************
+	// User u1 = new User("First", "User");
+	// User u2 = new User("Second", "User");
+	// User u3 = new User("Third", "User");
+	//
+	// DbService.init();
+	// DbService.em.getTransaction().begin();
+	// DbService.em.persist(u1);
+	// DbService.em.persist(u2);
+	// DbService.em.persist(u3);
+	// DbService.em.getTransaction().commit();
+	// DbService.em.close();
+	// users.stream().forEach(e -> e.getFullName())
+	// cmbbxUserSelection.setItems("TEST", "DUMMY", "BOT");
+	// cmbbxUserSelection.setItems((persons..stream()));
+
+	// This will be used as soon as logic is implemented
+	// TextField asdf = new TextField();
+	// cmbbxUserSelection.addValueChangeListener(event -> {
+	//		if (event.getSource().isEmpty()) {
+	//			asdf.setPlaceholder(("The current User is TEST"));
+	//		} else {
+	//			asdf.setPlaceholder("The current User is" + event.getValue());
+	//		}
+	// });
+	// super.addContent(asdf);
 
 }
