@@ -31,10 +31,8 @@ public class UserManagementPresenter implements UserManagementView.UserManagagem
 	}
 
 	public void deleteUser() {
-		
-		String comboboxValue = view.getComboboxValue();
 
-		DbService.em.getTransaction().begin();
+		String comboboxValue = view.getComboboxValue();
 
 		// get the id number of the user which is at the beginning of the string
 		int userId = Integer.parseInt(comboboxValue.substring(0, comboboxValue.indexOf(" ")));
@@ -49,16 +47,14 @@ public class UserManagementPresenter implements UserManagementView.UserManagagem
 				userToDelete = user;
 			}
 		}
-
-		// this is the part where we use the DB
-		DbService.em.remove(userToDelete);
-		DbService.em.getTransaction().commit();
+		
+		DbService.remove(userToDelete);
 
 		// after the user is deleted we "refresh" the list in the combobox so the
 		// deleted user is gone
 		fillComboboxWithUsers();
 
-//		TODO when to close?
+//		TODO when to close
 		// DbService.em.close();
 
 	}
@@ -72,9 +68,7 @@ public class UserManagementPresenter implements UserManagementView.UserManagagem
 		UserModel newUser = new UserModel(firstName, lastName);
 
 		// DB stuff
-		DbService.em.getTransaction().begin();
-		DbService.em.persist(newUser);
-		DbService.em.getTransaction().commit();
+		DbService.persist(newUser);
 
 		// clear the textfields where the user entered the data
 		view.clearTextfields();

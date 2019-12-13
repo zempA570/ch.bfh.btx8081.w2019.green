@@ -25,8 +25,6 @@ public class DashboardView extends TemplateView {
 
 	public DashboardView() {
 		
-		DbService.init();
-		
 		// displays the Title of this Component
 		super.setHeaderTitle("Dashboard");
 

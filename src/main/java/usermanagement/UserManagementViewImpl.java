@@ -27,9 +27,9 @@ public class UserManagementViewImpl extends TemplateView implements UserManageme
 	private ComboBox<String> cmbbxUserSelection;
 	private TextField tfFirstName;
 	private TextField tfLastName;
-
+	
 	public UserManagementViewImpl() {
-
+		
 		// Change title in header
 		super.setHeaderTitle("User Management");
 
@@ -68,6 +68,11 @@ public class UserManagementViewImpl extends TemplateView implements UserManageme
 		// Adding components to content space
 		super.addContent(hlChooseDeleteUser);
 		super.addContent(hlAddUser);
+		
+		UserModel model = new UserModel();
+		UserManagementViewImpl view = this;
+		// The presenter connects the model and view
+		new UserManagementPresenter(view, model);
 
 	}
 
@@ -85,7 +90,7 @@ public class UserManagementViewImpl extends TemplateView implements UserManageme
 	public void setComboboxItems(List<String> userNames) {
 		cmbbxUserSelection.setItems(userNames);
 	}
-	
+
 	@Override
 	public void clearTextfields() {
 		tfFirstName.clear();
