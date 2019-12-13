@@ -21,6 +21,12 @@ public class AddAdressInfoboxView extends TemplateView {
 
 	// variabel for the suptitel Add Adress
 	private H4 title1;
+	private TextField name;
+	private TextField adress;
+	private TextField adrNr;
+	private TextField plz;
+	private TextField city;
+	private TextField telNr;
 
 	public AddAdressInfoboxView() {
 
@@ -91,6 +97,15 @@ public class AddAdressInfoboxView extends TemplateView {
 		super.addContent(ende);
 		
 
+	}
+	public void clearTextfieldsAdresse() {
+		name.clear();
+		adress.clear();
+		adrNr.clear();
+		plz.clear();
+		city.clear();
+		telNr.clear();
+		
 	}
 
 }

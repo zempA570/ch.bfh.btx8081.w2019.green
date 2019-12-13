@@ -114,7 +114,7 @@ public class AddPerson {
 	}
 
 	
-	public String getFullDetails() {
+	public String getFullDetailsPerson() {
 		return gender + " " + firstname + " " + lastname + " "
 				+ adress + " " + adressNr + " " + postcode + " " + city + " " + phonenummber;
 	}

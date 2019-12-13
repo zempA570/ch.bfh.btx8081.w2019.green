@@ -26,10 +26,9 @@ public class AddAdress {
 
 	}
 
-	public AddAdress(int id, String name, String adress, String adressNr, String postcode, String city,
+	public AddAdress(String name, String adress, String adressNr, String postcode, String city,
 			String phonenummber) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.adress = adress;
 		this.adressNr = adressNr;
@@ -92,6 +91,9 @@ public class AddAdress {
 
 	public void setPhonenummber(String phonenummber) {
 		this.phonenummber = phonenummber;
+	}
+	public String getFullDetailsAdress() {
+		return name + " " + adress + " " + adressNr + " " + postcode + " " + city + " " + phonenummber;
 	}
 
 }

@@ -67,17 +67,17 @@ public class AddPersonPresenter {
 			String postcode, String city, String phonenummber) {
 
 		// create new user
-		AddPerson newUser = new AddPerson(gender, firstname, lastname,adress, adressNr,
+		AddPerson newPerson = new AddPerson(gender, firstname, lastname,adress, adressNr,
 				postcode, city, phonenummber);
 
 		// DB stuff
 		DbService.em.getTransaction().begin();
-		DbService.em.persist(newUser);
+		DbService.em.persist(newPerson);
 		DbService.em.getTransaction().commit();
 
 		// clear the textfields where the user entered the data
 		//Muss noch gemacht werden
-		addPersonModel.clearTextfields();
+		addPersonModel.clearTextfieldsPerson();
 
 		// after the user is added we "refresh" the list in the combobox so the new user
 		// appears
@@ -98,7 +98,7 @@ public class AddPersonPresenter {
 		// for every user in our list
 		for (AddPerson person : persons) {
 			// we add the id and fullname of that user to our List<String>
-			personDetail.add(person.getId()+ " "+ person.getFullDetails());
+			personDetail.add(person.getId()+ " "+ person.getFullDetailsPerson());
 
 		}
 

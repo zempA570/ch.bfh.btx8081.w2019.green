@@ -105,7 +105,7 @@ public class AddPersonInfoboxView extends TemplateView {
 
 	}
 	
-	public void clearTextfields() {
+	public void clearTextfieldsPerson() {
 		gender.clear();
 		name.clear();
 		vorname.clear();
