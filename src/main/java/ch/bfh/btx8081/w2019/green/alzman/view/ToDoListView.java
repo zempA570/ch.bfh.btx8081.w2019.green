@@ -3,6 +3,7 @@ package ch.bfh.btx8081.w2019.green.alzman.view;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.accordion.Accordion;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
@@ -19,7 +20,7 @@ import com.vaadin.flow.router.Route;
 /**
  * The user management view will be used to add and remove users of the app
  */
-@Route("listView")
+@Route("todoList")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class ToDoListView extends TemplateView {
 
@@ -75,14 +76,14 @@ public class ToDoListView extends TemplateView {
 
 		// add monthly section
 		Label monthly = new Label("monthly");
-		Label d2 = new Label("done"); 
+		Label d2 = new Label("Done"); 
 		HorizontalLayout title2 = new HorizontalLayout(d2, monthly);
 
 		//weekly tasks in form of checkbox'
 		Checkbox ch3 = new Checkbox();
-		ch3.setLabel("Wohnung Pieterlen - Mieter");
+		ch3.setLabel("Appartment Pieterlen");
 		Checkbox ch4 = new Checkbox();
-		ch4.setLabel("Rechnungen zahlen");
+		ch4.setLabel("Paying Invoices");
 		
 		//add checkbox' to a new list
 		ListBox<String> list3 = new ListBox<>();
@@ -93,15 +94,15 @@ public class ToDoListView extends TemplateView {
 		vertical2.add(title2, list3);
 		
 		// add annualy section
-		Label annualy = new Label("annualy");
-		Label d3 = new Label("done"); 
+		Label annualy = new Label("annually");
+		Label d3 = new Label("Done"); 
 		HorizontalLayout title3 = new HorizontalLayout(d3, annualy);
 
 		//weekly tasks in form of checkbox'
 		Checkbox ch5 = new Checkbox();
-		ch5.setLabel("Steuererklärung");
+		ch5.setLabel("Tax declaration");
 		Checkbox ch6 = new Checkbox();
-		ch6.setLabel("Versicherungen");
+		ch6.setLabel("Insurances");
 		
 		//add checkbox' to a new list
 		ListBox<String> list4 = new ListBox<>();
@@ -111,15 +112,23 @@ public class ToDoListView extends TemplateView {
 		VerticalLayout vertical3 = new VerticalLayout(); 
 		vertical3.add(title3, list4);
 		
-		Label space1 = new Label ("     ");
-		HorizontalLayout space = new HorizontalLayout(); 
+//		Label space1 = new Label ("     ");
+//		HorizontalLayout space = new HorizontalLayout(); 
+		
+		Button addNewTask = new Button(new Icon(VaadinIcon.PLUS)); 
+		addNewTask.addClickListener(e -> UI.getCurrent().navigate(TaskEntryView.class)); 
+		vertical3.add(addNewTask);
+		
+		//HorizontalLayout adding = new HorizontalLayout(addNewTask); 
 
 		// adding components to content space
 		super.addContent(vertical);
 		super.addContent(vertical1);
 		super.addContent(vertical2);
 		super.addContent(vertical3);
-		super.addContent(space); 
+		//super.addContent(space); 
+		//super.addContent(addNewTask);
+		
 
 	}
 

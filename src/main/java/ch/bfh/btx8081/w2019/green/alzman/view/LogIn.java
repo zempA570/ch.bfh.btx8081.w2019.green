@@ -1,6 +1,7 @@
 package ch.bfh.btx8081.w2019.green.alzman.view;
 
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.charts.model.Label;
 import com.vaadin.flow.component.dependency.CssImport;
@@ -31,16 +32,19 @@ public class LogIn extends TemplateView {
 		enter.setLabel("Username");
 		PasswordField pw = new PasswordField("Password"); 
 		
+		//Buttons for log in or to register new user
 		Button submit = new Button("einloggen");
+		Button register = new Button("new register", new Icon(VaadinIcon.PLUS)); 
+		register.addClickListener(e -> UI.getCurrent().navigate(RegisterUser.class));
+		
+		HorizontalLayout hor = new HorizontalLayout(submit, register); 
 
 		//Creating Vertical layout
 		VerticalLayout verticalLay = new VerticalLayout();
 		
 		// Adding all components to vertical layout
-		verticalLay.add(enter , pw, submit);
+		verticalLay.add(enter , pw, hor);
 
-		
-		
 
 		// Adding components to content space
 	
