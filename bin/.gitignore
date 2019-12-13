@@ -27,3 +27,5 @@ drivers/
 error-screenshots/
 
 webpack.generated.js
+/frontend/
+/src/
