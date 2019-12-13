@@ -35,7 +35,7 @@ public class Diary extends TemplateView {
 		button.addClickListener(e -> UI.getCurrent().navigate(EntryRecordDiary.class));
 		
 		//Creating a new Vertical Layout
-		VerticalLayout verticalLayout = new VerticalLayout(button, textArea);
+		VerticalLayout verticalLayout = new VerticalLayout(textArea, button);
 		
 		//Adding components to content space
 		super.addContent(verticalLayout);
