@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import com.vaadin.flow.component.datepicker.DatePicker;
+import com.vaadin.flow.component.timepicker.TimePicker;
+
 @Entity
 public class CalendarModel {
 	
@@ -15,13 +18,15 @@ public class CalendarModel {
 	@GeneratedValue
 	int id;
 	
-	Date date;
-	Time time;
+	DatePicker date;
+	TimePicker time;
+	String author;
 	String Entry;
 	
-	public CalendarModel(Date date,Time time, String Entry ) {
+	public CalendarModel(DatePicker date,TimePicker time, String author, String Entry ) {
 		this.date =date;
-		this.time = time;
+		this.time=time;
+		this.author=author;
 		this.Entry = Entry;
 		
 	}
@@ -29,21 +34,29 @@ public class CalendarModel {
 		
 	}
 	
-	public void setDate(Date date) {
+	public void setDate(DatePicker date) {
 		this.date= date;
 	
 	}
 	
-	public Date getDate() {
+	public DatePicker getDate() {
 		return date;
 	}
-
-	public Time setTime(Time time) {
-		return this.time = time;
+	public void setTime(TimePicker time) {
+		this.time= time;
 	
 	}
-	public Time getTime() {
+	
+	public TimePicker getTime() {
 		return time;
+	}
+
+	public String setAuthor(String author) {
+	return this.author= author;
+	
+	}
+	public String getAuthor() {
+		return author;
 	}
 	
 	public void setEntry(String Entry) {

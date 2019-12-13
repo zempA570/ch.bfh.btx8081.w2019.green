@@ -15,29 +15,33 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.timepicker.TimePicker;
 import com.vaadin.flow.router.Route;
 
+import ch.bfh.btx8081.w2019.green.alzman.presenter.CalendarPresenter;
+
 /**
  * The user management view will be used to add and remove users of the app
  */
 @Route("AddAppointment")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class AddAppointment extends TemplateView {
+	
+	private CalendarPresenter presenter;
 
 	public AddAppointment() {
 
 		// Change title in header
 		super.setHeaderTitle("Termin hinzufügen");
 		
-		DatePicker datePicker = new DatePicker();
-		datePicker.setValue(LocalDate.now());
+		DatePicker date = new DatePicker();
+		date.setValue(LocalDate.now());
 
 		// Display an icon which can be clicked to clear the value:
-		datePicker.setClearButtonVisible(true);
+		date.setClearButtonVisible(true);
 		
-		TimePicker timePicker = new TimePicker();
-		timePicker.setValue(LocalTime.now());
+		TimePicker time = new TimePicker();
+		time.setValue(LocalTime.now());
 
 		// Display an icon which can be clicked to clear the value:
-		timePicker.setClearButtonVisible(true);
+		time.setClearButtonVisible(true);
 		
 		
 
@@ -48,18 +52,22 @@ public class AddAppointment extends TemplateView {
 		entry.setLabel("Eintrag");
 
 		Button btnAddEntry = new Button("Add Entry", new Icon(VaadinIcon.PLUS));
+		
 
 		// Creating horizontal layout
 		HorizontalLayout hLAddUser = new HorizontalLayout();
 
 		// Adding two components to horizontal layout
-		hLAddUser.add(author, entry , btnAddEntry);
+		hLAddUser.add(author,time, entry , btnAddEntry);
+		
 		
 
 		// Adding components to content space
 	
-		super.addContent(datePicker);
+		super.addContent(date);
 		super.addContent(hLAddUser);
+		
+		btnAddEntry.addClickListener(e -> presenter.addAppointment(date, time,author.getValue(), entry.getValue()));
 
 	}
 
