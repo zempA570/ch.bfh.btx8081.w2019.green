@@ -22,10 +22,11 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
-import com.vaadin.training.grid.solutions.ex1.Person;
-import com.vaadin.training.grid.solutions.ex1.PersonService;
 
+import ch.bfh.btx8081.w2019.green.alzman.model.AddAdress;
 import ch.bfh.btx8081.w2019.green.alzman.model.AddPerson;
+import ch.bfh.btx8081.w2019.green.alzman.presenter.AdressService;
+import ch.bfh.btx8081.w2019.green.alzman.presenter.PersonService;
 
 /**
  * The user management view will be used to add and remove users of the app
@@ -36,8 +37,8 @@ public class InfoboxView extends TemplateView {
 
 	private H4 title1;
 	private H4 title2;
-	private Grid<String> gridPerson;
-	private Grid<String> gridAdress;
+	//private Grid<String> gridPerson;
+	//private Grid<String> gridAdress;
 	
 	
 
@@ -59,16 +60,24 @@ public class InfoboxView extends TemplateView {
 		//Test
 		final PersonService service = new PersonService();
 		
-		final PersonService servie = new PersonService();
 
 		final List<AddPerson> persons = service.getAllPersons();
-		final Grid<AddPerson> grid = new Grid<>();
-		add(grid);
-		grid.setItems(persons);
 		
-
+		final Grid<AddPerson> persongrid = new Grid<>();
+		add(persongrid);
+		persongrid.setItems(persons);
 		
-
+		persongrid.addColumn(AddPerson::getGender).setHeader("Gender");
+		persongrid.addColumn(AddPerson::getFirstname).setHeader("Firstname");
+		persongrid.addColumn(AddPerson::getLastname).setHeader("Lastname");
+		persongrid.addColumn(AddPerson::getAdress).setHeader("Adress");
+		persongrid.addColumn(AddPerson::getAdressNr).setHeader("Nr");
+		persongrid.addColumn(AddPerson::getPostcode).setHeader("Postcode");
+		persongrid.addColumn(AddPerson::getCity).setHeader("City");
+		persongrid.addColumn(AddPerson::getPhonenummber).setHeader("Phonenummber");
+		
+		super.addContent(persongrid);
+	
 		// Suptitel in H4 format for important adres
 		title2 = new H4();
 		title2.setText("Wichtige Adressen");
@@ -79,16 +88,30 @@ public class InfoboxView extends TemplateView {
 		btnImportantAdr.addClickListener(event -> UI.getCurrent().navigate(AddAdressInfoboxView.class));
 		super.addContent(btnImportantAdr);
 
-		gridAdress = new Grid<>();
+		final AdressService services = new AdressService();
+		final List<AddAdress> adresses = services.getAllAdress();
+		final Grid<AddAdress> adressgrid = new Grid<>();
+		add(adressgrid);
+		adressgrid.setItems(adresses);
+		
 
-		super.addContent(gridAdress);
+		adressgrid.addColumn(AddAdress::getName).setHeader("Name");
+		adressgrid.addColumn(AddAdress::getAdress).setHeader("Adress");
+		adressgrid.addColumn(AddAdress::getAdressNr).setHeader("Nr");
+		adressgrid.addColumn(AddAdress::getPostcode).setHeader("Postcode");
+		adressgrid.addColumn(AddAdress::getCity).setHeader("City");
+		adressgrid.addColumn(AddAdress::getPhonenummber).setHeader("Phonenummber");
+		
+		super.addContent(adressgrid);
 
 	}
+/*
+ * 
 
 	public void fillGridWithPerson(List<String> person) {
 
 		gridPerson.setItems(person);
-
+		
 	}
-
+*/
 }
