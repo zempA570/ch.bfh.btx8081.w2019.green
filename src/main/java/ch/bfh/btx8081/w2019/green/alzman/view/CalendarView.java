@@ -1,6 +1,5 @@
 package ch.bfh.btx8081.w2019.green.alzman.view;
 
-
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -87,6 +86,7 @@ public class CalendarView extends TemplateView {
 		calAdd.addClickListener(e -> UI.getCurrent().navigate(AddAppointment.class));
 		Button calDel = new Button("Eintrag löschen");
 		calDel.addClickListener(e -> UI.getCurrent().navigate(DeleteAppointment.class));
+
 		horiLay.add(calAdd, calDel);
 		
 		super.add(horiLay);

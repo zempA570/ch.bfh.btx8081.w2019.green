@@ -6,7 +6,7 @@ import javax.persistence.Persistence;
 /**
  * The dbService is used to execute statements on the database
  * 
- * @author Roman
+ * @author Adrian
  *
  */
 public class DbService {
@@ -14,6 +14,7 @@ public class DbService {
 	private static final String PERSISTENCE_UNIT_NAME = "alzman";
 	public static EntityManager em;
 
+	// this method starts the entitymanager
 	public static void init() {
 
 		em = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME).createEntityManager();
