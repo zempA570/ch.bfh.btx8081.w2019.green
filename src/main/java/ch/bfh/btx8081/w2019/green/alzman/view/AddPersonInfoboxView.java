@@ -22,6 +22,14 @@ public class AddPersonInfoboxView extends TemplateView {
 
 	// variabel for the suptitel Add person
 	private H4 title1;
+	private RadioButtonGroup gender;
+	private TextField name;
+	private TextField vorname;
+	private TextField telNr;
+	private TextField adress;
+	private TextField adrNr;
+	private TextField plz;
+	private TextField city;
 
 	public AddPersonInfoboxView() {
 
@@ -95,5 +103,17 @@ public class AddPersonInfoboxView extends TemplateView {
 		// add the contents in the View
 		super.addContent(ende);
 
+	}
+	
+	public void clearTextfields() {
+		gender.clear();
+		name.clear();
+		vorname.clear();
+		telNr.clear();
+		adress.clear();
+		adrNr.clear();
+		plz.clear();
+		city.clear();
+		
 	}
 }

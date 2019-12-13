@@ -28,10 +28,9 @@ public class AddPerson {
 
 	}
 
-	public AddPerson(int id, String gender, String firstname, String lastname, String adress, String adressNr,
+	public AddPerson(String gender, String firstname, String lastname, String adress, String adressNr,
 			String postcode, String city, String phonenummber) {
 		super();
-		this.id = id;
 		this.gender = gender;
 		this.firstname = firstname;
 		this.lastname = lastname;
@@ -113,4 +112,16 @@ public class AddPerson {
 	public void setPhonenummber(String phonenummber) {
 		this.phonenummber = phonenummber;
 	}
+
+	
+	public String getFullDetails() {
+		return gender + " " + firstname + " " + lastname + " "
+				+ adress + " " + adressNr + " " + postcode + " " + city + " " + phonenummber;
+	}
+
+	
+	
+	
+	
+	
 }
