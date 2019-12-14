@@ -28,11 +28,7 @@ import ch.bfh.btx8081.w2019.green.alzman.model.AddPerson;
 import ch.bfh.btx8081.w2019.green.alzman.presenter.AdressService;
 import ch.bfh.btx8081.w2019.green.alzman.presenter.PersonService;
 
-/**
- * 
- * @author Gausegan Uthayathas (uthag1)
- *
- */
+
 @Route("InfoboxView")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class InfoboxView extends TemplateView {
@@ -109,10 +105,10 @@ public class InfoboxView extends TemplateView {
 	}
 
 
-	public void fillGridWithPerson(List<String> person) {
+//	public void fillGridWithPerson(List<String> person) {
 
-		gridPerson.setItems(person);
+//		gridPerson.setItems(person);
 		
-	}
+//	}
 
 }

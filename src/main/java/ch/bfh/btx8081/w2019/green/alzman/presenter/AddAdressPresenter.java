@@ -15,11 +15,7 @@ import ch.bfh.btx8081.w2019.green.alzman.view.AddPersonInfoboxView;
 import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxView;
 import ch.bfh.btx8081.w2019.green.alzman.view.UserManagementView;
 
-/**
- * 
- * @author Gausegan Uthayathas (uthag1)
- *
- */
+
 public class AddAdressPresenter {
 
 	private InfoboxView view;
@@ -105,9 +101,9 @@ public class AddAdressPresenter {
 		}
 
 		// then we tell the view to fill the combobox with the List<String>
-		view.fillGridWithPerson(adressDetail);
+//		view.fillGridWithPerson(adressDetail);
 
-//		TODO message to user that was deleted?
+
 
 	}
 

@@ -12,11 +12,7 @@ import com.vaadin.flow.component.radiobutton.RadioButtonGroup;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 
-/**
- * 
- * @author Gausegan Uthayathas (uthag1)
- *
- */
+
 @Route("AddAdressInfobox")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class AddAdressInfoboxView extends TemplateView {

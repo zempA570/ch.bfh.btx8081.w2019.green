@@ -13,11 +13,7 @@ import com.vaadin.flow.component.radiobutton.RadioGroupVariant;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 
-/**
- * 
- * @author Gausegan Uthayathas (uthag1)
- *
- */
+
 @Route("AddPersonInfoboxView")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class AddPersonInfoboxView extends TemplateView {
