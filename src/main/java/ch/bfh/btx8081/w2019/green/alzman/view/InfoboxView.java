@@ -29,7 +29,9 @@ import ch.bfh.btx8081.w2019.green.alzman.presenter.AdressService;
 import ch.bfh.btx8081.w2019.green.alzman.presenter.PersonService;
 
 /**
- * The user management view will be used to add and remove users of the app
+ * 
+ * @author Gausegan Uthayathas (uthag1)
+ *
  */
 @Route("InfoboxView")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")

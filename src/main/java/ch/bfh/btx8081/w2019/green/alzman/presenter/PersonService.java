@@ -7,7 +7,11 @@ import java.util.Random;
 
 import ch.bfh.btx8081.w2019.green.alzman.model.AddPerson;
 
-
+/**
+ * 
+ * @author Gausegan Uthayathas (uthag1)
+ *
+ */
 public class PersonService {
 	
 	private static String[] firstName = { "James", "John", "Robert", "Michael", "William", "David", "Richard",

@@ -5,7 +5,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
-
+/**
+ * 
+ * @author Gausegan Uthayathas (uthag1)
+ *
+ */
 @Entity
 @Table(name = "ImportantPerson")
 public class AddPerson {
