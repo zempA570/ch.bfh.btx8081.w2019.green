@@ -35,8 +35,8 @@ public class InfoboxView extends TemplateView {
 
 	private H4 title1;
 	private H4 title2;
-	private Grid<String> gridPerson;
-	private Grid<String> gridAdress;
+//	private Grid<String> gridPerson;
+//	private Grid<String> gridAdress;
 	
 	
 
