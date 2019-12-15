@@ -13,6 +13,8 @@ import com.vaadin.flow.component.radiobutton.RadioGroupVariant;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 
+import ch.bfh.btx8081.w2019.green.alzman.presenter.AddPersonPresenter;
+import ch.bfh.btx8081.w2019.green.alzman.presenter.UserManagementPresenter;
 
 @Route("AddPersonInfoboxView")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
@@ -28,6 +30,8 @@ public class AddPersonInfoboxView extends TemplateView {
 	private TextField adrNr;
 	private TextField plz;
 	private TextField city;
+
+	private AddPersonPresenter addPersonPresenter;
 
 	public AddPersonInfoboxView() {
 
@@ -72,7 +76,10 @@ public class AddPersonInfoboxView extends TemplateView {
 		city.setLabel("Ort");
 
 		// Button for add the person in the Infobox
-		Button add = new Button("Add");
+		Button addPerson = new Button("Add Person", new Icon(VaadinIcon.PLUS));
+		addPerson.addClickListener(
+				e -> addPersonPresenter.addPerson(gender.getValue(), name.getValue(), vorname.getValue(),
+						adress.getValue(), adrNr.getValue(), plz.getValue(), city.getValue(), telNr.getValue()));
 
 		// Button for cancel the prosses for to add person in the Infobox
 		Button cancel = new Button("Cancel");
@@ -93,7 +100,7 @@ public class AddPersonInfoboxView extends TemplateView {
 		position5.add(telNr);
 
 		HorizontalLayout position6 = new HorizontalLayout();
-		position6.add(add, cancel);
+		position6.add(addPerson, cancel);
 
 		VerticalLayout ende = new VerticalLayout();
 		ende.add(position1, position2, position3, position4, position5, position6);
@@ -102,7 +109,7 @@ public class AddPersonInfoboxView extends TemplateView {
 		super.addContent(ende);
 
 	}
-	
+
 	public void clearTextfieldsPerson() {
 		gender.clear();
 		name.clear();
@@ -112,6 +119,6 @@ public class AddPersonInfoboxView extends TemplateView {
 		adrNr.clear();
 		plz.clear();
 		city.clear();
-		
+
 	}
 }

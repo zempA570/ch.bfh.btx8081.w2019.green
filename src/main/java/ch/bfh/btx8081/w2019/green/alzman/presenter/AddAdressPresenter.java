@@ -8,12 +8,10 @@ import javax.persistence.Query;
 
 import ch.bfh.btx8081.w2019.green.alzman.model.AddAdress;
 import ch.bfh.btx8081.w2019.green.alzman.model.AddPerson;
-import ch.bfh.btx8081.w2019.green.alzman.model.User;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 import ch.bfh.btx8081.w2019.green.alzman.view.AddAdressInfoboxView;
 import ch.bfh.btx8081.w2019.green.alzman.view.AddPersonInfoboxView;
 import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxView;
-import ch.bfh.btx8081.w2019.green.alzman.view.UserManagementView;
 
 
 public class AddAdressPresenter {

@@ -15,9 +15,6 @@ public class AdressService {
 			"Charles", "Joseph", "Christopher", "Mary", "Patricia", "Linda", "Barbara", "Elizabeth", "Jennifer",
 			"Maria", "Susan", "Margaret", "Dorothy", "Lisa" };
 
-	private static String[] lastName = { "Smith", "Johnson", "Williams", "Jones", "Brown", "Davis", "Miller", "Wilson",
-			"Moore", "Taylor", "Andreson", "Thomas", "Jackson", "White" };
-
 	private static List<AddAdress> adresses;
 
 	public List<AddAdress> getAllAdress() {

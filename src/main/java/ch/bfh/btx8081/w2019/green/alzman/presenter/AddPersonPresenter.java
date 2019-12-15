@@ -11,19 +11,21 @@ import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 import ch.bfh.btx8081.w2019.green.alzman.view.AddPersonInfoboxView;
 import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxView;
 
-
-
 public class AddPersonPresenter {
 
 	private InfoboxView view;
 	private AddPersonInfoboxView addPersonModel;
 	private List<AddPerson> persons;
 
+	public AddPersonPresenter() {
+
+	}
+
 	// constructor for the presenter
 	public AddPersonPresenter(InfoboxView infoboxView) {
 		this.view = infoboxView;
 
-		//Das muss noch geändert werden
+		// Das muss noch geändert werden
 		fillTabelleWithPersons();
 
 	}
@@ -63,8 +65,8 @@ public class AddPersonPresenter {
 			String postcode, String city, String phonenummber) {
 
 		// create new user
-		AddPerson newPerson = new AddPerson(gender, firstname, lastname,adress, adressNr,
-				postcode, city, phonenummber);
+		AddPerson newPerson = new AddPerson(gender, firstname, lastname, adress, adressNr, postcode, city,
+				phonenummber);
 
 		// DB stuff
 		DbService.em.getTransaction().begin();
@@ -72,7 +74,7 @@ public class AddPersonPresenter {
 		DbService.em.getTransaction().commit();
 
 		// clear the textfields where the user entered the data
-		//Muss noch gemacht werden
+		// Muss noch gemacht werden
 		addPersonModel.clearTextfieldsPerson();
 
 		// after the user is added we "refresh" the list in the combobox so the new user
@@ -81,27 +83,33 @@ public class AddPersonPresenter {
 
 	}
 
-	private void fillTabelleWithPersons() {
+	public List<AddPerson> fillTabelleWithPersons() {
 
-		// DB stuff where we get all the users
-		Query query = DbService.em.createNativeQuery("SELECT * FROM Relative", AddPerson.class);
+		if (persons == null) {
 
-		// get list of users out of the query
-		
-		persons = query.getResultList();
+			// DB stuff where we get all the users
+			Query query = DbService.em.createNativeQuery("SELECT * FROM ImportantPerson", AddPerson.class);
 
-		List<String> personDetail = new ArrayList<String>();
-		// for every user in our list
-		for (AddPerson person : persons) {
-			// we add the id and fullname of that user to our List<String>
-			personDetail.add(person.getId()+ " "+ person.getFullDetailsPerson());
+			// get list of users out of the query
 
+			persons = query.getResultList();
+
+			List<String> personDetail = new ArrayList<String>();
+			// for every user in our list
+			for (AddPerson per : persons) {
+				// we add the id and fullname of that user to our List<String>
+				personDetail.add(per.getFirstname());
+				personDetail.add(per.getLastname());
+				personDetail.add(per.getAdress());
+				personDetail.add(per.getAdressNr());
+				personDetail.add(per.getPostcode());
+				personDetail.add(per.getCity());
+				personDetail.add(per.getPhonenummber());
+
+				persons.add(per);
+			}
 		}
-
-		// then we tell the view to fill the combobox with the List<String>
-//		view.fillGridWithPerson(personDetail);
-
-
+		return persons;
 
 	}
 

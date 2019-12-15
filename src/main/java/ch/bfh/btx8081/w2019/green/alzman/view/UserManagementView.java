@@ -76,7 +76,6 @@ public class UserManagementView extends TemplateView {
 	public void fillComboboxWithUsers(List<String> userNames) {
 
 		cmbbxUserSelection.setItems(userNames);
-
 	}
 
 	public void clearTextfields() {

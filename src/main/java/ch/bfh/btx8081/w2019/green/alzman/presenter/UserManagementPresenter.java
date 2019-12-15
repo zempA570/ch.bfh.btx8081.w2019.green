@@ -86,6 +86,9 @@ public class UserManagementPresenter {
 		// get list of users out of the query
 		users = query.getResultList();
 
+		
+		
+		
 		List<String> userNames = new ArrayList<String>();
 		// for every user in our list
 		for (User user : users) {

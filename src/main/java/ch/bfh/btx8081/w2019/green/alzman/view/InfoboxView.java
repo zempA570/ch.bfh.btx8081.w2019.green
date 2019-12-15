@@ -28,17 +28,21 @@ import ch.bfh.btx8081.w2019.green.alzman.model.AddPerson;
 import ch.bfh.btx8081.w2019.green.alzman.presenter.AdressService;
 import ch.bfh.btx8081.w2019.green.alzman.presenter.PersonService;
 
-
 @Route("InfoboxView")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class InfoboxView extends TemplateView {
 
 	private H4 title1;
 	private H4 title2;
-//	private Grid<String> gridPerson;
-//	private Grid<String> gridAdress;
+
 	
+	private Grid<AddPerson> persongrid = new Grid<>();
+	private PersonService service = new PersonService();
+	private List<AddPerson> persons = service.getAllPersons();
 	
+	private AdressService services = new AdressService();
+	private List<AddAdress> adresses = services.getAllAdress();
+	private Grid<AddAdress> adressgrid = new Grid<>();
 
 	public InfoboxView() {
 
@@ -51,20 +55,13 @@ public class InfoboxView extends TemplateView {
 		super.addContent(title1);
 
 		// Button for to Add a important Person
-		Button btnImportantPer = new Button("Add User");
+		Button btnImportantPer = new Button("Add Person");
 		btnImportantPer.addClickListener(event -> UI.getCurrent().navigate(AddPersonInfoboxView.class));
 		super.addContent(btnImportantPer);
-		
-		//Test
-		final PersonService service = new PersonService();
-		
 
-		final List<AddPerson> persons = service.getAllPersons();
 		
-		final Grid<AddPerson> persongrid = new Grid<>();
 		add(persongrid);
 		persongrid.setItems(persons);
-		
 		persongrid.addColumn(AddPerson::getGender).setHeader("Gender");
 		persongrid.addColumn(AddPerson::getFirstname).setHeader("Firstname");
 		persongrid.addColumn(AddPerson::getLastname).setHeader("Lastname");
@@ -73,9 +70,9 @@ public class InfoboxView extends TemplateView {
 		persongrid.addColumn(AddPerson::getPostcode).setHeader("Postcode");
 		persongrid.addColumn(AddPerson::getCity).setHeader("City");
 		persongrid.addColumn(AddPerson::getPhonenummber).setHeader("Phonenummber");
-		
 		super.addContent(persongrid);
-	
+		
+
 		// Suptitel in H4 format for important adres
 		title2 = new H4();
 		title2.setText("Wichtige Adressen");
@@ -86,29 +83,17 @@ public class InfoboxView extends TemplateView {
 		btnImportantAdr.addClickListener(event -> UI.getCurrent().navigate(AddAdressInfoboxView.class));
 		super.addContent(btnImportantAdr);
 
-		final AdressService services = new AdressService();
-		final List<AddAdress> adresses = services.getAllAdress();
-		final Grid<AddAdress> adressgrid = new Grid<>();
+		
 		add(adressgrid);
 		adressgrid.setItems(adresses);
-		
-
 		adressgrid.addColumn(AddAdress::getName).setHeader("Name");
 		adressgrid.addColumn(AddAdress::getAdress).setHeader("Adress");
 		adressgrid.addColumn(AddAdress::getAdressNr).setHeader("Nr");
 		adressgrid.addColumn(AddAdress::getPostcode).setHeader("Postcode");
 		adressgrid.addColumn(AddAdress::getCity).setHeader("City");
 		adressgrid.addColumn(AddAdress::getPhonenummber).setHeader("Phonenummber");
-		
 		super.addContent(adressgrid);
 
 	}
-
-
-//	public void fillGridWithPerson(List<String> person) {
-
-//		gridPerson.setItems(person);
-		
-//	}
 
 }

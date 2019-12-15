@@ -17,7 +17,17 @@ public class PersonService {
 	private static String[] lastName = { "Smith", "Johnson", "Williams", "Jones", "Brown", "Davis", "Miller", "Wilson",
 			"Moore", "Taylor", "Andreson", "Thomas", "Jackson", "White" };
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	private static List<AddPerson> persons;
+	
 
 	public List<AddPerson> getAllPersons() {
 		if (persons == null) {
@@ -25,7 +35,6 @@ public class PersonService {
 			final Random r = new Random();
 
 			persons = new ArrayList<AddPerson>();
-			for (int i = 0; i < 100; i++) {
 				final AddPerson person = new AddPerson();
 				person.setGender("Mann");
 				person.setFirstname(firstName[r.nextInt(firstName.length)]);
@@ -39,7 +48,7 @@ public class PersonService {
 
 				persons.add(person);
 			}
-		}
+		
 		return persons;
 	}
 
