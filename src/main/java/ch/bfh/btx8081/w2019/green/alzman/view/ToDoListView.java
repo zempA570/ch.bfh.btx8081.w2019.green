@@ -35,7 +35,7 @@ public class ToDoListView extends TemplateView {
 
 		// title of the part 1 with label, horizontal
 
-		Label spez = new Label("Special");
+		Label spez = new Label("Special Tasks");
 		Label date = new Label("Date");
 
 		header.add(spez, date);
@@ -57,9 +57,9 @@ public class ToDoListView extends TemplateView {
 		vertical.add(header, list1);
 
 		// header of the weekly-list
-		Label weekly = new Label("weekly");
-		Label d1 = new Label("Done");
-		HorizontalLayout title1 = new HorizontalLayout(d1, weekly);
+		Label t1 = new Label("tasks");
+		Label weekly = new Label("Weekly");
+		HorizontalLayout title1 = new HorizontalLayout(weekly, t1);
 
 		// add tasks in form of checkboxes for weekly
 		Checkbox ch1 = new Checkbox();
@@ -75,9 +75,9 @@ public class ToDoListView extends TemplateView {
 		vertical1.add(title1, list2);
 
 		// add monthly section
-		Label monthly = new Label("monthly");
-		Label d2 = new Label("Done"); 
-		HorizontalLayout title2 = new HorizontalLayout(d2, monthly);
+		Label monthly = new Label("Monthly");
+		Label t2 = new Label("tasks"); 
+		HorizontalLayout title2 = new HorizontalLayout(monthly, t2);
 
 		//weekly tasks in form of checkbox'
 		Checkbox ch3 = new Checkbox();
@@ -94,9 +94,9 @@ public class ToDoListView extends TemplateView {
 		vertical2.add(title2, list3);
 		
 		// add annualy section
-		Label annualy = new Label("annually");
-		Label d3 = new Label("Done"); 
-		HorizontalLayout title3 = new HorizontalLayout(d3, annualy);
+		Label annualy = new Label("Annually");
+		Label t3 = new Label("tasks"); 
+		HorizontalLayout title3 = new HorizontalLayout(annualy, t3);
 
 		//weekly tasks in form of checkbox'
 		Checkbox ch5 = new Checkbox();
@@ -115,7 +115,7 @@ public class ToDoListView extends TemplateView {
 //		Label space1 = new Label ("     ");
 //		HorizontalLayout space = new HorizontalLayout(); 
 		
-		Button addNewTask = new Button(new Icon(VaadinIcon.PLUS)); 
+		Button addNewTask = new Button("add new Task", new Icon(VaadinIcon.PLUS)); 
 		addNewTask.addClickListener(e -> UI.getCurrent().navigate(TaskEntryView.class)); 
 		vertical3.add(addNewTask);
 		

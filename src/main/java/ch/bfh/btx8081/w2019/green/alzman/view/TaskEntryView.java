@@ -34,9 +34,9 @@ public class TaskEntryView extends TemplateView {
 		newtask.setLabel("Aufgabe");
 		
 		ComboBox<String> choice = new ComboBox<>("Wiederholung"); 
-		choice.setItems("wöchentlich", "monatlich", "jährlich", "Keine");
+		choice.setItems("Weekly", "Monthly", "Annually", "None");
 		
-		Label datum = new Label("Datum"); 
+		Label datum = new Label("Date"); 
 		DatePicker datePick = new DatePicker(); 
 		datePick.setValue(LocalDate.now());
 		
@@ -45,7 +45,7 @@ public class TaskEntryView extends TemplateView {
 		datePick.setClearButtonVisible(true);
 		
         //add button
-		Button add = new Button ("add Note", new Icon(VaadinIcon.PLUS)); 
+		Button add = new Button ("save & add", new Icon(VaadinIcon.PLUS)); 
 		add.addClickListener(e -> UI.getCurrent().navigate(ToDoListView.class));
 		
 
