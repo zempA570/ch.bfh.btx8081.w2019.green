@@ -181,6 +181,7 @@ public class StatusView extends TemplateView{
 		textFieldWhelp.addClassName("wrapperField");
 		textFieldWhelp.setEnabled(false);
 		textFieldWhelp.setVisible(false);
+		//textFieldWhelp.setVisible(false);
 		
 		
 textLayout05.add( textFieldDep, check01, textFieldIndep, check02, textFieldWhelp, check03);

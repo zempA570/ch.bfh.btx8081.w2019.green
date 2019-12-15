@@ -23,7 +23,7 @@ public class StatusModel {
 	public StatusModel() {
 		
 	}
-	
+	//String dependend;
 	String dependend;
 	String independend;
 	String withHelp;
