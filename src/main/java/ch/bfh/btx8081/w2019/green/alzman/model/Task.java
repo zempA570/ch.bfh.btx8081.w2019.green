@@ -52,6 +52,7 @@ public class Task {
 		this.choice = choice;
 	}
 
+	// No-Args constructor is required by JPA
 	public Task() {
 	}
 	
@@ -90,6 +91,6 @@ public class Task {
 	
 	
 
-	// No-Args constructor is required by JPA}
+	
 	
 }
