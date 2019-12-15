@@ -1,5 +1,7 @@
 package ch.bfh.btx8081.w2019.green.alzman.model;
 
+import java.time.LocalDate;
+
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.GeneratedValue;
@@ -22,7 +24,7 @@ import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 //@Table(name = ..) sets the name for the table. The table name "User" is not allowed so we have to change it.
 //normally this doesn't have to be set, the class name will be used as table name.
 @Entity
-@Table(name = "Relative")
+@Table(name = "Tasks")
 public class Task {
 
 	//@TableGenerator creates a generator with the chosen name, value etc.
@@ -33,54 +35,58 @@ public class Task {
 	@GeneratedValue(generator = "Tasks")
 	int id;
 	
-	//Other variables
-	String taskname;
-	String choice; 
-	DatePicker datePick;
-	
+	// Other variables
+		String taskname;
+		String choice;
 
-	// Constructor to create Users in code
-	public Task(String taskname,String choice, DatePicker datePick) {
-		this.taskname = taskname; 
-		this.datePick = datePick; 
-		this.choice = choice; 
-	}
+		LocalDate datePick;
 
-	// No-Args constructor is required by JPA
-	public Task() {
+		// Constructor to create Users in code
+		public Task(String taskname, String choice, LocalDate datePick) {
+			this.taskname = taskname;
+			this.datePick = datePick;
+			this.choice = choice;
+		}
+
+		// No-Args constructor is required by JPA
+		public Task() {
+		}
+		
+		
+		public int getId() {
+			return id;
+		}
+
+		public void setId(int id) {
+			this.id = id;
+		}
+
+		public String getTaskname() {
+			return taskname;
+		}
+
+		public void setTaskname(String taskname) {
+			this.taskname = taskname;
+		}
+
+		public String getChoice() {
+			return choice;
+		}
+
+		public void setChoice(String choice) {
+			this.choice = choice;
+		}
+
+		public LocalDate getDatePick() {
+			return datePick;
+		}
+
+		public void setDatePick(LocalDate datePick) {
+			this.datePick = datePick;
+		}
+		
+		
+
+		
 		
 	}
-	
-	// setters
-
-	public void setTaskname(String taskname) {
-		this.taskname = taskname;
-	}
-
-	public void setDatePick(DatePicker datePick) {
-		this.datePick = datePick;
-	}
-
-	public void setChoice(String choice) {
-		this.choice = choice;
-	}
-	// getters
-	
-//	public String getFirstname() {
-//		return firstname;
-//	}
-//
-//	public String getLastname() {
-//		return lastname;
-//	}
-//	
-//	public String getFullName() {
-//		return firstname + " " + lastname;
-//	}
-//
-//	public int getId() {
-//		return id;
-//	}
-
-}
-
