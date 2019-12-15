@@ -13,18 +13,24 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 
+import ch.bfh.btx8081.w2019.green.alzman.model.StatusModel;
+import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
+
 /**
- * The user management view will be used to add and remove users of the app
+ * The user management view will be used to add and remove 
+ * users of the app
+ * 
+ * @author Emily Torresan
  */
+
 @Route("")
 //@CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 @CssImport(value = "./styles/statusStyle.css", include = "common-styles")
 
 public class StatusView extends TemplateView{
 
-
-
 	public StatusView() {
+		
 		super.setHeaderTitle("Status");
 		setSizeFull();
 		setAlignItems(Alignment.CENTER);
@@ -78,12 +84,35 @@ public class StatusView extends TemplateView{
 		super.addContent(detailsLayout);
 		
 //---------------------------------------------------------------------------------
+		/**
+		 * Below the Details components a new layout for the buttons 
+		 * will be created. The form layout of Vaadin allows to 
+		 * display the different components in an orderly way.
+		 */
+		
 		FormLayout textLayout04 = new FormLayout();
 		
 		textLayout04.setResponsiveSteps(
 		        new ResponsiveStep("20em", 1),
 		        new ResponsiveStep("25em", 2),
 		        new ResponsiveStep("30em", 3));
+		
+		/**
+		 * In this form layout, three icons with the plus symbol 
+		 * are added. The size of these icons is determined, as 
+		 * is the color.
+		 * 
+		 * @plus01 This icon is implemented for the functionality 
+		 * of the area "independent".
+		 * 
+		 * @plus02 This icon is implemented for the functionality 
+		 * of the area "with help".
+		 * 
+		 * @plus03 This icon is implemented for the functionality 
+		 * of the area "dependent".
+		 * 
+		 * See the Click Events section for more details.
+		 */
 		
 		Icon plus01 = new Icon(VaadinIcon.PLUS);
 		plus01.setSize("30px");
@@ -102,6 +131,15 @@ public class StatusView extends TemplateView{
 		super.add(textLayout04);
 
 //---------------------------------------------------------------------------------
+		/**
+		 * In this form layout, three icons with a check symbol 
+		 * are added. The size of these icons is determined, as 
+		 * is the color.
+		 * At the beginning these icons are not visible, because 
+		 * the user must first unlock the text field with the plus 
+		 * icon and enter a text.
+		 * 
+		*/
 		
 		Icon check01 = new Icon(VaadinIcon.CHECK_CIRCLE);
 		check01.setSize("25px");
@@ -200,7 +238,16 @@ textLayout05.add( textFieldDep, check01, textFieldIndep, check02, textFieldWhelp
 				.add(new Button(textFieldWhelp.getValue()), columnB));
 		check03.addClickListener( event -> textFieldWhelp.clear());
 //--------------------------------------------------------------------------------------		
-		
+		/**
+		 * Now we connect the Logic of the Status with
+		 * our Database.
+		 */
+		StatusModel status = new StatusModel("schuhe zubinden", "duschen", "medikamente einnehmen", 1);
+		 DbService.init();
+		 DbService.em.getTransaction().begin();
+		 DbService.em.persist(status);
+		 DbService.em.getTransaction().commit();
 	}
+	
 	
 }
