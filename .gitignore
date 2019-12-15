@@ -27,3 +27,4 @@ drivers/
 error-screenshots/
 
 webpack.generated.js
+node.exe
