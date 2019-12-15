@@ -2,6 +2,8 @@ package ch.bfh.btx8081.w2019.green.alzman.presenter;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -36,12 +38,11 @@ public class CalendarPresenter {
 	
 
 
-	public void addAppointment(DatePicker date, TimePicker time, String author, String Entry) {
+	public void addAppointment(LocalDate datePick, TimePicker AppointTime, String author, String Entry) {
 
 		// create new user
 		
-		
-		CalendarModel addAppointment = new CalendarModel(date,time,author,Entry);
+		CalendarModel addAppointment = new CalendarModel(datePick,AppointTime,author,Entry);
 
 		// DB stuff
 		DbService.em.getTransaction().begin();

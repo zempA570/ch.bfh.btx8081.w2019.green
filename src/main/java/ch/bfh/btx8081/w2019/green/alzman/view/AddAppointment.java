@@ -1,5 +1,6 @@
 package ch.bfh.btx8081.w2019.green.alzman.view;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Locale;
@@ -33,6 +34,7 @@ public class AddAppointment extends TemplateView {
 		
 		DatePicker date = new DatePicker();
 		date.setValue(LocalDate.now());
+		
 
 		// Display an icon which can be clicked to clear the value:
 		date.setClearButtonVisible(true);
@@ -67,7 +69,7 @@ public class AddAppointment extends TemplateView {
 		super.addContent(date);
 		super.addContent(hLAddUser);
 		
-		btnAddEntry.addClickListener(e -> presenter.addAppointment(date, time,author.getValue(), entry.getValue()));
+		btnAddEntry.addClickListener(e -> presenter.addAppointment(date.getValue(), time.getValue(),author.getValue(), entry.getValue()));
 
 	}
 

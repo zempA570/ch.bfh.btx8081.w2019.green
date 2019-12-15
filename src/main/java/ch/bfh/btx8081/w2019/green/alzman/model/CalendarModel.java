@@ -1,6 +1,7 @@
 package ch.bfh.btx8081.w2019.green.alzman.model;
 
 import java.sql.Time;
+import java.time.LocalDate;
 import java.sql.Date;
 
 import javax.persistence.Entity;
@@ -18,14 +19,14 @@ public class CalendarModel {
 	@GeneratedValue
 	int id;
 	
-	DatePicker date;
-	TimePicker time;
+	LocalDate datePick;
+	TimePicker appointTime;
 	String author;
 	String Entry;
 	
-	public CalendarModel(DatePicker date,TimePicker time, String author, String Entry ) {
-		this.date =date;
-		this.time=time;
+	public CalendarModel(LocalDate datePick, TimePicker appointTime, String author, String Entry ) {
+		this.datePick= datePick;
+		this.appointTime=appointTime;
 		this.author=author;
 		this.Entry = Entry;
 		
@@ -34,21 +35,21 @@ public class CalendarModel {
 		
 	}
 	
-	public void setDate(DatePicker date) {
-		this.date= date;
+	public void setDate(LocalDate datePick) {
+		this.datePick= datePick;
 	
 	}
 	
-	public DatePicker getDate() {
-		return date;
+	public LocalDate getDate() {
+		return datePick;
 	}
-	public void setTime(TimePicker time) {
-		this.time= time;
+	public void setTime(TimePicker appointTime) {
+		this.appointTime= appointTime;
 	
 	}
 	
 	public TimePicker getTime() {
-		return time;
+		return appointTime;
 	}
 
 	public String setAuthor(String author) {
