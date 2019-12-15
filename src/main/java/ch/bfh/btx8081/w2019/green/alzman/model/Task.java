@@ -1,5 +1,7 @@
 package ch.bfh.btx8081.w2019.green.alzman.model;
 
+import java.time.LocalDate;
+
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.GeneratedValue;
@@ -13,7 +15,8 @@ import com.vaadin.flow.component.datepicker.DatePicker;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 
 /**
- * This class is used to store information about the users/relatives of patients.
+ * This class is used to store information about the users/relatives of
+ * patients.
  * 
  * @author Adrian
  *
@@ -22,65 +25,71 @@ import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 //@Table(name = ..) sets the name for the table. The table name "User" is not allowed so we have to change it.
 //normally this doesn't have to be set, the class name will be used as table name.
 @Entity
-@Table(name = "Relative")
+@Table(name = "Tasks")
 public class Task {
 
-	//@TableGenerator creates a generator with the chosen name, value etc.
-	//@Id mean this variable is the primary key in the table
-	//@GeneratedValue means the value of this variable will be generated in the database by the "userIDGenerator"
+	// @TableGenerator creates a generator with the chosen name, value etc.
+	// @Id mean this variable is the primary key in the table
+	// @GeneratedValue means the value of this variable will be generated in the
+	// database by the "userIDGenerator"
+
 	@TableGenerator(name = "Tasks", allocationSize = 1, initialValue = 1)
+	//PrimaryKey: ID
 	@Id
 	@GeneratedValue(generator = "Tasks")
 	int id;
-	
-	//Other variables
+
+	// Other variables
 	String taskname;
-	String choice; 
-	DatePicker datePick;
-	
+	String choice;
+
+	LocalDate datePick;
 
 	// Constructor to create Users in code
-	public Task(String taskname,String choice, DatePicker datePick) {
-		this.taskname = taskname; 
-		this.datePick = datePick; 
-		this.choice = choice; 
+	public Task(String taskname, String choice, LocalDate datePick) {
+		this.taskname = taskname;
+		this.datePick = datePick;
+		this.choice = choice;
 	}
 
-	// No-Args constructor is required by JPA
 	public Task() {
-		
 	}
 	
-	// setters
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getTaskname() {
+		return taskname;
+	}
 
 	public void setTaskname(String taskname) {
 		this.taskname = taskname;
 	}
 
-	public void setDatePick(DatePicker datePick) {
-		this.datePick = datePick;
+	public String getChoice() {
+		return choice;
 	}
 
 	public void setChoice(String choice) {
 		this.choice = choice;
 	}
-	// getters
+
+	public LocalDate getDatePick() {
+		return datePick;
+	}
+
+	public void setDatePick(LocalDate datePick) {
+		this.datePick = datePick;
+	}
 	
-//	public String getFirstname() {
-//		return firstname;
-//	}
-//
-//	public String getLastname() {
-//		return lastname;
-//	}
-//	
-//	public String getFullName() {
-//		return firstname + " " + lastname;
-//	}
-//
-//	public int getId() {
-//		return id;
-//	}
+	
 
+	// No-Args constructor is required by JPA}
+	
 }
-
