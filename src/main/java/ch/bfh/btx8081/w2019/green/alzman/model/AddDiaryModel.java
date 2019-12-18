@@ -20,7 +20,7 @@ public class AddDiaryModel {
 	
 	
 	DatePicker datee;
-	SimpleDateFormat formatter = new SimpleDateFormat("MM.dd.yyyy");
+	SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
 	String date = formatter.format(datee);  
 	String author;
 	String Entry;
