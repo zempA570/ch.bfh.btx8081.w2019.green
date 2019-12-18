@@ -1,7 +1,8 @@
 package ch.bfh.btx8081.w2019.green.alzman.model;
 
-import java.sql.Date;
 
+import java.text.SimpleDateFormat;
+import com.vaadin.flow.component.datepicker.DatePicker;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -10,61 +11,74 @@ import com.vaadin.flow.component.datepicker.DatePicker;
 
 
 @Entity
-public class DiaryModel {
+public class AddDiaryModel {
 	
 	@Id
 	//@GeneratedValue means the value of this variable will be generated in the database by the "userIDGenerator"
 	@GeneratedValue
 	int id;
 	
-	DatePicker date;
+	
+	DatePicker datee;
+	SimpleDateFormat formatter = new SimpleDateFormat("MM.dd.yyyy");
+	String date = formatter.format(datee);  
 	String author;
 	String Entry;
+	
+
 	
 	public void setId(int id) {
 		this.id = id;
 	}
 		
 	
-	public DiaryModel() {
+	public AddDiaryModel() {
 		
 	}
 	
-	public DiaryModel(int id, DatePicker date, String author, String entry) {
-		this.id = id;
-		this.date = date;
+	public AddDiaryModel(String date, String author, String entry) {
+		this.date= date ;
 		this.author = author;
-		Entry = entry;
+		this.Entry = entry;
 	}
-	
-	
-	public void setDate(DatePicker date) {
-		this.date= date;
-	
-	}
-	
-	public DatePicker getDate() {
+
+
+	public String getDate() {
 		return date;
 	}
-	
-	public String setAuthor(String author) {
-	return this.author= author;
-	
+
+
+	public void setDate(String date) {
+		this.date = date;
 	}
+
+
 	public String getAuthor() {
 		return author;
 	}
-	
-	public void setEntry(String Entry) {
-		this.Entry =Entry;
+
+
+	public void setAuthor(String author) {
+		this.author = author;
 	}
+
+
 	public String getEntry() {
 		return Entry;
 	}
-	
+
+
+	public void setEntry(String entry) {
+		Entry = entry;
+	}
+
+
 	public int getId() {
 		return id;
 	}
+	
+	
+
 }
 
 	
