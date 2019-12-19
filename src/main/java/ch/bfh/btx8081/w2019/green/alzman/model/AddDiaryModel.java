@@ -18,7 +18,7 @@ public class AddDiaryModel {
 	@Id
 	//@GeneratedValue means the value of this variable will be generated in the database by the "userIDGenerator"
 	@GeneratedValue
-	int id;
+	int id; 
 	
 	
 	LocalDate date;
