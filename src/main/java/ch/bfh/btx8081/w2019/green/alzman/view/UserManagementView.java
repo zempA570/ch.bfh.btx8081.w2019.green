@@ -84,31 +84,4 @@ public class UserManagementView extends TemplateView {
 		tfLastName.clear();
 	}
 
-//	************* OLD STUFF WILL BE DELETED BEFORE RELEASE ********************
-	// User u1 = new User("First", "User");
-	// User u2 = new User("Second", "User");
-	// User u3 = new User("Third", "User");
-	//
-	// DbService.init();
-	// DbService.em.getTransaction().begin();
-	// DbService.em.persist(u1);
-	// DbService.em.persist(u2);
-	// DbService.em.persist(u3);
-	// DbService.em.getTransaction().commit();
-	// DbService.em.close();
-	// users.stream().forEach(e -> e.getFullName())
-	// cmbbxUserSelection.setItems("TEST", "DUMMY", "BOT");
-	// cmbbxUserSelection.setItems((persons..stream()));
-
-	// This will be used as soon as logic is implemented
-	// TextField asdf = new TextField();
-	// cmbbxUserSelection.addValueChangeListener(event -> {
-	//		if (event.getSource().isEmpty()) {
-	//			asdf.setPlaceholder(("The current User is TEST"));
-	//		} else {
-	//			asdf.setPlaceholder("The current User is" + event.getValue());
-	//		}
-	// });
-	// super.addContent(asdf);
-
 }
