@@ -24,7 +24,6 @@ import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 //@Table(name = ..) sets the name for the table. The table name "User" is not allowed so we have to change it.
 //normally this doesn't have to be set, the class name will be used as table name.
 @Entity
-@Table
 public class Task {
 
 	// @TableGenerator creates a generator with the chosen name, value etc.

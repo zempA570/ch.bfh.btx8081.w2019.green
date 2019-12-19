@@ -67,12 +67,12 @@ public class ToDoListView extends TemplateView {
 		Checkbox ch2 = new Checkbox();
 		ch2.setLabel("Abendessen");
 
-		ListBox<String> list2 = new ListBox<>();
-		list2.add(ch1, ch2);
+		ListBox<String> week = new ListBox<>();
+		week.add(ch1, ch2);
 
 		// order header & list in verticalForm
 		VerticalLayout vertical1 = new VerticalLayout();
-		vertical1.add(title1, list2);
+		vertical1.add(title1, week);
 
 		// add monthly section
 		Label monthly = new Label("Monthly");
@@ -86,12 +86,12 @@ public class ToDoListView extends TemplateView {
 		ch4.setLabel("Paying Invoices");
 		
 		//add checkbox' to a new list
-		ListBox<String> list3 = new ListBox<>();
-		list3.add(ch3, ch4);
+		ListBox<String> month = new ListBox<>();
+		month.add(ch3, ch4);
 
 		//add to verticalLayout
 		VerticalLayout vertical2 = new VerticalLayout(); 
-		vertical2.add(title2, list3);
+		vertical2.add(title2, month);
 		
 		// add annualy section
 		Label annualy = new Label("Annually");
