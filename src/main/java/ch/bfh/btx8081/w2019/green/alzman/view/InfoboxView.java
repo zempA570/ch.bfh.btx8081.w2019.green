@@ -27,7 +27,6 @@ public class InfoboxView extends TemplateView {
 	private H4 title2;
 
 	private Grid<AddPerson> persongrid = new Grid<>();
-	private PersonService service = new PersonService();
 	private AdressService services = new AdressService();
 	
 
@@ -35,7 +34,6 @@ public class InfoboxView extends TemplateView {
 	private InfoboxPresenter presenter;
 
 
-	private List<AddPerson> persons = service.getAllPersons();
 	private List<AddAdress> adresses = services.getAllAdress();
 	private Grid<AddAdress> adressgrid = new Grid<>();
 
@@ -55,7 +53,6 @@ public class InfoboxView extends TemplateView {
 		super.addContent(btnImportantPer);
 
 		add(persongrid);
-		persongrid.setItems(persons);
 		persongrid.addColumn(AddPerson::getGender).setHeader("Gender");
 		persongrid.addColumn(AddPerson::getFirstname).setHeader("Firstname");
 		persongrid.addColumn(AddPerson::getLastname).setHeader("Lastname");
