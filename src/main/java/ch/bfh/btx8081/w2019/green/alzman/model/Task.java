@@ -1,6 +1,7 @@
 package ch.bfh.btx8081.w2019.green.alzman.model;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
@@ -38,10 +39,10 @@ public class Task {
 		String taskname;
 		String choice;
 
-		Date datePick;
+		LocalDate datePick;
 
 		// Constructor to create Users in code
-		public Task(String taskname, String choice, Date datePick) {
+		public Task(String taskname, String choice, LocalDate datePick) {
 			this.taskname = taskname;
 			this.datePick = datePick;
 			this.choice = choice;
@@ -76,16 +77,13 @@ public class Task {
 			this.choice = choice;
 		}
 
-		public Date getDate() {
+		public LocalDate getDate() {
 			return datePick;
 		}
 
-		public void setDate(Date datePick) {
+		public void setDate(LocalDate datePick) {
 			this.datePick = datePick;
 		}
-		
-		
-
-		
+			
 		
 	}
