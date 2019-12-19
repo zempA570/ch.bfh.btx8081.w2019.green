@@ -14,7 +14,6 @@ import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxView;
 public class AddPersonPresenter {
 
 	private AddPersonInfoboxView view;
-	private AddPersonInfoboxView addPersonModel;
 	private List<AddPerson> persons;
 
 	public AddPersonPresenter() {
@@ -25,11 +24,8 @@ public class AddPersonPresenter {
 	public AddPersonPresenter(AddPersonInfoboxView infoboxView) {
 		this.view = infoboxView;
 
-		// Das muss noch geändert werden
-//		fillTabelleWithPersons();
-
 	}
-	
+
 	public void deletePerson(String Inportantperson) {
 
 		DbService.em.getTransaction().begin();
@@ -73,45 +69,6 @@ public class AddPersonPresenter {
 		DbService.em.persist(newPerson);
 		DbService.em.getTransaction().commit();
 
-		// clear the textfields where the user entered the data
-		// Muss noch gemacht werden
-//		addPersonModel.clearTextfieldsPerson();
-
-		// after the user is added we "refresh" the list in the combobox so the new user
-		// appears
-//		fillTabelleWithPersons();
-
 	}
-
-//	***** NEEDED IN InfoBoxPresenter
-//	public List<AddPerson> fillTabelleWithPersons() {
-//
-//		if (persons == null) {
-//
-//			// DB stuff where we get all the users
-//			Query query = DbService.em.createNativeQuery("SELECT * FROM ImportantPerson", AddPerson.class);
-//
-//			// get list of users out of the query
-//
-//			persons = query.getResultList();
-//
-//			List<String> personDetail = new ArrayList<String>();
-//			// for every user in our list
-//			for (AddPerson per : persons) {
-//				// we add the id and fullname of that user to our List<String>
-//				personDetail.add(per.getFirstname());
-//				personDetail.add(per.getLastname());
-//				personDetail.add(per.getAdress());
-//				personDetail.add(per.getAdressNr());
-//				personDetail.add(per.getPostcode());
-//				personDetail.add(per.getCity());
-//				personDetail.add(per.getPhonenummber());
-//
-//				persons.add(per);
-//			}
-//		}
-//		return persons;
-//
-//	}
 
 }

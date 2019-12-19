@@ -18,14 +18,6 @@ public class PersonService {
 			"Moore", "Taylor", "Andreson", "Thomas", "Jackson", "White" };
 
 	
-	
-	
-	
-	
-	
-	
-	
-	
 	private static List<AddPerson> persons;
 	
 
