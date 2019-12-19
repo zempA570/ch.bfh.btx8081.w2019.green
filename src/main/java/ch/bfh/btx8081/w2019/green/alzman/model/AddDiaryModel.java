@@ -2,6 +2,8 @@ package ch.bfh.btx8081.w2019.green.alzman.model;
 
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+
 import com.vaadin.flow.component.datepicker.DatePicker;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,9 +21,7 @@ public class AddDiaryModel {
 	int id;
 	
 	
-	DatePicker datee;
-	SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
-	String date = formatter.format(datee);  
+	LocalDate date;
 	String author;
 	String Entry;
 	
@@ -36,19 +36,19 @@ public class AddDiaryModel {
 		
 	}
 	
-	public AddDiaryModel(String date, String author, String entry) {
+	public AddDiaryModel(LocalDate date, String author, String entry) {
 		this.date= date ;
 		this.author = author;
 		this.Entry = entry;
 	}
 
 
-	public String getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
 
-	public void setDate(String date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 
