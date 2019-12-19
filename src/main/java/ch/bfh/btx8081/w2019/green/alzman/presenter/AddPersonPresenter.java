@@ -13,7 +13,7 @@ import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxView;
 
 public class AddPersonPresenter {
 
-	private InfoboxView view;
+	private AddPersonInfoboxView view;
 	private AddPersonInfoboxView addPersonModel;
 	private List<AddPerson> persons;
 
@@ -22,14 +22,14 @@ public class AddPersonPresenter {
 	}
 
 	// constructor for the presenter
-	public AddPersonPresenter(InfoboxView infoboxView) {
+	public AddPersonPresenter(AddPersonInfoboxView infoboxView) {
 		this.view = infoboxView;
 
 		// Das muss noch geändert werden
-		fillTabelleWithPersons();
+//		fillTabelleWithPersons();
 
 	}
-
+	
 	public void deletePerson(String Inportantperson) {
 
 		DbService.em.getTransaction().begin();
@@ -54,7 +54,7 @@ public class AddPersonPresenter {
 
 		// after the user is deleted we "refresh" the list in the combobox so the
 		// deleted user is gone
-		fillTabelleWithPersons();
+//		fillTabelleWithPersons();
 
 //		TODO when to close?
 		// DbService.em.close();
@@ -75,42 +75,43 @@ public class AddPersonPresenter {
 
 		// clear the textfields where the user entered the data
 		// Muss noch gemacht werden
-		addPersonModel.clearTextfieldsPerson();
+//		addPersonModel.clearTextfieldsPerson();
 
 		// after the user is added we "refresh" the list in the combobox so the new user
 		// appears
-		fillTabelleWithPersons();
+//		fillTabelleWithPersons();
 
 	}
 
-	public List<AddPerson> fillTabelleWithPersons() {
-
-		if (persons == null) {
-
-			// DB stuff where we get all the users
-			Query query = DbService.em.createNativeQuery("SELECT * FROM ImportantPerson", AddPerson.class);
-
-			// get list of users out of the query
-
-			persons = query.getResultList();
-
-			List<String> personDetail = new ArrayList<String>();
-			// for every user in our list
-			for (AddPerson per : persons) {
-				// we add the id and fullname of that user to our List<String>
-				personDetail.add(per.getFirstname());
-				personDetail.add(per.getLastname());
-				personDetail.add(per.getAdress());
-				personDetail.add(per.getAdressNr());
-				personDetail.add(per.getPostcode());
-				personDetail.add(per.getCity());
-				personDetail.add(per.getPhonenummber());
-
-				persons.add(per);
-			}
-		}
-		return persons;
-
-	}
+//	***** NEEDED IN InfoBoxPresenter
+//	public List<AddPerson> fillTabelleWithPersons() {
+//
+//		if (persons == null) {
+//
+//			// DB stuff where we get all the users
+//			Query query = DbService.em.createNativeQuery("SELECT * FROM ImportantPerson", AddPerson.class);
+//
+//			// get list of users out of the query
+//
+//			persons = query.getResultList();
+//
+//			List<String> personDetail = new ArrayList<String>();
+//			// for every user in our list
+//			for (AddPerson per : persons) {
+//				// we add the id and fullname of that user to our List<String>
+//				personDetail.add(per.getFirstname());
+//				personDetail.add(per.getLastname());
+//				personDetail.add(per.getAdress());
+//				personDetail.add(per.getAdressNr());
+//				personDetail.add(per.getPostcode());
+//				personDetail.add(per.getCity());
+//				personDetail.add(per.getPhonenummber());
+//
+//				persons.add(per);
+//			}
+//		}
+//		return persons;
+//
+//	}
 
 }

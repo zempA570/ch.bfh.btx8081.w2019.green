@@ -107,6 +107,8 @@ public class AddPersonInfoboxView extends TemplateView {
 
 		// add the contents in the View
 		super.addContent(ende);
+		
+		addPersonPresenter = new AddPersonPresenter(this);
 
 	}
 
