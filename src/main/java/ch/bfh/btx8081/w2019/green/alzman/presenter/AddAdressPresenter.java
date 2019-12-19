@@ -13,20 +13,19 @@ import ch.bfh.btx8081.w2019.green.alzman.view.AddAdressInfoboxView;
 import ch.bfh.btx8081.w2019.green.alzman.view.AddPersonInfoboxView;
 import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxView;
 
-
 public class AddAdressPresenter {
 
-	private InfoboxView view;
-	private AddAdressInfoboxView addAdressModel;
+	private AddAdressInfoboxView view;
+
 	private List<AddAdress> adresses;
 
+	public AddAdressPresenter() {
+
+	}
+
 	// constructor for the presenter
-	public AddAdressPresenter(InfoboxView infoboxView) {
+	public AddAdressPresenter(AddAdressInfoboxView infoboxView) {
 		this.view = infoboxView;
-
-		//Das muss noch geändert werden
-		fillTabelleWithAdress();
-
 	}
 
 	public void deleteAdress(String Inportantadress) {
@@ -53,55 +52,23 @@ public class AddAdressPresenter {
 
 		// after the user is deleted we "refresh" the list in the combobox so the
 		// deleted user is gone
-		fillTabelleWithAdress();
+//		fillTabelleWithAdress();
 
 //		TODO when to close?
 		// DbService.em.close();
 
 	}
 
-	public void addAdress(String name, String adress, String adressNr,
-			String postcode, String city, String phonenummber) {
+	public void addAdress(String name, String adress, String adressNr, String postcode, String city,
+			String phonenummber) {
 
 		// create new user
-		AddAdress newAdress = new AddAdress(name, adress, adressNr,postcode, city, phonenummber);
+		AddAdress newAdress = new AddAdress(name, adress, adressNr, postcode, city, phonenummber);
 
 		// DB stuff
 		DbService.em.getTransaction().begin();
 		DbService.em.persist(newAdress);
 		DbService.em.getTransaction().commit();
-
-		// clear the textfields where the user entered the data
-		//Muss noch gemacht werden
-		addAdressModel.clearTextfieldsAdresse();
-
-		// after the user is added we "refresh" the list in the combobox so the new user
-		// appears
-		fillTabelleWithAdress();
-
-	}
-
-	private void fillTabelleWithAdress() {
-
-		// DB stuff where we get all the users
-		Query query = DbService.em.createNativeQuery("SELECT * FROM Relative", AddPerson.class);
-
-		// get list of users out of the query
-		
-		adresses = query.getResultList();
-
-		List<String> adressDetail = new ArrayList<String>();
-		// for every user in our list
-		for (AddAdress adress : adresses) {
-			// we add the id and fullname of that user to our List<String>
-			adressDetail.add(adress.getId()+ " "+ adress.getFullDetailsAdress());
-
-		}
-
-		// then we tell the view to fill the combobox with the List<String>
-//		view.fillGridWithPerson(adressDetail);
-
-
 
 	}
 

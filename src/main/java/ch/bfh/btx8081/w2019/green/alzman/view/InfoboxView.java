@@ -13,11 +13,7 @@ import com.vaadin.flow.router.Route;
 
 import ch.bfh.btx8081.w2019.green.alzman.model.AddAdress;
 import ch.bfh.btx8081.w2019.green.alzman.model.AddPerson;
-import ch.bfh.btx8081.w2019.green.alzman.presenter.AdressService;
 import ch.bfh.btx8081.w2019.green.alzman.presenter.InfoboxPresenter;
-import ch.bfh.btx8081.w2019.green.alzman.presenter.PersonService;
-
-
 
 @Route("InfoboxView")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
@@ -27,15 +23,9 @@ public class InfoboxView extends TemplateView {
 	private H4 title2;
 
 	private Grid<AddPerson> persongrid = new Grid<>();
-	private AdressService services = new AdressService();
-	
-
+	private Grid<AddAdress> adressgrid = new Grid<>();
 
 	private InfoboxPresenter presenter;
-
-
-	private List<AddAdress> adresses = services.getAllAdress();
-	private Grid<AddAdress> adressgrid = new Grid<>();
 
 	public InfoboxView() {
 
@@ -74,7 +64,6 @@ public class InfoboxView extends TemplateView {
 		super.addContent(btnImportantAdr);
 
 		add(adressgrid);
-		adressgrid.setItems(adresses);
 		adressgrid.addColumn(AddAdress::getName).setHeader("Name");
 		adressgrid.addColumn(AddAdress::getAdress).setHeader("Adress");
 		adressgrid.addColumn(AddAdress::getAdressNr).setHeader("Nr");
@@ -84,12 +73,17 @@ public class InfoboxView extends TemplateView {
 		super.addContent(adressgrid);
 
 		presenter = new InfoboxPresenter(this);
-	
+
 	}
-	
+
 	public void fillGridWithUsers(List<AddPerson> per) {
 
 		persongrid.setItems(per);
+	}
+
+	public void fillGridWithAdress(List<AddAdress> adr) {
+
+		adressgrid.setItems(adr);
 	}
 
 }
