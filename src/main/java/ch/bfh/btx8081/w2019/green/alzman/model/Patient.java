@@ -15,8 +15,7 @@ public class Patient {
 	String firstname;
 	String lastname;
 
-	public Patient(int id, String password, String firstname, String lastname) {
-		this.id = id;
+	public Patient(String password, String firstname, String lastname) {
 		this.password = password;
 		this.firstname = firstname;
 		this.lastname = lastname;
