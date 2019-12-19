@@ -1,6 +1,8 @@
 package ch.bfh.btx8081.w2019.green.alzman.view;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.contextmenu.MenuItem;
+import com.vaadin.flow.component.contextmenu.SubMenu;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.details.Details;
 import com.vaadin.flow.component.formlayout.FormLayout;
@@ -8,12 +10,14 @@ import com.vaadin.flow.component.formlayout.FormLayout.ResponsiveStep;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.menubar.MenuBar;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 
 import ch.bfh.btx8081.w2019.green.alzman.model.StatusModel;
+import ch.bfh.btx8081.w2019.green.alzman.presenter.StatusPresenter;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 
 /**
@@ -23,11 +27,16 @@ import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
  * @author Emily Torresan
  */
 
-@Route("")
+@Route("TT")
 //@CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 @CssImport(value = "./styles/statusStyle.css", include = "common-styles")
 
 public class StatusView extends TemplateView{
+	
+	
+			
+			
+		
 
 	public StatusView() {
 		
@@ -188,10 +197,12 @@ textLayout05.add( textFieldDep, check01, textFieldIndep, check02, textFieldWhelp
 		
 		super.add(textLayout05);
 		
+		
 //----------------------------------------------------------------------------------		
 		plus01.addClickListener( event -> textFieldDep.setVisible(true));	
 		plus01.addClickListener( event -> textFieldDep.setEnabled(true));
 		plus01.addClickListener( event -> check01.setVisible(true));
+		
 		
 		plus02.addClickListener( event -> textFieldIndep.setVisible(true));	
 		plus02.addClickListener( event -> textFieldIndep.setEnabled(true));
@@ -202,6 +213,21 @@ textLayout05.add( textFieldDep, check01, textFieldIndep, check02, textFieldWhelp
 		plus03.addClickListener( event -> check03.setVisible(true));
 		
 //----------------------------------------------------------------------------------
+		MenuBar menuBar01 = new MenuBar();	
+		MenuBar menuBar02 = new MenuBar();
+		MenuBar menuBar03 = new MenuBar();	
+		
+		
+		MenuItem delete = menuBar01.addItem("Delete");
+		MenuItem account = menuBar01.addItem("Move");
+		
+		SubMenu projectSubMenu = delete.getSubMenu();
+		projectSubMenu.addItem("hallo");
+		
+		super.add(menuBar01);
+		
+//----------------------------------------------------------------------------------		
+		
 		HorizontalLayout columnA;
 		HorizontalLayout columnB;
 		HorizontalLayout columnC;
@@ -224,6 +250,7 @@ textLayout05.add( textFieldDep, check01, textFieldIndep, check02, textFieldWhelp
 		columnC.addClassNames("column", "column-c");
 		columnCWrapper.add(new Label("Dependent"), columnC);
 		
+		
 		super.add(columnAWrapper, columnBWrapper, columnCWrapper);
 		
 //--------------------------------------------------------------------------------------
@@ -238,16 +265,27 @@ textLayout05.add( textFieldDep, check01, textFieldIndep, check02, textFieldWhelp
 		check03.addClickListener( event -> columnCWrapper
 				.add(new Button(textFieldWhelp.getValue()), columnB));
 		check03.addClickListener( event -> textFieldWhelp.clear());
+		
+		
+		
+//--------------------------------------------------------------------------------------
+	
+		
 //--------------------------------------------------------------------------------------		
 		/**
 		 * Now we connect the Logic of the Status with
 		 * our Database.
 		 */
-		StatusModel status = new StatusModel("schuhe zubinden", "duschen", "medikamente einnehmen", 1);
-		 DbService.init();
-		 DbService.em.getTransaction().begin();
-		 DbService.em.persist(status);
-		 DbService.em.getTransaction().commit();
+		/*
+		 * StatusModel status = new StatusModel("schuhe zubinden", "duschen", "medikamente einnehmen");
+		 * DbService.init();
+		 *DbService.em.getTransaction().begin();
+		 *DbService.em.persist(status);
+		 *DbService.em.getTransaction().commit();
+		 */
+		 
+		 
+		 
 	}
 	
 	

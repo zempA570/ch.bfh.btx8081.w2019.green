@@ -10,9 +10,17 @@ import javax.persistence.TableGenerator;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 
 @Entity
+@Table(name = "statusmodel")
 
 public class StatusModel {
 	
+	
+	public StatusModel(String dependend, String independend, String withHelp) {
+		this.dependend = dependend;
+		this.independend = independend;
+		this.withHelp = withHelp;
+		this.id = id;
+	}
 	
 	public StatusModel(String dependend, String independend, String withHelp, int id) {
 		this.dependend = dependend;
