@@ -16,12 +16,16 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 
+import ch.bfh.btx8081.w2019.green.alzman.presenter.ToDoListPresenter;
+
 /**
  * The user management view will be used to add and remove users of the app
  */
 @Route("TaskEntry")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class TaskEntryView extends TemplateView {
+	
+	ToDoListPresenter presenter;
 
 	public TaskEntryView() {
 
@@ -46,7 +50,7 @@ public class TaskEntryView extends TemplateView {
 		
         //add button
 		Button add = new Button ("save & add", new Icon(VaadinIcon.PLUS)); 
-		add.addClickListener(e -> UI.getCurrent().navigate(ToDoListView.class));
+		add.addClickListener(e -> presenter.addTaskToDB(newtask.getValue(), choice.getValue(), datePick.getValue()));
 		
 
 		// Creating horizontal layout
@@ -63,6 +67,7 @@ public class TaskEntryView extends TemplateView {
 		super.addContent(adding);
 		super.addContent(adding2);
 
+		presenter = new ToDoListPresenter(this);
 
 	}
 
