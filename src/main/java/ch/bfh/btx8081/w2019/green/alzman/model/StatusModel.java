@@ -1,4 +1,5 @@
 package ch.bfh.btx8081.w2019.green.alzman.model;
+
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.GeneratedValue;
@@ -10,17 +11,18 @@ import javax.persistence.TableGenerator;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 
 @Entity
-@Table(name = "statusmodel")
 
 public class StatusModel {
+
+	// String dependend;
+	@Id
+	@GeneratedValue
+	int id;
+	String dependend;
+	String independend;
+	String withHelp;
 	
 	
-	public StatusModel(String dependend, String independend, String withHelp) {
-		this.dependend = dependend;
-		this.independend = independend;
-		this.withHelp = withHelp;
-		this.id = id;
-	}
 	
 	public StatusModel(String dependend, String independend, String withHelp, int id) {
 		this.dependend = dependend;
@@ -28,39 +30,45 @@ public class StatusModel {
 		this.withHelp = withHelp;
 		this.id = id;
 	}
-	public StatusModel() {
-		
+
+	public StatusModel(String dependend, String independend, String withHelp) {
+		this.dependend = dependend;
+		this.independend = independend;
+		this.withHelp = withHelp;
 	}
-	//String dependend;
-	String dependend;
-	String independend;
-	String withHelp;
-	int id;
-	
-	@Id
-	@GeneratedValue
-	
+
+	public StatusModel() {
+
+	}
+
 	private String getDependend() {
 		return dependend;
 	}
+
 	private void setDependend(String dependend) {
 		this.dependend = dependend;
 	}
+
 	private String getIndependend() {
 		return independend;
 	}
+
 	private void setIndependend(String independend) {
 		this.independend = independend;
 	}
+
 	private String getWithHelp() {
 		return withHelp;
 	}
+
 	private void setWithHelp(String withHelp) {
 		this.withHelp = withHelp;
 	}
+
 	private int getId() {
 		return id;
 	}
+
 	private void setId(int id) {
 		this.id = id;
 	}
