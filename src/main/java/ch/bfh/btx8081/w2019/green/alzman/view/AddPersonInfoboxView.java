@@ -44,41 +44,41 @@ public class AddPersonInfoboxView extends TemplateView {
 		super.addContent(title1);
 
 		// Radio Button for gender
-		RadioButtonGroup<String> gender = new RadioButtonGroup<>();
+		gender = new RadioButtonGroup<>();
 		gender.setItems("Mann", "Frau");
 
 		// Textfield for name
-		TextField name = new TextField();
-		name.setLabel("Name");
+		name = new TextField("Name");
+
 
 		// Textfield for prename
-		TextField vorname = new TextField();
-		vorname.setLabel("Vorname");
+		vorname = new TextField("Vorname");
+		
 
 		// Textfield for telephone nummber
-		TextField telNr = new TextField();
-		telNr.setLabel("Telefonnummer");
+		telNr = new TextField("Telefonnummer");
+	
 
 		// Textfield for adress
-		TextField adress = new TextField();
-		adress.setLabel("Adresse");
+		adress = new TextField("Adresse");
+
 
 		// Textfield for adress
-		TextField adrNr = new TextField();
-		adrNr.setLabel("Nr");
+		adrNr = new TextField("Nr");
+		
 
 		// Textfield for pstcode
-		TextField plz = new TextField();
-		plz.setLabel("Platz");
+		plz = new TextField("Platz");
+
 
 		// Textfield for city
-		TextField city = new TextField();
-		city.setLabel("Ort");
+		city = new TextField("Ort");
+
 
 		// Button for add the person in the Infobox
 		Button addPerson = new Button("Add Person", new Icon(VaadinIcon.PLUS));
 		addPerson.addClickListener(
-				e -> addPersonPresenter.addPerson(gender.getValue(), name.getValue(), vorname.getValue(),
+				e -> addPersonPresenter.addPerson(gender.getValue().toString(), name.getValue(), vorname.getValue(),
 						adress.getValue(), adrNr.getValue(), plz.getValue(), city.getValue(), telNr.getValue()));
 
 		// Button for cancel the prosses for to add person in the Infobox
