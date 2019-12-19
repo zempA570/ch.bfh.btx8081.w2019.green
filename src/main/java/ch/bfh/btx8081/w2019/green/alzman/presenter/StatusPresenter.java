@@ -12,7 +12,7 @@ public class StatusPresenter {
 		this.view = view;
 		
 	}
-	public void addTaskToDB() {
+	public void addTaskToDB(String str, int level) {
 		StatusModel sm = new StatusModel();
 		
 		DbService.em.getTransaction().begin();

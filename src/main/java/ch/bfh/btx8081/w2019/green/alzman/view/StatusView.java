@@ -19,6 +19,7 @@ import com.vaadin.flow.router.Route;
 
 import ch.bfh.btx8081.w2019.green.alzman.model.StatusModel;
 import ch.bfh.btx8081.w2019.green.alzman.presenter.StatusPresenter;
+import ch.bfh.btx8081.w2019.green.alzman.presenter.UserManagementPresenter;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 
 /**
@@ -32,6 +33,8 @@ import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 @CssImport(value = "./styles/statusStyle.css", include = "common-styles")
 
 public class StatusView extends TemplateView {
+	
+	private StatusPresenter presenter;
 
 	public StatusView() {
 
@@ -106,18 +109,12 @@ public class StatusView extends TemplateView {
 		 */
 
 		Icon plus01 = new Icon(VaadinIcon.PLUS);
-		plus01.setSize("30px");
+		plus01.setSize("60px");
 		plus01.setColor("lightgreen");
 
-		Icon plus02 = new Icon(VaadinIcon.PLUS);
-		plus02.setSize("30px");
-		plus02.setColor("lightgreen");
+		
 
-		Icon plus03 = new Icon(VaadinIcon.PLUS);
-		plus03.setSize("30px");
-		plus03.setColor("lightgreen");
-
-		textLayout04.add(plus01, plus02, plus03);
+		textLayout04.add(plus01);
 
 		super.add(textLayout04);
 
@@ -180,24 +177,50 @@ public class StatusView extends TemplateView {
 		plus01.addClickListener(event -> textFieldDep.setEnabled(true));
 		plus01.addClickListener(event -> check01.setVisible(true));
 
-		plus02.addClickListener(event -> textFieldIndep.setVisible(true));
-		plus02.addClickListener(event -> textFieldIndep.setEnabled(true));
-		plus02.addClickListener(event -> check02.setVisible(true));
+		plus01.addClickListener(event -> textFieldIndep.setVisible(true));
+		plus01.addClickListener(event -> textFieldIndep.setEnabled(true));
+		plus01.addClickListener(event -> check02.setVisible(true));
 
-		plus03.addClickListener(event -> textFieldWhelp.setVisible(true));
-		plus03.addClickListener(event -> textFieldWhelp.setEnabled(true));
-		plus03.addClickListener(event -> check03.setVisible(true));
+		plus01.addClickListener(event -> textFieldWhelp.setVisible(true));
+		plus01.addClickListener(event -> textFieldWhelp.setEnabled(true));
+		plus01.addClickListener(event -> check03.setVisible(true));
 
 //----------------------------------------------------------------------------------
 		MenuBar menuBar01 = new MenuBar();
+		MenuItem delete01 = menuBar01.addItem("Delete");
+		MenuItem move01 = menuBar01.addItem("Move");
+		
 		MenuBar menuBar02 = new MenuBar();
+		MenuItem delete02 = menuBar02.addItem("Delete");
+		MenuItem move02 = menuBar02.addItem("Move");
+		
 		MenuBar menuBar03 = new MenuBar();
+		MenuItem delete03 = menuBar03.addItem("Delete");
+		MenuItem move03 = menuBar03.addItem("Move");
+		
+		
+		
+		
+		
 
-		MenuItem delete = menuBar01.addItem("Delete");
-		MenuItem account = menuBar01.addItem("Move");
-
-		SubMenu projectSubMenu = delete.getSubMenu();
-		projectSubMenu.addItem("hallo");
+		SubMenu deleteSubMenu01 = delete01.getSubMenu();
+		deleteSubMenu01.addItem("hallo");
+		
+		SubMenu moveSubMenu01 = move01.getSubMenu();
+		moveSubMenu01.addItem("test");
+		
+		SubMenu deleteSubMenu02 = delete02.getSubMenu();
+		deleteSubMenu02.addItem("hallo");
+		
+		SubMenu moveSubMenu02 = move01.getSubMenu();
+		moveSubMenu02.addItem("test");
+		
+		SubMenu deleteSubMenu03 = delete01.getSubMenu();
+		deleteSubMenu03.addItem("hallo");
+		
+		SubMenu moveSubMenu03 = move01.getSubMenu();
+		moveSubMenu03.addItem("test");
+		
 
 		super.add(menuBar01);
 
@@ -230,12 +253,16 @@ public class StatusView extends TemplateView {
 //--------------------------------------------------------------------------------------
 		check01.addClickListener(event -> columnAWrapper.add(new Button(textFieldDep.getValue()), columnA));
 		check01.addClickListener(event -> textFieldDep.clear());
+		check01.addClickListener(event -> presenter.addTaskToDB(textFieldDep.getValue(), 1));
 
 		check02.addClickListener(event -> columnBWrapper.add(new Button(textFieldIndep.getValue()), columnB));
 		check02.addClickListener(event -> textFieldIndep.clear());
+		check02.addClickListener(event -> presenter.addTaskToDB(textFieldIndep.getValue(), 2));
+		
 
 		check03.addClickListener(event -> columnCWrapper.add(new Button(textFieldWhelp.getValue()), columnB));
 		check03.addClickListener(event -> textFieldWhelp.clear());
+		check03.addClickListener(event -> presenter.addTaskToDB(textFieldWhelp.getValue(), 3));
 
 
 //--------------------------------------------------------------------------------------		
@@ -243,7 +270,7 @@ public class StatusView extends TemplateView {
 		 * Now we connect the Logic of the Status with our Database.
 		 */
 
-		StatusModel status = new StatusModel("schuhe zubinden", "duschen", "medikamente einnehmen");
+		StatusModel status = new StatusModel(1, "schuhe zubinden");
 
 		DbService.init();
 		DbService.em.getTransaction().begin();

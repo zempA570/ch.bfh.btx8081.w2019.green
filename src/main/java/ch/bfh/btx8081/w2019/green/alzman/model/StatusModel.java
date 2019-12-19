@@ -18,51 +18,38 @@ public class StatusModel {
 	@Id
 	@GeneratedValue
 	int id;
-	String dependend;
-	String independend;
-	String withHelp;
+	int level;
+	String task;
+
 	
-	
-	
-	public StatusModel(String dependend, String independend, String withHelp, int id) {
-		this.dependend = dependend;
-		this.independend = independend;
-		this.withHelp = withHelp;
+	public StatusModel(int level, String task, int id) {
+		this.level = level;
+		this.task = task;
 		this.id = id;
 	}
 
-	public StatusModel(String dependend, String independend, String withHelp) {
-		this.dependend = dependend;
-		this.independend = independend;
-		this.withHelp = withHelp;
+	public StatusModel(int level, String task) {
+		this.level = level;
+		this.task = task;
 	}
 
 	public StatusModel() {
 
 	}
 
-	private String getDependend() {
-		return dependend;
+	private String Gettask() {
+		return task;
 	}
-
-	private void setDependend(String dependend) {
-		this.dependend = dependend;
+	
+	private void setTask(String task) {
+		this.task = task;
 	}
-
-	private String getIndependend() {
-		return independend;
+	
+	private int getLevel() {
+		return level;
 	}
-
-	private void setIndependend(String independend) {
-		this.independend = independend;
-	}
-
-	private String getWithHelp() {
-		return withHelp;
-	}
-
-	private void setWithHelp(String withHelp) {
-		this.withHelp = withHelp;
+	private void setLevel(int level) {
+		this.level = level;
 	}
 
 	private int getId() {
