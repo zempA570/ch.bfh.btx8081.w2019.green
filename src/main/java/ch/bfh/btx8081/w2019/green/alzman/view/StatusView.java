@@ -189,35 +189,24 @@ public class StatusView extends TemplateView {
 		MenuBar menuBar01 = new MenuBar();
 		MenuItem delete01 = menuBar01.addItem("Delete");
 		MenuItem move01 = menuBar01.addItem("Move");
+		SubMenu deleteSubMenu01 = delete01.getSubMenu();
+		deleteSubMenu01.addItem("hallo");
+		SubMenu moveSubMenu01 = move01.getSubMenu();
+		moveSubMenu01.addItem("test");
 		
 		MenuBar menuBar02 = new MenuBar();
 		MenuItem delete02 = menuBar02.addItem("Delete");
 		MenuItem move02 = menuBar02.addItem("Move");
+		SubMenu deleteSubMenu02 = delete02.getSubMenu();
+		deleteSubMenu02.addItem("hallo");
+		SubMenu moveSubMenu02 = move01.getSubMenu();
+		moveSubMenu02.addItem("test");
 		
 		MenuBar menuBar03 = new MenuBar();
 		MenuItem delete03 = menuBar03.addItem("Delete");
 		MenuItem move03 = menuBar03.addItem("Move");
-		
-		
-		
-		
-		
-
-		SubMenu deleteSubMenu01 = delete01.getSubMenu();
-		deleteSubMenu01.addItem("hallo");
-		
-		SubMenu moveSubMenu01 = move01.getSubMenu();
-		moveSubMenu01.addItem("test");
-		
-		SubMenu deleteSubMenu02 = delete02.getSubMenu();
-		deleteSubMenu02.addItem("hallo");
-		
-		SubMenu moveSubMenu02 = move01.getSubMenu();
-		moveSubMenu02.addItem("test");
-		
 		SubMenu deleteSubMenu03 = delete01.getSubMenu();
 		deleteSubMenu03.addItem("hallo");
-		
 		SubMenu moveSubMenu03 = move01.getSubMenu();
 		moveSubMenu03.addItem("test");
 		
@@ -249,20 +238,22 @@ public class StatusView extends TemplateView {
 		columnCWrapper.add(new Label("Dependent"), columnC);
 
 		super.add(columnAWrapper, columnBWrapper, columnCWrapper);
+		
+		presenter = new StatusPresenter(this);
 
 //--------------------------------------------------------------------------------------
 		check01.addClickListener(event -> columnAWrapper.add(new Button(textFieldDep.getValue()), columnA));
-		check01.addClickListener(event -> textFieldDep.clear());
 		check01.addClickListener(event -> presenter.addTaskToDB(textFieldDep.getValue(), 1));
-
+		check01.addClickListener(event -> textFieldDep.clear());
+		
 		check02.addClickListener(event -> columnBWrapper.add(new Button(textFieldIndep.getValue()), columnB));
-		check02.addClickListener(event -> textFieldIndep.clear());
 		check02.addClickListener(event -> presenter.addTaskToDB(textFieldIndep.getValue(), 2));
+		check02.addClickListener(event -> textFieldIndep.clear());
 		
 
 		check03.addClickListener(event -> columnCWrapper.add(new Button(textFieldWhelp.getValue()), columnB));
-		check03.addClickListener(event -> textFieldWhelp.clear());
 		check03.addClickListener(event -> presenter.addTaskToDB(textFieldWhelp.getValue(), 3));
+		check03.addClickListener(event -> textFieldWhelp.clear());
 
 
 //--------------------------------------------------------------------------------------		
@@ -270,12 +261,8 @@ public class StatusView extends TemplateView {
 		 * Now we connect the Logic of the Status with our Database.
 		 */
 
-		StatusModel status = new StatusModel(1, "schuhe zubinden");
 
-		DbService.init();
-		DbService.em.getTransaction().begin();
-		DbService.em.persist(status);
-		DbService.em.getTransaction().commit();
+		
 	}
 
 }
