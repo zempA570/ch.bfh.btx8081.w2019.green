@@ -2,6 +2,7 @@ package ch.bfh.btx8081.w2019.green.alzman.presenter;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalDate;
 
 import javax.persistence.Query;
 import com.vaadin.flow.component.datepicker.DatePicker;
@@ -29,7 +30,7 @@ public class AddDiaryPresenter {
 	
 
 
-	public void addRecord(String date, String author, String Entry) {
+	public void addRecord(LocalDate date, String author, String Entry) {
 
 		// create new user
 		

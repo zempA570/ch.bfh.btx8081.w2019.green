@@ -17,12 +17,12 @@ import com.vaadin.ui.renderers.ImageRenderer;
 
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 
-<<<<<<< HEAD
-@Route("Dashboard")
 
-=======
+
+
+
 @Route("")
->>>>>>> refs/remotes/origin/master
+
 @PWA(name = "Project Base for Vaadin", shortName = "Project Base")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class DashboardView extends TemplateView {
