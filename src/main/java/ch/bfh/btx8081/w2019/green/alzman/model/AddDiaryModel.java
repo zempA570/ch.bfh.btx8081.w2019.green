@@ -13,7 +13,7 @@ import com.vaadin.flow.component.datepicker.DatePicker;
 
 
 @Entity
-public class Diarymodel {
+public class AddDiaryModel {
 	
 	@Id
 	//@GeneratedValue means the value of this variable will be generated in the database by the "userIDGenerator"
@@ -32,11 +32,11 @@ public class Diarymodel {
 	}
 		
 	
-	public Diarymodel() {
+	public AddDiaryModel() {
 		
 	}
 	
-	public Diarymodel(LocalDate date, String author, String entry) {
+	public AddDiaryModel(LocalDate date, String author, String entry) {
 		this.date= date ;
 		this.author = author;
 		this.Entry = entry;

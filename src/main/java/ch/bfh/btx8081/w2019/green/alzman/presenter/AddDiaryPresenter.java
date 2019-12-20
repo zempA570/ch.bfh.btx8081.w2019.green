@@ -1,7 +1,8 @@
 package ch.bfh.btx8081.w2019.green.alzman.presenter;
 
 import java.time.LocalDate;
-import ch.bfh.btx8081.w2019.green.alzman.model.Diarymodel;
+
+import ch.bfh.btx8081.w2019.green.alzman.model.AddDiaryModel;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 import ch.bfh.btx8081.w2019.green.alzman.view.EntryRecordDiary;
 
@@ -24,7 +25,7 @@ public class AddDiaryPresenter {
 
 		// create new Record
 
-		Diarymodel addnewRecord = new Diarymodel(date, author, Entry);
+		AddDiaryModel addnewRecord = new AddDiaryModel(date, author, Entry);
 
 		// DB stuff
 		DbService.em.getTransaction().begin();
