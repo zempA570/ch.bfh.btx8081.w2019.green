@@ -37,26 +37,26 @@ public class StatusModel {
 
 	}
 
-	private String Gettask() {
+	public String Gettask() {
 		return task;
 	}
 	
-	private void setTask(String task) {
+	public void setTask(String task) {
 		this.task = task;
 	}
 	
-	private int getLevel() {
+	public int getLevel() {
 		return level;
 	}
-	private void setLevel(int level) {
+	public void setLevel(int level) {
 		this.level = level;
 	}
 
-	private int getId() {
+	public int getId() {
 		return id;
 	}
 
-	private void setId(int id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

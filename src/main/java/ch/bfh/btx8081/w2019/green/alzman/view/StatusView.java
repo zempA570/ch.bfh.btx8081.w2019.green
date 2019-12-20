@@ -33,8 +33,20 @@ import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 @CssImport(value = "./styles/statusStyle.css", include = "common-styles")
 
 public class StatusView extends TemplateView {
-	
+
 	private StatusPresenter presenter;
+	HorizontalLayout columnA;
+	HorizontalLayout columnB;
+	HorizontalLayout columnC;
+	HorizontalLayout columnAWrapper;
+	HorizontalLayout columnBWrapper;
+	HorizontalLayout columnCWrapper;
+	SubMenu deleteSubMenu01;
+	SubMenu deleteSubMenu02;
+	SubMenu deleteSubMenu03;
+	SubMenu moveSubMenu01;
+	SubMenu moveSubMenu02;
+	SubMenu moveSubMenu03;
 
 	public StatusView() {
 
@@ -44,6 +56,7 @@ public class StatusView extends TemplateView {
 
 		// GUI Layout
 
+//---------------------------------------------------------------------------------------------------------------		
 		/**
 		 * A Layout from Vaadin, with which you can align the elements vertically.
 		 */
@@ -78,6 +91,7 @@ public class StatusView extends TemplateView {
 				new ResponsiveStep("40em", 3));
 
 		detailsLayout.add(infocomponent01, infocomponent02, infocomponent03);
+
 		super.addContent(detailsLayout);
 
 //---------------------------------------------------------------------------------
@@ -99,12 +113,6 @@ public class StatusView extends TemplateView {
 		 * @plus01 This icon is implemented for the functionality of the area
 		 *         "independent".
 		 * 
-		 * @plus02 This icon is implemented for the functionality of the area "with
-		 *         help".
-		 * 
-		 * @plus03 This icon is implemented for the functionality of the area
-		 *         "dependent".
-		 * 
 		 *         See the Click Events section for more details.
 		 */
 
@@ -112,9 +120,9 @@ public class StatusView extends TemplateView {
 		plus01.setSize("60px");
 		plus01.setColor("lightgreen");
 
-		
+		Button plusButton = new Button("Click here to add a new Task ", plus01);
 
-		textLayout04.add(plus01);
+		textLayout04.add(plusButton);
 
 		super.add(textLayout04);
 
@@ -126,7 +134,6 @@ public class StatusView extends TemplateView {
 		 * icon and enter a text.
 		 * 
 		 */
-
 		Icon check01 = new Icon(VaadinIcon.CHECK_CIRCLE);
 		check01.setSize("25px");
 		check01.setColor("blue");
@@ -141,7 +148,7 @@ public class StatusView extends TemplateView {
 		check03.setSize("25px");
 		check03.setColor("blue");
 		check03.setVisible(false);
-//-----------------------------------------------------------------------------------	
+//-----------------------------------------------------------------------------------------------------	
 
 		FormLayout textLayout05 = new FormLayout();
 
@@ -149,120 +156,133 @@ public class StatusView extends TemplateView {
 				new ResponsiveStep("30em", 3));
 
 		TextField textFieldDep = new TextField();
-		textFieldDep.setValue("Dependend");
 		textFieldDep.addClassName("wrapperField");
 		textFieldDep.setEnabled(false);
 		textFieldDep.setVisible(false);
 
 		TextField textFieldIndep = new TextField();
-		textFieldIndep.setValue("Independend");
 		textFieldIndep.addClassName("wrapperField");
 		textFieldIndep.setEnabled(false);
 		textFieldIndep.setVisible(false);
 
 		TextField textFieldWhelp = new TextField();
-		textFieldWhelp.setValue("With Help");
 		textFieldWhelp.addClassName("wrapperField");
 		textFieldWhelp.setEnabled(false);
 		textFieldWhelp.setVisible(false);
-		// textFieldWhelp.setVisible(false);
 
 		textLayout05.add(textFieldDep, check01, textFieldIndep, check02, textFieldWhelp, check03);
 
 		super.add(textLayout05);
-
 //----------------------------------------------------------------------------------		
 
-		plus01.addClickListener(event -> textFieldDep.setVisible(true));
-		plus01.addClickListener(event -> textFieldDep.setEnabled(true));
-		plus01.addClickListener(event -> check01.setVisible(true));
+		plusButton.addClickListener(event -> textFieldDep.setVisible(true));
+		plusButton.addClickListener(event -> textFieldDep.setEnabled(true));
+		plusButton.addClickListener(event -> check01.setVisible(true));
 
-		plus01.addClickListener(event -> textFieldIndep.setVisible(true));
-		plus01.addClickListener(event -> textFieldIndep.setEnabled(true));
-		plus01.addClickListener(event -> check02.setVisible(true));
+		plusButton.addClickListener(event -> textFieldIndep.setVisible(true));
+		plusButton.addClickListener(event -> textFieldIndep.setEnabled(true));
+		plusButton.addClickListener(event -> check02.setVisible(true));
 
-		plus01.addClickListener(event -> textFieldWhelp.setVisible(true));
-		plus01.addClickListener(event -> textFieldWhelp.setEnabled(true));
-		plus01.addClickListener(event -> check03.setVisible(true));
+		plusButton.addClickListener(event -> textFieldWhelp.setVisible(true));
+		plusButton.addClickListener(event -> textFieldWhelp.setEnabled(true));
+		plusButton.addClickListener(event -> check03.setVisible(true));
 
 //----------------------------------------------------------------------------------
 		MenuBar menuBar01 = new MenuBar();
 		MenuItem delete01 = menuBar01.addItem("Delete");
-		MenuItem move01 = menuBar01.addItem("Move");
-		SubMenu deleteSubMenu01 = delete01.getSubMenu();
-		deleteSubMenu01.addItem("hallo");
-		SubMenu moveSubMenu01 = move01.getSubMenu();
-		moveSubMenu01.addItem("test");
-		
+		MenuItem move01 = menuBar01.addItem("Move down");
+		deleteSubMenu01 = delete01.getSubMenu();
+		moveSubMenu01 = move01.getSubMenu();
+
 		MenuBar menuBar02 = new MenuBar();
 		MenuItem delete02 = menuBar02.addItem("Delete");
-		MenuItem move02 = menuBar02.addItem("Move");
-		SubMenu deleteSubMenu02 = delete02.getSubMenu();
-		deleteSubMenu02.addItem("hallo");
-		SubMenu moveSubMenu02 = move01.getSubMenu();
-		moveSubMenu02.addItem("test");
-		
+		MenuItem move02 = menuBar02.addItem("move down");
+		deleteSubMenu02 = delete01.getSubMenu();
+		moveSubMenu02 = move02.getSubMenu();
+
 		MenuBar menuBar03 = new MenuBar();
 		MenuItem delete03 = menuBar03.addItem("Delete");
-		MenuItem move03 = menuBar03.addItem("Move");
-		SubMenu deleteSubMenu03 = delete01.getSubMenu();
-		deleteSubMenu03.addItem("hallo");
-		SubMenu moveSubMenu03 = move01.getSubMenu();
-		moveSubMenu03.addItem("test");
-		
-
-		super.add(menuBar01);
+		MenuItem move03 = menuBar03.addItem("Move up");
+		deleteSubMenu03 = delete03.getSubMenu();
+		moveSubMenu03 = move03.getSubMenu();
 
 //----------------------------------------------------------------------------------		
 
-		HorizontalLayout columnA;
-		HorizontalLayout columnB;
-		HorizontalLayout columnC;
-
-		HorizontalLayout columnAWrapper = new HorizontalLayout();
+		columnAWrapper = new HorizontalLayout();
 		columnAWrapper.addClassName("wrapper");
 		columnA = new HorizontalLayout();
 		columnA.addClassNames("column", "column-a");
 		columnAWrapper.add(new Label("Independent"), columnA);
+		columnAWrapper.add(menuBar01);
 
-		HorizontalLayout columnBWrapper = new HorizontalLayout();
+		columnBWrapper = new HorizontalLayout();
 		columnBWrapper.addClassName("wrapper");
 		columnB = new HorizontalLayout();
 		columnB.addClassNames("column", "column-b");
 		columnBWrapper.add(new Label("With help"), columnB);
+		columnBWrapper.add(menuBar02);
 
-		HorizontalLayout columnCWrapper = new HorizontalLayout();
+		columnCWrapper = new HorizontalLayout();
 		columnCWrapper.addClassName("wrapper");
 		columnC = new HorizontalLayout();
 		columnC.addClassNames("column", "column-c");
 		columnCWrapper.add(new Label("Dependent"), columnC);
+		columnCWrapper.add(menuBar03);
 
 		super.add(columnAWrapper, columnBWrapper, columnCWrapper);
-		
-		presenter = new StatusPresenter(this);
 
-//--------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------		
+		presenter = new StatusPresenter(this);
+		
+//----------------------------------------------------------------------------------------------------------------
 		check01.addClickListener(event -> columnAWrapper.add(new Button(textFieldDep.getValue()), columnA));
 		check01.addClickListener(event -> presenter.addTaskToDB(textFieldDep.getValue(), 1));
+		check01.addClickListener(event -> moveSubMenu01.addItem(textFieldDep.getValue()));
+		check01.addClickListener(event -> deleteSubMenu01.addItem(textFieldDep.getValue()));
 		check01.addClickListener(event -> textFieldDep.clear());
-		
+
 		check02.addClickListener(event -> columnBWrapper.add(new Button(textFieldIndep.getValue()), columnB));
 		check02.addClickListener(event -> presenter.addTaskToDB(textFieldIndep.getValue(), 2));
+		check02.addClickListener(event -> moveSubMenu02.addItem(textFieldIndep.getValue()));
+		check02.addClickListener(event -> deleteSubMenu02.addItem(textFieldIndep.getValue()));
 		check02.addClickListener(event -> textFieldIndep.clear());
-		
 
-		check03.addClickListener(event -> columnCWrapper.add(new Button(textFieldWhelp.getValue()), columnB));
+		check03.addClickListener(event -> columnCWrapper.add(new Button(textFieldWhelp.getValue()), columnC));
 		check03.addClickListener(event -> presenter.addTaskToDB(textFieldWhelp.getValue(), 3));
+		check03.addClickListener(event -> moveSubMenu03.addItem(textFieldWhelp.getValue()));
+		check03.addClickListener(event -> deleteSubMenu03.addItem(textFieldWhelp.getValue()));
 		check03.addClickListener(event -> textFieldWhelp.clear());
 
+//------------------------------------------------------------------------------------------------------------------		
 
-//--------------------------------------------------------------------------------------		
-		/**
-		 * Now we connect the Logic of the Status with our Database.
-		 */
+	}
 
+	public void addToView(StatusModel model) {
 
-		
+		int nr = model.getLevel();
+		switch (nr) {
+		case 1:
+			columnAWrapper.add(new Button(model.Gettask(), columnA));
+			deleteSubMenu01.addItem(model.Gettask());
+			moveSubMenu01.addItem(model.Gettask());
+			break;
+
+		case 2:
+			columnBWrapper.add(new Button(model.Gettask(), columnB));
+			deleteSubMenu02.addItem(model.Gettask());
+			moveSubMenu02.addItem(model.Gettask());
+			break;
+
+		case 3:
+			columnCWrapper.add(new Button(model.Gettask(), columnC));
+			deleteSubMenu03.addItem(model.Gettask());
+			moveSubMenu03.addItem(model.Gettask());
+			break;
+
+		default:
+			break;
+
+		}
 	}
 
 }
