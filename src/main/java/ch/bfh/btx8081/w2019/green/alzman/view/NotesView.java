@@ -1,10 +1,15 @@
 package ch.bfh.btx8081.w2019.green.alzman.view;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dialog.Dialog;
+import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.ironlist.IronList;
@@ -13,6 +18,8 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
+
+import ch.bfh.btx8081.w2019.green.alzman.model.ImportantNotesDataModel;
 
 
 /**
@@ -71,13 +78,21 @@ public class NotesView extends TemplateView {
 		
 		
 		//Click Listener
-	
-
+		
+		//Creating a List so the Entries which are already made can be pulled from DB and shown
+		Collection<ImportantNotesDataModel> entryList = new ArrayList<>();
+		
+		Grid<ImportantNotesDataModel> grid = new Grid<>(ImportantNotesDataModel.class);
+		grid.setItems(entryList);
+		
+		//sorting the Grid
+		
 		// Creating horizontal layout
 		HorizontalLayout hLAddUser = new HorizontalLayout();
 
 		// Adding two components to horizontal layout
 		hLAddUser.add(btnAddEntry);
+		hLAddUser.add(grid);
 
 		// Adding components to content space
 		super.addContent(lis);
