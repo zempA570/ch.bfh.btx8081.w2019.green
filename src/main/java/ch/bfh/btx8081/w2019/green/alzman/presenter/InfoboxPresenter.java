@@ -64,32 +64,62 @@ public class InfoboxPresenter {
 		test.getId();
 
 		DbService.em.getTransaction().begin();
-//
-//		// get the id number of the user which is at the beginning of the string
+
+		// get the id number of the user which is at the beginning of the string
 		int PersonId = test.getId();
 		;
-//
+
 		AddPerson personToDelete = null;
-//
-//		// for every user we have in our list
+
+		// for every user we have in our list
 		for (AddPerson pers : persons) {
-//			// if the id of that user is the same as the id we got from the userIdFullname
+			// if the id of that user is the same as the id we got from the userIdFullname
 			if (Objects.equals(pers.getId(), PersonId)) {
-//				// this is the user we want to delete
+				// this is the user we want to delete
 				personToDelete = pers;
 			}
 		}
-//
-//		// this is the part where we use the DB
+
+		// this is the part where we use the DB
 		DbService.em.remove(personToDelete);
 		DbService.em.getTransaction().commit();
-//
 
 		fillTabelleWithPersons();
 
 		DbService.em.close();
 
-		System.out.println(test.getId());
+	}
+	
+	public void deleteAdress(Set<AddAdress> adress) {
+
+		AddAdress adressdelete = adress.stream().findFirst().get();
+		adressdelete.getId();
+
+		DbService.em.getTransaction().begin();
+
+		// get the id number of the user which is at the beginning of the string
+		int AdressId = adressdelete.getId();
+		;
+
+		AddAdress adressToDelete = null;
+
+		// for every user we have in our list
+		for (AddAdress adr : adresses) {
+			// if the id of that user is the same as the id we got from the userIdFullname
+			if (Objects.equals(adr.getId(), AdressId)) {
+				// this is the user we want to delete
+				adressToDelete = adr;
+			}
+		}
+
+		// this is the part where we use the DB
+		DbService.em.remove(adressToDelete);
+		DbService.em.getTransaction().commit();
+
+		fillTabelleWithAdress();
+
+		DbService.em.close();
 
 	}
+	
 }

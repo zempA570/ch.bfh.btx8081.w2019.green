@@ -47,10 +47,11 @@ public class InfoboxView extends TemplateView {
 		Button btnImportantPer = new Button("Add Person");
 		btnImportantPer.addClickListener(event -> UI.getCurrent().navigate(AddPersonInfoboxView.class));
 
-		Button btnDeletePer = new Button("delete Person");
+		Button btnDeletePer = new Button("Delete Person");
 		btnDeletePer.setVisible(false);
 		btnDeletePer.addClickListener(e -> presenter.deletePerson(persongrid.getSelectedItems()));
-
+		btnDeletePer.addClickListener(event -> UI.getCurrent().navigate(DashboardView.class));
+		
 		HorizontalLayout positionButtonsPer = new HorizontalLayout();
 		positionButtonsPer.add(btnImportantPer, btnDeletePer);
 
@@ -85,6 +86,8 @@ public class InfoboxView extends TemplateView {
 
 		Button btnDeleteAdr = new Button("delete Adress");
 		btnDeleteAdr.setVisible(false);
+		btnDeleteAdr.addClickListener(e -> presenter.deleteAdress(adressgrid.getSelectedItems()));
+		btnDeleteAdr.addClickListener(event -> UI.getCurrent().navigate(DashboardView.class));
 
 		HorizontalLayout positionButtonsAdr = new HorizontalLayout();
 		positionButtonsAdr.add(btnImportantAdr, btnDeleteAdr);
@@ -92,6 +95,7 @@ public class InfoboxView extends TemplateView {
 		super.addContent(positionButtonsAdr);
 
 		add(adressgrid);
+		adressgrid.addColumn(AddAdress::getId).setVisible(false);
 		adressgrid.addColumn(AddAdress::getName).setHeader("Name");
 		adressgrid.addColumn(AddAdress::getAdress).setHeader("Adress");
 		adressgrid.addColumn(AddAdress::getAdressNr).setHeader("Nr");
