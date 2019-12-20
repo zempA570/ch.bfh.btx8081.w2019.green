@@ -112,8 +112,6 @@ public class ToDoListView extends TemplateView {
 		VerticalLayout vertical3 = new VerticalLayout(); 
 		vertical3.add(title3, list4);
 		
-//		Label space1 = new Label ("     ");
-//		HorizontalLayout space = new HorizontalLayout(); 
 		
 		Button addNewTask = new Button("add new Task", new Icon(VaadinIcon.PLUS)); 
 		addNewTask.addClickListener(e -> UI.getCurrent().navigate(TaskEntryView.class)); 
@@ -126,7 +124,6 @@ public class ToDoListView extends TemplateView {
 		super.addContent(vertical1);
 		super.addContent(vertical2);
 		super.addContent(vertical3);
-		//super.addContent(space); 
 		//super.addContent(addNewTask);
 		
 

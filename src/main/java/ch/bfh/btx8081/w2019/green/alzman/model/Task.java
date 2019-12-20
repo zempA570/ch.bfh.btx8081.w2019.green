@@ -11,13 +11,15 @@ import javax.persistence.Persistence;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
+import com.vaadin.flow.component.datepicker.DatePicker;
+
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 
 /**
  * This class is used to store information about the users/relatives of
  * patients.
  * 
- * @author Adrian
+ * @author Jasmitha
  *
  */
 //@Entity means this class should be a table in the database
@@ -37,17 +39,21 @@ public class Task {
 	// Other variables
 	String taskname;
 	String choice;
-	LocalDate datePick;
+	Date datepick; 
+	
+	
+	
 
 	// Constructor to create Users in code
-	public Task(String taskname, String choice, LocalDate datePick) {
-		this.taskname = taskname;
-		this.datePick = datePick;
-		this.choice = choice;
-	}
+
 
 	// No-Args constructor is required by JPA
-	public Task() {
+	
+		
+	public Task(String taskname, String choice, Date datepick) {
+		this.taskname = taskname;
+		this.choice = choice;
+		this.datepick = datepick;
 	}
 
 	public int getId() {
@@ -58,11 +64,11 @@ public class Task {
 		this.id = id;
 	}
 
-	public String getTaskname() {
+	public String getTask() {
 		return taskname;
 	}
 
-	public void setTaskname(String taskname) {
+	public void setTask(String taskname) {
 		this.taskname = taskname;
 	}
 
@@ -74,12 +80,12 @@ public class Task {
 		this.choice = choice;
 	}
 
-	public LocalDate getDate() {
-		return datePick;
+	public Date getDate() {
+		return datepick;
 	}
 
-	public void setDate(LocalDate datePick) {
-		this.datePick = datePick;
+	public void setDate(Date datepick) {
+		this.datepick = datepick;
 	}
 
 }

@@ -37,12 +37,15 @@ public class TaskEntryView extends TemplateView {
 		TextField newtask = new TextField();
 		newtask.setLabel("Aufgabe");
 		
+		
 		ComboBox<String> choice = new ComboBox<>("Wiederholung"); 
 		choice.setItems("Weekly", "Monthly", "Annually", "None");
 		
 		Label datum = new Label("Date"); 
-		DatePicker datePick = new DatePicker(); 
-		datePick.setValue(LocalDate.now());
+		DatePicker datePick = new DatePicker();  
+		
+//		presenter.changeDateForm(datePick);
+		
 		
 		
 		// icon which can be clicked to clead the value
