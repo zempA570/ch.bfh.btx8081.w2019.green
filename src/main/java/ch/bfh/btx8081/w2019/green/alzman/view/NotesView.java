@@ -1,6 +1,8 @@
 package ch.bfh.btx8081.w2019.green.alzman.view;
 
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
+
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.icon.Icon;
@@ -11,6 +13,7 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
+
 
 /**
  * The user management view will be used to add and remove users of the app
@@ -40,7 +43,7 @@ public class NotesView extends TemplateView {
 
 		// Creating elements
 		IronList<String> lis = new IronList<>();
-		lis.setItems("Eintrag von Ey","","Lorem ipsum dolor sit amet, "
+		lis.setItems("Eintrag von DUMMY","","Lorem ipsum dolor sit amet, "
 				+ "consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et"
 				+ " dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et "
 				+ "justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus "
@@ -61,13 +64,20 @@ public class NotesView extends TemplateView {
 
 	
 
-		Button btnAddUser = new Button("Add Entry");
+		Button btnAddEntry = new Button("Add New Entry");
+		btnAddEntry.addClickListener(e -> UI.getCurrent().navigate(AddImportantNotes.class));
+		
+	
+		
+		
+		//Click Listener
+	
 
 		// Creating horizontal layout
 		HorizontalLayout hLAddUser = new HorizontalLayout();
 
 		// Adding two components to horizontal layout
-		hLAddUser.add(btnAddUser);
+		hLAddUser.add(btnAddEntry);
 
 		// Adding components to content space
 		super.addContent(lis);
