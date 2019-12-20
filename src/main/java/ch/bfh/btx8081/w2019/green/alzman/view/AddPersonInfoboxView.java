@@ -1,5 +1,6 @@
 package ch.bfh.btx8081.w2019.green.alzman.view;
 
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.H4;
@@ -80,6 +81,7 @@ public class AddPersonInfoboxView extends TemplateView {
 		addPerson.addClickListener(
 				e -> addPersonPresenter.addPerson(gender.getValue().toString(), name.getValue(), vorname.getValue(),
 						adress.getValue(), adrNr.getValue(), plz.getValue(), city.getValue(), telNr.getValue()));
+		addPerson.addClickListener(event -> UI.getCurrent().navigate(InfoboxView.class));
 
 		// Button for cancel the prosses for to add person in the Infobox
 		Button cancel = new Button("Cancel");

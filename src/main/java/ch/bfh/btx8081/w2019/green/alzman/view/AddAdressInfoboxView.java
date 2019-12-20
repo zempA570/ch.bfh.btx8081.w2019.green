@@ -1,5 +1,6 @@
 package ch.bfh.btx8081.w2019.green.alzman.view;
 
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.H4;
@@ -62,6 +63,7 @@ public class AddAdressInfoboxView extends TemplateView {
 		Button addAdress = new Button("Add", new Icon(VaadinIcon.PLUS));
 		addAdress.addClickListener(e -> addAdressPresenter.addAdress(name.getValue(), adress.getValue(),
 				adrNr.getValue(), plz.getValue(), city.getValue(), telNr.getValue()));
+		addAdress.addClickListener(event -> UI.getCurrent().navigate(InfoboxView.class));
 
 		// Button for cancel the prosses for to add the adress in the Infobox
 		Button cancel = new Button("Cancel");
