@@ -27,11 +27,10 @@ import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class AddImportantNotes extends TemplateView {
 
-	DatePicker datePicker = new DatePicker();
-	TextArea textArea = new TextArea("Notes");
-	TextField entryAuthor = new TextField();
-	Date dateOfEntry;
-	LocalDate date;
+	private TextField author;
+	private DatePicker datePicker;
+	private TextArea textArea ;
+	
 
 	public AddImportantNotes() {
 
@@ -39,17 +38,17 @@ public class AddImportantNotes extends TemplateView {
 		super.setHeaderTitle("Add Key-Notes");
 		
 		//Label and a Textfield
-		TextField author = new TextField();
-		author.setLabel("Author");
-		entryAuthor = author;
-		
-		//get the date value
-		datePicker.setValue(LocalDate.now());
-		this.date = datePicker.getValue();
-		this.dateOfEntry = Date.valueOf(date);
 		
 		
+//		//get the date value
+//		datePicker.setValue(LocalDate.now());
+//		this.date = datePicker.getValue();
+//		this.dateOfEntry = Date.valueOf(date);
+//		
 		
+		author = new TextField("Author");
+		textArea = new TextArea("Notes");
+		datePicker = new DatePicker("Date");
 		
 
 		// Display an icon which can be clicked to clear the value:
@@ -66,7 +65,7 @@ public class AddImportantNotes extends TemplateView {
 		Button AddToBoth = new Button ("Add To Both", new Icon(VaadinIcon.PLUS));
 		
 		//Click Listener that triggers an Event for Add-To-Key-Notes-Button
-		AddToKeyNotes.addClickListener(e -> addNotesDB());
+		AddToKeyNotes.addClickListener(e -> addNotesDB(author.getValue(),textArea.getValue(),datePicker.getValue()));
 		
 		Notification infoNotification1 = new Notification(
 				"Entry added to Diary!", 3000);
@@ -100,14 +99,19 @@ public class AddImportantNotes extends TemplateView {
 	
 	}
 
-	private void addNotesDB() {
+	private void addNotesDB(String author, String content, LocalDate date1) {
+		
+		Date date = Date.valueOf(date1);
 
 		// get Infos from Interface elements to add to Database
-		ImportantNotesDataModel notesToSave = new ImportantNotesDataModel();
+		ImportantNotesDataModel notesToSave = new ImportantNotesDataModel(author,content,date);
+		
+		/**
 		notesToSave.setDate(dateOfEntry);
 
 		notesToSave.setContent(textArea.getValue());
 		notesToSave.setAuthor(entryAuthor.getValue());
+		*/
 		
 
 		// method to add a note to the Database
