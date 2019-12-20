@@ -6,7 +6,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.time.LocalDate;
-
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
@@ -15,6 +14,7 @@ import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.router.Route;
+import ch.bfh.btx8081.w2019.green.alzman.presenter.DiaryPresenter;
 
 /**
  * The user management view will be used to add and remove users of the app
@@ -23,6 +23,7 @@ import com.vaadin.flow.router.Route;
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class Diary extends TemplateView {
 
+	private DiaryPresenter presenter;
 	
 
 	public Diary() {
@@ -42,6 +43,9 @@ public class Diary extends TemplateView {
 
 		// Adding components to content space
 		super.addContent(verticalLayout);
+		
+		presenter = new DiaryPresenter(this);
+		
 
 	}
 }
