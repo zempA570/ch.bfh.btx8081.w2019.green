@@ -16,7 +16,7 @@ import com.vaadin.flow.component.datepicker.DatePicker;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 
 /**
- * This class is used to store information about the users/relatives of
+ * This class is used to store new tasks of
  * patients.
  * 
  * @author Jasmitha
@@ -39,7 +39,7 @@ public class Task {
 	// Other variables
 	String taskname;
 	String choice;
-	Date datepick; 
+	Date date; 
 	
 	
 	
@@ -53,8 +53,14 @@ public class Task {
 	public Task(String taskname, String choice, Date datepick) {
 		this.taskname = taskname;
 		this.choice = choice;
-		this.datepick = datepick;
+		this.date = date;
 	}
+	
+
+	public Task() {
+		
+	}
+
 
 	public int getId() {
 		return id;
@@ -81,11 +87,11 @@ public class Task {
 	}
 
 	public Date getDate() {
-		return datepick;
+		return date;
 	}
 
-	public void setDate(Date datepick) {
-		this.datepick = datepick;
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 }
