@@ -1,5 +1,6 @@
 package ch.bfh.btx8081.w2019.green.alzman.model;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
@@ -13,26 +14,31 @@ import com.vaadin.ui.DateField;
 public class ImportantNotesDataModel {
 
 	/**
-	 * datatypes for this model:
-	 * string author for the user who makes the entry
-	 * entryDate for the date of the newly entered entry
-	 * entryContent for the actual entry which is a string
+	 * datatypes for this model: string author for the user who makes the entry
+	 * entryDate for the date of the newly entered entry entryContent for the actual
+	 * entry which is a string
 	 */
-	String author;
-	LocalDate entryDate;
-	String entryContent;
-	
-	
-	//annotation for the primary key and generating an ID by random
 	@Id
 	@GeneratedValue
 	int entryID;
 	
-	
-	
-	
-	
-	
+	String author;
+	Date date;
+	String content;
+
+
+	public ImportantNotesDataModel(String author, String content, Date date) {
+		this.author = author;
+		this.content = content;
+		this.date = date;
+
+	}
+
+//must have: an empty constructor
+	public ImportantNotesDataModel() {
+
+	}
+
 	public String getAuthor() {
 		return author;
 	}
@@ -41,20 +47,20 @@ public class ImportantNotesDataModel {
 		this.author = author;
 	}
 
-	public LocalDate getEntryDate() {
-		return entryDate;
+	public Date getDate() {
+		return date;
 	}
 
-	public void setEntryDate(LocalDate entryDate) {
-		this.entryDate = entryDate;
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
-	public String getEntryContent() {
-		return entryContent;
+	public String getContent() {
+		return content;
 	}
 
-	public void setEntryContent(String entryContent) {
-		this.entryContent = entryContent;
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 	public int getEntryID() {
@@ -64,17 +70,8 @@ public class ImportantNotesDataModel {
 	public void setEntryID(int entryID) {
 		this.entryID = entryID;
 	}
+	
 
-	public ImportantNotesDataModel(String author, LocalDate entryDate, String entryContent, int entryID) {
-		super();
-		this.author = author;
-		this.entryDate = entryDate;
-		this.entryContent = entryContent;
-		this.entryID = entryID;
-	}
-	
-	//must have: an empty constructor
-	public ImportantNotesDataModel() {};
-	
-	
+
+
 }
