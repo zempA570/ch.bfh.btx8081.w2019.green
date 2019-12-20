@@ -49,7 +49,7 @@ public class InfoboxView extends TemplateView {
 
 		Button btnDeletePer = new Button("delete Person");
 		btnDeletePer.setVisible(false);
-//		btnDeletePer.addClickListener(e -> presenter.deletePerson(Inportantperson));
+		btnDeletePer.addClickListener(e -> presenter.deletePerson(persongrid.getSelectedItems()));
 
 		HorizontalLayout positionButtonsPer = new HorizontalLayout();
 		positionButtonsPer.add(btnImportantPer, btnDeletePer);
@@ -57,6 +57,7 @@ public class InfoboxView extends TemplateView {
 		super.addContent(positionButtonsPer);
 
 		add(persongrid);
+		persongrid.addColumn(AddPerson::getId).setVisible(false);
 		persongrid.addColumn(AddPerson::getGender).setHeader("Gender");
 		persongrid.addColumn(AddPerson::getFirstname).setHeader("Firstname");
 		persongrid.addColumn(AddPerson::getLastname).setHeader("Lastname");

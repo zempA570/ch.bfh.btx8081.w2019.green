@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -19,20 +20,13 @@ public class InfoboxPresenter {
 	private InfoboxView view;
 	private List<AddPerson> persons;
 	private List<AddAdress> adresses;
-	
-	
-
-	
 
 	public InfoboxPresenter(InfoboxView infoboxView) {
 		view = infoboxView;
-		
+
 		fillTabelleWithPersons();
 		fillTabelleWithAdress();
 	}
-
-
-
 
 	public void fillTabelleWithPersons() {
 
@@ -48,7 +42,7 @@ public class InfoboxPresenter {
 
 		}
 	}
-	
+
 	public void fillTabelleWithAdress() {
 
 		if (adresses == null) {
@@ -63,35 +57,39 @@ public class InfoboxPresenter {
 
 		}
 	}
-	public void deletePerson(String Inportantperson) {
+
+	public void deletePerson(Set<AddPerson> person) {
+
+		AddPerson test = person.stream().findFirst().get();
+		test.getId();
 
 		DbService.em.getTransaction().begin();
-
-		// get the id number of the user which is at the beginning of the string
-		int PersonId = Integer.parseInt(Inportantperson.substring(0, Inportantperson.indexOf(" ")));
-
+//
+//		// get the id number of the user which is at the beginning of the string
+		int PersonId = test.getId();
+		;
+//
 		AddPerson personToDelete = null;
-
-		// for every user we have in our list
+//
+//		// for every user we have in our list
 		for (AddPerson pers : persons) {
-			// if the id of that user is the same as the id we got from the userIdFullname
+//			// if the id of that user is the same as the id we got from the userIdFullname
 			if (Objects.equals(pers.getId(), PersonId)) {
-				// this is the user we want to delete
+//				// this is the user we want to delete
 				personToDelete = pers;
 			}
 		}
-
-		// this is the part where we use the DB
+//
+//		// this is the part where we use the DB
 		DbService.em.remove(personToDelete);
 		DbService.em.getTransaction().commit();
+//
 
-		// after the user is deleted we "refresh" the list in the combobox so the
-		// deleted user is gone
-//		fillTabelleWithPersons();
+		fillTabelleWithPersons();
 
-//		TODO when to close?
-		// DbService.em.close();
+		DbService.em.close();
+
+		System.out.println(test.getId());
 
 	}
-	
 }
