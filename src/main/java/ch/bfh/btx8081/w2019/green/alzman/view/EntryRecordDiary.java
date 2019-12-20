@@ -33,9 +33,9 @@ public class EntryRecordDiary extends TemplateView {
 
 	public EntryRecordDiary() {		
 
-		super.setHeaderTitle("Entry Record Diary");
+		super.setHeaderTitle("Entry Record Diarymodel");
 
-				//Creating a new Datepicker.  
+		//Creating a new Datepicker.  
 		DatePicker datePicker = new DatePicker();
 		datePicker.setValue(LocalDate.now());
 		 

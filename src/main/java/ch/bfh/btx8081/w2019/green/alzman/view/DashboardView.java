@@ -88,7 +88,7 @@ public class DashboardView extends TemplateView {
 		Label calendarText = new Label("Calendar");
 		Label statusText = new Label("Status");
 		Label importantNotesText = new Label("Key-Notes");
-		Label diaryText = new Label("Diary");
+		Label diaryText = new Label("Diarymodel");
 		Label todoText = new Label("To-Do-List");
 		Label infoBoxText = new Label("Infobox");
 

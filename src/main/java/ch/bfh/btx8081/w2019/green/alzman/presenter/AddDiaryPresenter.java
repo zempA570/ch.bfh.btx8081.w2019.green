@@ -1,17 +1,7 @@
 package ch.bfh.btx8081.w2019.green.alzman.presenter;
 
-import java.sql.Date;
-import java.sql.Time;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.Query;
-import com.vaadin.flow.component.datepicker.DatePicker;
-import com.vaadin.flow.component.textfield.TextArea;
-
-import ch.bfh.btx8081.w2019.green.alzman.model.Diary;
-import ch.bfh.btx8081.w2019.green.alzman.model.User;
+import ch.bfh.btx8081.w2019.green.alzman.model.Diarymodel;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 import ch.bfh.btx8081.w2019.green.alzman.view.EntryRecordDiary;
 
@@ -34,7 +24,7 @@ public class AddDiaryPresenter {
 
 		// create new Record
 
-		Diary addnewRecord = new Diary(date, author, Entry);
+		Diarymodel addnewRecord = new Diarymodel(date, author, Entry);
 
 		// DB stuff
 		DbService.em.getTransaction().begin();

@@ -19,23 +19,22 @@ import ch.bfh.btx8081.w2019.green.alzman.presenter.DiaryPresenter;
 /**
  * The user management view will be used to add and remove users of the app
  */
-@Route("Diary")
+@Route("Diarymodel")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class Diary extends TemplateView {
 
 	private DiaryPresenter presenter;
-	
 
 	public Diary() {
 
-		super.setHeaderTitle("Diary");
+		super.setHeaderTitle("Diarymodel");
 
 		// Creating a new Textarea
 		TextArea textArea = new TextArea("");
 		textArea.setPlaceholder("");
 
-		// Add a new Diary
-		Button button = new Button("Add new Diary", new Icon(VaadinIcon.PLUS));
+		// Add a new Diarymodel
+		Button button = new Button("Add new Diarymodel", new Icon(VaadinIcon.PLUS));
 		button.addClickListener(e -> UI.getCurrent().navigate(EntryRecordDiary.class));
 
 		// Creating a new Vertical Layout
@@ -43,9 +42,8 @@ public class Diary extends TemplateView {
 
 		// Adding components to content space
 		super.addContent(verticalLayout);
-		
+
 		presenter = new DiaryPresenter(this);
-		
 
 	}
 }
