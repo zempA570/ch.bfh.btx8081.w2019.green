@@ -65,5 +65,6 @@ public class EntryRecordDiary extends TemplateView {
 		//Adding components to content space
 		super.addContent(verticalLayout);
 
+		presenter = new AddDiaryPresenter(this);
 	}
 }
