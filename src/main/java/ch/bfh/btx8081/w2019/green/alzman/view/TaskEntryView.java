@@ -43,9 +43,7 @@ public class TaskEntryView extends TemplateView {
 		
 		Label datum = new Label("Date"); 
 		DatePicker datePick = new DatePicker();  
-		
-//		presenter.changeDateForm(datePick);
-		
+	
 		
 		
 		// icon which can be clicked to clead the value
@@ -61,10 +59,6 @@ public class TaskEntryView extends TemplateView {
 		VerticalLayout adding2 = new VerticalLayout(datum, datePick, add);
 
 
-		// space
-//		Label space2 = new Label("  "); 
-//		HorizontalLayout spacing = new HorizontalLayout(space2); 
-		
 		
 		// Adding components to content space
 		super.addContent(adding);

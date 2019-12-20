@@ -40,9 +40,7 @@ public class Task {
 	String taskname;
 	String choice;
 	Date date; 
-	
-	
-	
+
 
 	// Constructor to create Users in code
 
@@ -50,7 +48,7 @@ public class Task {
 	// No-Args constructor is required by JPA
 	
 		
-	public Task(String taskname, String choice, Date datepick) {
+	public Task(String taskname, String choice, Date date) {
 		this.taskname = taskname;
 		this.choice = choice;
 		this.date = date;
@@ -60,7 +58,6 @@ public class Task {
 	public Task() {
 		
 	}
-
 
 	public int getId() {
 		return id;
