@@ -5,15 +5,16 @@ import javax.persistence.Query;
 import ch.bfh.btx8081.w2019.green.alzman.model.Diarymodel;
 import ch.bfh.btx8081.w2019.green.alzman.model.User;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
+import ch.bfh.btx8081.w2019.green.alzman.view.Diary;
 import ch.bfh.btx8081.w2019.green.alzman.view.TemplateView;
 
 public class DiaryPresenter extends TemplateView {
 
 	// private List<Diarymodel> diarys;
 	private List<Diarymodel> diarys;
-	private ch.bfh.btx8081.w2019.green.alzman.view.Diary view;
+	private Diary view;
 
-	public DiaryPresenter(ch.bfh.btx8081.w2019.green.alzman.view.Diary diary) {
+	public DiaryPresenter( Diary diary) {
 		this.view = diary;
 
 		getallDiarys();
