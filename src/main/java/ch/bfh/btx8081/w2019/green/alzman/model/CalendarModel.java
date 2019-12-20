@@ -19,14 +19,14 @@ public class CalendarModel {
 	@GeneratedValue
 	int id;
 	
-	LocalDate datePick;
-	TimePicker appointTime;
+	Date datePick;
+	Time time;
 	String author;
 	String Entry;
 	
-	public CalendarModel(LocalDate datePick, TimePicker appointTime, String author, String Entry ) {
+	public CalendarModel(Date datePick, Time time, String author, String Entry ) {
 		this.datePick= datePick;
-		this.appointTime=appointTime;
+		this.time=time;
 		this.author=author;
 		this.Entry = Entry;
 		
@@ -35,21 +35,21 @@ public class CalendarModel {
 		
 	}
 	
-	public void setDate(LocalDate datePick) {
+	public void setDate(Date datePick) {
 		this.datePick= datePick;
 	
 	}
 	
-	public LocalDate getDate() {
+	public Date getDate() {
 		return datePick;
 	}
-	public void setTime(TimePicker appointTime) {
-		this.appointTime= appointTime;
+	public void setTime(Time time) {
+		this.time= time;
 	
 	}
 	
-	public TimePicker getTime() {
-		return appointTime;
+	public Time getTime() {
+		return time;
 	}
 
 	public String setAuthor(String author) {

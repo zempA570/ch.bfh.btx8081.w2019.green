@@ -32,12 +32,12 @@ public class AddAppointment extends TemplateView {
 		// Change title in header
 		super.setHeaderTitle("Termin hinzufügen");
 		
-		DatePicker date = new DatePicker();
-		date.setValue(LocalDate.now());
+		DatePicker datePick = new DatePicker();
+		datePick.setValue(LocalDate.now());
 		
 
 		// Display an icon which can be clicked to clear the value:
-		date.setClearButtonVisible(true);
+		datePick.setClearButtonVisible(true);
 		
 		TimePicker time = new TimePicker();
 		time.setValue(LocalTime.now());
@@ -66,11 +66,12 @@ public class AddAppointment extends TemplateView {
 
 		// Adding components to content space
 	
-		super.addContent(date);
+		super.addContent(datePick);
 		super.addContent(hLAddUser);
 		
-		btnAddEntry.addClickListener(e -> presenter.addAppointment(date.getValue(), time.getValue(),author.getValue(), entry.getValue()));
+		btnAddEntry.addClickListener(e -> presenter.addAppointmentToDB(datePick.getValue(), time.getValue(),author.getValue(), entry.getValue()));
 
+		
 	}
 
 }

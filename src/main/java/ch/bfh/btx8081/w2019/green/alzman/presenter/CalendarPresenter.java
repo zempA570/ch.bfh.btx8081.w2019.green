@@ -38,11 +38,15 @@ public class CalendarPresenter {
 	
 
 
-	public void addAppointment(LocalDate datePick, TimePicker AppointTime, String author, String Entry) {
+	public void addAppointmentToDB(LocalDate LdatePick, LocalTime LtimePick, String author, String Entry) {
 
+		
+		Date datePick = Date.valueOf(LdatePick);
+		
+		Time time = Time.valueOf(LtimePick);
 		// create new user
 		
-		CalendarModel addAppointment = new CalendarModel(datePick,AppointTime,author,Entry);
+		CalendarModel addAppointment = new CalendarModel(datePick,time,author,Entry);
 
 		// DB stuff
 		DbService.em.getTransaction().begin();
