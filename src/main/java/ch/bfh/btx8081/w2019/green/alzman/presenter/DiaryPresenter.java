@@ -28,7 +28,7 @@ public class DiaryPresenter extends TemplateView {
 		diarys = query.getResultList();
 
 		/*
-		 List<String> diaryEntrys = new ArrayList<String>(); // for every user in our
+		 * List<String> diaryEntrys = new ArrayList<String>(); // for every user in our
 		 * list for (Diarymodel diary : diarys) { // we add the id and fullname of that
 		 * user to our List<String> TextArea textarea = new TextArea();
 		 * textarea.setVisible(false); }
@@ -37,11 +37,12 @@ public class DiaryPresenter extends TemplateView {
 		 * view.getallDiarys(diaryEntrys);
 		 */
 
-		//for (AddDiaryModel model : diarys) {
-			System.out.println("Hier sollte was stehen");
-			System.out.println();
+		for (AddDiaryModel model : diarys) {
+			view.addEntryToView(model);
+			
+			// System.out.println(model.getFullDiary());
 
 		}
 
 	}
-
+}

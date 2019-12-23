@@ -1,6 +1,5 @@
 package ch.bfh.btx8081.w2019.green.alzman.view;
 
-
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
@@ -9,6 +8,8 @@ import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.router.Route;
+
+import ch.bfh.btx8081.w2019.green.alzman.model.AddDiaryModel;
 import ch.bfh.btx8081.w2019.green.alzman.presenter.DiaryPresenter;
 
 /**
@@ -41,4 +42,15 @@ public class Diary extends TemplateView {
 		presenter = new DiaryPresenter(this);
 
 	}
+	
+	public void addEntryToView(AddDiaryModel model) {
+		
+		TextArea textarea = new TextArea();
+		textarea.setValue(model.getEntry());
+		textarea.setLabel(model.getAuthor() + "" + model.getDate());
+		textarea.setVisible(false);
+		
+	}
+
+
 }
