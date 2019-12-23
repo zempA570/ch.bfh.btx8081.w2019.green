@@ -1,5 +1,6 @@
 package ch.bfh.btx8081.w2019.green.alzman.view;
 
+import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.contextmenu.MenuItem;
@@ -254,7 +255,13 @@ public class StatusView extends TemplateView {
 		check03.addClickListener(event -> textFieldWhelp.clear());
 
 //------------------------------------------------------------------------------------------------------------------		
-
+		
+		delete01.addClickListener( event ->  event.getSource().getText());
+		
+	
+		
+//------------------------------------------------------------------------------------------------------------------
+		
 	}
 
 	public void addToView(StatusModel model) {
