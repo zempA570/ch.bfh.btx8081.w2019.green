@@ -22,22 +22,12 @@ public class ToDoListPresenter {
 
 	public ToDoListPresenter(ToDoListView view) {
 		this.view = view;
-		
+
 		fillListwithTasks();
 	}
 
-	public void addTaskToDB(String taskname, String choice, LocalDate LocalDate) {
 
-		Date date = Date.valueOf(LocalDate);
-
-		Task newTask = new Task(taskname, choice, date);
-
-		DbService.em.getTransaction().begin();
-		DbService.em.persist(newTask);
-		DbService.em.getTransaction().commit();
-	}
-
-	public void deleteTask(String tasks) {
+	public void deleteTask(Task task) {
 
 	}
 
@@ -53,29 +43,14 @@ public class ToDoListPresenter {
 			if (task.getChoice().contentEquals("Weekly")) {
 				view.addWeeklyTask(task);
 			} else if (task.getChoice().contentEquals("Monthly")) {
-//
+				view.addMonthlyTask(task);
 			} else if (task.getChoice().contentEquals("Annually")) {
-//
-			} else {
-//
+				view.addAnnualTask(task);
+			} else 
+			{ view.addSpecialTask(task);
 			}
 		}
 
-//	Checkbox check = new Checkbox();
-//	check.setLabel(task.getTask());	
-//	tasknames.add(task.getTask());
-
-	}
-
-	// }
-
-//	void addtoList(Task task) {
-//		
-//	}
-	public void getInCheckbox(Task task) {
-		Checkbox checkbox = new Checkbox();
-		checkbox.setLabel(task.getTask());
-//		
 	}
 
 }

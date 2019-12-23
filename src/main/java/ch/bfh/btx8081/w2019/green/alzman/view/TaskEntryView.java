@@ -17,6 +17,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 
+import ch.bfh.btx8081.w2019.green.alzman.presenter.TaskEntryPresenter;
 import ch.bfh.btx8081.w2019.green.alzman.presenter.ToDoListPresenter;
 
 /**
@@ -26,7 +27,7 @@ import ch.bfh.btx8081.w2019.green.alzman.presenter.ToDoListPresenter;
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class TaskEntryView extends TemplateView {
 	
-	ToDoListPresenter presenter;
+	TaskEntryPresenter presenter;
 
 	public TaskEntryView() {
 
@@ -54,7 +55,9 @@ public class TaskEntryView extends TemplateView {
 		Button add = new Button ("save & add", new Icon(VaadinIcon.PLUS)); 
 //		presenter = new ToDoListPresenter(this);
 
-		add.addClickListener(e -> presenter.addTaskToDB(newtask.getValue(), choice.getValue(), datePick.getValue()));
+		add.addClickListener(e -> presenter.addTaskToDB(newtask.getValue(), choice.getValue(), datePick.getValue())); 
+		add.addClickListener(e -> UI.getCurrent().navigate(ToDoListView.class));
+		
 		
 		
 
@@ -69,6 +72,7 @@ public class TaskEntryView extends TemplateView {
 		super.addContent(adding2);
 
 
+		presenter = new TaskEntryPresenter(this);
 	}
 	
 }
