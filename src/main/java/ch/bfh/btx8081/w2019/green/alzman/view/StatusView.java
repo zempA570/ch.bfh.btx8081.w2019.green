@@ -48,6 +48,9 @@ public class StatusView extends TemplateView {
 	SubMenu moveSubMenu01;
 	SubMenu moveSubMenu02;
 	SubMenu moveSubMenu03;
+	TextField textFieldDep;
+	TextField textFieldIndep;
+	TextField textFieldWhelp;
 
 	public StatusView() {
 
@@ -156,17 +159,17 @@ public class StatusView extends TemplateView {
 		textLayout05.setResponsiveSteps(new ResponsiveStep("20em", 1), new ResponsiveStep("25em", 2),
 				new ResponsiveStep("30em", 3));
 
-		TextField textFieldDep = new TextField();
+		textFieldDep = new TextField();
 		textFieldDep.addClassName("wrapperField");
 		textFieldDep.setEnabled(false);
 		textFieldDep.setVisible(false);
 
-		TextField textFieldIndep = new TextField();
+		textFieldIndep = new TextField();
 		textFieldIndep.addClassName("wrapperField");
 		textFieldIndep.setEnabled(false);
 		textFieldIndep.setVisible(false);
 
-		TextField textFieldWhelp = new TextField();
+		textFieldWhelp = new TextField();
 		textFieldWhelp.addClassName("wrapperField");
 		textFieldWhelp.setEnabled(false);
 		textFieldWhelp.setVisible(false);
@@ -236,31 +239,11 @@ public class StatusView extends TemplateView {
 		presenter = new StatusPresenter(this);
 		
 //----------------------------------------------------------------------------------------------------------------
-		check01.addClickListener(event -> columnAWrapper.add(new Button(textFieldDep.getValue()), columnA));
 		check01.addClickListener(event -> presenter.addTaskToDB(textFieldDep.getValue(), 1));
-		check01.addClickListener(event -> moveSubMenu01.addItem(textFieldDep.getValue()));
-		check01.addClickListener(event -> deleteSubMenu01.addItem(textFieldDep.getValue()));
-		check01.addClickListener(event -> textFieldDep.clear());
-
-		check02.addClickListener(event -> columnBWrapper.add(new Button(textFieldIndep.getValue()), columnB));
 		check02.addClickListener(event -> presenter.addTaskToDB(textFieldIndep.getValue(), 2));
-		check02.addClickListener(event -> moveSubMenu02.addItem(textFieldIndep.getValue()));
-		check02.addClickListener(event -> deleteSubMenu02.addItem(textFieldIndep.getValue()));
-		check02.addClickListener(event -> textFieldIndep.clear());
-
-		check03.addClickListener(event -> columnCWrapper.add(new Button(textFieldWhelp.getValue()), columnC));
 		check03.addClickListener(event -> presenter.addTaskToDB(textFieldWhelp.getValue(), 3));
-		check03.addClickListener(event -> moveSubMenu03.addItem(textFieldWhelp.getValue()));
-		check03.addClickListener(event -> deleteSubMenu03.addItem(textFieldWhelp.getValue()));
-		check03.addClickListener(event -> textFieldWhelp.clear());
 
 //------------------------------------------------------------------------------------------------------------------		
-		
-		delete01.addClickListener( event ->  event.getSource().getText());
-		
-	
-		
-//------------------------------------------------------------------------------------------------------------------
 		
 	}
 
@@ -270,20 +253,23 @@ public class StatusView extends TemplateView {
 		switch (nr) {
 		case 1:
 			columnAWrapper.add(new Button(model.Gettask(), columnA));
-			deleteSubMenu01.addItem(model.Gettask());
+			deleteSubMenu01.addItem(model.Gettask(), event ->  presenter.deleteStatusFromDB(model));
 			moveSubMenu01.addItem(model.Gettask());
+			textFieldDep.clear();
 			break;
 
 		case 2:
 			columnBWrapper.add(new Button(model.Gettask(), columnB));
-			deleteSubMenu02.addItem(model.Gettask());
+			deleteSubMenu02.addItem(model.Gettask(), event ->  presenter.deleteStatusFromDB(model));
 			moveSubMenu02.addItem(model.Gettask());
+			textFieldIndep.clear();
 			break;
 
 		case 3:
 			columnCWrapper.add(new Button(model.Gettask(), columnC));
-			deleteSubMenu03.addItem(model.Gettask());
+			deleteSubMenu03.addItem(model.Gettask(), event ->  presenter.deleteStatusFromDB(model));
 			moveSubMenu03.addItem(model.Gettask());
+			textFieldWhelp.clear();
 			break;
 
 		default:
@@ -291,5 +277,5 @@ public class StatusView extends TemplateView {
 
 		}
 	}
-
+	
 }

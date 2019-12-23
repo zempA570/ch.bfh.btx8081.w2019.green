@@ -5,6 +5,9 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import com.vaadin.flow.component.contextmenu.MenuItem;
+import com.vaadin.ui.Component.Event;
+
 import ch.bfh.btx8081.w2019.green.alzman.model.StatusModel;
 import ch.bfh.btx8081.w2019.green.alzman.model.User;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
@@ -20,18 +23,18 @@ public class StatusPresenter {
 		fillLayoutsfromUser();
 
 	}
+
 	private void fillLayoutsfromUser() {
 		// DB stuff where we get all the users
-				Query query = DbService.em.createNativeQuery("SELECT * FROM statusmodel", StatusModel.class);
-				
-				// get list of users out of the query
-				status = query.getResultList();
+		Query query = DbService.em.createNativeQuery("SELECT * FROM statusmodel", StatusModel.class);
 
-				List<String> userStatus = new ArrayList<String>();
-				// for every user in our list
-				for (StatusModel status : status) {
-					view.addToView(status);
-				}
+		// get list of users out of the query
+		status = query.getResultList();
+
+		// for every user in our list
+		for (StatusModel status : status) {
+			view.addToView(status);
+		}
 	}
 
 	public void addTaskToDB(String str, int level) {
@@ -41,6 +44,18 @@ public class StatusPresenter {
 		DbService.em.getTransaction().begin();
 		DbService.em.persist(sm);
 		DbService.em.getTransaction().commit();
+		
+//		fillLayoutsfromUser();
+	}
+	
+	public void deleteStatusFromDB(StatusModel statusToDelete) {
+		
+		DbService.em.getTransaction().begin();
+		DbService.em.remove(statusToDelete);
+		DbService.em.getTransaction().commit();
+		
+//		fillLayoutsfromUser();
+		
 	}
 
 }
