@@ -51,7 +51,10 @@ public class TaskEntryView extends TemplateView {
 		
         //add button
 		Button add = new Button ("save & add", new Icon(VaadinIcon.PLUS)); 
+		presenter = new ToDoListPresenter(this);
+
 		add.addClickListener(e -> presenter.addTaskToDB(newtask.getValue(), choice.getValue(), datePick.getValue()));
+		
 		
 
 		// Creating horizontal layout
@@ -64,7 +67,6 @@ public class TaskEntryView extends TemplateView {
 		super.addContent(adding);
 		super.addContent(adding2);
 
-		presenter = new ToDoListPresenter(this);
 
 	}
 

@@ -2,7 +2,10 @@ package ch.bfh.btx8081.w2019.green.alzman.presenter;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.Query;
 
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.datepicker.DatePicker;
@@ -12,52 +15,92 @@ import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 import ch.bfh.btx8081.w2019.green.alzman.view.TaskEntryView;
 
 public class ToDoListPresenter {
-	
+
 	private TaskEntryView view;
-	
+
+	private List<Task> tasks;
+
 	public ToDoListPresenter(TaskEntryView view) {
 		this.view = view;
-	 
-		
+
 	}
-	
-	
+
 	public void addTaskToDB(String taskname, String choice, LocalDate LocalDate) {
-		
-		
-		 Date date = Date.valueOf(LocalDate);
-		
-		Task newTask = new Task(taskname, choice, date); 
-		
-		
+
+		Date date = Date.valueOf(LocalDate);
+
+		Task newTask = new Task(taskname, choice, date);
+
 		DbService.em.getTransaction().begin();
 		DbService.em.persist(newTask);
 		DbService.em.getTransaction().commit();
+	}
+
+	public void deleteTask(String tasks) {
+
+	}
+
+	public void fillListwithCheckbox() {
+		// get the data from DB
+		Query query = DbService.em.createNativeQuery("SELECT * FROM task", Task.class);
+
+		// get list of tasks out of the query
+		tasks = query.getResultList();
+
+		// System.out.println(tasks.get(0).getTask());
+		List<String> week = new ArrayList<String>();
+		List<String> month = new ArrayList<String>();
+		List<String> annually = new ArrayList<String>();
+		List<String> special = new ArrayList<String>(); 
+
+		// tasknames in the correct list
+
+		for (Task task : tasks) {
+			if (task.getChoice().contentEquals("weekly")) {
+				week.add(task.getTask());
+			} else if (task.getChoice().contentEquals("monthly")) {
+				month.add(task.getTask());
+			} else if( task.getChoice().contentEquals("annually")){
+				annually.add(task.getTask());
+			}else {
+				special.add(task.getTask()); 
+			
+			}
 		}
-	
+
+
+//	Checkbox check = new Checkbox();
+//	check.setLabel(task.getTask());	
+//	tasknames.add(task.getTask());
+
+//	switch (task.getChoice())
+//	{
+//		case "Weekly": 
+//			week.add(task.getTask()); 
+//		   break; 
+//		case "Monthly": 
+//		   
+//		   }
+//		   break; 
+//		case "Annually": 
+//		   anweisung_3;
+//		    break; 
+//		default:
+//		   anweisung_sonstiges;
+
+		//System.out.println(tasknames);
+	}
+
+
+	// }
+
 //	void addtoList(Task task) {
-//		switch(task.getChoice())
-//		{
-//			case "Weekly": 
-//				
-//			   break; 
-//			case "Monthly": 
-//			   
-//			   }
-//			   break; 
-//			case "Annually": 
-//			   anweisung_3;
-//			    break; 
-//			default:
-//			   anweisung_sonstiges;
-//	}
-//	void getInCheckbox(Task task) {
-//		Checkbox checkbox = new Checkbox();
-//		checkbox.setLabel(task.getTaskname());
 //		
 //	}
-	
-//	 public void changeDateForm(DatePicker datePick) {
-//		 Date date = Date.valueOf(datePick);
-//	 }
+	public void getInCheckbox(Task task) {
+		Checkbox checkbox = new Checkbox();
+		checkbox.setLabel(task.getTask());
+//		
+	}
+
 }
