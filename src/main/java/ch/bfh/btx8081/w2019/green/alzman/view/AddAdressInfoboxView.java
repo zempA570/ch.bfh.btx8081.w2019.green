@@ -24,10 +24,10 @@ public class AddAdressInfoboxView extends TemplateView {
 	private H4 title1;
 	private TextField name;
 	private TextField adress;
-	private TextField adrNr;
-	private TextField plz;
+	private TextField adrNo;
+	private TextField postcode;
 	private TextField city;
-	private TextField telNr;
+	private TextField phoneNo;
 
 	private AddAdressPresenter addAdressPresenter;
 
@@ -42,64 +42,56 @@ public class AddAdressInfoboxView extends TemplateView {
 		super.addContent(title1);
 
 		// Textfield for name
-		TextField name = new TextField("Name");
+		this.name = new TextField("Name");
 
 		// Textfield for adress
-		TextField adress = new TextField("Adresse");
+		this.adress = new TextField("Adress");
 
 		// Textfield for adress
-		TextField adrNr = new TextField("Nr");
+		this.adrNo = new TextField("Adress Number");
 
 		// Textfield for pstcode
-		TextField plz = new TextField("Platz");
+		this.postcode = new TextField("Postcode");
 
 		// Textfield for city
-		TextField city = new TextField("Ort");
+		this.city = new TextField("City");
 
 		// Textfield for telephone nummber
-		TextField telNr = new TextField("Telefonnummer");
+		this.phoneNo = new TextField("Phonenummber");
 
 		// Button for add the adress in the Infobox
-		Button addAdress = new Button("Add", new Icon(VaadinIcon.PLUS));
+		Button addAdress = new Button("Add Adress", new Icon(VaadinIcon.PLUS));
 		addAdress.addClickListener(e -> addAdressPresenter.addAdress(name.getValue(), adress.getValue(),
-				adrNr.getValue(), plz.getValue(), city.getValue(), telNr.getValue()));
+				adrNo.getValue(), postcode.getValue(), city.getValue(), phoneNo.getValue()));
 		addAdress.addClickListener(event -> UI.getCurrent().navigate(InfoboxView.class));
 
 		// Button for cancel the prosses for to add the adress in the Infobox
-		Button cancel = new Button("Cancel");
+		Button cancelBtn = new Button("Cancel");
+		cancelBtn.addClickListener(event -> UI.getCurrent().navigate(InfoboxView.class));
 
-		HorizontalLayout position1 = new HorizontalLayout();
-		position1.add(name);
+		HorizontalLayout namePos = new HorizontalLayout();
+		namePos.add(name);
 
-		HorizontalLayout position2 = new HorizontalLayout();
-		position2.add(adress, adrNr);
+		HorizontalLayout adressPos = new HorizontalLayout();
+		adressPos.add(adress, adrNo);
 
-		HorizontalLayout position3 = new HorizontalLayout();
-		position3.add(plz, city);
+		HorizontalLayout cityPos = new HorizontalLayout();
+		cityPos.add(postcode, city);
 
-		HorizontalLayout position4 = new HorizontalLayout();
-		position4.add(telNr);
+		HorizontalLayout phoneNoPos = new HorizontalLayout();
+		phoneNoPos.add(phoneNo);
 
-		HorizontalLayout position5 = new HorizontalLayout();
-		position5.add(addAdress, cancel);
+		HorizontalLayout buttonPos = new HorizontalLayout();
+		buttonPos.add(addAdress, cancelBtn);
 
-		VerticalLayout ende = new VerticalLayout();
-		ende.add(position1, position2, position3, position4, position5);
+		VerticalLayout endPos = new VerticalLayout();
+		endPos.add(namePos, adressPos, cityPos, phoneNoPos, buttonPos);
 
 		// add the contents one the View
-		super.addContent(ende);
+		super.addContent(endPos);
 
 		addAdressPresenter = new AddAdressPresenter(this);
 	}
 
-	public void clearTextfieldsAdresse() {
-		name.clear();
-		adress.clear();
-		adrNr.clear();
-		plz.clear();
-		city.clear();
-		telNr.clear();
-
-	}
 
 }

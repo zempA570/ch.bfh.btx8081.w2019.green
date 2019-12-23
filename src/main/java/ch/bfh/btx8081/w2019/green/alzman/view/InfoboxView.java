@@ -23,15 +23,13 @@ import ch.bfh.btx8081.w2019.green.alzman.presenter.InfoboxPresenter;
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class InfoboxView extends TemplateView {
 
-	private H4 title1;
-	private H4 title2;
+	private H4 titleImportantPerson;
+	private H4 titleImportantAdress;
 
-	private Grid<AddPerson> persongrid = new Grid<>();
-	private Grid<AddAdress> adressgrid = new Grid<>();
+	private Grid<AddPerson> gridImportantPerson = new Grid<>();
+	private Grid<AddAdress> gridImportantAdress = new Grid<>();
 
 	private InfoboxPresenter presenter;
-
-	private AddPerson addPerson;
 
 	public InfoboxView() {
 
@@ -39,9 +37,9 @@ public class InfoboxView extends TemplateView {
 		super.setHeaderTitle("Infobox");
 
 		// Subtitel in H4 format
-		title1 = new H4();
-		title1.setText("Wichtige Personen");
-		super.addContent(title1);
+		titleImportantPerson = new H4();
+		titleImportantPerson.setText("Important Person");
+		super.addContent(titleImportantPerson);
 
 		// Button for to Add a important Person
 		Button btnImportantPer = new Button("Add Person");
@@ -49,44 +47,44 @@ public class InfoboxView extends TemplateView {
 
 		Button btnDeletePer = new Button("Delete Person");
 		btnDeletePer.setVisible(false);
-		btnDeletePer.addClickListener(e -> presenter.deletePerson(persongrid.getSelectedItems()));
+		btnDeletePer.addClickListener(e -> presenter.deletePerson(gridImportantPerson.getSelectedItems()));
 		btnDeletePer.addClickListener(event -> UI.getCurrent().navigate(DashboardView.class));
-		
+
 		HorizontalLayout positionButtonsPer = new HorizontalLayout();
 		positionButtonsPer.add(btnImportantPer, btnDeletePer);
 
 		super.addContent(positionButtonsPer);
 
-		add(persongrid);
-		persongrid.addColumn(AddPerson::getId).setVisible(false);
-		persongrid.addColumn(AddPerson::getGender).setHeader("Gender");
-		persongrid.addColumn(AddPerson::getFirstname).setHeader("Firstname");
-		persongrid.addColumn(AddPerson::getLastname).setHeader("Lastname");
-		persongrid.addColumn(AddPerson::getAdress).setHeader("Adress");
-		persongrid.addColumn(AddPerson::getAdressNr).setHeader("Nr");
-		persongrid.addColumn(AddPerson::getPostcode).setHeader("Postcode");
-		persongrid.addColumn(AddPerson::getCity).setHeader("City");
-		persongrid.addColumn(AddPerson::getPhonenummber).setHeader("Phonenummber");
+		add(gridImportantPerson);
+		gridImportantPerson.addColumn(AddPerson::getId).setVisible(false);
+		gridImportantPerson.addColumn(AddPerson::getGender).setHeader("Gender");
+		gridImportantPerson.addColumn(AddPerson::getFirstname).setHeader("Firstname");
+		gridImportantPerson.addColumn(AddPerson::getLastname).setHeader("Lastname");
+		gridImportantPerson.addColumn(AddPerson::getAdress).setHeader("Adress");
+		gridImportantPerson.addColumn(AddPerson::getAdressNr).setHeader("Adress Number");
+		gridImportantPerson.addColumn(AddPerson::getPostcode).setHeader("Postcode");
+		gridImportantPerson.addColumn(AddPerson::getCity).setHeader("City");
+		gridImportantPerson.addColumn(AddPerson::getPhonenummber).setHeader("Phonenummber");
 
-		persongrid.addItemClickListener(event -> {
+		gridImportantPerson.addItemClickListener(event -> {
 			btnDeletePer.setVisible(true);
 
 		});
 
-		super.addContent(persongrid);
+		super.addContent(gridImportantPerson);
 
 		// Suptitel in H4 format for important adres
-		title2 = new H4();
-		title2.setText("Wichtige Adressen");
-		super.addContent(title2);
+		titleImportantAdress = new H4();
+		titleImportantAdress.setText("Important Adress");
+		super.addContent(titleImportantAdress);
 
 		// Button for to Add a important adress
 		Button btnImportantAdr = new Button("Add Adresse");
 		btnImportantAdr.addClickListener(event -> UI.getCurrent().navigate(AddAdressInfoboxView.class));
 
-		Button btnDeleteAdr = new Button("delete Adress");
+		Button btnDeleteAdr = new Button("Delete Adress");
 		btnDeleteAdr.setVisible(false);
-		btnDeleteAdr.addClickListener(e -> presenter.deleteAdress(adressgrid.getSelectedItems()));
+		btnDeleteAdr.addClickListener(e -> presenter.deleteAdress(gridImportantAdress.getSelectedItems()));
 		btnDeleteAdr.addClickListener(event -> UI.getCurrent().navigate(DashboardView.class));
 
 		HorizontalLayout positionButtonsAdr = new HorizontalLayout();
@@ -94,33 +92,33 @@ public class InfoboxView extends TemplateView {
 
 		super.addContent(positionButtonsAdr);
 
-		add(adressgrid);
-		adressgrid.addColumn(AddAdress::getId).setVisible(false);
-		adressgrid.addColumn(AddAdress::getName).setHeader("Name");
-		adressgrid.addColumn(AddAdress::getAdress).setHeader("Adress");
-		adressgrid.addColumn(AddAdress::getAdressNr).setHeader("Nr");
-		adressgrid.addColumn(AddAdress::getPostcode).setHeader("Postcode");
-		adressgrid.addColumn(AddAdress::getCity).setHeader("City");
-		adressgrid.addColumn(AddAdress::getPhonenummber).setHeader("Phonenummber");
+		add(gridImportantAdress);
+		gridImportantAdress.addColumn(AddAdress::getId).setVisible(false);
+		gridImportantAdress.addColumn(AddAdress::getName).setHeader("Name");
+		gridImportantAdress.addColumn(AddAdress::getAdress).setHeader("Adress");
+		gridImportantAdress.addColumn(AddAdress::getAdressNr).setHeader("Adress Number");
+		gridImportantAdress.addColumn(AddAdress::getPostcode).setHeader("Postcode");
+		gridImportantAdress.addColumn(AddAdress::getCity).setHeader("City");
+		gridImportantAdress.addColumn(AddAdress::getPhonenummber).setHeader("Phonenummber");
 
-		adressgrid.addItemClickListener(event -> {
+		gridImportantAdress.addItemClickListener(event -> {
 			btnDeleteAdr.setVisible(true);
 		});
 
-		super.addContent(adressgrid);
+		super.addContent(gridImportantAdress);
 
 		presenter = new InfoboxPresenter(this);
 
 	}
 
-	public void fillGridWithUsers(List<AddPerson> per) {
+	public void fillGridWithUsers(List<AddPerson> listPerson) {
 
-		persongrid.setItems(per);
+		gridImportantPerson.setItems(listPerson);
 	}
 
-	public void fillGridWithAdress(List<AddAdress> adr) {
+	public void fillGridWithAdress(List<AddAdress> listAdress) {
 
-		adressgrid.setItems(adr);
+		gridImportantAdress.setItems(listAdress);
 	}
 
 }

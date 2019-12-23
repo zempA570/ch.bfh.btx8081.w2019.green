@@ -1,19 +1,17 @@
 package ch.bfh.btx8081.w2019.green.alzman.presenter;
 
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.Query;
 
 import ch.bfh.btx8081.w2019.green.alzman.model.AddPerson;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 import ch.bfh.btx8081.w2019.green.alzman.view.AddPersonInfoboxView;
-import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxView;
 
 public class AddPersonPresenter {
 
-	private AddPersonInfoboxView view;
+	private AddPersonInfoboxView personInfoboxView;
 	private List<AddPerson> persons;
 
 	public AddPersonPresenter() {
@@ -22,16 +20,16 @@ public class AddPersonPresenter {
 
 	// constructor for the presenter
 	public AddPersonPresenter(AddPersonInfoboxView infoboxView) {
-		this.view = infoboxView;
+		this.personInfoboxView = infoboxView;
 
 	}
 
-	public void deletePerson(String Inportantperson) {
+	public void deletePerson(String inportantPerson) {
 
 		DbService.em.getTransaction().begin();
 
 		// get the id number of the user which is at the beginning of the string
-		int PersonId = Integer.parseInt(Inportantperson.substring(0, Inportantperson.indexOf(" ")));
+		int PersonId = Integer.parseInt(inportantPerson.substring(0, inportantPerson.indexOf(" ")));
 
 		AddPerson personToDelete = null;
 
@@ -50,10 +48,6 @@ public class AddPersonPresenter {
 
 		// after the user is deleted we "refresh" the list in the combobox so the
 		// deleted user is gone
-//		fillTabelleWithPersons();
-
-//		TODO when to close?
-		// DbService.em.close();
 
 	}
 

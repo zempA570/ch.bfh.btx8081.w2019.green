@@ -1,21 +1,19 @@
 package ch.bfh.btx8081.w2019.green.alzman.presenter;
 
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.Query;
+
 
 import ch.bfh.btx8081.w2019.green.alzman.model.AddAdress;
-import ch.bfh.btx8081.w2019.green.alzman.model.AddPerson;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 import ch.bfh.btx8081.w2019.green.alzman.view.AddAdressInfoboxView;
-import ch.bfh.btx8081.w2019.green.alzman.view.AddPersonInfoboxView;
-import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxView;
+
 
 public class AddAdressPresenter {
 
-	private AddAdressInfoboxView view;
+	private AddAdressInfoboxView adressInfoboxView;
 
 	private List<AddAdress> adresses;
 
@@ -25,15 +23,15 @@ public class AddAdressPresenter {
 
 	// constructor for the presenter
 	public AddAdressPresenter(AddAdressInfoboxView infoboxView) {
-		this.view = infoboxView;
+		this.adressInfoboxView = infoboxView;
 	}
 
-	public void deleteAdress(String Inportantadress) {
+	public void deleteAdress(String inportantAdress) {
 
 		DbService.em.getTransaction().begin();
 
 		// get the id number of the user which is at the beginning of the string
-		int AdressId = Integer.parseInt(Inportantadress.substring(0, Inportantadress.indexOf(" ")));
+		int AdressId = Integer.parseInt(inportantAdress.substring(0, inportantAdress.indexOf(" ")));
 
 		AddAdress adressToDelete = null;
 
@@ -49,13 +47,6 @@ public class AddAdressPresenter {
 		// this is the part where we use the DB
 		DbService.em.remove(adressToDelete);
 		DbService.em.getTransaction().commit();
-
-		// after the user is deleted we "refresh" the list in the combobox so the
-		// deleted user is gone
-//		fillTabelleWithAdress();
-
-//		TODO when to close?
-		// DbService.em.close();
 
 	}
 
