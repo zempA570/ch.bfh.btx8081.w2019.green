@@ -49,7 +49,6 @@ public class Diary extends TemplateView {
 		textarea.setValue(model.getEntry());
 		textarea.setLabel(model.getAuthor() + "" + model.getDate());
 		super.addContent(textarea);
-		;
 
 	}
 
