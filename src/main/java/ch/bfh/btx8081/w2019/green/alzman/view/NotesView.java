@@ -40,6 +40,8 @@ public class NotesView extends TemplateView {
 	private Button deletePic;
 	public Button saveDiaryEntry;
 	
+	private Grid<String>gridEntry;
+	
 	
 
 	public NotesView() {
@@ -64,10 +66,9 @@ public class NotesView extends TemplateView {
 		//Click Listener
 		
 		//Creating a List so the Entries which are already made can be pulled from DB and shown
-		Collection<ImportantNotesDataModel> entryList = new ArrayList<>();
 		
-		Grid<ImportantNotesDataModel> grid = new Grid<>(ImportantNotesDataModel.class);
-		grid.setItems(entryList);
+		
+		gridEntry = new Grid<>();
 		
 		//sorting the Grid
 		
@@ -76,13 +77,15 @@ public class NotesView extends TemplateView {
 
 		// Adding two components to horizontal layout
 		vLAddUser.add(btnAddEntry);
-		vLAddUser.add(grid);
+		vLAddUser.add(gridEntry);
 
 		
 		super.addContent(vLAddUser);
-		
-		
 
 	}
+	
+	public void fillGridWithEntries(List<String> entry) {
+		gridEntry.setItems(entry);
+	};
 
 }
