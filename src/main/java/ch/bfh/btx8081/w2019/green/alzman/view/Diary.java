@@ -35,9 +35,10 @@ public class Diary extends TemplateView {
 		// Adding components to content space
 
 		vert = new VerticalLayout(button);
-		vert2 = new VerticalLayout(button);
+		vert2 = new VerticalLayout();
 		presenter = new DiaryPresenter(this);
-		super.add(vert,vert2);
+		super.addContent(vert);
+		super.addContent(vert2);
 
 	}
 
@@ -45,9 +46,8 @@ public class Diary extends TemplateView {
 
 		TextArea textarea = new TextArea();
 		textarea.setValue(model.getEntry());
-		textarea.setLabel(model.getAuthor() + "" + model.getDate());
-		super.addContent(textarea);
-
+		textarea.setLabel(model.getAuthor() + " " + model.getDate());
+		
 		Button button = new Button("Delete", new Icon(VaadinIcon.TRASH));
 		button.setId(Integer.toString(model.getId()));
 		button.addClickListener(e -> presenter.deleteEntry(e.getSource().getId()));
@@ -56,13 +56,13 @@ public class Diary extends TemplateView {
 		horizon.add(textarea, button);
 		
 
-		vert.add(vert2,horizon);
+		vert2.add(vert2,horizon);
 
 	}
 
 	public void clearEntries() {
 
-		vert.removeAll();
+		vert2.removeAll();
 	}
 
 }
