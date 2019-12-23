@@ -42,15 +42,15 @@ public class Diary extends TemplateView {
 		presenter = new DiaryPresenter(this);
 
 	}
-	
+
 	public void addEntryToView(AddDiaryModel model) {
-		
+
 		TextArea textarea = new TextArea();
 		textarea.setValue(model.getEntry());
 		textarea.setLabel(model.getAuthor() + "" + model.getDate());
-		textarea.setVisible(false);
-		
-	}
+		super.addContent(textarea);
+		;
 
+	}
 
 }
