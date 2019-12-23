@@ -18,7 +18,8 @@ public class ToDoListPresenter {
 
 	private TaskEntryView view;
 
-	private List<Task> tasks;
+	private List<Task> taskslist;
+	private List<Task> tasks; 
 
 	public ToDoListPresenter(TaskEntryView view) {
 		this.view = view;
@@ -40,12 +41,12 @@ public class ToDoListPresenter {
 
 	}
 
-	public void fillListwithCheckbox() {
+	public void fillListwithTasks() {
 		// get the data from DB
 		Query query = DbService.em.createNativeQuery("SELECT * FROM task", Task.class);
 
 		// get list of tasks out of the query
-		tasks = query.getResultList();
+		taskslist = query.getResultList();
 
 		// System.out.println(tasks.get(0).getTask());
 		List<String> week = new ArrayList<String>();
@@ -53,9 +54,15 @@ public class ToDoListPresenter {
 		List<String> annually = new ArrayList<String>();
 		List<String> special = new ArrayList<String>(); 
 
+		
+		//formateToChBox
+		for(Task task : tasks) {
+			Checkbox checkbox = new Checkbox();
+			checkbox.setLabel(task.getTask());
+		}
+		
 		// tasknames in the correct list
-
-		for (Task task : tasks) {
+		for (Task task : taskslist) {
 			if (task.getChoice().contentEquals("weekly")) {
 				week.add(task.getTask());
 			} else if (task.getChoice().contentEquals("monthly")) {
@@ -73,22 +80,6 @@ public class ToDoListPresenter {
 //	check.setLabel(task.getTask());	
 //	tasknames.add(task.getTask());
 
-//	switch (task.getChoice())
-//	{
-//		case "Weekly": 
-//			week.add(task.getTask()); 
-//		   break; 
-//		case "Monthly": 
-//		   
-//		   }
-//		   break; 
-//		case "Annually": 
-//		   anweisung_3;
-//		    break; 
-//		default:
-//		   anweisung_sonstiges;
-
-		//System.out.println(tasknames);
 	}
 
 

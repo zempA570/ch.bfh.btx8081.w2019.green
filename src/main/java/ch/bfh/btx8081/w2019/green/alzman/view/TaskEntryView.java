@@ -1,6 +1,7 @@
 package ch.bfh.btx8081.w2019.green.alzman.view;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
@@ -69,5 +70,5 @@ public class TaskEntryView extends TemplateView {
 
 
 	}
-
+	
 }

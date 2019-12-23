@@ -62,13 +62,13 @@ public class ToDoListView extends TemplateView {
 		HorizontalLayout title1 = new HorizontalLayout(weekly, t1);
 
 		// add tasks in form of checkboxes for weekly
-		Checkbox ch1 = new Checkbox();
-		ch1.setLabel("Post bearbeiten");
-		Checkbox ch2 = new Checkbox();
-		ch2.setLabel("Abendessen");
+//		Checkbox ch1 = new Checkbox();
+//		ch1.setLabel("Post bearbeiten");
+//		Checkbox ch2 = new Checkbox();
+//		ch2.setLabel("Abendessen");
 
 		ListBox<String> week = new ListBox<>();
-		week.add(ch1, ch2);
+		//week.add(ch1, ch2);
 
 		// order header & list in verticalForm
 		VerticalLayout vertical1 = new VerticalLayout();
@@ -80,18 +80,18 @@ public class ToDoListView extends TemplateView {
 		HorizontalLayout title2 = new HorizontalLayout(monthly, t2);
 
 		//weekly tasks in form of checkbox'
-		Checkbox ch3 = new Checkbox();
-		ch3.setLabel("Appartment Pieterlen");
-		Checkbox ch4 = new Checkbox();
-		ch4.setLabel("Paying Invoices");
+//		Checkbox ch3 = new Checkbox();
+//		ch3.setLabel("Appartment Pieterlen");
+//		Checkbox ch4 = new Checkbox();
+//		ch4.setLabel("Paying Invoices");
 		
 		//add checkbox' to a new list
-		ListBox<String> month = new ListBox<>();
-		month.add(ch3, ch4);
+		ListBox<String> MTasks = new ListBox<>();
+		//MTasks.add(ch3, ch4);
 
 		//add to verticalLayout
 		VerticalLayout vertical2 = new VerticalLayout(); 
-		vertical2.add(title2, month);
+		vertical2.add(title2, MTasks);
 		
 		// add annualy section
 		Label annualy = new Label("Annually");
@@ -99,14 +99,14 @@ public class ToDoListView extends TemplateView {
 		HorizontalLayout title3 = new HorizontalLayout(annualy, t3);
 
 		//weekly tasks in form of checkbox'
-		Checkbox ch5 = new Checkbox();
-		ch5.setLabel("Tax declaration");
-		Checkbox ch6 = new Checkbox();
-		ch6.setLabel("Insurances");
+//		Checkbox ch5 = new Checkbox();
+//		ch5.setLabel("Tax declaration");
+//		Checkbox ch6 = new Checkbox();
+//		ch6.setLabel("Insurances");
 		
 		//add checkbox' to a new list
 		ListBox<String> list4 = new ListBox<>();
-		list4.add(ch5, ch6);
+		//list4.add(ch5, ch6);
 
 		//add to verticalLayout
 		VerticalLayout vertical3 = new VerticalLayout(); 
@@ -126,7 +126,12 @@ public class ToDoListView extends TemplateView {
 		super.addContent(vertical3);
 		//super.addContent(addNewTask);
 		
-
 	}
+	
+//		public void fillComboboxWithUsers(List<String> month, List<String> week, List<String> ) {
+//
+//			
+//			
+//	}
 
 }
