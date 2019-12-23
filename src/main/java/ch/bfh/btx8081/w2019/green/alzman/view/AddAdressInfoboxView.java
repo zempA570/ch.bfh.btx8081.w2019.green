@@ -1,5 +1,6 @@
 package ch.bfh.btx8081.w2019.green.alzman.view;
 
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.H4;
@@ -12,9 +13,9 @@ import com.vaadin.flow.component.radiobutton.RadioButtonGroup;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 
-/**
- * The user management view will be used to add and remove users of the app
- */
+import ch.bfh.btx8081.w2019.green.alzman.presenter.AddAdressPresenter;
+import ch.bfh.btx8081.w2019.green.alzman.presenter.AddPersonPresenter;
+
 @Route("AddAdressInfobox")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class AddAdressInfoboxView extends TemplateView {
@@ -23,10 +24,12 @@ public class AddAdressInfoboxView extends TemplateView {
 	private H4 title1;
 	private TextField name;
 	private TextField adress;
-	private TextField adrNr;
-	private TextField plz;
+	private TextField adrNo;
+	private TextField postcode;
 	private TextField city;
-	private TextField telNr;
+	private TextField phoneNo;
+
+	private AddAdressPresenter addAdressPresenter;
 
 	public AddAdressInfoboxView() {
 
@@ -39,73 +42,56 @@ public class AddAdressInfoboxView extends TemplateView {
 		super.addContent(title1);
 
 		// Textfield for name
-		TextField name = new TextField();
-		name.setLabel("Name");
+		this.name = new TextField("Name");
 
 		// Textfield for adress
-		TextField adress = new TextField();
-		adress.setLabel("Adresse");
+		this.adress = new TextField("Adress");
 
 		// Textfield for adress
-		TextField adrNr = new TextField();
-		adrNr.setLabel("Nr");
+		this.adrNo = new TextField("Adress Number");
 
 		// Textfield for pstcode
-		TextField plz = new TextField();
-		plz.setLabel("Platz");
+		this.postcode = new TextField("Postcode");
 
 		// Textfield for city
-		TextField city = new TextField();
-		city.setLabel("Ort");
+		this.city = new TextField("City");
 
 		// Textfield for telephone nummber
-		TextField telNr = new TextField();
-		telNr.setLabel("Telefonnummer");
+		this.phoneNo = new TextField("Phonenummber");
 
 		// Button for add the adress in the Infobox
-		Button add = new Button("Add");
+		Button addAdress = new Button("Add Adress", new Icon(VaadinIcon.PLUS));
+		addAdress.addClickListener(e -> addAdressPresenter.addAdress(name.getValue(), adress.getValue(),
+				adrNo.getValue(), postcode.getValue(), city.getValue(), phoneNo.getValue()));
+		addAdress.addClickListener(event -> UI.getCurrent().navigate(InfoboxView.class));
 
 		// Button for cancel the prosses for to add the adress in the Infobox
-		Button cancel = new Button("Cancel");
+		Button cancelBtn = new Button("Cancel");
+		cancelBtn.addClickListener(event -> UI.getCurrent().navigate(InfoboxView.class));
 
-		// the name will be in the first position
-		HorizontalLayout position1 = new HorizontalLayout();
-		position1.add(name);
+		HorizontalLayout namePos = new HorizontalLayout();
+		namePos.add(name);
 
-		// the adresse and adress number will be in the second position because the
-		// items are next by
-		HorizontalLayout position2 = new HorizontalLayout();
-		position2.add(adress, adrNr);
+		HorizontalLayout adressPos = new HorizontalLayout();
+		adressPos.add(adress, adrNo);
 
-		// the postcode and city will be in the third position because the items are
-		// under adress and adress number and the items are next by
-		HorizontalLayout position3 = new HorizontalLayout();
-		position3.add(plz, city);
+		HorizontalLayout cityPos = new HorizontalLayout();
+		cityPos.add(postcode, city);
 
-		// the telephone number will be in the fourt position
-		HorizontalLayout position4 = new HorizontalLayout();
-		position4.add(telNr);
+		HorizontalLayout phoneNoPos = new HorizontalLayout();
+		phoneNoPos.add(phoneNo);
 
-		// the Buttons are under postcode and city, the items are next by
-		HorizontalLayout position5 = new HorizontalLayout();
-		position5.add(add, cancel);
-		
-		VerticalLayout ende = new VerticalLayout();
-		ende.add(position1,position2,position3,position4,position5);
+		HorizontalLayout buttonPos = new HorizontalLayout();
+		buttonPos.add(addAdress, cancelBtn);
+
+		VerticalLayout endPos = new VerticalLayout();
+		endPos.add(namePos, adressPos, cityPos, phoneNoPos, buttonPos);
 
 		// add the contents one the View
-		super.addContent(ende);
-		
+		super.addContent(endPos);
 
+		addAdressPresenter = new AddAdressPresenter(this);
 	}
-	public void clearTextfieldsAdresse() {
-		name.clear();
-		adress.clear();
-		adrNr.clear();
-		plz.clear();
-		city.clear();
-		telNr.clear();
-		
-	}
+
 
 }

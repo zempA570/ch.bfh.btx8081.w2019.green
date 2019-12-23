@@ -38,10 +38,8 @@ public class UserManagementView extends TemplateView {
 		super.setHeaderTitle("User Management");
 
 		// Create components to choose and delete users
-//		TODO make combobox value first of available values (default value)
 		cmbbxUserSelection = new ComboBox<>("Choose your user");
 
-//		TODO do this differently
 		Button btnDeleteUser = new Button("Delete User", new Icon(VaadinIcon.TRASH));
 		btnDeleteUser.addClickListener(e -> presenter.deleteUser(cmbbxUserSelection.getValue()));
 
@@ -76,7 +74,6 @@ public class UserManagementView extends TemplateView {
 	public void fillComboboxWithUsers(List<String> userNames) {
 
 		cmbbxUserSelection.setItems(userNames);
-
 	}
 
 	public void clearTextfields() {

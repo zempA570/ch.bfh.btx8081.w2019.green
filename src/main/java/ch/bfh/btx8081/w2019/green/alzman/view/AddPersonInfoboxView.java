@@ -1,5 +1,6 @@
 package ch.bfh.btx8081.w2019.green.alzman.view;
 
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.H4;
@@ -11,11 +12,13 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.radiobutton.RadioButtonGroup;
 import com.vaadin.flow.component.radiobutton.RadioGroupVariant;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.router.Route;
 
-/**
- * The user management view will be used to add and remove users of the app
- */
+import ch.bfh.btx8081.w2019.green.alzman.model.AddPerson;
+import ch.bfh.btx8081.w2019.green.alzman.presenter.AddPersonPresenter;
+import ch.bfh.btx8081.w2019.green.alzman.presenter.UserManagementPresenter;
+
 @Route("AddPersonInfoboxView")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class AddPersonInfoboxView extends TemplateView {
@@ -23,13 +26,15 @@ public class AddPersonInfoboxView extends TemplateView {
 	// variabel for the suptitel Add person
 	private H4 title1;
 	private RadioButtonGroup gender;
-	private TextField name;
-	private TextField vorname;
-	private TextField telNr;
+	private TextField lastName;
+	private TextField firstName;
+	private TextField phoneNo;
 	private TextField adress;
-	private TextField adrNr;
-	private TextField plz;
+	private TextField adrNo;
+	private TextField postcode;
 	private TextField city;
+
+	private AddPersonPresenter addPersonPresenter;
 
 	public AddPersonInfoboxView() {
 
@@ -42,78 +47,74 @@ public class AddPersonInfoboxView extends TemplateView {
 		super.addContent(title1);
 
 		// Radio Button for gender
-		RadioButtonGroup<String> gender = new RadioButtonGroup<>();
-		gender.setItems("Mann", "Frau");
+		this.gender = new RadioButtonGroup<>();
+		gender.setItems("Mr", "Mrs");
 
 		// Textfield for name
-		TextField name = new TextField();
-		name.setLabel("Name");
+		this.lastName = new TextField("Lastname");
+
 
 		// Textfield for prename
-		TextField vorname = new TextField();
-		vorname.setLabel("Vorname");
+		this.firstName = new TextField("Firstname");
+		
 
 		// Textfield for telephone nummber
-		TextField telNr = new TextField();
-		telNr.setLabel("Telefonnummer");
+		this.phoneNo = new TextField("Phonenummber");
+	
 
 		// Textfield for adress
-		TextField adress = new TextField();
-		adress.setLabel("Adresse");
+		this.adress = new TextField("Adress");
+
 
 		// Textfield for adress
-		TextField adrNr = new TextField();
-		adrNr.setLabel("Nr");
+		this.adrNo = new TextField("Adress Number");
+		
 
 		// Textfield for pstcode
-		TextField plz = new TextField();
-		plz.setLabel("Platz");
+		this.postcode = new TextField("Postcode");
+
 
 		// Textfield for city
-		TextField city = new TextField();
-		city.setLabel("Ort");
+		this.city = new TextField("City");
+
 
 		// Button for add the person in the Infobox
-		Button add = new Button("Add");
+		Button addPerson = new Button("Add Person", new Icon(VaadinIcon.PLUS));
+		addPerson.addClickListener(
+				e -> addPersonPresenter.addPerson(gender.getValue().toString(), lastName.getValue(), firstName.getValue(),
+						adress.getValue(), adrNo.getValue(), postcode.getValue(), city.getValue(), phoneNo.getValue()));
+		addPerson.addClickListener(event -> UI.getCurrent().navigate(InfoboxView.class));
 
 		// Button for cancel the prosses for to add person in the Infobox
-		Button cancel = new Button("Cancel");
+		Button cancelBtn = new Button("Cancel");
+		cancelBtn.addClickListener(event -> UI.getCurrent().navigate(InfoboxView.class));
 
-		HorizontalLayout position1 = new HorizontalLayout();
-		position1.add(gender);
+		HorizontalLayout genderPos = new HorizontalLayout();
+		genderPos.add(gender);
 
-		HorizontalLayout position2 = new HorizontalLayout();
-		position2.add(name, vorname);
+		HorizontalLayout namePos = new HorizontalLayout();
+		namePos.add(lastName, firstName);
 
-		HorizontalLayout position3 = new HorizontalLayout();
-		position3.add(adress, adrNr);
+		HorizontalLayout adressPos = new HorizontalLayout();
+		adressPos.add(adress, adrNo);
 
-		HorizontalLayout position4 = new HorizontalLayout();
-		position4.add(plz, city);
+		HorizontalLayout cityPos = new HorizontalLayout();
+		cityPos.add(postcode, city);
 
-		HorizontalLayout position5 = new HorizontalLayout();
-		position5.add(telNr);
+		HorizontalLayout phoneNoPos = new HorizontalLayout();
+		phoneNoPos.add(phoneNo);
 
-		HorizontalLayout position6 = new HorizontalLayout();
-		position6.add(add, cancel);
+		HorizontalLayout buttonPos = new HorizontalLayout();
+		buttonPos.add(addPerson, cancelBtn);
 
-		VerticalLayout ende = new VerticalLayout();
-		ende.add(position1, position2, position3, position4, position5, position6);
+		VerticalLayout endPos = new VerticalLayout();
+		endPos.add(genderPos, namePos, adressPos, cityPos, phoneNoPos, buttonPos);
 
 		// add the contents in the View
-		super.addContent(ende);
+		super.addContent(endPos);
+		
+		addPersonPresenter = new AddPersonPresenter(this);
 
 	}
-	
-	public void clearTextfieldsPerson() {
-		gender.clear();
-		name.clear();
-		vorname.clear();
-		telNr.clear();
-		adress.clear();
-		adrNr.clear();
-		plz.clear();
-		city.clear();
-		
-	}
+
 }
