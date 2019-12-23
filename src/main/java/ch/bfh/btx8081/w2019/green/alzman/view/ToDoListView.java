@@ -17,6 +17,9 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 
+import ch.bfh.btx8081.w2019.green.alzman.model.Task;
+import ch.bfh.btx8081.w2019.green.alzman.presenter.ToDoListPresenter;
+
 /**
  * The user management view will be used to add and remove users of the app
  */
@@ -24,114 +27,59 @@ import com.vaadin.flow.router.Route;
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class ToDoListView extends TemplateView {
 
+	private ToDoListPresenter presenter;
+	private VerticalLayout weeklyTasks = new VerticalLayout();
+
 	public ToDoListView() {
-		
-	
 
 		// Change title in header
 		super.setHeaderTitle("To Do List");
+		HorizontalLayout horizManager = new HorizontalLayout();
+		horizManager.setWidthFull();
 
-		HorizontalLayout header = new HorizontalLayout();
+		VerticalLayout specialTasks = new VerticalLayout();
+		Label lblSpecialTasks = new Label("Special Tasks");
+		specialTasks.add(lblSpecialTasks);
+		horizManager.add(specialTasks);
 
-		// title of the part 1 with label, horizontal
+		Label lblWeeklyTasks = new Label("Weekly Tasks");
+		weeklyTasks.add(lblWeeklyTasks);
+		horizManager.add(weeklyTasks);
 
-		Label spez = new Label("Special Tasks");
-		Label date = new Label("Date");
+		VerticalLayout monthlyTasks = new VerticalLayout();
+		Label lblMonthlyTasks = new Label("Monthly Tasks");
+		monthlyTasks.add(lblMonthlyTasks);
+		horizManager.add(monthlyTasks);
 
-		header.add(spez, date);
+		VerticalLayout annualTasks = new VerticalLayout();
+		Label lblAnnualTasks = new Label("Annual Tasks");
+		annualTasks.add(lblAnnualTasks);
+		horizManager.add(annualTasks);
 
-		// shows special tasks with duedate
-
-		Label task1 = new Label("task1");
-		Label date1 = new Label("date1");
-		
-		HorizontalLayout row = new HorizontalLayout(task1, date1); 
-
-		// specialtasks shown in listbox
-
-		ListBox<String> list1 = new ListBox<>();
-		list1.add(row);
-		
-		//order in vertical
-		VerticalLayout vertical = new VerticalLayout(); 
-		vertical.add(header, list1);
-
-		// header of the weekly-list
-		Label t1 = new Label("tasks");
-		Label weekly = new Label("Weekly");
-		HorizontalLayout title1 = new HorizontalLayout(weekly, t1);
-
-		// add tasks in form of checkboxes for weekly
-//		Checkbox ch1 = new Checkbox();
-//		ch1.setLabel("Post bearbeiten");
-//		Checkbox ch2 = new Checkbox();
-//		ch2.setLabel("Abendessen");
-
-		ListBox<String> week = new ListBox<>();
-		//week.add(ch1, ch2);
-
-		// order header & list in verticalForm
-		VerticalLayout vertical1 = new VerticalLayout();
-		vertical1.add(title1, week);
-
-		// add monthly section
-		Label monthly = new Label("Monthly");
-		Label t2 = new Label("tasks"); 
-		HorizontalLayout title2 = new HorizontalLayout(monthly, t2);
-
-		//weekly tasks in form of checkbox'
-//		Checkbox ch3 = new Checkbox();
-//		ch3.setLabel("Appartment Pieterlen");
-//		Checkbox ch4 = new Checkbox();
-//		ch4.setLabel("Paying Invoices");
-		
-		//add checkbox' to a new list
-		ListBox<String> MTasks = new ListBox<>();
-		//MTasks.add(ch3, ch4);
-
-		//add to verticalLayout
-		VerticalLayout vertical2 = new VerticalLayout(); 
-		vertical2.add(title2, MTasks);
-		
-		// add annualy section
-		Label annualy = new Label("Annually");
-		Label t3 = new Label("tasks"); 
-		HorizontalLayout title3 = new HorizontalLayout(annualy, t3);
-
-		//weekly tasks in form of checkbox'
-//		Checkbox ch5 = new Checkbox();
-//		ch5.setLabel("Tax declaration");
-//		Checkbox ch6 = new Checkbox();
-//		ch6.setLabel("Insurances");
-		
-		//add checkbox' to a new list
-		ListBox<String> list4 = new ListBox<>();
-		//list4.add(ch5, ch6);
-
-		//add to verticalLayout
-		VerticalLayout vertical3 = new VerticalLayout(); 
-		vertical3.add(title3, list4);
-		
-		
-		Button addNewTask = new Button("add new Task", new Icon(VaadinIcon.PLUS)); 
-		addNewTask.addClickListener(e -> UI.getCurrent().navigate(TaskEntryView.class)); 
-		vertical3.add(addNewTask);
-		
-		//HorizontalLayout adding = new HorizontalLayout(addNewTask); 
+		Button addNewTask = new Button("add new Task", new Icon(VaadinIcon.PLUS));
+		addNewTask.addClickListener(e -> UI.getCurrent().navigate(TaskEntryView.class));
+		VerticalLayout vertButton = new VerticalLayout();
+		vertButton.add(addNewTask);
 
 		// adding components to content space
-		super.addContent(vertical);
-		super.addContent(vertical1);
-		super.addContent(vertical2);
-		super.addContent(vertical3);
-		//super.addContent(addNewTask);
+		super.addContent(horizManager);
+		super.addContent(vertButton);
 		
+		presenter = new ToDoListPresenter(this);
+
 	}
-	
-//		public void fillComboboxWithUsers(List<String> month, List<String> week, List<String> ) {
-//
-//			
-//			
-//	}
+
+	public void addWeeklyTask(Task task) {
+
+		Checkbox chBox = new Checkbox(task.getTask());
+		Label date = new Label(task.getDate().toString());
+		
+		Button btnDelete = new Button(new Icon(VaadinIcon.TRASH));
+		
+		HorizontalLayout horiz = new HorizontalLayout(chBox, date, btnDelete);
+		
+		weeklyTasks.add(horiz);
+
+	}
 
 }

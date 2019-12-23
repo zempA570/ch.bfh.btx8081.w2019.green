@@ -13,17 +13,17 @@ import com.vaadin.flow.component.datepicker.DatePicker;
 import ch.bfh.btx8081.w2019.green.alzman.model.Task;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 import ch.bfh.btx8081.w2019.green.alzman.view.TaskEntryView;
+import ch.bfh.btx8081.w2019.green.alzman.view.ToDoListView;
 
 public class ToDoListPresenter {
 
-	private TaskEntryView view;
-
+	private ToDoListView view;
 	private List<Task> taskslist;
-	private List<Task> tasks; 
 
-	public ToDoListPresenter(TaskEntryView view) {
+	public ToDoListPresenter(ToDoListView view) {
 		this.view = view;
-
+		
+		fillListwithTasks();
 	}
 
 	public void addTaskToDB(String taskname, String choice, LocalDate LocalDate) {
@@ -48,40 +48,24 @@ public class ToDoListPresenter {
 		// get list of tasks out of the query
 		taskslist = query.getResultList();
 
-		// System.out.println(tasks.get(0).getTask());
-		List<String> week = new ArrayList<String>();
-		List<String> month = new ArrayList<String>();
-		List<String> annually = new ArrayList<String>();
-		List<String> special = new ArrayList<String>(); 
-
-		
-		//formateToChBox
-		for(Task task : tasks) {
-			Checkbox checkbox = new Checkbox();
-			checkbox.setLabel(task.getTask());
-		}
-		
 		// tasknames in the correct list
 		for (Task task : taskslist) {
-			if (task.getChoice().contentEquals("weekly")) {
-				week.add(task.getTask());
-			} else if (task.getChoice().contentEquals("monthly")) {
-				month.add(task.getTask());
-			} else if( task.getChoice().contentEquals("annually")){
-				annually.add(task.getTask());
-			}else {
-				special.add(task.getTask()); 
-			
+			if (task.getChoice().contentEquals("Weekly")) {
+				view.addWeeklyTask(task);
+			} else if (task.getChoice().contentEquals("Monthly")) {
+//
+			} else if (task.getChoice().contentEquals("Annually")) {
+//
+			} else {
+//
 			}
 		}
-
 
 //	Checkbox check = new Checkbox();
 //	check.setLabel(task.getTask());	
 //	tasknames.add(task.getTask());
 
 	}
-
 
 	// }
 
