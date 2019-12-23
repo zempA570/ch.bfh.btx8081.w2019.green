@@ -67,8 +67,11 @@ public class InfoboxView extends TemplateView {
 		gridImportantPerson.addColumn(AddPerson::getPhonenummber).setHeader("Phonenummber");
 
 		gridImportantPerson.addItemClickListener(event -> {
-			btnDeletePer.setVisible(true);
+			btnDeletePer.setVisible(false);
 
+		});
+		gridImportantPerson.addItemDoubleClickListener(event -> {
+			btnDeletePer.setVisible(true);
 		});
 
 		super.addContent(gridImportantPerson);
@@ -102,6 +105,10 @@ public class InfoboxView extends TemplateView {
 		gridImportantAdress.addColumn(AddAdress::getPhonenummber).setHeader("Phonenummber");
 
 		gridImportantAdress.addItemClickListener(event -> {
+			btnDeleteAdr.setVisible(false);
+
+		});
+		gridImportantAdress.addItemDoubleClickListener(event -> {
 			btnDeleteAdr.setVisible(true);
 		});
 
