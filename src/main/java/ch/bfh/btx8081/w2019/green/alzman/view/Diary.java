@@ -56,7 +56,7 @@ public class Diary extends TemplateView {
 		horizon.add(textarea, button);
 		
 
-		vert2.add(vert2,horizon);
+		vert2.add(horizon);
 
 	}
 
