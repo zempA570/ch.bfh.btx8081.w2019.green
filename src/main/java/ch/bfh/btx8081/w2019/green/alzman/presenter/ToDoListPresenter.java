@@ -28,7 +28,13 @@ public class ToDoListPresenter {
 
 
 	public void deleteTask(Task task) {
-
+		DbService.em.getTransaction().begin();
+		DbService.em.remove(task);
+		DbService.em.getTransaction().commit();
+		
+		view.deleteAllTaskinGui(); 
+		fillListwithTasks(); 
+		
 	}
 
 	public void fillListwithTasks() {
@@ -46,11 +52,15 @@ public class ToDoListPresenter {
 				view.addMonthlyTask(task);
 			} else if (task.getChoice().contentEquals("Annually")) {
 				view.addAnnualTask(task);
-			} else 
-			{ view.addSpecialTask(task);
+			} else if (task.getChoice().contentEquals("None")){
+			 view.addSpecialTask(task);}
+			else {
+				view.addComplTask(task);
 			}
-		}
+			}
+			}
+		
 
 	}
 
-}
+
