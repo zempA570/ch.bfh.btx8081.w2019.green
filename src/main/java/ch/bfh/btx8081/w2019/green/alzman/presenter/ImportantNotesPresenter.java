@@ -1,8 +1,10 @@
 package ch.bfh.btx8081.w2019.green.alzman.presenter;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Query;
 
@@ -20,42 +22,63 @@ import ch.bfh.btx8081.w2019.green.alzman.view.UserManagementView;
  */
 public class ImportantNotesPresenter {
 
-	private NotesView view;
+
 	private AddImportantNotes keyNotesView;
 	private List<ImportantNotesDataModel> keyNotes;
 
 	// constructor for the presenter
-	public ImportantNotesPresenter(NotesView notesToView) {
-		this.view = notesToView;
-
-		fillComboboxWithNotes();
+	public ImportantNotesPresenter(AddImportantNotes notesToView) {
+		this.keyNotesView = notesToView;
 
 	}
-
+	
+	public void deleteEntry(String importantEntry){
+		
+		DbService.em.getTransaction().begin();
+		
+		//get the ID from the Entry which is at the beginning of the importantEntry String
+		int entryID = Integer.parseInt(importantEntry.substring(0, importantEntry.indexOf(" ")));
+		
+		ImportantNotesDataModel entryToDelete = null;
+		
+		// for every Entry in the List
+		for (ImportantNotesDataModel anEntry : keyNotes ) {
+			// checks if the ID of the Entry is equal to the ID from the String
+			if (Objects.equals(anEntry.getEntryID(), entryID)) {
+				// delete this entry
+				entryToDelete = anEntry;
+			};
+		}
+		
+		//removing the Entry from the Database
+		DbService.em.remove(entryToDelete);
+		DbService.em.getTransaction().commit();
+		
+		// after the entry is deleted we update the list in the combobox
+		
+	}
+	
+	private void addEntries(String author, String content, Date date) {
+		
+		//Create a new entry
+		
+		ImportantNotesDataModel newEntry = new ImportantNotesDataModel(author, content, date);
+		
+		//sync with Database
+		DbService.em.getTransaction().begin();
+		DbService.em.persist(newEntry);
+		DbService.em.getTransaction().commit();
+		
+	};
+	
 	
 
 
-	private void fillComboboxWithNotes() {
 
-		// DB stuff where we get all the users
-		Query queryNotes = DbService.em.createNativeQuery("SELECT * FROM importantnotesdatamodel", ImportantNotesDataModel.class);
 
-		// get list of users out of the query
-		keyNotes = queryNotes.getResultList();
 
-		List<String> entryNotes = new ArrayList<String>();
-		
-		// for every user in our list
-		for (ImportantNotesDataModel note : keyNotes) {
-			// we add the id and fullname of that user to our List<String>
-			entryNotes.add(note.getEntryID() + " " + note.getAuthor() + " " + note.getContent() +  " " + note.getDate());
-		}
 
-		// then we tell the view to fill the combobox with the List<String>
-		// view.fillComboboxWithNotes(entryNotes);
 
-//		TODO message to user that was deleted?
 
-	}
 
 }

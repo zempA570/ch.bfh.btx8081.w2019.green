@@ -10,17 +10,22 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.html.H4;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.ironlist.IronList;
 import com.vaadin.flow.component.listbox.ListBox;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 
+import ch.bfh.btx8081.w2019.green.alzman.model.AddPerson;
 import ch.bfh.btx8081.w2019.green.alzman.model.ImportantNotesDataModel;
+import ch.bfh.btx8081.w2019.green.alzman.presenter.ImportantNotesPresenter;
+import ch.bfh.btx8081.w2019.green.alzman.presenter.NotesPresenter;
 
 
 /**
@@ -30,62 +35,81 @@ import ch.bfh.btx8081.w2019.green.alzman.model.ImportantNotesDataModel;
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class NotesView extends TemplateView {
 	
-	/* Pop-up dialog with a detailed view of the clicked diary entry */
-	public Dialog dialog = new Dialog();
+	//title header and grid
+	private H4 titleAddNotes;
+	private Grid<ImportantNotesDataModel> notesGrid= new Grid<>();
 	
-	private Button suggestions;
-	private TextArea diaryText = new TextArea();
-	
-	
-	private Button deletePic;
-	public Button saveDiaryEntry;
-	
-	private Grid<String>gridEntry;
-	
+	//variable presenter
+	private NotesPresenter presenter;
 	
 
-	public NotesView() {
+	//private TextArea diaryText = new TextArea();
+	
+	
+	
+	 public NotesView() {
 
 		// Change title in header
 		super.setHeaderTitle("Important Notes");
 		
+		//manipulating title
+		titleAddNotes = new H4();
+		titleAddNotes.setText("Key-Notes");
+		super.addContent(titleAddNotes);
+		
+		
+		
+		// Button for a new entry
+		Button buttonAddEntry = new Button("Create New Entry");
+		buttonAddEntry.addClickListener(e -> UI.getCurrent().navigate(AddImportantNotes.class));
+		
+		//button to delete an entry
+		Button buttonDeleteEntry = new Button("Delete Selected Entry");
+		buttonDeleteEntry.setVisible(false);
+		buttonDeleteEntry.addClickListener(e -> presenter.deleteEntry(notesGrid.getSelectedItems()));
+		
+		//notify the user
+		Notification message = new Notification("Deleted the Entry!");
+		buttonDeleteEntry.addClickListener(e -> message.open());
+		
+		//button to refresh the page
+		Icon refreshPage = new Icon (VaadinIcon.RECYCLE);
+		refreshPage.addClickListener(e -> UI.getCurrent().getPage().reload());
+	
 		
 
-		// Creating elements
+		
+		// Creating horizontal layout & filling it
+		VerticalLayout verticalLayout = new VerticalLayout();
 
+		verticalLayout.add(buttonAddEntry,buttonDeleteEntry,refreshPage);
+		super.addContent(verticalLayout);
+		
+		//setting up the Grid
+		
+		add(notesGrid);
+		notesGrid.addColumn(ImportantNotesDataModel::getEntryID).setVisible(false);
+		notesGrid.addColumn(ImportantNotesDataModel::getAuthor).setHeader("Author");
+		notesGrid.addColumn(ImportantNotesDataModel::getDate).setHeader("Date");
+		notesGrid.addColumn(ImportantNotesDataModel::getContent).setHeader("Note");
+		
+		notesGrid.addItemClickListener(event -> {
+		buttonDeleteEntry.setVisible(true);
+		
+		});
+		
+		
+		super.addContent(notesGrid);
+		
+		presenter = new NotesPresenter(this);
 		
 
 	
-
-		Button btnAddEntry = new Button("Add New Entry");
-		btnAddEntry.addClickListener(e -> UI.getCurrent().navigate(AddImportantNotes.class));
-		
-	
-		
-		
-		//Click Listener
-		
-		//Creating a List so the Entries which are already made can be pulled from DB and shown
-		
-		
-		gridEntry = new Grid<>();
-		
-		//sorting the Grid
-		
-		// Creating horizontal layout
-		VerticalLayout vLAddUser = new VerticalLayout();
-
-		// Adding two components to horizontal layout
-		vLAddUser.add(btnAddEntry);
-		vLAddUser.add(gridEntry);
-
-		
-		super.addContent(vLAddUser);
 
 	}
 	
-	public void fillGridWithEntries(List<String> entry) {
-		gridEntry.setItems(entry);
+	public void fillGridWithEntries(List<ImportantNotesDataModel> entryList) {
+		notesGrid.setItems(entryList);
 	};
 
 }

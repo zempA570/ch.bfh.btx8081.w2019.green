@@ -71,6 +71,9 @@ public class ImportantNotesDataModel {
 		this.entryID = entryID;
 	}
 	
+	public String getFullEntryDetails () {
+		return author + " " + date + " " + content;}
+	
 
 
 

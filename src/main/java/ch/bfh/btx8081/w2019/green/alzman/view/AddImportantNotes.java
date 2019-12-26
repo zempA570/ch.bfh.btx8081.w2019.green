@@ -23,7 +23,7 @@ import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 /**
  * The user management view will be used to add and remove users of the app
  */
-@Route("AddImportantNotes")
+@Route("NotesView")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class AddImportantNotes extends TemplateView {
 
@@ -79,6 +79,10 @@ public class AddImportantNotes extends TemplateView {
 		AddToDiary.addClickListener(event -> infoNotification1.open());
 		AddToBoth.addClickListener(event -> infoNotification3.open());
 		AddToKeyNotes.addClickListener(e -> infoNotification2.open());
+		
+		AddToBoth.addClickListener(e -> textArea.clear());
+		AddToBoth.addClickListener(e -> author.clear());
+
 		
 		// Put components in horizontal layout
 		HorizontalLayout addIN = new HorizontalLayout();

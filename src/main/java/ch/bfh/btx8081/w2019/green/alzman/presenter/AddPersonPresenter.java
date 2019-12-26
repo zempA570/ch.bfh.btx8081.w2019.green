@@ -48,6 +48,8 @@ public class AddPersonPresenter {
 
 		// after the user is deleted we "refresh" the list in the combobox so the
 		// deleted user is gone
+		
+		
 
 	}
 
