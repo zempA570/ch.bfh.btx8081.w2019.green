@@ -17,16 +17,16 @@ import com.vaadin.ui.renderers.ImageRenderer;
 
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 
-
 @Route("")
+
 @PWA(name = "Project Base for Vaadin", shortName = "Project Base")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class DashboardView extends TemplateView {
 
 	public DashboardView() {
-		
+
 		DbService.init();
-		
+
 		// displays the Title of this Component
 		super.setHeaderTitle("Dashboard");
 
@@ -36,35 +36,24 @@ public class DashboardView extends TemplateView {
 		userIcon.addClickListener(e -> UI.getCurrent().navigate(UserManagementView.class));
 		super.addHeader(userIcon);
 
-		
-	
-		
-		
-		
-	
-		
-		//creating Icons that are clickable
+		// creating Icons that are clickable
 		Icon calendarIcon = new Icon(VaadinIcon.CALENDAR);
 		calendarIcon.setSize("80px");
-		
+
 		Icon statusIcon = new Icon(VaadinIcon.BULLETS);
 		statusIcon.setSize("80px");
-		
+
 		Icon importantNotesIcon = new Icon(VaadinIcon.NOTEBOOK);
 		importantNotesIcon.setSize("80px");
-		
+
 		Icon diaryIcon = new Icon(VaadinIcon.EDIT);
 		diaryIcon.setSize("80px");
-		
+
 		Icon todoIcon = new Icon(VaadinIcon.TASKS);
 		todoIcon.setSize("80px");
-		
+
 		Icon infoBoxIcon = new Icon(VaadinIcon.INFO_CIRCLE);
 		infoBoxIcon.setSize("80px");
-		
-		
-		
-		
 
 		// change Icon Size and Shape
 		calendarIcon.setSize("80px");
@@ -73,8 +62,6 @@ public class DashboardView extends TemplateView {
 		diaryIcon.setSize("80px");
 		todoIcon.setSize("80px");
 		infoBoxIcon.setSize("80px");
-		
-		
 
 		// creating labels to label the icons
 		Label calendarText = new Label("Calendar");
@@ -91,21 +78,19 @@ public class DashboardView extends TemplateView {
 				infoBoxIcon);
 
 		HorizontalLayout iconViewCentral = new HorizontalLayout(iconViewLeft, iconViewRight);
-		
-		//configuring the icons so they can be clicked on		
+
+		// configuring the icons so they can be clicked on
 		/**
-		 * the code below is working, waiting for the other View Classes to be finished so they can be
-		 * implemented just as the one below
+		 * the code below is working, waiting for the other View Classes to be finished
+		 * so they can be implemented just as the one below
 		 */
-		
+
 		calendarIcon.addClickListener(e -> UI.getCurrent().navigate(CalendarView.class));
-		//statIcon.addClickListener(e -> UI.getCurrent().navigate(CalendarView.class));
+		// statIcon.addClickListener(e -> UI.getCurrent().navigate(CalendarView.class));
 		todoIcon.addClickListener(e -> UI.getCurrent().navigate(ToDoListView.class));
 		diaryIcon.addClickListener(e -> UI.getCurrent().navigate(Diary.class));
 		importantNotesIcon.addClickListener(e -> UI.getCurrent().navigate(NotesView.class));
 		infoBoxIcon.addClickListener(e -> UI.getCurrent().navigate(InfoboxView.class));
-		
-		
 
 		super.addContent(iconViewCentral);
 
