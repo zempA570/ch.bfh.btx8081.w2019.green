@@ -28,10 +28,15 @@ import ch.bfh.btx8081.w2019.green.alzman.presenter.ToDoListPresenter;
 public class ToDoListView extends TemplateView {
 
 	private ToDoListPresenter presenter;
+	private VerticalLayout weeklyTasksWrapper = new VerticalLayout();
 	private VerticalLayout weeklyTasks = new VerticalLayout();
+	private VerticalLayout monthlyTasksWrapper = new VerticalLayout();
 	private VerticalLayout monthlyTasks = new VerticalLayout();
+	private VerticalLayout annuallyTasksWrapper = new VerticalLayout();
 	private VerticalLayout annuallyTasks = new VerticalLayout();
+	private VerticalLayout specialTasksWrapper = new VerticalLayout();
 	private VerticalLayout specialTasks = new VerticalLayout();
+	private VerticalLayout complTasksWrapper = new VerticalLayout();
 	private VerticalLayout complTasks = new VerticalLayout();
 	private Checkbox chBox;
 
@@ -43,33 +48,32 @@ public class ToDoListView extends TemplateView {
 		horizManager.setWidthFull();
 
 		// elements for special-tasks row
-		VerticalLayout specialTasks = new VerticalLayout();
 		Label lblSpecialTasks = new Label("Special Tasks");
-		specialTasks.add(lblSpecialTasks);
-		horizManager.add(specialTasks);
+		specialTasksWrapper.add(lblSpecialTasks, specialTasks);
+		horizManager.add(specialTasksWrapper);
 
 		// elements for weekly-tasks row
 		Label lblWeeklyTasks = new Label("Weekly Tasks");
-		weeklyTasks.add(lblWeeklyTasks);
-		horizManager.add(weeklyTasks);
+		weeklyTasksWrapper.add(lblWeeklyTasks, weeklyTasks);
+		horizManager.add(weeklyTasksWrapper);
 
 		// elements for monthly-tasks row
 //		VerticalLayout monthlyTasks = new VerticalLayout();
 		Label lblMonthlyTasks = new Label("Monthly Tasks");
-		monthlyTasks.add(lblMonthlyTasks);
-		horizManager.add(monthlyTasks);
+		monthlyTasksWrapper.add(lblMonthlyTasks, monthlyTasks);
+		horizManager.add(monthlyTasksWrapper);
 
 		// elements for annual-tasks row
 //		VerticalLayout annualTasks = new VerticalLayout();
 		Label lblAnnualTasks = new Label("Annual Tasks");
-		annuallyTasks.add(lblAnnualTasks);
-		horizManager.add(annuallyTasks);
+		annuallyTasksWrapper.add(lblAnnualTasks,annuallyTasks);
+		horizManager.add(annuallyTasksWrapper);
 
 		// elements for completed-tasks row
-		complTasks = new VerticalLayout();
-		Label lblComplTasks = new Label("Completed Tasks");
-		complTasks.add(lblComplTasks);
-		horizManager.add(complTasks);
+//		complTasks = new VerticalLayout();
+//		Label lblComplTasks = new Label("Completed Tasks");
+//		complTasks.add(lblComplTasks);
+//		horizManager.add(complTasks);
 
 		Button addNewTask = new Button("add new Task", new Icon(VaadinIcon.PLUS));
 		addNewTask.addClickListener(e -> UI.getCurrent().navigate(TaskEntryView.class));
@@ -90,6 +94,7 @@ public class ToDoListView extends TemplateView {
 		Label date = new Label(task.getDate().toString());
 
 		Button btnDelete = new Button(new Icon(VaadinIcon.TRASH));
+		btnDelete.addClickListener(e -> presenter.deleteTask(task));
 
 		HorizontalLayout horiz = new HorizontalLayout(chBox, date, btnDelete);
 
@@ -103,6 +108,7 @@ public class ToDoListView extends TemplateView {
 		Label date = new Label(task.getDate().toString());
 
 		Button btnDelete = new Button(new Icon(VaadinIcon.TRASH));
+		btnDelete.addClickListener(e -> presenter.deleteTask(task));
 
 		HorizontalLayout horiz = new HorizontalLayout(chBox, date, btnDelete);
 
@@ -115,6 +121,7 @@ public class ToDoListView extends TemplateView {
 		Label date = new Label(task.getDate().toString());
 
 		Button btnDelete = new Button(new Icon(VaadinIcon.TRASH));
+		btnDelete.addClickListener(e -> presenter.deleteTask(task));
 
 		HorizontalLayout horiz = new HorizontalLayout(chBox, date, btnDelete);
 
@@ -127,6 +134,7 @@ public class ToDoListView extends TemplateView {
 		Label date = new Label(task.getDate().toString());
 
 		Button btnDelete = new Button(new Icon(VaadinIcon.TRASH));
+		btnDelete.addClickListener(e -> presenter.deleteTask(task));
 
 		HorizontalLayout horiz = new HorizontalLayout(chBox, date, btnDelete);
 
@@ -135,11 +143,20 @@ public class ToDoListView extends TemplateView {
 
 	public void addComplTask(Task task) {
 
-		if (chBox.getValue() == true);
+		if (chBox.getValue() == true)
+			;
 		{
 			complTasks.add(chBox);
 
 		}
-
 	}
+
+	public void deleteAllTaskinGui() {
+		specialTasks.removeAll();
+		weeklyTasks.removeAll();
+		monthlyTasks.removeAll();
+		annuallyTasks.removeAll();
+		complTasks.removeAll();
+	}
+
 }
