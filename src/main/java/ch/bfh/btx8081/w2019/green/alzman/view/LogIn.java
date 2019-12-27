@@ -36,7 +36,6 @@ public class LogIn extends TemplateView {
 		Button submit = new Button("einloggen");
 		Button register = new Button("new register", new Icon(VaadinIcon.PLUS)); 
 		register.addClickListener(e -> UI.getCurrent().navigate(RegisterUser.class));
-		
 		HorizontalLayout hor = new HorizontalLayout(submit, register); 
 
 		//Creating Vertical layout

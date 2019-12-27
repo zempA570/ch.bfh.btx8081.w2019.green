@@ -41,30 +41,26 @@ public class DashboardView extends TemplateView {
 		
 		
 		
-		//creating buttons and icons for the dashboard menu
-		Button calendarButton = new Button();
+	
+		
+		//creating Icons that are clickable
 		Icon calendarIcon = new Icon(VaadinIcon.CALENDAR);
-		calendarButton.getElement().appendChild(calendarIcon.getElement());
+		calendarIcon.setSize("80px");
 		
-		Button statusButton = new Button();
 		Icon statusIcon = new Icon(VaadinIcon.BULLETS);
-		statusButton.getElement().appendChild(statusIcon.getElement());
+		statusIcon.setSize("80px");
 		
-		Button importantNotesButton = new Button();
 		Icon importantNotesIcon = new Icon(VaadinIcon.NOTEBOOK);
-		importantNotesButton.getElement().appendChild(importantNotesIcon.getElement());
+		importantNotesIcon.setSize("80px");
 		
-		Button diaryButton = new Button();
 		Icon diaryIcon = new Icon(VaadinIcon.EDIT);
-		diaryButton.getElement().appendChild(diaryIcon.getElement());
+		diaryIcon.setSize("80px");
 		
-		Button todoButton = new Button();
 		Icon todoIcon = new Icon(VaadinIcon.TASKS);
-		todoButton.getElement().appendChild(todoIcon.getElement());
+		todoIcon.setSize("80px");
 		
-		Button infoBoxButton = new Button();
 		Icon infoBoxIcon = new Icon(VaadinIcon.INFO_CIRCLE);
-		infoBoxButton.getElement().appendChild(infoBoxIcon.getElement());
+		infoBoxIcon.setSize("80px");
 		
 		
 		
@@ -89,10 +85,10 @@ public class DashboardView extends TemplateView {
 		Label infoBoxText = new Label("Infobox");
 
 		// configuring the layout
-		VerticalLayout iconViewLeft = new VerticalLayout(calendarText, calendarButton, statusText, statusButton,
-				importantNotesText, importantNotesButton);
-		VerticalLayout iconViewRight = new VerticalLayout(diaryText, diaryButton, todoText, todoButton, infoBoxText,
-				infoBoxButton);
+		VerticalLayout iconViewLeft = new VerticalLayout(calendarText, calendarIcon, statusText, statusIcon,
+				importantNotesText, importantNotesIcon);
+		VerticalLayout iconViewRight = new VerticalLayout(diaryText, diaryIcon, todoText, todoIcon, infoBoxText,
+				infoBoxIcon);
 
 		HorizontalLayout iconViewCentral = new HorizontalLayout(iconViewLeft, iconViewRight);
 		
@@ -101,13 +97,13 @@ public class DashboardView extends TemplateView {
 		 * the code below is working, waiting for the other View Classes to be finished so they can be
 		 * implemented just as the one below
 		 */
-		infoBoxButton.addClickListener(event -> UI.getCurrent().navigate(InfoboxView.class));
-		todoButton.addClickListener(e -> UI.getCurrent().navigate(ToDoListView.class));
-		diaryButton.addClickListener(e -> UI.getCurrent().navigate(Diary.class));
-		importantNotesButton.addClickListener(e -> UI.getCurrent().navigate(NotesView.class));
-//		statusButton.addClickListener(e -> UI.getCurrent().navigate(UserManagementView.class));
-		calendarButton.addClickListener(e -> UI.getCurrent().navigate(CalendarView.class));
-
+		
+		calendarIcon.addClickListener(e -> UI.getCurrent().navigate(CalendarView.class));
+		//statIcon.addClickListener(e -> UI.getCurrent().navigate(CalendarView.class));
+		todoIcon.addClickListener(e -> UI.getCurrent().navigate(ToDoListView.class));
+		diaryIcon.addClickListener(e -> UI.getCurrent().navigate(Diary.class));
+		importantNotesIcon.addClickListener(e -> UI.getCurrent().navigate(NotesView.class));
+		infoBoxIcon.addClickListener(e -> UI.getCurrent().navigate(InfoboxView.class));
 		
 		
 

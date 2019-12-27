@@ -1,5 +1,6 @@
 package ch.bfh.btx8081.w2019.green.alzman.model;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
@@ -17,25 +18,60 @@ public class ImportantNotesDataModel {
 	 * entryDate for the date of the newly entered entry entryContent for the actual
 	 * entry which is a string
 	 */
-	String author;
-	LocalDate entryDate;
-	String entryContent;
-
-	// annotation for the primary key and generating an ID by random
 	@Id
 	@GeneratedValue
 	int entryID;
 
-	public ImportantNotesDataModel(String author, LocalDate entryDate, String entryContent, int entryID) {
-		super();
+	String author;
+	Date date;
+	String content;
+
+	public ImportantNotesDataModel(String author, String content, Date date) {
 		this.author = author;
-		this.entryDate = entryDate;
-		this.entryContent = entryContent;
+		this.content = content;
+		this.date = date;
+
+	}
+
+//must have: an empty constructor
+	public ImportantNotesDataModel() {
+
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public int getEntryID() {
+		return entryID;
+	}
+
+	public void setEntryID(int entryID) {
 		this.entryID = entryID;
 	}
 
-	// must have: an empty constructor
-	public ImportantNotesDataModel() {
-	};
+	public String getFullEntryDetails() {
+		return author + " " + date + " " + content;
+	}
 
 }
