@@ -6,6 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
+
 @Entity
 @Table(name = "ImportantAdress")
 public class AddAdress {

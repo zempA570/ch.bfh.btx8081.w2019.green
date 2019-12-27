@@ -1,8 +1,14 @@
 package ch.bfh.btx8081.w2019.green.alzman.view;
 
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.H4;
+import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.listbox.ListBox;
@@ -11,25 +17,36 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.radiobutton.RadioButtonGroup;
 import com.vaadin.flow.component.radiobutton.RadioGroupVariant;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.data.binder.Binder;
+import com.vaadin.flow.data.binder.BinderValidationStatus;
+import com.vaadin.flow.data.binder.BindingValidationStatus;
 import com.vaadin.flow.router.Route;
 
-/**
- * The user management view will be used to add and remove users of the app
- */
+import ch.bfh.btx8081.w2019.green.alzman.model.AddAdress;
+import ch.bfh.btx8081.w2019.green.alzman.model.AddPerson;
+import ch.bfh.btx8081.w2019.green.alzman.presenter.AddPersonPresenter;
+import ch.bfh.btx8081.w2019.green.alzman.presenter.UserManagementPresenter;
+
 @Route("AddPersonInfoboxView")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class AddPersonInfoboxView extends TemplateView {
 
 	// variabel for the suptitel Add person
 	private H4 title1;
-	private RadioButtonGroup gender;
-	private TextField name;
-	private TextField vorname;
-	private TextField telNr;
+	private ComboBox<String> gender;
+	private TextField lastName;
+	private TextField firstName;
+	private TextField phoneNo;
 	private TextField adress;
-	private TextField adrNr;
-	private TextField plz;
+	private TextField adrNo;
+	private TextField postcode;
 	private TextField city;
+
+	private Binder<AddPerson> binderCheckPerson;
+
+	private Label label;
+
+	private AddPersonPresenter addPersonPresenter;
 
 	public AddPersonInfoboxView() {
 
@@ -42,78 +59,112 @@ public class AddPersonInfoboxView extends TemplateView {
 		super.addContent(title1);
 
 		// Radio Button for gender
-		RadioButtonGroup<String> gender = new RadioButtonGroup<>();
-		gender.setItems("Mann", "Frau");
+		this.gender = new ComboBox<String>();
+		gender.setItems("Mr", "Mrs");
+		gender.setPlaceholder("Select your gender");
 
 		// Textfield for name
-		TextField name = new TextField();
-		name.setLabel("Name");
+		this.lastName = new TextField("Lastname");
 
 		// Textfield for prename
-		TextField vorname = new TextField();
-		vorname.setLabel("Vorname");
+		this.firstName = new TextField("Firstname");
 
 		// Textfield for telephone nummber
-		TextField telNr = new TextField();
-		telNr.setLabel("Telefonnummer");
+		this.phoneNo = new TextField("Phonenummber");
+		phoneNo.setPlaceholder("0041 xx xxx xx xx");
 
 		// Textfield for adress
-		TextField adress = new TextField();
-		adress.setLabel("Adresse");
+		this.adress = new TextField("Adress");
 
 		// Textfield for adress
-		TextField adrNr = new TextField();
-		adrNr.setLabel("Nr");
+		this.adrNo = new TextField("Adress Number");
 
 		// Textfield for pstcode
-		TextField plz = new TextField();
-		plz.setLabel("Platz");
+		this.postcode = new TextField("Postcode");
+		postcode.setPlaceholder("3000");
 
 		// Textfield for city
-		TextField city = new TextField();
-		city.setLabel("Ort");
+		this.city = new TextField("City");
+		city.setPlaceholder("Bern");
+
+		this.label = new Label();
+
+		this.binderCheckPerson = new Binder<>();
+		binderCheckPerson.forField(gender).asRequired("The Gender is missing!").bind(AddPerson::getGender,
+				AddPerson::setGender);
+		binderCheckPerson.forField(lastName).asRequired("The Lastname is missing!").bind(AddPerson::getLastname,
+				AddPerson::setLastname);
+		binderCheckPerson.forField(firstName).asRequired("The Firstname is missing!").bind(AddPerson::getFirstname,
+				AddPerson::setFirstname);
+		binderCheckPerson.forField(phoneNo).asRequired("The Phonenumber is missing!").bind(AddPerson::getPhonenummber,
+				AddPerson::setPhonenummber);
+		binderCheckPerson.forField(adress).asRequired("The Adress is missing!").bind(AddPerson::getAdress,
+				AddPerson::setAdress);
+		binderCheckPerson.forField(adrNo).asRequired("The Adress Number is missing!").bind(AddPerson::getAdressNr,
+				AddPerson::setAdressNr);
+		binderCheckPerson.forField(postcode).asRequired("The Postcode is missing!").bind(AddPerson::getPostcode,
+				AddPerson::setPostcode);
+		binderCheckPerson.forField(city).asRequired("The City is missing!").bind(AddPerson::getCity,
+				AddPerson::setCity);
 
 		// Button for add the person in the Infobox
-		Button add = new Button("Add");
+		Button addPerson = new Button("Add Person", new Icon(VaadinIcon.PLUS));
+		addPerson.addClickListener(e -> {
+
+			AddPerson per = new AddPerson();
+			if (binderCheckPerson.writeBeanIfValid(per)) {
+				per.setGender(this.gender.getValue());
+				per.setFirstname(this.firstName.getValue());
+				per.setLastname(this.lastName.getValue());
+				per.setAdress(this.adress.getValue());
+				per.setAdressNr(this.adrNo.getValue());
+				per.setPostcode(this.postcode.getValue());
+				per.setCity(this.city.getValue());
+				per.setPhonenummber(this.phoneNo.getValue());
+
+				addPersonPresenter.addPerson(gender.getValue().toString(), firstName.getValue(), lastName.getValue(),
+						adress.getValue(), adrNo.getValue(), postcode.getValue(), city.getValue(), phoneNo.getValue());
+				UI.getCurrent().navigate(InfoboxView.class);
+			} else {
+				BinderValidationStatus<AddPerson> checkStatments = binderCheckPerson.validate();
+				String exeptionMsg = checkStatments.getFieldValidationStatuses().stream()
+						.filter(BindingValidationStatus::isError).map(BindingValidationStatus::getMessage)
+						.map(Optional::get).distinct().collect(Collectors.joining(", "));
+				label.setText("An error has occurred");
+			}
+
+		});
 
 		// Button for cancel the prosses for to add person in the Infobox
-		Button cancel = new Button("Cancel");
+		Button cancelBtn = new Button("Cancel");
+		cancelBtn.addClickListener(event -> UI.getCurrent().navigate(InfoboxView.class));
 
-		HorizontalLayout position1 = new HorizontalLayout();
-		position1.add(gender);
+		HorizontalLayout genderPos = new HorizontalLayout();
+		genderPos.add(gender);
 
-		HorizontalLayout position2 = new HorizontalLayout();
-		position2.add(name, vorname);
+		HorizontalLayout namePos = new HorizontalLayout();
+		namePos.add(lastName, firstName);
 
-		HorizontalLayout position3 = new HorizontalLayout();
-		position3.add(adress, adrNr);
+		HorizontalLayout adressPos = new HorizontalLayout();
+		adressPos.add(adress, adrNo);
 
-		HorizontalLayout position4 = new HorizontalLayout();
-		position4.add(plz, city);
+		HorizontalLayout cityPos = new HorizontalLayout();
+		cityPos.add(postcode, city);
 
-		HorizontalLayout position5 = new HorizontalLayout();
-		position5.add(telNr);
+		HorizontalLayout phoneNoPos = new HorizontalLayout();
+		phoneNoPos.add(phoneNo);
 
-		HorizontalLayout position6 = new HorizontalLayout();
-		position6.add(add, cancel);
+		HorizontalLayout buttonPos = new HorizontalLayout();
+		buttonPos.add(addPerson, cancelBtn, label);
 
-		VerticalLayout ende = new VerticalLayout();
-		ende.add(position1, position2, position3, position4, position5, position6);
+		VerticalLayout endPos = new VerticalLayout();
+		endPos.add(genderPos, namePos, adressPos, cityPos, phoneNoPos, buttonPos);
 
 		// add the contents in the View
-		super.addContent(ende);
+		super.addContent(endPos);
+
+		addPersonPresenter = new AddPersonPresenter(this);
 
 	}
-	
-	public void clearTextfieldsPerson() {
-		gender.clear();
-		name.clear();
-		vorname.clear();
-		telNr.clear();
-		adress.clear();
-		adrNr.clear();
-		plz.clear();
-		city.clear();
-		
-	}
+
 }
