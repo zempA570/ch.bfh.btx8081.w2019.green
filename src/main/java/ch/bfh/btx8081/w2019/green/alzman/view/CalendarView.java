@@ -10,6 +10,7 @@ import org.vaadin.stefan.fullcalendar.FullCalendarBuilder;
 import org.vaadin.stefan.fullcalendar.Resource;
 
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.charts.model.Label;
 import com.vaadin.flow.component.dependency.CssImport;
@@ -81,7 +82,7 @@ public class CalendarView extends TemplateView {
 		// The Button "calDel" is for delete an entry.
 		
 		HorizontalLayout horiLay = new HorizontalLayout();
-		Button calAdd = new Button("Eintrag hinzufügen", event -> Notification.show("Funktion noch nicht verfügbar"));
+		Button calAdd = new Button("Eintrag hinzufügen",event -> UI.getCurrent().navigate(AddAppointment.class));
 		Button calDel = new Button("Eintrag löschen", event -> Notification.show("Funktion noch nicht verfügbar"));
 		horiLay.add(calAdd, calDel);
 		
