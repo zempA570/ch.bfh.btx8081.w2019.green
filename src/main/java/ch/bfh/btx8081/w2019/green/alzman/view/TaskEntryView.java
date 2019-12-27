@@ -1,6 +1,7 @@
 package ch.bfh.btx8081.w2019.green.alzman.view;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
@@ -16,12 +17,17 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 
+import ch.bfh.btx8081.w2019.green.alzman.presenter.TaskEntryPresenter;
+import ch.bfh.btx8081.w2019.green.alzman.presenter.ToDoListPresenter;
+
 /**
  * The user management view will be used to add and remove users of the app
  */
 @Route("TaskEntry")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class TaskEntryView extends TemplateView {
+	
+	TaskEntryPresenter presenter;
 
 	public TaskEntryView() {
 
@@ -33,20 +39,26 @@ public class TaskEntryView extends TemplateView {
 		TextField newtask = new TextField();
 		newtask.setLabel("Aufgabe");
 		
-		ComboBox<String> choice = new ComboBox<>("Wiederholung"); 
-		choice.setItems("wöchentlich", "monatlich", "jährlich", "Keine");
 		
-		Label datum = new Label("Datum"); 
-		DatePicker datePick = new DatePicker(); 
-		datePick.setValue(LocalDate.now());
+		ComboBox<String> choice = new ComboBox<>("Wiederholung"); 
+		choice.setItems("Weekly", "Monthly", "Annually", "None");
+		
+		Label datum = new Label("Date"); 
+		DatePicker datePick = new DatePicker();  
+	
 		
 		
 		// icon which can be clicked to clead the value
 		datePick.setClearButtonVisible(true);
 		
         //add button
-		Button add = new Button ("add Note", new Icon(VaadinIcon.PLUS)); 
+		Button add = new Button ("save & add", new Icon(VaadinIcon.PLUS)); 
+//		presenter = new ToDoListPresenter(this);
+
+		add.addClickListener(e -> presenter.addTaskToDB(newtask.getValue(), choice.getValue(), datePick.getValue())); 
 		add.addClickListener(e -> UI.getCurrent().navigate(ToDoListView.class));
+		
+		
 		
 
 		// Creating horizontal layout
@@ -54,16 +66,13 @@ public class TaskEntryView extends TemplateView {
 		VerticalLayout adding2 = new VerticalLayout(datum, datePick, add);
 
 
-		// space
-//		Label space2 = new Label("  "); 
-//		HorizontalLayout spacing = new HorizontalLayout(space2); 
-		
 		
 		// Adding components to content space
 		super.addContent(adding);
 		super.addContent(adding2);
 
 
+		presenter = new TaskEntryPresenter(this);
 	}
-
+	
 }
