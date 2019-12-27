@@ -1,0 +1,46 @@
+@charset "ISO-8859-1";
+
+#headerStyle, #footerStyle {
+	background-color: lightgreen;
+	width: 100%;
+	padding: 20px;
+}
+
+#footerStyle {
+	position: fixed;
+
+	bottom: 0px;
+}
+
+#contentStyle {
+	background-color: lightblue;
+	
+}
+
+
+.wrapper {
+	padding: 40px;
+	width: 100%;
+	background-color: var(--lumo-primary-color-10pct);
+	align-items: center;
+}
+
+.wrapper label {
+	font-size: var(--lumo-font-size-xl);
+	
+}
+
+.column {
+	justify-content: start;
+	align-items: center;
+	flex-grow: 15;
+}
+
+.wrapperField {
+	padding: 5px;
+	width: 25%;
+	background-color: var(--lumo-success-color-50pct:);
+	align-items: center;
+}
+
+

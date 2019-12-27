@@ -11,57 +11,52 @@ import javax.persistence.TableGenerator;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 
 @Entity
+
 public class StatusModel {
 
-	public StatusModel(String dependend, String independend, String withHelp, int id) {
-		this.dependend = dependend;
-		this.independend = independend;
-		this.withHelp = withHelp;
+	// String dependend;
+	@Id
+	@GeneratedValue
+	int id;
+	int level;
+	String task;
+
+	
+	public StatusModel(int level, String task, int id) {
+		this.level = level;
+		this.task = task;
 		this.id = id;
+	}
+
+	public StatusModel(int level, String task) {
+		this.level = level;
+		this.task = task;
 	}
 
 	public StatusModel() {
 
 	}
 
-	// String dependend;
-	String dependend;
-	String independend;
-	String withHelp;
-	int id;
-
-	@Id
-	@GeneratedValue
-
-	private String getDependend() {
-		return dependend;
+	public String Gettask() {
+		return task;
+	}
+	
+	public void setTask(String task) {
+		this.task = task;
+	}
+	
+	public int getLevel() {
+		return level;
+	}
+	public void setLevel(int level) {
+		this.level = level;
 	}
 
-	private void setDependend(String dependend) {
-		this.dependend = dependend;
-	}
-
-	private String getIndependend() {
-		return independend;
-	}
-
-	private void setIndependend(String independend) {
-		this.independend = independend;
-	}
-
-	private String getWithHelp() {
-		return withHelp;
-	}
-
-	private void setWithHelp(String withHelp) {
-		this.withHelp = withHelp;
-	}
-
-	private int getId() {
+	public int getId() {
 		return id;
 	}
 
-	private void setId(int id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
