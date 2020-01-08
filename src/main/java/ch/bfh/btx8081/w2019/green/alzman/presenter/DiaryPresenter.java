@@ -12,7 +12,7 @@ import com.vaadin.flow.component.button.Button;
 import ch.bfh.btx8081.w2019.green.alzman.model.AddDiaryModel;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 import ch.bfh.btx8081.w2019.green.alzman.view.DiaryView;
-import ch.bfh.btx8081.w2019.green.alzman.view.EntryRecordDiary;
+import ch.bfh.btx8081.w2019.green.alzman.view.DiaryAddViewImpl;
 
 public class DiaryPresenter implements DiaryView.DiaryViewListener {
 
@@ -64,7 +64,7 @@ public class DiaryPresenter implements DiaryView.DiaryViewListener {
 
 	private void openAddDiaryView() {
 		System.out.println("take me");
-		UI.getCurrent().navigate(EntryRecordDiary.class);
+		UI.getCurrent().navigate(DiaryAddViewImpl.class);
 	}
 
 	@Override
