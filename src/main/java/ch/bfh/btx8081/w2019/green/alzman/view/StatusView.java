@@ -1,6 +1,5 @@
 package ch.bfh.btx8081.w2019.green.alzman.view;
 
-import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.contextmenu.MenuItem;
@@ -14,14 +13,11 @@ import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.menubar.MenuBar;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 
 import ch.bfh.btx8081.w2019.green.alzman.model.StatusModel;
 import ch.bfh.btx8081.w2019.green.alzman.presenter.StatusPresenter;
-import ch.bfh.btx8081.w2019.green.alzman.presenter.UserManagementPresenter;
-import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 
 /**
  * The user management view will be used to add and remove users of the app

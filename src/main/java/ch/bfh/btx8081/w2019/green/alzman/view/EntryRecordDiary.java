@@ -1,20 +1,17 @@
 package ch.bfh.btx8081.w2019.green.alzman.view;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
-import com.vaadin.flow.component.listbox.ListBox;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
-import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
+
 import ch.bfh.btx8081.w2019.green.alzman.presenter.AddDiaryPresenter;
-import ch.bfh.btx8081.w2019.green.alzman.presenter.UserManagementPresenter;
 
 /**
  * The user management view will be used to add and remove users of the app

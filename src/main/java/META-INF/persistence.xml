@@ -8,7 +8,7 @@
 		<class>ch.bfh.btx8081.w2019.green.alzman.model.CalendarModel</class>
 		<class>ch.bfh.btx8081.w2019.green.alzman.model.ImportantNotesDataModel</class>
 		<class>ch.bfh.btx8081.w2019.green.alzman.model.StatusModel</class>
-		<class>ch.bfh.btx8081.w2019.green.alzman.model.User</class>
+		<class>ch.bfh.btx8081.w2019.green.alzman.model.UserModel</class>
 		<class>ch.bfh.btx8081.w2019.green.alzman.model.Task</class>
 		<class>ch.bfh.btx8081.w2019.green.alzman.model.Patient</class>
 		<properties>

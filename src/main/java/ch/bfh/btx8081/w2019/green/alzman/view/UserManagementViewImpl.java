@@ -1,4 +1,4 @@
-package usermanagement;
+package ch.bfh.btx8081.w2019.green.alzman.view;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,8 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 
-import ch.bfh.btx8081.w2019.green.alzman.view.TemplateView;
+import ch.bfh.btx8081.w2019.green.alzman.model.UserModel;
+import ch.bfh.btx8081.w2019.green.alzman.presenter.UserManagementPresenter;
 
 /**
  * The user management view will be used to add and remove users of the app

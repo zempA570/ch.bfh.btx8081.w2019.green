@@ -4,20 +4,14 @@ import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Query;
 
-import com.vaadin.flow.component.datepicker.DatePicker;
-import com.vaadin.flow.component.timepicker.TimePicker;
-
 import ch.bfh.btx8081.w2019.green.alzman.model.CalendarModel;
-import ch.bfh.btx8081.w2019.green.alzman.model.User;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 import ch.bfh.btx8081.w2019.green.alzman.view.CalendarView;
-import ch.bfh.btx8081.w2019.green.alzman.view.UserManagementView;
 
 /**
  * 
@@ -47,7 +41,6 @@ public class CalendarPresenter {
 		CalendarModel addAppointment = new CalendarModel(datePick, time, author, Entry);
 
 		// DB stuff
-		DbService.init();
 		DbService.em.getTransaction().begin();
 		DbService.em.persist(addAppointment);
 		DbService.em.getTransaction().commit();

@@ -16,7 +16,6 @@ import com.vaadin.server.BrowserWindowOpener;
 import com.vaadin.ui.renderers.ImageRenderer;
 
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
-import usermanagement.UserManagementViewImpl;
 
 @Route("dashboard")
 @PWA(name = "Project Base for Vaadin", shortName = "Project Base")

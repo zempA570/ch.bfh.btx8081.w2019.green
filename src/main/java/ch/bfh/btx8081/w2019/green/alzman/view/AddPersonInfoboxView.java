@@ -11,21 +11,16 @@ import com.vaadin.flow.component.html.H4;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
-import com.vaadin.flow.component.listbox.ListBox;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.radiobutton.RadioButtonGroup;
-import com.vaadin.flow.component.radiobutton.RadioGroupVariant;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.BinderValidationStatus;
 import com.vaadin.flow.data.binder.BindingValidationStatus;
 import com.vaadin.flow.router.Route;
 
-import ch.bfh.btx8081.w2019.green.alzman.model.AddAdress;
 import ch.bfh.btx8081.w2019.green.alzman.model.AddPerson;
 import ch.bfh.btx8081.w2019.green.alzman.presenter.AddPersonPresenter;
-import ch.bfh.btx8081.w2019.green.alzman.presenter.UserManagementPresenter;
 
 @Route("AddPersonInfoboxView")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")

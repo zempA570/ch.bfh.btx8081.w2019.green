@@ -1,15 +1,10 @@
 package ch.bfh.btx8081.w2019.green.alzman.presenter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Query;
 
-import com.vaadin.flow.component.contextmenu.MenuItem;
-import com.vaadin.ui.Component.Event;
-
 import ch.bfh.btx8081.w2019.green.alzman.model.StatusModel;
-import ch.bfh.btx8081.w2019.green.alzman.model.User;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 import ch.bfh.btx8081.w2019.green.alzman.view.StatusView;
 
@@ -40,7 +35,6 @@ public class StatusPresenter {
 	public void addTaskToDB(String str, int level) {
 		StatusModel sm = new StatusModel(level, str);
 
-		DbService.init();
 		DbService.em.getTransaction().begin();
 		DbService.em.persist(sm);
 		DbService.em.getTransaction().commit();
