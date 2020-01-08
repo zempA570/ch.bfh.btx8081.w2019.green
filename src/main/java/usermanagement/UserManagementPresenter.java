@@ -109,10 +109,10 @@ public class UserManagementPresenter implements UserManagementView.UserManagagem
 		switch (buttonText) {
 		case "Add User":
 			addUser();
-			;
+			break;
 		case "Delete User":
 			deleteUser();
-			;
+			break;
 		default:
 			// TODO
 			;
