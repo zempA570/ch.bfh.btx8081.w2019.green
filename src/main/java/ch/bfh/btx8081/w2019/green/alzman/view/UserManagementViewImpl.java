@@ -71,9 +71,8 @@ public class UserManagementViewImpl extends TemplateView implements UserManageme
 		super.addContent(hlAddUser);
 		
 		UserModel model = new UserModel();
-		UserManagementViewImpl view = this;
 		// The presenter connects the model and view
-		new UserManagementPresenter(view, model);
+		new UserManagementPresenter(this, model);
 
 	}
 
@@ -99,13 +98,13 @@ public class UserManagementViewImpl extends TemplateView implements UserManageme
 	}
 
 	@Override
-	public void addListener(UserManagagementViewListener listener) {
-		listeners.add(listener);
+	public String getComboboxValue() {
+		return cmbbxUserSelection.getValue();
 	}
 
 	@Override
-	public String getComboboxValue() {
-		return cmbbxUserSelection.getValue();
+	public void addListener(UserManagagementViewListener listener) {
+		listeners.add(listener);
 	}
 
 }

@@ -6,18 +6,22 @@ import java.util.Optional;
 
 import javax.persistence.Query;
 
+import com.vaadin.flow.component.UI;
+import com.vaadin.flow.component.button.Button;
+
 import ch.bfh.btx8081.w2019.green.alzman.model.AddDiaryModel;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
-import ch.bfh.btx8081.w2019.green.alzman.view.Diary;
-import ch.bfh.btx8081.w2019.green.alzman.view.TemplateView;
+import ch.bfh.btx8081.w2019.green.alzman.view.DiaryView;
+import ch.bfh.btx8081.w2019.green.alzman.view.EntryRecordDiary;
 
-public class DiaryPresenter extends TemplateView {
+public class DiaryPresenter implements DiaryView.DiaryViewListener {
 
+	private DiaryView view;
 	private List<AddDiaryModel> diarys;
-	private Diary view;
 
-	public DiaryPresenter(Diary diary) {
+	public DiaryPresenter(DiaryView diary) {
 		this.view = diary;
+		view.addListener(this);
 
 		getallDiarys();
 	}
@@ -36,7 +40,7 @@ public class DiaryPresenter extends TemplateView {
 
 	}
 
-	public void deleteEntry(Optional<String> id) {
+	private void deleteEntry(Optional<String> id) {
 
 		String tempId = id.get();
 
@@ -54,6 +58,27 @@ public class DiaryPresenter extends TemplateView {
 			view.clearEntries();
 			getallDiarys();
 
+		}
+
+	}
+
+	private void openAddDiaryView() {
+		System.out.println("take me");
+		UI.getCurrent().navigate(EntryRecordDiary.class);
+	}
+
+	@Override
+	public void buttonClick(Button button) {
+
+		String buttonText = button.getText();
+
+		switch (buttonText) {
+		case "Add new Diarymodel":
+			openAddDiaryView();
+			break;
+		default:
+			deleteEntry(button.getId());
+			break;
 		}
 
 	}
