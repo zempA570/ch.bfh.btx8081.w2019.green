@@ -11,7 +11,8 @@ import javax.persistence.TableGenerator;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 
 /**
- * This class is used to store information about the users/relatives of patients.
+ * This class is used to store information about the users/relatives of
+ * patients.
  * 
  * @author Adrian
  *
@@ -23,17 +24,18 @@ import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 @Table(name = "Relative")
 public class User {
 
-	//@TableGenerator creates a generator with the chosen name, value etc.
-	//@Id mean this variable is the primary key in the table
-	//@GeneratedValue means the value of this variable will be generated in the database by the "userIDGenerator"
+	// @TableGenerator creates a generator with the chosen name, value etc.
+	// @Id mean this variable is the primary key in the table
+	// @GeneratedValue means the value of this variable will be generated in the
+	// database by the "userIDGenerator"
 	@TableGenerator(name = "userIDGenerator", allocationSize = 1, initialValue = 1)
 	@Id
 	@GeneratedValue(generator = "userIDGenerator")
 	int id;
-	
-	//Other variables
-	String lastname;
+
+	// Other variables
 	String firstname;
+	String lastname;
 
 	// Constructor to create Users in code
 	public User(String firstname, String lastname) {
@@ -43,9 +45,9 @@ public class User {
 
 	// No-Args constructor is required by JPA
 	public User() {
-		
+
 	}
-	
+
 	// setters
 
 	public void setFirstname(String firstname) {
@@ -57,7 +59,7 @@ public class User {
 	}
 
 	// getters
-	
+
 	public String getFirstname() {
 		return firstname;
 	}
@@ -65,7 +67,7 @@ public class User {
 	public String getLastname() {
 		return lastname;
 	}
-	
+
 	public String getFullName() {
 		return firstname + " " + lastname;
 	}

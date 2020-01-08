@@ -17,7 +17,7 @@ import com.vaadin.flow.router.Route;
 /**
  * The user management view will be used to add and remove users of the app
  */
-@Route("Login")
+@Route("")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class LogIn extends TemplateView {
 
@@ -35,7 +35,7 @@ public class LogIn extends TemplateView {
 		//Buttons for log in or to register new user
 		Button submit = new Button("einloggen");
 		Button register = new Button("new register", new Icon(VaadinIcon.PLUS)); 
-		register.addClickListener(e -> UI.getCurrent().navigate(RegisterUser.class));
+		register.addClickListener(e -> UI.getCurrent().navigate(RegisterPatientView.class));
 		HorizontalLayout hor = new HorizontalLayout(submit, register); 
 
 		//Creating Vertical layout
