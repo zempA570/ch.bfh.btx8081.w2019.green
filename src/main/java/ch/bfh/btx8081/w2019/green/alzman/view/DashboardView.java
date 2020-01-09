@@ -86,7 +86,7 @@ public class DashboardView extends TemplateView {
 		statusIcon.addClickListener(e -> UI.getCurrent().navigate(StatusView.class));
 		todoIcon.addClickListener(e -> UI.getCurrent().navigate(ToDoListView.class));
 		diaryIcon.addClickListener(e -> UI.getCurrent().navigate(DiaryViewImpl.class));
-		importantNotesIcon.addClickListener(e -> UI.getCurrent().navigate(NotesView.class));
+		importantNotesIcon.addClickListener(e -> UI.getCurrent().navigate(NotesViewImpl.class));
 		infoBoxIcon.addClickListener(e -> UI.getCurrent().navigate(InfoboxViewImpl.class));
 
 		super.addContent(iconViewCentral);
