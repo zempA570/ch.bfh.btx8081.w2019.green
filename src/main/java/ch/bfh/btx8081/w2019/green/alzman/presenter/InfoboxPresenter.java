@@ -1,13 +1,9 @@
 package ch.bfh.btx8081.w2019.green.alzman.presenter;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
 import com.vaadin.flow.component.UI;
@@ -19,7 +15,6 @@ import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxAddAdressViewImpl;
 import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxAddPersonViewImpl;
 import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxView;
-import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxViewImpl;
 
 public class InfoboxPresenter implements InfoboxView.InfoboxViewListener {
 

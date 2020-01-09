@@ -9,36 +9,35 @@ import java.util.Objects;
 
 import javax.persistence.Query;
 
+import com.vaadin.flow.component.UI;
+import com.vaadin.flow.component.button.Button;
+
 import ch.bfh.btx8081.w2019.green.alzman.model.CalendarModel;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 import ch.bfh.btx8081.w2019.green.alzman.view.CalendarView;
+import ch.bfh.btx8081.w2019.green.alzman.view.CalendarViewImpl;
 
 /**
  * 
  * @author Thevian
  *
  */
-public class CalendarPresenter {
+public class CalendarPresenter implements CalendarView.CalendarListener {
 
-	private CalendarView Cview;
-	private List<CalendarModel> entries;
+	private CalendarView view;
+	private List<CalendarModel> allAppointments;
 
 	// constructor for the presenter
 	public CalendarPresenter(CalendarView calendarView) {
-		this.Cview = calendarView;
+		view = calendarView;
+		view.addListener(this);
 
-		insertEntriesToCalendar();
-
+		fillCalendar();
 	}
 
-	public void addAppointmentToDB(LocalDate LdatePick, LocalTime LtimePick, String author, String Entry) {
+	public void addAppointmentToDB() {
 
-		Date datePick = Date.valueOf(LdatePick);
-
-		Time time = Time.valueOf(LtimePick);
-		// create new user
-
-		CalendarModel addAppointment = new CalendarModel(datePick, time, author, Entry);
+		CalendarModel addAppointment = view.getAppointmentFromFields();
 
 		// DB stuff
 		DbService.em.getTransaction().begin();
@@ -47,40 +46,57 @@ public class CalendarPresenter {
 
 	}
 
-	public void deleteAppointment(String id) {
+	public void deleteAppointment() {
 
-		CalendarModel entryToDelete = null;
+		int idToDelete = Integer.parseInt(view.getIdForAppointmentToDelete());
+		
+		CalendarModel calendarModelToDelete = null;
+		
 
-		for (CalendarModel entries : entries) {
-
-			if (Objects.equals(entries.getId(), id))
-
-				System.out.println(entries.getId());
-			System.out.println(id);
-
-			{
-
-				entryToDelete = entries;
+		for (CalendarModel entry : allAppointments) {
+			if (Objects.equals(entry.getId(), idToDelete)) {
+				calendarModelToDelete = entry;
 			}
-
 		}
-		if (entryToDelete != null) {
+
+		if (calendarModelToDelete != null) {
 			DbService.em.getTransaction().begin();
-			DbService.em.remove(entryToDelete);
+			DbService.em.remove(calendarModelToDelete);
 			DbService.em.getTransaction().commit();
-
 		}
+	}
+
+	public void fillCalendar() {
+		Query query = DbService.em.createNativeQuery("SELECT * FROM CALENDARMODEL", CalendarModel.class);
+		allAppointments = query.getResultList();
+
+		for (CalendarModel appointment : allAppointments) {
+			view.addEntryToCalendar(appointment);
+		}
+	}
+
+	private void reloadPage() {
+		UI.getCurrent().getPage().reload();
 
 	}
 
-	public void insertEntriesToCalendar() {
+	@Override
+	public void buttonClick(Button button) {
 
-		Query query = DbService.em.createNativeQuery("SELECT * FROM CALENDARMODEL", CalendarModel.class);
+		String buttonText = button.getText();
 
-		entries = query.getResultList();
-
-		for (CalendarModel entries : entries) {
-			Cview.addEntryToCalendar(entries);
+		switch (buttonText) {
+		case "Eintrag hinzufügen":
+			addAppointmentToDB();
+			reloadPage();
+			break;
+		case "Eintrag löschen":
+			deleteAppointment();
+			reloadPage();
+			break;
+		default:
+			// TODO
+			;
 		}
 
 	}
