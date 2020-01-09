@@ -105,7 +105,7 @@ public class AddAdressInfoboxView extends TemplateView {
 
 				addAdressPresenter.addAdress(name.getValue(), adress.getValue(), adrNo.getValue(), postcode.getValue(),
 						city.getValue(), phoneNo.getValue());
-				UI.getCurrent().navigate(InfoboxView.class);
+				UI.getCurrent().navigate(InfoboxViewImpl.class);
 
 			} else {
 				BinderValidationStatus<AddAdress> checkStatments = binderCheckAdress.validate();
@@ -119,7 +119,7 @@ public class AddAdressInfoboxView extends TemplateView {
 
 		// Button for cancel the prosses for to add the adress in the Infobox
 		Button cancelBtn = new Button("Cancel");
-		cancelBtn.addClickListener(event -> UI.getCurrent().navigate(InfoboxView.class));
+		cancelBtn.addClickListener(event -> UI.getCurrent().navigate(InfoboxViewImpl.class));
 
 		HorizontalLayout namePos = new HorizontalLayout();
 		namePos.add(name);

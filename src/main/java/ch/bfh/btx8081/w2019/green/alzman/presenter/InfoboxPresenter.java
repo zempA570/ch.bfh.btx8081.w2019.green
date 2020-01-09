@@ -10,12 +10,18 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
+import com.vaadin.flow.component.UI;
+import com.vaadin.flow.component.button.Button;
+
 import ch.bfh.btx8081.w2019.green.alzman.model.AddAdress;
 import ch.bfh.btx8081.w2019.green.alzman.model.AddPerson;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
+import ch.bfh.btx8081.w2019.green.alzman.view.AddAdressInfoboxView;
+import ch.bfh.btx8081.w2019.green.alzman.view.AddPersonInfoboxView;
 import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxView;
+import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxViewImpl;
 
-public class InfoboxPresenter {
+public class InfoboxPresenter implements InfoboxView.InfoboxViewListener {
 
 	private InfoboxView view;
 	private List<AddPerson> persons;
@@ -23,6 +29,7 @@ public class InfoboxPresenter {
 
 	public InfoboxPresenter(InfoboxView infoboxView) {
 		view = infoboxView;
+		view.addListener(this);
 
 		fillTabelleWithPersons();
 		fillTabelleWithAdress();
@@ -30,44 +37,37 @@ public class InfoboxPresenter {
 
 	public void fillTabelleWithPersons() {
 
-		if (persons == null) {
+		// DB stuff where we get all the users
+		Query query = DbService.em.createNativeQuery("SELECT * FROM ImportantPerson", AddPerson.class);
 
-			// DB stuff where we get all the users
-			Query query = DbService.em.createNativeQuery("SELECT * FROM ImportantPerson", AddPerson.class);
+		// get list of users out of the query
+		persons = query.getResultList();
 
-			// get list of users out of the query
-			persons = query.getResultList();
+		view.fillGridWithUsers(persons);
 
-			view.fillGridWithUsers(persons);
-
-		}
 	}
 
 	public void fillTabelleWithAdress() {
 
-		if (adresses == null) {
+		// DB stuff where we get all the users
+		Query query = DbService.em.createNativeQuery("SELECT * FROM ImportantAdress", AddAdress.class);
 
-			// DB stuff where we get all the users
-			Query query = DbService.em.createNativeQuery("SELECT * FROM ImportantAdress", AddAdress.class);
+		// get list of users out of the query
+		adresses = query.getResultList();
 
-			// get list of users out of the query
-			adresses = query.getResultList();
+		view.fillGridWithAdress(adresses);
 
-			view.fillGridWithAdress(adresses);
-
-		}
 	}
 
-	public void deletePerson(Set<AddPerson> person) {
+	public void deletePerson() {
+
+		Set<AddPerson> person = view.getSelectedPerson();
 
 		AddPerson test = person.stream().findFirst().get();
 		test.getId();
 
-		DbService.em.getTransaction().begin();
-
 		// get the id number of the user which is at the beginning of the string
 		int PersonId = test.getId();
-		;
 
 		AddPerson personToDelete = null;
 
@@ -81,25 +81,21 @@ public class InfoboxPresenter {
 		}
 
 		// this is the part where we use the DB
-		DbService.em.remove(personToDelete);
-		DbService.em.getTransaction().commit();
+		DbService.remove(personToDelete);
 
 		fillTabelleWithPersons();
 
-		DbService.em.close();
-
 	}
-	
-	public void deleteAdress(Set<AddAdress> adress) {
+
+	public void deleteAdress() {
+
+		Set<AddAdress> adress = view.getSelectedAdress();
 
 		AddAdress adressdelete = adress.stream().findFirst().get();
 		adressdelete.getId();
 
-		DbService.em.getTransaction().begin();
-
 		// get the id number of the user which is at the beginning of the string
 		int AdressId = adressdelete.getId();
-		;
 
 		AddAdress adressToDelete = null;
 
@@ -113,13 +109,45 @@ public class InfoboxPresenter {
 		}
 
 		// this is the part where we use the DB
-		DbService.em.remove(adressToDelete);
-		DbService.em.getTransaction().commit();
+		DbService.remove(adressToDelete);
+
 
 		fillTabelleWithAdress();
 
-		DbService.em.close();
 
 	}
-	
+
+	public void navigateToAddPerson() {
+		UI.getCurrent().navigate(AddPersonInfoboxView.class);
+	}
+
+	public void navigateToAddAdress() {
+		UI.getCurrent().navigate(AddAdressInfoboxView.class);
+	}
+
+	@Override
+	public void buttonClick(Button button) {
+
+		String buttonText = button.getText();
+
+		switch (buttonText) {
+		case "Add Person":
+			navigateToAddPerson();
+			break;
+		case "Delete Person":
+			deletePerson();
+			break;
+		case "Add Adress":
+			navigateToAddAdress();
+			break;
+		case "Delete Adress":
+			deleteAdress();
+			break;
+		default:
+			// TODO
+			;
+		}
+
+	}
+
 }

@@ -119,7 +119,7 @@ public class AddPersonInfoboxView extends TemplateView {
 
 				addPersonPresenter.addPerson(gender.getValue().toString(), firstName.getValue(), lastName.getValue(),
 						adress.getValue(), adrNo.getValue(), postcode.getValue(), city.getValue(), phoneNo.getValue());
-				UI.getCurrent().navigate(InfoboxView.class);
+				UI.getCurrent().navigate(InfoboxViewImpl.class);
 			} else {
 				BinderValidationStatus<AddPerson> checkStatments = binderCheckPerson.validate();
 				String exeptionMsg = checkStatments.getFieldValidationStatuses().stream()
@@ -132,7 +132,7 @@ public class AddPersonInfoboxView extends TemplateView {
 
 		// Button for cancel the prosses for to add person in the Infobox
 		Button cancelBtn = new Button("Cancel");
-		cancelBtn.addClickListener(event -> UI.getCurrent().navigate(InfoboxView.class));
+		cancelBtn.addClickListener(event -> UI.getCurrent().navigate(InfoboxViewImpl.class));
 
 		HorizontalLayout genderPos = new HorizontalLayout();
 		genderPos.add(gender);

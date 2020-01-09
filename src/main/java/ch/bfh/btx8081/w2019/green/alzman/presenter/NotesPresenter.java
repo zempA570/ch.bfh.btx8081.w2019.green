@@ -14,7 +14,7 @@ import ch.bfh.btx8081.w2019.green.alzman.model.AddAdress;
 import ch.bfh.btx8081.w2019.green.alzman.model.AddPerson;
 import ch.bfh.btx8081.w2019.green.alzman.model.ImportantNotesDataModel;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
-import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxView;
+import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxViewImpl;
 import ch.bfh.btx8081.w2019.green.alzman.view.NotesView;
 
 public class NotesPresenter {
