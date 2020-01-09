@@ -43,7 +43,6 @@ public class InfoboxAddPersonViewImpl extends TemplateView implements InfoboxAdd
 	private TextField city;
 
 	private Binder<AddPerson> binderCheckPerson;
-
 	private Label label;
 
 	public InfoboxAddPersonViewImpl() {

@@ -1,5 +1,7 @@
 package ch.bfh.btx8081.w2019.green.alzman.view;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -19,11 +21,14 @@ import com.vaadin.flow.data.binder.BindingValidationStatus;
 import com.vaadin.flow.router.Route;
 
 import ch.bfh.btx8081.w2019.green.alzman.model.AddAdress;
-import ch.bfh.btx8081.w2019.green.alzman.presenter.AddAdressPresenter;
+import ch.bfh.btx8081.w2019.green.alzman.presenter.InfoboxAddAdressPresenter;
+import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxAddPersonView.InfoboxAddPersonListener;
 
 @Route("AddAdressInfobox")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
-public class AddAdressInfoboxView extends TemplateView {
+public class InfoboxAddAdressViewImpl extends TemplateView implements InfoboxAddAdressView {
+
+	private List<InfoboxAddAdressListener> listeners = new ArrayList<InfoboxAddAdressListener>();
 
 	// variabel for the suptitel Add Adress
 	private H4 title1;
@@ -35,16 +40,12 @@ public class AddAdressInfoboxView extends TemplateView {
 	private TextField phoneNo;
 
 	private Binder<AddAdress> binderCheckAdress;
-
 	private Label label;
 
-	private AddAdressPresenter addAdressPresenter;
-
-	public AddAdressInfoboxView() {
+	public InfoboxAddAdressViewImpl() {
 
 		// Change title in header
 		super.setHeaderTitle("Infobox");
-
 
 		// Titel for add a person
 		title1 = new H4();
@@ -73,8 +74,7 @@ public class AddAdressInfoboxView extends TemplateView {
 		phoneNo.setPlaceholder("0041 xx xxx xx xx");
 
 		this.label = new Label();
-		
-		
+
 		this.binderCheckAdress = new Binder<>();
 		binderCheckAdress.forField(name).asRequired("The Name is missing!").bind(AddAdress::getName,
 				AddAdress::setName);
@@ -93,33 +93,22 @@ public class AddAdressInfoboxView extends TemplateView {
 
 		Button addAdress = new Button("Add Adress", new Icon(VaadinIcon.PLUS));
 		addAdress.addClickListener(e -> {
-
-			AddAdress adr = new AddAdress();
-			if (binderCheckAdress.writeBeanIfValid(adr)) {
-				adr.setName(this.name.getValue());
-				adr.setAdress(this.adress.getValue());
-				adr.setAdressNr(this.adrNo.getValue());
-				adr.setPostcode(this.postcode.getValue());
-				adr.setCity(this.city.getValue());
-				adr.setPhonenummber(this.phoneNo.getValue());
-
-				addAdressPresenter.addAdress(name.getValue(), adress.getValue(), adrNo.getValue(), postcode.getValue(),
-						city.getValue(), phoneNo.getValue());
-				UI.getCurrent().navigate(InfoboxViewImpl.class);
-
+			if (binderCheckAdress.isValid()) {
+				for (InfoboxAddAdressListener listener : listeners) {
+					listener.buttonClick(e.getSource());
+				}
 			} else {
-				BinderValidationStatus<AddAdress> checkStatments = binderCheckAdress.validate();
-				String exeptionMsg = checkStatments.getFieldValidationStatuses().stream()
-						.filter(BindingValidationStatus::isError).map(BindingValidationStatus::getMessage)
-						.map(Optional::get).distinct().collect(Collectors.joining(", "));
+				binderCheckAdress.validate();
 				label.setText("An error has occurred");
 			}
-
 		});
 
 		// Button for cancel the prosses for to add the adress in the Infobox
 		Button cancelBtn = new Button("Cancel");
-		cancelBtn.addClickListener(event -> UI.getCurrent().navigate(InfoboxViewImpl.class));
+		cancelBtn.addClickListener(event -> {
+			for (InfoboxAddAdressListener listener : listeners)
+				listener.buttonClick(event.getSource());
+		});
 
 		HorizontalLayout namePos = new HorizontalLayout();
 		namePos.add(name);
@@ -142,7 +131,27 @@ public class AddAdressInfoboxView extends TemplateView {
 		// add the contents one the View
 		super.addContent(endPos);
 
-		addAdressPresenter = new AddAdressPresenter(this);
+		new InfoboxAddAdressPresenter(this);
+	}
+
+	@Override
+	public void addListener(InfoboxAddAdressListener listener) {
+		listeners.add(listener);
+	}
+
+	@Override
+	public AddAdress getAdressFromFields() {
+		
+		AddAdress newAdress = new AddAdress();
+		
+		newAdress.setAdress(adress.getValue());
+		newAdress.setAdressNr(adrNo.getValue());
+		newAdress.setCity(city.getValue());
+		newAdress.setName(name.getValue());
+		newAdress.setPhonenummber(phoneNo.getValue());
+		newAdress.setPostcode(postcode.getValue());
+		
+		return newAdress;
 	}
 
 }
