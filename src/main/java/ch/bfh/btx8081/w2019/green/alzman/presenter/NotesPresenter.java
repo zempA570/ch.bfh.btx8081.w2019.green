@@ -10,7 +10,7 @@ import com.vaadin.flow.component.button.Button;
 
 import ch.bfh.btx8081.w2019.green.alzman.model.ImportantNotesDataModel;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
-import ch.bfh.btx8081.w2019.green.alzman.view.AddImportantNotes;
+import ch.bfh.btx8081.w2019.green.alzman.view.NotesAddViewImpl;
 import ch.bfh.btx8081.w2019.green.alzman.view.NotesView;
 import ch.bfh.btx8081.w2019.green.alzman.view.NotesViewImpl;
 
@@ -83,7 +83,7 @@ public class NotesPresenter implements NotesView.NotesListener {
 			deleteEntry();
 			break;
 		case "Refresh":
-			reloadPage();
+			fillTableWithNotes();
 			System.out.println("jo klappt");
 			break;
 		default:
@@ -92,12 +92,8 @@ public class NotesPresenter implements NotesView.NotesListener {
 		}
 	}
 
-	private void reloadPage() {
-		UI.getCurrent().navigate(NotesViewImpl.class);
-	}
-
 	private void navigateToCreateView() {
-		UI.getCurrent().navigate(AddImportantNotes.class);
+		UI.getCurrent().navigate(NotesAddViewImpl.class);
 	}
 
 }
