@@ -1,5 +1,7 @@
 package ch.bfh.btx8081.w2019.green.alzman.view;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -20,11 +22,14 @@ import com.vaadin.flow.data.binder.BindingValidationStatus;
 import com.vaadin.flow.router.Route;
 
 import ch.bfh.btx8081.w2019.green.alzman.model.AddPerson;
-import ch.bfh.btx8081.w2019.green.alzman.presenter.AddPersonPresenter;
+import ch.bfh.btx8081.w2019.green.alzman.presenter.InfoboxAddPersonPresenter;
+import ch.bfh.btx8081.w2019.green.alzman.view.UserManagementView.UserManagagementViewListener;
 
 @Route("AddPersonInfoboxView")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
-public class AddPersonInfoboxView extends TemplateView {
+public class InfoboxAddPersonViewImpl extends TemplateView implements InfoboxAddPersonView {
+
+	private List<InfoboxAddPersonListener> listeners = new ArrayList<InfoboxAddPersonListener>();
 
 	// variabel for the suptitel Add person
 	private H4 title1;
@@ -41,9 +46,7 @@ public class AddPersonInfoboxView extends TemplateView {
 
 	private Label label;
 
-	private AddPersonPresenter addPersonPresenter;
-
-	public AddPersonInfoboxView() {
+	public InfoboxAddPersonViewImpl() {
 
 		// Change title in header
 		super.setHeaderTitle("Infobox");
@@ -106,25 +109,12 @@ public class AddPersonInfoboxView extends TemplateView {
 		Button addPerson = new Button("Add Person", new Icon(VaadinIcon.PLUS));
 		addPerson.addClickListener(e -> {
 
-			AddPerson per = new AddPerson();
-			if (binderCheckPerson.writeBeanIfValid(per)) {
-				per.setGender(this.gender.getValue());
-				per.setFirstname(this.firstName.getValue());
-				per.setLastname(this.lastName.getValue());
-				per.setAdress(this.adress.getValue());
-				per.setAdressNr(this.adrNo.getValue());
-				per.setPostcode(this.postcode.getValue());
-				per.setCity(this.city.getValue());
-				per.setPhonenummber(this.phoneNo.getValue());
-
-				addPersonPresenter.addPerson(gender.getValue().toString(), firstName.getValue(), lastName.getValue(),
-						adress.getValue(), adrNo.getValue(), postcode.getValue(), city.getValue(), phoneNo.getValue());
-				UI.getCurrent().navigate(InfoboxViewImpl.class);
+			if (binderCheckPerson.isValid()) {
+				for (InfoboxAddPersonListener listener : listeners) {
+					listener.buttonClick(e.getSource());
+				}
 			} else {
-				BinderValidationStatus<AddPerson> checkStatments = binderCheckPerson.validate();
-				String exeptionMsg = checkStatments.getFieldValidationStatuses().stream()
-						.filter(BindingValidationStatus::isError).map(BindingValidationStatus::getMessage)
-						.map(Optional::get).distinct().collect(Collectors.joining(", "));
+				binderCheckPerson.validate();
 				label.setText("An error has occurred");
 			}
 
@@ -132,7 +122,10 @@ public class AddPersonInfoboxView extends TemplateView {
 
 		// Button for cancel the prosses for to add person in the Infobox
 		Button cancelBtn = new Button("Cancel");
-		cancelBtn.addClickListener(event -> UI.getCurrent().navigate(InfoboxViewImpl.class));
+		cancelBtn.addClickListener(event -> {
+			for (InfoboxAddPersonListener listener : listeners)
+				listener.buttonClick(event.getSource());
+		});
 
 		HorizontalLayout genderPos = new HorizontalLayout();
 		genderPos.add(gender);
@@ -158,8 +151,30 @@ public class AddPersonInfoboxView extends TemplateView {
 		// add the contents in the View
 		super.addContent(endPos);
 
-		addPersonPresenter = new AddPersonPresenter(this);
+		new InfoboxAddPersonPresenter(this);
 
+	}
+
+	@Override
+	public void addListener(InfoboxAddPersonListener listener) {
+		listeners.add(listener);
+	}
+
+	@Override
+	public AddPerson getPersonFromFields() {
+
+		AddPerson person = new AddPerson();
+
+		person.setAdress(adress.getValue());
+		person.setAdressNr(adrNo.getValue());
+		person.setCity(city.getValue());
+		person.setFirstname(firstName.getValue());
+		person.setLastname(lastName.getValue());
+		person.setGender(gender.getValue().toString());
+		person.setPhonenummber(phoneNo.getValue());
+		person.setPostcode(postcode.getValue());
+
+		return person;
 	}
 
 }

@@ -17,7 +17,7 @@ import ch.bfh.btx8081.w2019.green.alzman.model.AddAdress;
 import ch.bfh.btx8081.w2019.green.alzman.model.AddPerson;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 import ch.bfh.btx8081.w2019.green.alzman.view.AddAdressInfoboxView;
-import ch.bfh.btx8081.w2019.green.alzman.view.AddPersonInfoboxView;
+import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxAddPersonViewImpl;
 import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxView;
 import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxViewImpl;
 
@@ -118,7 +118,7 @@ public class InfoboxPresenter implements InfoboxView.InfoboxViewListener {
 	}
 
 	public void navigateToAddPerson() {
-		UI.getCurrent().navigate(AddPersonInfoboxView.class);
+		UI.getCurrent().navigate(InfoboxAddPersonViewImpl.class);
 	}
 
 	public void navigateToAddAdress() {
