@@ -2,10 +2,7 @@ package ch.bfh.btx8081.w2019.green.alzman.view;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
-import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.H4;
@@ -16,14 +13,16 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
-import com.vaadin.flow.data.binder.BinderValidationStatus;
-import com.vaadin.flow.data.binder.BindingValidationStatus;
 import com.vaadin.flow.router.Route;
 
 import ch.bfh.btx8081.w2019.green.alzman.model.AddressModel;
 import ch.bfh.btx8081.w2019.green.alzman.presenter.InfoboxAddAdressPresenter;
-import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxAddPersonView.InfoboxAddPersonListener;
 
+/**
+ * 
+ * @author gausegan
+ *
+ */
 @Route("AddAdressInfobox")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class InfoboxAddAdressViewImpl extends TemplateView implements InfoboxAddAdressView {
@@ -86,8 +85,8 @@ public class InfoboxAddAdressViewImpl extends TemplateView implements InfoboxAdd
 				AddressModel::setPostcode);
 		bndrCheckAdress.forField(txtfCity).asRequired("The City is missing!").bind(AddressModel::getCity,
 				AddressModel::setCity);
-		bndrCheckAdress.forField(txtfPhoneNo).asRequired("The Phonenumber is missing!").bind(AddressModel::getPhonenummber,
-				AddressModel::setPhonenummber);
+		bndrCheckAdress.forField(txtfPhoneNo).asRequired("The Phonenummber is missing!")
+				.bind(AddressModel::getPhonenummber, AddressModel::setPhonenummber);
 
 		// Button for add the adress in the Infobox
 
@@ -140,17 +139,17 @@ public class InfoboxAddAdressViewImpl extends TemplateView implements InfoboxAdd
 	}
 
 	@Override
-	public AddressModel getAdressFromFields() {
-		
+	public AddressModel getAdressFromField() {
+
 		AddressModel newAdress = new AddressModel();
-		
+
 		newAdress.setAdress(txtfAddress.getValue());
 		newAdress.setAdressNr(txtfAddrNo.getValue());
 		newAdress.setCity(txtfCity.getValue());
 		newAdress.setName(txtfName.getValue());
 		newAdress.setPhonenummber(txtfPhoneNo.getValue());
 		newAdress.setPostcode(txtfPostcode.getValue());
-		
+
 		return newAdress;
 	}
 

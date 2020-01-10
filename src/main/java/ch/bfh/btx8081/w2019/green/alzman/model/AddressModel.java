@@ -6,7 +6,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
-
+/**
+ * In this class all information about the important addresses is collected
+ * 
+ * @author gausegan
+ *
+ */
 @Entity
 @Table(name = "Address")
 public class AddressModel {
@@ -93,6 +98,7 @@ public class AddressModel {
 	public void setPhonenummber(String phonenummber) {
 		this.phonenummber = phonenummber;
 	}
+
 	public String getFullDetailsAdress() {
 		return name + " " + address + " " + houseNo + " " + postcode + " " + city + " " + phonenummber;
 	}

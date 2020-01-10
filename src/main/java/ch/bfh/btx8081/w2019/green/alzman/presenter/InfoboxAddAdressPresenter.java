@@ -1,24 +1,23 @@
 package ch.bfh.btx8081.w2019.green.alzman.presenter;
 
-
-import java.util.List;
-import java.util.Objects;
-
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 
 import ch.bfh.btx8081.w2019.green.alzman.model.AddressModel;
-import ch.bfh.btx8081.w2019.green.alzman.model.PersonModel;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxAddAdressView;
-import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxAddAdressViewImpl;
 import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxViewImpl;
 
-
-public class InfoboxAddAdressPresenter implements InfoboxAddAdressView.InfoboxAddAdressListener{
+/**
+ * This class InfoboxAddAdressPresenter controls all methods that are used in
+ * the class InfoboxAddAdressView
+ * 
+ * @author gausegan
+ *
+ */
+public class InfoboxAddAdressPresenter implements InfoboxAddAdressView.InfoboxAddAdressListener {
 
 	private InfoboxAddAdressView view;
-	private List<AddressModel> lstAddresses;
 
 	public InfoboxAddAdressPresenter() {
 
@@ -30,24 +29,24 @@ public class InfoboxAddAdressPresenter implements InfoboxAddAdressView.InfoboxAd
 		view.addListener(this);
 	}
 
-	public void addAdress() {
-		
+	private void addAdress() {
+
 		// create new user
-		AddressModel newAdress = view.getAdressFromFields();
+		AddressModel newAdress = view.getAdressFromField();
 
 		// DB stuff
 		DbService.persist(newAdress);
 
 	}
-	
+
 	private void navigateToInfobox() {
 		UI.getCurrent().navigate(InfoboxViewImpl.class);
 	}
 
 	@Override
-	public void buttonClick(Button button) {
+	public void buttonClick(Button btnClick) {
 
-		String buttonText = button.getText();
+		String buttonText = btnClick.getText();
 
 		switch (buttonText) {
 		case "Add Adress":
@@ -61,11 +60,7 @@ public class InfoboxAddAdressPresenter implements InfoboxAddAdressView.InfoboxAd
 			// TODO
 			;
 		}
-		
+
 	}
 
 }
-
-
-
-

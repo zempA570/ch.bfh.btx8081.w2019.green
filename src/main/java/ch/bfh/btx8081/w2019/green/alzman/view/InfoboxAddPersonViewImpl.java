@@ -2,10 +2,7 @@ package ch.bfh.btx8081.w2019.green.alzman.view;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
-import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.dependency.CssImport;
@@ -17,13 +14,16 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
-import com.vaadin.flow.data.binder.BinderValidationStatus;
-import com.vaadin.flow.data.binder.BindingValidationStatus;
 import com.vaadin.flow.router.Route;
 
 import ch.bfh.btx8081.w2019.green.alzman.model.PersonModel;
 import ch.bfh.btx8081.w2019.green.alzman.presenter.InfoboxAddPersonPresenter;
-import ch.bfh.btx8081.w2019.green.alzman.view.UserManagementView.UserManagagementViewListener;
+
+/**
+ * 
+ * @author gausegan
+ *
+ */
 
 @Route("AddPersonInfoboxView")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
@@ -85,7 +85,6 @@ public class InfoboxAddPersonViewImpl extends TemplateView implements InfoboxAdd
 		city.setPlaceholder("Bern");
 
 		this.lblMessage = new Label();
-		
 
 		this.bndrCheckPerson = new Binder<>();
 		bndrCheckPerson.forField(cmbbxGender).asRequired("The Gender is missing!").bind(PersonModel::getGender,
@@ -94,8 +93,8 @@ public class InfoboxAddPersonViewImpl extends TemplateView implements InfoboxAdd
 				PersonModel::setLastname);
 		bndrCheckPerson.forField(txtfFirstName).asRequired("The Firstname is missing!").bind(PersonModel::getFirstname,
 				PersonModel::setFirstname);
-		bndrCheckPerson.forField(txtfPhoneNo).asRequired("The Phonenumber is missing!").bind(PersonModel::getPhonenummber,
-				PersonModel::setPhonenummber);
+		bndrCheckPerson.forField(txtfPhoneNo).asRequired("The Phonenumber is missing!")
+				.bind(PersonModel::getPhonenummber, PersonModel::setPhonenummber);
 		bndrCheckPerson.forField(txtfAddress).asRequired("The Adress is missing!").bind(PersonModel::getAdress,
 				PersonModel::setAdress);
 		bndrCheckPerson.forField(txtfAddrNo).asRequired("The Adress Number is missing!").bind(PersonModel::getAdressNr,
@@ -116,7 +115,7 @@ public class InfoboxAddPersonViewImpl extends TemplateView implements InfoboxAdd
 			} else {
 				bndrCheckPerson.validate();
 				lblMessage.setText("Something is wrong");
-				
+
 			}
 
 		});
@@ -162,10 +161,8 @@ public class InfoboxAddPersonViewImpl extends TemplateView implements InfoboxAdd
 	}
 
 	@Override
-	public PersonModel getPersonFromFields() {
-
+	public PersonModel getPersonFromField() {
 		PersonModel person = new PersonModel();
-
 		person.setAdress(txtfAddress.getValue());
 		person.setAdressNr(txtfAddrNo.getValue());
 		person.setCity(city.getValue());
@@ -174,7 +171,6 @@ public class InfoboxAddPersonViewImpl extends TemplateView implements InfoboxAdd
 		person.setGender(cmbbxGender.getValue().toString());
 		person.setPhonenummber(txtfPhoneNo.getValue());
 		person.setPostcode(txtfPostcode.getValue());
-
 		return person;
 	}
 

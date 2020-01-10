@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-import javax.persistence.Query;
-
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 
@@ -16,6 +14,13 @@ import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxAddAdressViewImpl;
 import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxAddPersonViewImpl;
 import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxView;
 
+/**
+ * This class InfoboxPresenter controls all methods that are used in the class
+ * InfoboxView
+ * 
+ * @author gausegan
+ *
+ */
 public class InfoboxPresenter implements InfoboxView.InfoboxViewListener {
 
 	private InfoboxView view;
@@ -27,12 +32,11 @@ public class InfoboxPresenter implements InfoboxView.InfoboxViewListener {
 		view.addListener(this);
 
 		fillTabelleWithPersons();
-		fillTabelleWithAdress();
+		fillTabelleWithAddress();
 	}
 
 	public void fillTabelleWithPersons() {
 
-		
 		// get list of users out of the query
 		lstPersons = DbService.getAllPerson();
 
@@ -40,14 +44,8 @@ public class InfoboxPresenter implements InfoboxView.InfoboxViewListener {
 
 	}
 
-	public void fillTabelleWithAdress() {
-
-
-		// get list of users out of the query
-		lstAddresses = DbService.getAllAddress();
-
-		view.fillGridWithAdress(lstAddresses);
-
+	public void navigateToAddPerson() {
+		UI.getCurrent().navigate(InfoboxAddPersonViewImpl.class);
 	}
 
 	public void deletePerson() {
@@ -78,9 +76,18 @@ public class InfoboxPresenter implements InfoboxView.InfoboxViewListener {
 
 	}
 
-	public void deleteAdress() {
+	public void fillTabelleWithAddress() {
 
-		Set<AddressModel> adress = view.getSelectedAdress();
+		// get list of users out of the query
+		lstAddresses = DbService.getAllAddress();
+
+		view.fillGridWithAdress(lstAddresses);
+
+	}
+
+	public void deleteAddress() {
+
+		Set<AddressModel> adress = view.getSelectedAddress();
 
 		AddressModel adressdelete = adress.stream().findFirst().get();
 		adressdelete.getId();
@@ -102,14 +109,8 @@ public class InfoboxPresenter implements InfoboxView.InfoboxViewListener {
 		// this is the part where we use the DB
 		DbService.remove(adressToDelete);
 
+		fillTabelleWithAddress();
 
-		fillTabelleWithAdress();
-
-
-	}
-
-	public void navigateToAddPerson() {
-		UI.getCurrent().navigate(InfoboxAddPersonViewImpl.class);
 	}
 
 	public void navigateToAddAdress() {
@@ -132,7 +133,7 @@ public class InfoboxPresenter implements InfoboxView.InfoboxViewListener {
 			navigateToAddAdress();
 			break;
 		case "Delete Adress":
-			deleteAdress();
+			deleteAddress();
 			break;
 		default:
 			;

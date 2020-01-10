@@ -1,22 +1,23 @@
 package ch.bfh.btx8081.w2019.green.alzman.presenter;
 
-
-import java.util.List;
-import java.util.Objects;
-
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 
 import ch.bfh.btx8081.w2019.green.alzman.model.PersonModel;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxAddPersonView;
-import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxAddPersonViewImpl;
 import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxViewImpl;
 
+/**
+ * This class InfoboxAddPersonPresenter controls all methods used in the
+ * InfoboxAddPersonView class
+ * 
+ * @author gausegan
+ *
+ */
 public class InfoboxAddPersonPresenter implements InfoboxAddPersonView.InfoboxAddPersonListener {
 
 	private InfoboxAddPersonView view;
-	private List<PersonModel> lstPersons;
 
 	public InfoboxAddPersonPresenter() {
 
@@ -32,20 +33,20 @@ public class InfoboxAddPersonPresenter implements InfoboxAddPersonView.InfoboxAd
 	private void addPerson() {
 
 		// create new user
-		PersonModel newPerson = view.getPersonFromFields();
+		PersonModel newPerson = view.getPersonFromField();
 
 		// DB stuff
 		DbService.persist(newPerson);
 
 	}
-	
+
 	private void navigateToInfobox() {
 		UI.getCurrent().navigate(InfoboxViewImpl.class);
 	}
 
 	@Override
-	public void buttonClick(Button button) {
-		String buttonText = button.getText();
+	public void buttonClick(Button btnClick) {
+		String buttonText = btnClick.getText();
 
 		switch (buttonText) {
 		case "Add Person":

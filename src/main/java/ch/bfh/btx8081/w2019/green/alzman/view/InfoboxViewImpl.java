@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.grid.Grid;
@@ -16,6 +15,11 @@ import ch.bfh.btx8081.w2019.green.alzman.model.AddressModel;
 import ch.bfh.btx8081.w2019.green.alzman.model.PersonModel;
 import ch.bfh.btx8081.w2019.green.alzman.presenter.InfoboxPresenter;
 
+/**
+ * 
+ * @author gausegan
+ *
+ */
 @Route("InfoboxView")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class InfoboxViewImpl extends TemplateView implements InfoboxView {
@@ -68,11 +72,11 @@ public class InfoboxViewImpl extends TemplateView implements InfoboxView {
 		grdImportantPerson.addColumn(PersonModel::getPhonenummber).setHeader("Phonenummber");
 
 		grdImportantPerson.addItemClickListener(event -> {
-			if(grdImportantPerson.getSelectedItems().isEmpty()) {
+			if (grdImportantPerson.getSelectedItems().isEmpty()) {
 				btnDeletePer.setVisible(false);
 			} else {
 				btnDeletePer.setVisible(true);
-			}					
+			}
 		});
 
 		super.addContent(grdImportantPerson);
@@ -111,11 +115,11 @@ public class InfoboxViewImpl extends TemplateView implements InfoboxView {
 		grdImportantAddress.addColumn(AddressModel::getPhonenummber).setHeader("Phonenummber");
 
 		grdImportantAddress.addItemClickListener(event -> {
-			if(grdImportantAddress.getSelectedItems().isEmpty()) {
+			if (grdImportantAddress.getSelectedItems().isEmpty()) {
 				btnDeleteAddr.setVisible(false);
 			} else {
 				btnDeleteAddr.setVisible(true);
-			}					
+			}
 		});
 
 		super.addContent(grdImportantAddress);
@@ -145,7 +149,7 @@ public class InfoboxViewImpl extends TemplateView implements InfoboxView {
 	}
 
 	@Override
-	public Set<AddressModel> getSelectedAdress() {
+	public Set<AddressModel> getSelectedAddress() {
 		return grdImportantAddress.getSelectedItems();
 	}
 

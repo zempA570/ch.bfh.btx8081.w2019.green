@@ -4,14 +4,19 @@ import com.vaadin.flow.component.button.Button;
 
 import ch.bfh.btx8081.w2019.green.alzman.model.PersonModel;
 
+/**
+ * 
+ * @author gausegan
+ *
+ */
 public interface InfoboxAddPersonView {
 
 	interface InfoboxAddPersonListener {
-		void buttonClick(Button button);
+		void buttonClick(Button btnClick);
 	}
 
 	public void addListener(InfoboxAddPersonListener listener);
-	
-	public PersonModel getPersonFromFields();
+
+	public PersonModel getPersonFromField();
 
 }
