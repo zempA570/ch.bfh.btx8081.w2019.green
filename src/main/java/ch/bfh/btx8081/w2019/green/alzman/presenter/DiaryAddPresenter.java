@@ -36,9 +36,11 @@ public class DiaryAddPresenter implements DiaryAddView.DiaryAddViewListener {
 		DiaryModel addnewRecord = new DiaryModel(date, author, entry);
 
 		// DB stuff
-		DbService.em.getTransaction().begin();
-		DbService.em.persist(addnewRecord);
-		DbService.em.getTransaction().commit();
+		//DbService.em.getTransaction().begin();
+		//DbService.em.persist(addnewRecord);
+		//DbService.em.getTransaction().commit();
+		
+		DbService.persist(addnewRecord);
 
 	}
 

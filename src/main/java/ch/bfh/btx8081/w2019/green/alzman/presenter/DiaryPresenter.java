@@ -17,7 +17,7 @@ import ch.bfh.btx8081.w2019.green.alzman.view.DiaryAddViewImpl;
 public class DiaryPresenter implements DiaryView.DiaryViewListener {
 
 	private DiaryView view;
-	private List<DiaryModel> diarys;
+	private List<DiaryModel> lstdiarys;
 
 	public DiaryPresenter(DiaryView diary) {
 		this.view = diary;
@@ -28,12 +28,10 @@ public class DiaryPresenter implements DiaryView.DiaryViewListener {
 
 	private void getallDiarys() {
 
-
-
 		// get list of users out of the query
-		diarys = DbService.getAllDiarys();
+		lstdiarys = DbService.getAllDiarys();
 
-		for (DiaryModel model : diarys) {
+		for (DiaryModel model : lstdiarys) {
 			view.addEntryToView(model);
 
 		}
@@ -46,15 +44,18 @@ public class DiaryPresenter implements DiaryView.DiaryViewListener {
 
 		int idtodelete = Integer.parseInt(tempId);
 
-		for (DiaryModel model : diarys) {
+		for (DiaryModel model : lstdiarys) {
 
 			if (Objects.equals(idtodelete, model.getId())) {
 
-				DbService.em.getTransaction().begin();
-				DbService.em.remove(model);
-				DbService.em.getTransaction().commit();
+				//DbService.em.getTransaction().begin();
+				//DbService.em.remove(model);
+				//DbService.em.getTransaction().commit();
+				DbService.remove(model);
 			}
 
+			
+			
 			view.clearEntries();
 			getallDiarys();
 
@@ -70,9 +71,9 @@ public class DiaryPresenter implements DiaryView.DiaryViewListener {
 	@Override
 	public void buttonClick(Button button) {
 
-		String buttonText = button.getText();
+		String btnText = button.getText();
 
-		switch (buttonText) {
+		switch (btnText) {
 		case "Add new Diarymodel":
 			openAddDiaryView();
 			break;

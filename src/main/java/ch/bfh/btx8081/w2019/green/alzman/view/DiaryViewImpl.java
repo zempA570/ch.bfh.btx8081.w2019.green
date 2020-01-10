@@ -24,58 +24,58 @@ import ch.bfh.btx8081.w2019.green.alzman.presenter.DiaryPresenter;
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class DiaryViewImpl extends TemplateView implements DiaryView {
 
-	private List<DiaryViewListener> listeners = new ArrayList<DiaryViewListener>();
-	private VerticalLayout vert;
-	private VerticalLayout vert2;
+	private List<DiaryViewListener> lstlisteners = new ArrayList<DiaryViewListener>();
+	private VerticalLayout vl1;
+	private VerticalLayout vl2;
 
 	public DiaryViewImpl() {
 
 		super.setHeaderTitle("Diary");
 
 		// Add a new Diarymodel
-		Button button = new Button("Add new Diarymodel", new Icon(VaadinIcon.PLUS));
-		button.addClickListener(e -> {
-			for (DiaryViewListener listener : listeners)
+		Button btnAddDiary = new Button("Add new Diarymodel", new Icon(VaadinIcon.PLUS));
+		btnAddDiary.addClickListener(e -> {
+			for (DiaryViewListener listener : lstlisteners)
 				listener.buttonClick(e.getSource());
 		});
 
 		// Adding components to content space
 
-		vert = new VerticalLayout(button);
-		vert2 = new VerticalLayout();
-		super.addContent(vert);
-		super.addContent(vert2);
+		vl1 = new VerticalLayout(btnAddDiary);
+		vl2 = new VerticalLayout();
+		super.addContent(vl1);
+		super.addContent(vl2);
 		
 		new DiaryPresenter(this);
 	}
 
 	public void addEntryToView(DiaryModel model) {
 
-		TextArea textarea = new TextArea();
-		textarea.setValue(model.getEntry());
-		textarea.setLabel(model.getAuthor() + " " + model.getDate());
+		TextArea txta1 = new TextArea();
+		txta1.setValue(model.getEntry());
+		txta1.setLabel(model.getAuthor() + " " + model.getDate());
 
-		Button button = new Button("Delete", new Icon(VaadinIcon.TRASH));
-		button.setId(Integer.toString(model.getId()));
-		button.addClickListener(e -> {
-			for (DiaryViewListener listener : listeners)
+		Button btndelete = new Button("Delete", new Icon(VaadinIcon.TRASH));
+		btndelete.setId(Integer.toString(model.getId()));
+		btndelete.addClickListener(e -> {
+			for (DiaryViewListener listener : lstlisteners)
 				listener.buttonClick(e.getSource());
 		});
 
-		HorizontalLayout horizon = new HorizontalLayout();
-		horizon.add(textarea, button);
+		HorizontalLayout hl = new HorizontalLayout();
+		hl.add(txta1, btndelete);
 
-		vert2.add(horizon);
+		vl2.add(hl);
 
 	}
 
 	public void clearEntries() {
-		vert2.removeAll();
+		vl2.removeAll();
 	}
 
 	@Override
 	public void addListener(DiaryViewListener listener) {
-		listeners.add(listener);
+		lstlisteners.add(listener);
 	}
 
 }

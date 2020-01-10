@@ -21,7 +21,7 @@ public class DiaryModel {
 	@GeneratedValue
 	int id;
 
-	LocalDate date;
+	LocalDate lcld;
 	String author;
 	String Entry;
 
@@ -34,17 +34,17 @@ public class DiaryModel {
 	}
 
 	public DiaryModel(LocalDate date, String author, String entry) {
-		this.date = date;
+		this.lcld = date;
 		this.author = author;
 		this.Entry = entry;
 	}
 
 	public LocalDate getDate() {
-		return date;
+		return lcld;
 	}
 
 	public void setDate(LocalDate date) {
-		this.date = date;
+		this.lcld = date;
 	}
 
 	public String getAuthor() {
@@ -64,7 +64,7 @@ public class DiaryModel {
 	}
 
 	public String getFullDiary() {
-		return author + " " + date + " " + Entry;
+		return author + " " + lcld + " " + Entry;
 	}
 
 	public int getId() {
