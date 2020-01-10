@@ -2,12 +2,7 @@ package ch.bfh.btx8081.w2019.green.alzman.presenter;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
-
-import javax.persistence.Query;
-
 import com.vaadin.flow.component.button.Button;
-
 import ch.bfh.btx8081.w2019.green.alzman.model.StatusLevel;
 import ch.bfh.btx8081.w2019.green.alzman.model.StatusModel;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
@@ -38,9 +33,9 @@ public class StatusPresenter implements StatusView.StatusListener {
 	}
 
 	private void addTaskToDB(String str, int level) {
-	
+
 		StatusModel statusToSave = new StatusModel(level, str);
-	
+
 		DbService.persist(statusToSave);
 	}
 
