@@ -32,11 +32,9 @@ public class InfoboxPresenter implements InfoboxView.InfoboxViewListener {
 
 	public void fillTabelleWithPersons() {
 
-		// DB stuff where we get all the users
-		Query query = DbService.em.createNativeQuery("SELECT * FROM Person", PersonModel.class);
-
+		
 		// get list of users out of the query
-		persons = query.getResultList();
+		persons = DbService.getAllPerson();
 
 		view.fillGridWithUsers(persons);
 
@@ -44,11 +42,9 @@ public class InfoboxPresenter implements InfoboxView.InfoboxViewListener {
 
 	public void fillTabelleWithAdress() {
 
-		// DB stuff where we get all the users
-		Query query = DbService.em.createNativeQuery("SELECT * FROM Address", AddressModel.class);
 
 		// get list of users out of the query
-		adresses = query.getResultList();
+		adresses = DbService.getAllAddress();
 
 		view.fillGridWithAdress(adresses);
 

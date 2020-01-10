@@ -114,7 +114,7 @@ public class InfoboxAddPersonViewImpl extends TemplateView implements InfoboxAdd
 				}
 			} else {
 				binderCheckPerson.validate();
-				label.setText("An error has occurred");
+				label.setText("Something is wrong");
 			}
 
 		});

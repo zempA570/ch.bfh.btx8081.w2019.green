@@ -1,7 +1,13 @@
 package ch.bfh.btx8081.w2019.green.alzman.services;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
+
+import ch.bfh.btx8081.w2019.green.alzman.model.AddressModel;
+import ch.bfh.btx8081.w2019.green.alzman.model.PersonModel;
 
 /**
  * The dbService is used to execute statements on the database
@@ -29,5 +35,20 @@ public class DbService {
 		em.getTransaction().commit();
 		
 	}
+	
+	public static List<PersonModel> getAllPerson() {
+		
+		Query query = DbService.em.createNativeQuery("SELECT * FROM Person", PersonModel.class);
+		
+		return query.getResultList();
+	}
+	
+public static List<AddressModel> getAllAddress() {
+		
+		Query query = DbService.em.createNativeQuery("SELECT * FROM Address", AddressModel.class);
+		
+		return query.getResultList();
+	}
+
 	
 }

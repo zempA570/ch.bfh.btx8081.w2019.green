@@ -99,7 +99,7 @@ public class InfoboxAddAdressViewImpl extends TemplateView implements InfoboxAdd
 				}
 			} else {
 				binderCheckAdress.validate();
-				label.setText("An error has occurred");
+				label.setText("Something is wrong");
 			}
 		});
 
