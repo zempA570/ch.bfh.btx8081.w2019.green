@@ -67,7 +67,7 @@ public class CalendarPresenter implements CalendarView.CalendarListener {
 	}
 
 	public void fillCalendar() {
-		Query query = DbService.em.createNativeQuery("SELECT * FROM CALENDARMODEL", AppointmentModel.class);
+		Query query = DbService.em.createNativeQuery("SELECT * FROM Appointment", AppointmentModel.class);
 		allAppointments = query.getResultList();
 
 		for (AppointmentModel appointment : allAppointments) {
