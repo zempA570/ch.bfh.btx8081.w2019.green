@@ -5,7 +5,7 @@ import com.vaadin.flow.component.button.Button;
 
 import ch.bfh.btx8081.w2019.green.alzman.model.AddressModel;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
-import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxAddAdressView;
+import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxAddAddressView;
 import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxViewImpl;
 
 /**
@@ -15,16 +15,16 @@ import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxViewImpl;
  * @author gausegan
  *
  */
-public class InfoboxAddAdressPresenter implements InfoboxAddAdressView.InfoboxAddAdressListener {
+public class InfoboxAddAddressPresenter implements InfoboxAddAddressView.InfoboxAddAdressListener {
 
-	private InfoboxAddAdressView view;
+	private InfoboxAddAddressView view;
 
-	public InfoboxAddAdressPresenter() {
+	public InfoboxAddAddressPresenter() {
 
 	}
 
 	// constructor for the presenter
-	public InfoboxAddAdressPresenter(InfoboxAddAdressView infoboxView) {
+	public InfoboxAddAddressPresenter(InfoboxAddAddressView infoboxView) {
 		this.view = infoboxView;
 		view.addListener(this);
 	}

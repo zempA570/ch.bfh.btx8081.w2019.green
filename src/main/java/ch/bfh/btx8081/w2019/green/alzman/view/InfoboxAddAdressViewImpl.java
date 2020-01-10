@@ -16,7 +16,7 @@ import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.router.Route;
 
 import ch.bfh.btx8081.w2019.green.alzman.model.AddressModel;
-import ch.bfh.btx8081.w2019.green.alzman.presenter.InfoboxAddAdressPresenter;
+import ch.bfh.btx8081.w2019.green.alzman.presenter.InfoboxAddAddressPresenter;
 
 /**
  * 
@@ -25,7 +25,7 @@ import ch.bfh.btx8081.w2019.green.alzman.presenter.InfoboxAddAdressPresenter;
  */
 @Route("AddAdressInfobox")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
-public class InfoboxAddAdressViewImpl extends TemplateView implements InfoboxAddAdressView {
+public class InfoboxAddAdressViewImpl extends TemplateView implements InfoboxAddAddressView {
 
 	private List<InfoboxAddAdressListener> listeners = new ArrayList<InfoboxAddAdressListener>();
 
@@ -130,7 +130,7 @@ public class InfoboxAddAdressViewImpl extends TemplateView implements InfoboxAdd
 		// add the contents one the View
 		super.addContent(vlEndPos);
 
-		new InfoboxAddAdressPresenter(this);
+		new InfoboxAddAddressPresenter(this);
 	}
 
 	@Override

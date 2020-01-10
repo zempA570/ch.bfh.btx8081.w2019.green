@@ -9,7 +9,7 @@ import ch.bfh.btx8081.w2019.green.alzman.model.AddressModel;
  * @author gausegan
  *
  */
-public interface InfoboxAddAdressView {
+public interface InfoboxAddAddressView {
 
 	interface InfoboxAddAdressListener {
 		void buttonClick(Button btnClick);
