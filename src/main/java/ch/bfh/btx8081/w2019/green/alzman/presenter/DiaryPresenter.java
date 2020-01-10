@@ -28,10 +28,10 @@ public class DiaryPresenter implements DiaryView.DiaryViewListener {
 
 	private void getallDiarys() {
 
-		Query query = DbService.em.createNativeQuery("SELECT * FROM adddiarymodel", DiaryModel.class);
+
 
 		// get list of users out of the query
-		diarys = query.getResultList();
+		diarys = DbService.getAllDiarys();
 
 		for (DiaryModel model : diarys) {
 			view.addEntryToView(model);
