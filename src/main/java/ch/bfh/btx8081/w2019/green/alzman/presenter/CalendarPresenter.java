@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Query;
 
@@ -67,9 +68,9 @@ public class CalendarPresenter implements CalendarView.CalendarListener {
 	}
 
 	public void fillCalendar() {
-		Query query = DbService.getAllAppointments();
-		allAppointments = query.getResultList();
-
+		
+		allAppointments= DbService.getAllAppointments();
+		
 		for (AppointmentModel appointment : allAppointments) {
 			view.addEntryToCalendar(appointment);
 		}

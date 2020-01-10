@@ -1,5 +1,7 @@
 package ch.bfh.btx8081.w2019.green.alzman.services;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
@@ -33,10 +35,10 @@ public class DbService {
 		
 	}
 	
-	public static Query getAllAppointments() {
+	public static List<AppointmentModel> getAllAppointments() {
 		Query query = DbService.em.createNativeQuery("SELECT * FROM Appointment", AppointmentModel.class);
 		
-		return query;
+		return query.getResultList();
 
 	}
 	
