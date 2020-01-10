@@ -27,7 +27,7 @@ public class StatusPresenter implements StatusView.StatusListener {
 
 	private void fillGuiWithContent() {
 		// DB stuff where we get all the users
-		Query query = DbService.em.createNativeQuery("SELECT * FROM statusmodel", StatusModel.class);
+		Query query = DbService.em.createNativeQuery("SELECT * FROM status", StatusModel.class);
 
 		// get list of users out of the query
 		lstAllStatus = query.getResultList();
