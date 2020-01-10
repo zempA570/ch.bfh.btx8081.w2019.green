@@ -36,9 +36,7 @@ public class InfoboxAddAdressPresenter implements InfoboxAddAdressView.InfoboxAd
 		AddressModel newAdress = view.getAdressFromFields();
 
 		// DB stuff
-		DbService.em.getTransaction().begin();
-		DbService.em.persist(newAdress);
-		DbService.em.getTransaction().commit();
+		DbService.persist(newAdress);
 
 	}
 	

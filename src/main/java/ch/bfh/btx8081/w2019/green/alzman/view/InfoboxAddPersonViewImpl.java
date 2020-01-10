@@ -85,6 +85,7 @@ public class InfoboxAddPersonViewImpl extends TemplateView implements InfoboxAdd
 		city.setPlaceholder("Bern");
 
 		this.lblMessage = new Label();
+		
 
 		this.bndrCheckPerson = new Binder<>();
 		bndrCheckPerson.forField(cmbbxGender).asRequired("The Gender is missing!").bind(PersonModel::getGender,
@@ -115,6 +116,7 @@ public class InfoboxAddPersonViewImpl extends TemplateView implements InfoboxAdd
 			} else {
 				bndrCheckPerson.validate();
 				lblMessage.setText("Something is wrong");
+				
 			}
 
 		});

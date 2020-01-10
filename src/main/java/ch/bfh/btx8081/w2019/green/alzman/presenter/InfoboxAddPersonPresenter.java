@@ -35,9 +35,7 @@ public class InfoboxAddPersonPresenter implements InfoboxAddPersonView.InfoboxAd
 		PersonModel newPerson = view.getPersonFromFields();
 
 		// DB stuff
-		DbService.em.getTransaction().begin();
-		DbService.em.persist(newPerson);
-		DbService.em.getTransaction().commit();
+		DbService.persist(newPerson);
 
 	}
 	

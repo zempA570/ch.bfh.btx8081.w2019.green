@@ -18,8 +18,8 @@ public class PersonModel {
 	String gender;
 	String firstname;
 	String lastname;
-	String adress;
-	String adressNr;
+	String address;
+	String houseNo;
 	String postcode;
 	String city;
 	String phonenummber;
@@ -28,14 +28,14 @@ public class PersonModel {
 
 	}
 
-	public PersonModel(String gender, String firstname, String lastname, String adress, String adressNr,
+	public PersonModel(String gender, String firstname, String lastname, String address, String houseNo,
 			String postcode, String city, String phonenummber) {
 		super();
 		this.gender = gender;
 		this.firstname = firstname;
 		this.lastname = lastname;
-		this.adress = adress;
-		this.adressNr = adressNr;
+		this.address = address;
+		this.houseNo = houseNo;
 		this.postcode = postcode;
 		this.city = city;
 		this.phonenummber = phonenummber;
@@ -74,19 +74,19 @@ public class PersonModel {
 	}
 
 	public String getAdress() {
-		return adress;
+		return address;
 	}
 
-	public void setAdress(String adress) {
-		this.adress = adress;
+	public void setAdress(String address) {
+		this.address = address;
 	}
 
 	public String getAdressNr() {
-		return adressNr;
+		return houseNo;
 	}
 
-	public void setAdressNr(String adressNr) {
-		this.adressNr = adressNr;
+	public void setAdressNr(String houseNo) {
+		this.houseNo = houseNo;
 	}
 
 	public String getPostcode() {
@@ -116,7 +116,7 @@ public class PersonModel {
 	
 	public String getFullDetailsPerson() {
 		return gender + " " + firstname + " " + lastname + " "
-				+ adress + " " + adressNr + " " + postcode + " " + city + " " + phonenummber;
+				+ address + " " + houseNo + " " + postcode + " " + city + " " + phonenummber;
 	}
 
 	

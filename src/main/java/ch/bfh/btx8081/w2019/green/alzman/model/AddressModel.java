@@ -11,14 +11,14 @@ import javax.persistence.TableGenerator;
 @Table(name = "Address")
 public class AddressModel {
 
-	@TableGenerator(name = "ImportantAdressIDGenerator", allocationSize = 1, initialValue = 1)
+	@TableGenerator(name = "ImportantAddressIDGenerator", allocationSize = 1, initialValue = 1)
 	@Id
-	@GeneratedValue(generator = "ImportantAdressIDGenerator")
+	@GeneratedValue(generator = "ImportantAddressIDGenerator")
 	int id;
 
 	String name;
-	String adress;
-	String adressNr;
+	String address;
+	String houseNo;
 	String postcode;
 	String city;
 	String phonenummber;
@@ -27,12 +27,12 @@ public class AddressModel {
 
 	}
 
-	public AddressModel(String name, String adress, String adressNr, String postcode, String city,
+	public AddressModel(String name, String address, String houseNo, String postcode, String city,
 			String phonenummber) {
 		super();
 		this.name = name;
-		this.adress = adress;
-		this.adressNr = adressNr;
+		this.address = address;
+		this.houseNo = houseNo;
 		this.postcode = postcode;
 		this.city = city;
 		this.phonenummber = phonenummber;
@@ -55,19 +55,19 @@ public class AddressModel {
 	}
 
 	public String getAdress() {
-		return adress;
+		return address;
 	}
 
-	public void setAdress(String adress) {
-		this.adress = adress;
+	public void setAdress(String address) {
+		this.address = address;
 	}
 
 	public String getAdressNr() {
-		return adressNr;
+		return houseNo;
 	}
 
-	public void setAdressNr(String adressNr) {
-		this.adressNr = adressNr;
+	public void setAdressNr(String houseNo) {
+		this.houseNo = houseNo;
 	}
 
 	public String getPostcode() {
@@ -94,7 +94,7 @@ public class AddressModel {
 		this.phonenummber = phonenummber;
 	}
 	public String getFullDetailsAdress() {
-		return name + " " + adress + " " + adressNr + " " + postcode + " " + city + " " + phonenummber;
+		return name + " " + address + " " + houseNo + " " + postcode + " " + city + " " + phonenummber;
 	}
 
 }
