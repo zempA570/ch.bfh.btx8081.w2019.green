@@ -18,7 +18,7 @@ import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxViewImpl;
 public class InfoboxAddAdressPresenter implements InfoboxAddAdressView.InfoboxAddAdressListener{
 
 	private InfoboxAddAdressView view;
-	private List<AddressModel> adresses;
+	private List<AddressModel> lstAddresses;
 
 	public InfoboxAddAdressPresenter() {
 

@@ -16,7 +16,7 @@ import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxViewImpl;
 public class InfoboxAddPersonPresenter implements InfoboxAddPersonView.InfoboxAddPersonListener {
 
 	private InfoboxAddPersonView view;
-	private List<PersonModel> persons;
+	private List<PersonModel> lstPersons;
 
 	public InfoboxAddPersonPresenter() {
 

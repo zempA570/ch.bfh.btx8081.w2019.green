@@ -32,18 +32,18 @@ public class InfoboxAddPersonViewImpl extends TemplateView implements InfoboxAdd
 	private List<InfoboxAddPersonListener> listeners = new ArrayList<InfoboxAddPersonListener>();
 
 	// variabel for the suptitel Add person
-	private H4 title1;
-	private ComboBox<String> gender;
-	private TextField lastName;
-	private TextField firstName;
-	private TextField phoneNo;
-	private TextField adress;
-	private TextField adrNo;
-	private TextField postcode;
+	private H4 h4TitlePerson;
+	private ComboBox<String> cmbbxGender;
+	private TextField txtfLastName;
+	private TextField txtfFirstName;
+	private TextField txtfPhoneNo;
+	private TextField txtfAddress;
+	private TextField txtfAddrNo;
+	private TextField txtfPostcode;
 	private TextField city;
 
-	private Binder<PersonModel> binderCheckPerson;
-	private Label label;
+	private Binder<PersonModel> bndrCheckPerson;
+	private Label lblMessage;
 
 	public InfoboxAddPersonViewImpl() {
 
@@ -51,104 +51,104 @@ public class InfoboxAddPersonViewImpl extends TemplateView implements InfoboxAdd
 		super.setHeaderTitle("Infobox");
 
 		// Titel for add a person
-		title1 = new H4();
-		title1.setText("Add Person");
-		super.addContent(title1);
+		h4TitlePerson = new H4();
+		h4TitlePerson.setText("Add Person");
+		super.addContent(h4TitlePerson);
 
 		// Radio Button for gender
-		this.gender = new ComboBox<String>();
-		gender.setItems("Mr", "Mrs");
-		gender.setPlaceholder("Select your gender");
+		this.cmbbxGender = new ComboBox<String>();
+		cmbbxGender.setItems("Mr", "Mrs");
+		cmbbxGender.setPlaceholder("Select your gender");
 
 		// Textfield for name
-		this.lastName = new TextField("Lastname");
+		this.txtfLastName = new TextField("Lastname");
 
 		// Textfield for prename
-		this.firstName = new TextField("Firstname");
+		this.txtfFirstName = new TextField("Firstname");
 
 		// Textfield for telephone nummber
-		this.phoneNo = new TextField("Phonenummber");
-		phoneNo.setPlaceholder("0041 xx xxx xx xx");
+		this.txtfPhoneNo = new TextField("Phonenummber");
+		txtfPhoneNo.setPlaceholder("0041 xx xxx xx xx");
 
 		// Textfield for adress
-		this.adress = new TextField("Adress");
+		this.txtfAddress = new TextField("Adress");
 
 		// Textfield for adress
-		this.adrNo = new TextField("Adress Number");
+		this.txtfAddrNo = new TextField("Adress Number");
 
 		// Textfield for pstcode
-		this.postcode = new TextField("Postcode");
-		postcode.setPlaceholder("3000");
+		this.txtfPostcode = new TextField("Postcode");
+		txtfPostcode.setPlaceholder("3000");
 
 		// Textfield for city
 		this.city = new TextField("City");
 		city.setPlaceholder("Bern");
 
-		this.label = new Label();
+		this.lblMessage = new Label();
 
-		this.binderCheckPerson = new Binder<>();
-		binderCheckPerson.forField(gender).asRequired("The Gender is missing!").bind(PersonModel::getGender,
+		this.bndrCheckPerson = new Binder<>();
+		bndrCheckPerson.forField(cmbbxGender).asRequired("The Gender is missing!").bind(PersonModel::getGender,
 				PersonModel::setGender);
-		binderCheckPerson.forField(lastName).asRequired("The Lastname is missing!").bind(PersonModel::getLastname,
+		bndrCheckPerson.forField(txtfLastName).asRequired("The Lastname is missing!").bind(PersonModel::getLastname,
 				PersonModel::setLastname);
-		binderCheckPerson.forField(firstName).asRequired("The Firstname is missing!").bind(PersonModel::getFirstname,
+		bndrCheckPerson.forField(txtfFirstName).asRequired("The Firstname is missing!").bind(PersonModel::getFirstname,
 				PersonModel::setFirstname);
-		binderCheckPerson.forField(phoneNo).asRequired("The Phonenumber is missing!").bind(PersonModel::getPhonenummber,
+		bndrCheckPerson.forField(txtfPhoneNo).asRequired("The Phonenumber is missing!").bind(PersonModel::getPhonenummber,
 				PersonModel::setPhonenummber);
-		binderCheckPerson.forField(adress).asRequired("The Adress is missing!").bind(PersonModel::getAdress,
+		bndrCheckPerson.forField(txtfAddress).asRequired("The Adress is missing!").bind(PersonModel::getAdress,
 				PersonModel::setAdress);
-		binderCheckPerson.forField(adrNo).asRequired("The Adress Number is missing!").bind(PersonModel::getAdressNr,
+		bndrCheckPerson.forField(txtfAddrNo).asRequired("The Adress Number is missing!").bind(PersonModel::getAdressNr,
 				PersonModel::setAdressNr);
-		binderCheckPerson.forField(postcode).asRequired("The Postcode is missing!").bind(PersonModel::getPostcode,
+		bndrCheckPerson.forField(txtfPostcode).asRequired("The Postcode is missing!").bind(PersonModel::getPostcode,
 				PersonModel::setPostcode);
-		binderCheckPerson.forField(city).asRequired("The City is missing!").bind(PersonModel::getCity,
+		bndrCheckPerson.forField(city).asRequired("The City is missing!").bind(PersonModel::getCity,
 				PersonModel::setCity);
 
 		// Button for add the person in the Infobox
-		Button addPerson = new Button("Add Person", new Icon(VaadinIcon.PLUS));
-		addPerson.addClickListener(e -> {
+		Button btnAdd = new Button("Add Person", new Icon(VaadinIcon.PLUS));
+		btnAdd.addClickListener(e -> {
 
-			if (binderCheckPerson.isValid()) {
+			if (bndrCheckPerson.isValid()) {
 				for (InfoboxAddPersonListener listener : listeners) {
 					listener.buttonClick(e.getSource());
 				}
 			} else {
-				binderCheckPerson.validate();
-				label.setText("Something is wrong");
+				bndrCheckPerson.validate();
+				lblMessage.setText("Something is wrong");
 			}
 
 		});
 
 		// Button for cancel the prosses for to add person in the Infobox
-		Button cancelBtn = new Button("Cancel");
-		cancelBtn.addClickListener(event -> {
+		Button btnCancel = new Button("Cancel");
+		btnCancel.addClickListener(event -> {
 			for (InfoboxAddPersonListener listener : listeners)
 				listener.buttonClick(event.getSource());
 		});
 
-		HorizontalLayout genderPos = new HorizontalLayout();
-		genderPos.add(gender);
+		HorizontalLayout hlGenderPos = new HorizontalLayout();
+		hlGenderPos.add(cmbbxGender);
 
-		HorizontalLayout namePos = new HorizontalLayout();
-		namePos.add(lastName, firstName);
+		HorizontalLayout hlNamePos = new HorizontalLayout();
+		hlNamePos.add(txtfLastName, txtfFirstName);
 
-		HorizontalLayout adressPos = new HorizontalLayout();
-		adressPos.add(adress, adrNo);
+		HorizontalLayout hlAddressPos = new HorizontalLayout();
+		hlAddressPos.add(txtfAddress, txtfAddrNo);
 
-		HorizontalLayout cityPos = new HorizontalLayout();
-		cityPos.add(postcode, city);
+		HorizontalLayout hlCityPos = new HorizontalLayout();
+		hlCityPos.add(txtfPostcode, city);
 
-		HorizontalLayout phoneNoPos = new HorizontalLayout();
-		phoneNoPos.add(phoneNo);
+		HorizontalLayout hlPhoneNoPos = new HorizontalLayout();
+		hlPhoneNoPos.add(txtfPhoneNo);
 
-		HorizontalLayout buttonPos = new HorizontalLayout();
-		buttonPos.add(addPerson, cancelBtn, label);
+		HorizontalLayout hlButtonPos = new HorizontalLayout();
+		hlButtonPos.add(btnAdd, btnCancel, lblMessage);
 
-		VerticalLayout endPos = new VerticalLayout();
-		endPos.add(genderPos, namePos, adressPos, cityPos, phoneNoPos, buttonPos);
+		VerticalLayout vlEndPos = new VerticalLayout();
+		vlEndPos.add(hlGenderPos, hlNamePos, hlAddressPos, hlCityPos, hlPhoneNoPos, hlButtonPos);
 
 		// add the contents in the View
-		super.addContent(endPos);
+		super.addContent(vlEndPos);
 
 		new InfoboxAddPersonPresenter(this);
 
@@ -164,14 +164,14 @@ public class InfoboxAddPersonViewImpl extends TemplateView implements InfoboxAdd
 
 		PersonModel person = new PersonModel();
 
-		person.setAdress(adress.getValue());
-		person.setAdressNr(adrNo.getValue());
+		person.setAdress(txtfAddress.getValue());
+		person.setAdressNr(txtfAddrNo.getValue());
 		person.setCity(city.getValue());
-		person.setFirstname(firstName.getValue());
-		person.setLastname(lastName.getValue());
-		person.setGender(gender.getValue().toString());
-		person.setPhonenummber(phoneNo.getValue());
-		person.setPostcode(postcode.getValue());
+		person.setFirstname(txtfFirstName.getValue());
+		person.setLastname(txtfLastName.getValue());
+		person.setGender(cmbbxGender.getValue().toString());
+		person.setPhonenummber(txtfPhoneNo.getValue());
+		person.setPostcode(txtfPostcode.getValue());
 
 		return person;
 	}

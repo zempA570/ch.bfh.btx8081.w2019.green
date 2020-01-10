@@ -19,8 +19,8 @@ import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxView;
 public class InfoboxPresenter implements InfoboxView.InfoboxViewListener {
 
 	private InfoboxView view;
-	private List<PersonModel> persons;
-	private List<AddressModel> adresses;
+	private List<PersonModel> lstPersons;
+	private List<AddressModel> lstAddresses;
 
 	public InfoboxPresenter(InfoboxView infoboxView) {
 		view = infoboxView;
@@ -34,9 +34,9 @@ public class InfoboxPresenter implements InfoboxView.InfoboxViewListener {
 
 		
 		// get list of users out of the query
-		persons = DbService.getAllPerson();
+		lstPersons = DbService.getAllPerson();
 
-		view.fillGridWithUsers(persons);
+		view.fillGridWithUsers(lstPersons);
 
 	}
 
@@ -44,9 +44,9 @@ public class InfoboxPresenter implements InfoboxView.InfoboxViewListener {
 
 
 		// get list of users out of the query
-		adresses = DbService.getAllAddress();
+		lstAddresses = DbService.getAllAddress();
 
-		view.fillGridWithAdress(adresses);
+		view.fillGridWithAdress(lstAddresses);
 
 	}
 
@@ -63,7 +63,7 @@ public class InfoboxPresenter implements InfoboxView.InfoboxViewListener {
 		PersonModel personToDelete = null;
 
 		// for every user we have in our list
-		for (PersonModel pers : persons) {
+		for (PersonModel pers : lstPersons) {
 			// if the id of that user is the same as the id we got from the userIdFullname
 			if (Objects.equals(pers.getId(), PersonId)) {
 				// this is the user we want to delete
@@ -91,7 +91,7 @@ public class InfoboxPresenter implements InfoboxView.InfoboxViewListener {
 		AddressModel adressToDelete = null;
 
 		// for every user we have in our list
-		for (AddressModel adr : adresses) {
+		for (AddressModel adr : lstAddresses) {
 			// if the id of that user is the same as the id we got from the userIdFullname
 			if (Objects.equals(adr.getId(), AdressId)) {
 				// this is the user we want to delete

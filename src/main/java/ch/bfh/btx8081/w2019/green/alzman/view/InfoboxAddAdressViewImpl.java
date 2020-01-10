@@ -31,16 +31,16 @@ public class InfoboxAddAdressViewImpl extends TemplateView implements InfoboxAdd
 	private List<InfoboxAddAdressListener> listeners = new ArrayList<InfoboxAddAdressListener>();
 
 	// variabel for the suptitel Add Adress
-	private H4 title1;
-	private TextField name;
-	private TextField adress;
-	private TextField adrNo;
-	private TextField postcode;
-	private TextField city;
-	private TextField phoneNo;
+	private H4 h4TitleAddress;
+	private TextField txtfName;
+	private TextField txtfAddress;
+	private TextField txtfAddrNo;
+	private TextField txtfPostcode;
+	private TextField txtfCity;
+	private TextField txtfPhoneNo;
 
-	private Binder<AddressModel> binderCheckAdress;
-	private Label label;
+	private Binder<AddressModel> bndrCheckAdress;
+	private Label lblMessage;
 
 	public InfoboxAddAdressViewImpl() {
 
@@ -48,88 +48,88 @@ public class InfoboxAddAdressViewImpl extends TemplateView implements InfoboxAdd
 		super.setHeaderTitle("Infobox");
 
 		// Titel for add a person
-		title1 = new H4();
-		title1.setText("Add Adress");
-		super.addContent(title1);
+		h4TitleAddress = new H4();
+		h4TitleAddress.setText("Add Adress");
+		super.addContent(h4TitleAddress);
 
 		// Textfield for name
-		this.name = new TextField("Name");
+		this.txtfName = new TextField("Name");
 
 		// Textfield for adress
-		this.adress = new TextField("Adress");
+		this.txtfAddress = new TextField("Adress");
 
 		// Textfield for adress
-		this.adrNo = new TextField("Adress Number");
+		this.txtfAddrNo = new TextField("Adress Number");
 
 		// Textfield for pstcode
-		this.postcode = new TextField("Postcode");
-		postcode.setPlaceholder("3000");
+		this.txtfPostcode = new TextField("Postcode");
+		txtfPostcode.setPlaceholder("3000");
 
 		// Textfield for city
-		this.city = new TextField("City");
-		city.setPlaceholder("Bern");
+		this.txtfCity = new TextField("City");
+		txtfCity.setPlaceholder("Bern");
 
 		// Textfield for telephone nummber
-		this.phoneNo = new TextField("Phonenummber");
-		phoneNo.setPlaceholder("0041 xx xxx xx xx");
+		this.txtfPhoneNo = new TextField("Phonenummber");
+		txtfPhoneNo.setPlaceholder("0041 xx xxx xx xx");
 
-		this.label = new Label();
+		this.lblMessage = new Label();
 
-		this.binderCheckAdress = new Binder<>();
-		binderCheckAdress.forField(name).asRequired("The Name is missing!").bind(AddressModel::getName,
+		this.bndrCheckAdress = new Binder<>();
+		bndrCheckAdress.forField(txtfName).asRequired("The Name is missing!").bind(AddressModel::getName,
 				AddressModel::setName);
-		binderCheckAdress.forField(adress).asRequired("The Adress is missing!").bind(AddressModel::getAdress,
+		bndrCheckAdress.forField(txtfAddress).asRequired("The Adress is missing!").bind(AddressModel::getAdress,
 				AddressModel::setAdress);
-		binderCheckAdress.forField(adrNo).asRequired("The Adress Number is missing!").bind(AddressModel::getAdressNr,
+		bndrCheckAdress.forField(txtfAddrNo).asRequired("The Adress Number is missing!").bind(AddressModel::getAdressNr,
 				AddressModel::setAdressNr);
-		binderCheckAdress.forField(postcode).asRequired("The Postcode is missing!").bind(AddressModel::getPostcode,
+		bndrCheckAdress.forField(txtfPostcode).asRequired("The Postcode is missing!").bind(AddressModel::getPostcode,
 				AddressModel::setPostcode);
-		binderCheckAdress.forField(city).asRequired("The City is missing!").bind(AddressModel::getCity,
+		bndrCheckAdress.forField(txtfCity).asRequired("The City is missing!").bind(AddressModel::getCity,
 				AddressModel::setCity);
-		binderCheckAdress.forField(phoneNo).asRequired("The Phonenumber is missing!").bind(AddressModel::getPhonenummber,
+		bndrCheckAdress.forField(txtfPhoneNo).asRequired("The Phonenumber is missing!").bind(AddressModel::getPhonenummber,
 				AddressModel::setPhonenummber);
 
 		// Button for add the adress in the Infobox
 
-		Button addAdress = new Button("Add Adress", new Icon(VaadinIcon.PLUS));
-		addAdress.addClickListener(e -> {
-			if (binderCheckAdress.isValid()) {
+		Button btnAdd = new Button("Add Adress", new Icon(VaadinIcon.PLUS));
+		btnAdd.addClickListener(e -> {
+			if (bndrCheckAdress.isValid()) {
 				for (InfoboxAddAdressListener listener : listeners) {
 					listener.buttonClick(e.getSource());
 				}
 			} else {
-				binderCheckAdress.validate();
-				label.setText("Something is wrong");
+				bndrCheckAdress.validate();
+				lblMessage.setText("Something is wrong!");
 			}
 		});
 
 		// Button for cancel the prosses for to add the adress in the Infobox
-		Button cancelBtn = new Button("Cancel");
-		cancelBtn.addClickListener(event -> {
+		Button btnCancel = new Button("Cancel");
+		btnCancel.addClickListener(event -> {
 			for (InfoboxAddAdressListener listener : listeners)
 				listener.buttonClick(event.getSource());
 		});
 
-		HorizontalLayout namePos = new HorizontalLayout();
-		namePos.add(name);
+		HorizontalLayout hlNamePos = new HorizontalLayout();
+		hlNamePos.add(txtfName);
 
-		HorizontalLayout adressPos = new HorizontalLayout();
-		adressPos.add(adress, adrNo);
+		HorizontalLayout hlAddressPos = new HorizontalLayout();
+		hlAddressPos.add(txtfAddress, txtfAddrNo);
 
-		HorizontalLayout cityPos = new HorizontalLayout();
-		cityPos.add(postcode, city);
+		HorizontalLayout hlCityPos = new HorizontalLayout();
+		hlCityPos.add(txtfPostcode, txtfCity);
 
-		HorizontalLayout phoneNoPos = new HorizontalLayout();
-		phoneNoPos.add(phoneNo);
+		HorizontalLayout hlPhoneNoPos = new HorizontalLayout();
+		hlPhoneNoPos.add(txtfPhoneNo);
 
-		HorizontalLayout buttonPos = new HorizontalLayout();
-		buttonPos.add(addAdress, cancelBtn, label);
+		HorizontalLayout hlButtonPos = new HorizontalLayout();
+		hlButtonPos.add(btnAdd, btnCancel, lblMessage);
 
-		VerticalLayout endPos = new VerticalLayout();
-		endPos.add(namePos, adressPos, cityPos, phoneNoPos, buttonPos);
+		VerticalLayout vlEndPos = new VerticalLayout();
+		vlEndPos.add(hlNamePos, hlAddressPos, hlCityPos, hlPhoneNoPos, hlButtonPos);
 
 		// add the contents one the View
-		super.addContent(endPos);
+		super.addContent(vlEndPos);
 
 		new InfoboxAddAdressPresenter(this);
 	}
@@ -144,12 +144,12 @@ public class InfoboxAddAdressViewImpl extends TemplateView implements InfoboxAdd
 		
 		AddressModel newAdress = new AddressModel();
 		
-		newAdress.setAdress(adress.getValue());
-		newAdress.setAdressNr(adrNo.getValue());
-		newAdress.setCity(city.getValue());
-		newAdress.setName(name.getValue());
-		newAdress.setPhonenummber(phoneNo.getValue());
-		newAdress.setPostcode(postcode.getValue());
+		newAdress.setAdress(txtfAddress.getValue());
+		newAdress.setAdressNr(txtfAddrNo.getValue());
+		newAdress.setCity(txtfCity.getValue());
+		newAdress.setName(txtfName.getValue());
+		newAdress.setPhonenummber(txtfPhoneNo.getValue());
+		newAdress.setPostcode(txtfPostcode.getValue());
 		
 		return newAdress;
 	}

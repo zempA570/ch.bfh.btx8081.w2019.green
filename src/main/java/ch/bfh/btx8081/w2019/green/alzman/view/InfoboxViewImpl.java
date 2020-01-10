@@ -20,12 +20,12 @@ import ch.bfh.btx8081.w2019.green.alzman.presenter.InfoboxPresenter;
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class InfoboxViewImpl extends TemplateView implements InfoboxView {
 
-	private List<InfoboxViewListener> listeners = new ArrayList<InfoboxViewListener>();
-	private H4 titleImportantPerson;
-	private H4 titleImportantAdress;
+	private List<InfoboxViewListener> lstListeners = new ArrayList<InfoboxViewListener>();
+	private H4 h4TitleImportantPerson;
+	private H4 h4TitleImportantAddress;
 
-	private Grid<PersonModel> gridImportantPerson = new Grid<>();
-	private Grid<AddressModel> gridImportantAdress = new Grid<>();
+	private Grid<PersonModel> grdImportantPerson = new Grid<>();
+	private Grid<AddressModel> grdImportantAddress = new Grid<>();
 
 	public InfoboxViewImpl() {
 
@@ -33,92 +33,92 @@ public class InfoboxViewImpl extends TemplateView implements InfoboxView {
 		super.setHeaderTitle("Infobox");
 
 		// Subtitel in H4 format
-		titleImportantPerson = new H4();
-		titleImportantPerson.setText("Important Person");
-		super.addContent(titleImportantPerson);
+		h4TitleImportantPerson = new H4();
+		h4TitleImportantPerson.setText("Important Person");
+		super.addContent(h4TitleImportantPerson);
 
 		// Button for to Add a important Person
-		Button btnImportantPer = new Button("Add Person");
-		btnImportantPer.addClickListener(e -> {
-			for (InfoboxViewListener listener : listeners)
+		Button btnAddPer = new Button("Add Person");
+		btnAddPer.addClickListener(e -> {
+			for (InfoboxViewListener listener : lstListeners)
 				listener.buttonClick(e.getSource());
 		});
 
 		Button btnDeletePer = new Button("Delete Person");
 		btnDeletePer.setVisible(false);
 		btnDeletePer.addClickListener(e -> {
-			for (InfoboxViewListener listener : listeners)
+			for (InfoboxViewListener listener : lstListeners)
 				listener.buttonClick(e.getSource());
 		});
 
-		HorizontalLayout positionButtonsPer = new HorizontalLayout();
-		positionButtonsPer.add(btnImportantPer, btnDeletePer);
+		HorizontalLayout hlPositionButtonsPer = new HorizontalLayout();
+		hlPositionButtonsPer.add(btnAddPer, btnDeletePer);
 
-		super.addContent(positionButtonsPer);
+		super.addContent(hlPositionButtonsPer);
 
-		add(gridImportantPerson);
-		gridImportantPerson.addColumn(PersonModel::getId).setVisible(false);
-		gridImportantPerson.addColumn(PersonModel::getGender).setHeader("Gender");
-		gridImportantPerson.addColumn(PersonModel::getFirstname).setHeader("Firstname");
-		gridImportantPerson.addColumn(PersonModel::getLastname).setHeader("Lastname");
-		gridImportantPerson.addColumn(PersonModel::getAdress).setHeader("Adress");
-		gridImportantPerson.addColumn(PersonModel::getAdressNr).setHeader("Adress Number");
-		gridImportantPerson.addColumn(PersonModel::getPostcode).setHeader("Postcode");
-		gridImportantPerson.addColumn(PersonModel::getCity).setHeader("City");
-		gridImportantPerson.addColumn(PersonModel::getPhonenummber).setHeader("Phonenummber");
+		add(grdImportantPerson);
+		grdImportantPerson.addColumn(PersonModel::getId).setVisible(false);
+		grdImportantPerson.addColumn(PersonModel::getGender).setHeader("Gender");
+		grdImportantPerson.addColumn(PersonModel::getFirstname).setHeader("Firstname");
+		grdImportantPerson.addColumn(PersonModel::getLastname).setHeader("Lastname");
+		grdImportantPerson.addColumn(PersonModel::getAdress).setHeader("Adress");
+		grdImportantPerson.addColumn(PersonModel::getAdressNr).setHeader("Adress Number");
+		grdImportantPerson.addColumn(PersonModel::getPostcode).setHeader("Postcode");
+		grdImportantPerson.addColumn(PersonModel::getCity).setHeader("City");
+		grdImportantPerson.addColumn(PersonModel::getPhonenummber).setHeader("Phonenummber");
 
-		gridImportantPerson.addItemClickListener(event -> {
-			if(gridImportantPerson.getSelectedItems().isEmpty()) {
+		grdImportantPerson.addItemClickListener(event -> {
+			if(grdImportantPerson.getSelectedItems().isEmpty()) {
 				btnDeletePer.setVisible(false);
 			} else {
 				btnDeletePer.setVisible(true);
 			}					
 		});
 
-		super.addContent(gridImportantPerson);
+		super.addContent(grdImportantPerson);
 
 		// Suptitel in H4 format for important adres
-		titleImportantAdress = new H4();
-		titleImportantAdress.setText("Important Adress");
-		super.addContent(titleImportantAdress);
+		h4TitleImportantAddress = new H4();
+		h4TitleImportantAddress.setText("Important Adress");
+		super.addContent(h4TitleImportantAddress);
 
 		// Button for to Add a important adress
-		Button btnImportantAdr = new Button("Add Adress");
-		btnImportantAdr.addClickListener(e -> {
-			for (InfoboxViewListener listener : listeners)
+		Button btnAddAddr = new Button("Add Adress");
+		btnAddAddr.addClickListener(e -> {
+			for (InfoboxViewListener listener : lstListeners)
 				listener.buttonClick(e.getSource());
 		});
 
-		Button btnDeleteAdr = new Button("Delete Adress");
-		btnDeleteAdr.setVisible(false);
-		btnDeleteAdr.addClickListener(e -> {
-			for (InfoboxViewListener listener : listeners)
+		Button btnDeleteAddr = new Button("Delete Adress");
+		btnDeleteAddr.setVisible(false);
+		btnDeleteAddr.addClickListener(e -> {
+			for (InfoboxViewListener listener : lstListeners)
 				listener.buttonClick(e.getSource());
 		});
 
-		HorizontalLayout positionButtonsAdr = new HorizontalLayout();
-		positionButtonsAdr.add(btnImportantAdr, btnDeleteAdr);
+		HorizontalLayout hlPositionButtonsAddr = new HorizontalLayout();
+		hlPositionButtonsAddr.add(btnAddAddr, btnDeleteAddr);
 
-		super.addContent(positionButtonsAdr);
+		super.addContent(hlPositionButtonsAddr);
 
-		add(gridImportantAdress);
-		gridImportantAdress.addColumn(AddressModel::getId).setVisible(false);
-		gridImportantAdress.addColumn(AddressModel::getName).setHeader("Name");
-		gridImportantAdress.addColumn(AddressModel::getAdress).setHeader("Adress");
-		gridImportantAdress.addColumn(AddressModel::getAdressNr).setHeader("Adress Number");
-		gridImportantAdress.addColumn(AddressModel::getPostcode).setHeader("Postcode");
-		gridImportantAdress.addColumn(AddressModel::getCity).setHeader("City");
-		gridImportantAdress.addColumn(AddressModel::getPhonenummber).setHeader("Phonenummber");
+		add(grdImportantAddress);
+		grdImportantAddress.addColumn(AddressModel::getId).setVisible(false);
+		grdImportantAddress.addColumn(AddressModel::getName).setHeader("Name");
+		grdImportantAddress.addColumn(AddressModel::getAdress).setHeader("Adress");
+		grdImportantAddress.addColumn(AddressModel::getAdressNr).setHeader("Adress Number");
+		grdImportantAddress.addColumn(AddressModel::getPostcode).setHeader("Postcode");
+		grdImportantAddress.addColumn(AddressModel::getCity).setHeader("City");
+		grdImportantAddress.addColumn(AddressModel::getPhonenummber).setHeader("Phonenummber");
 
-		gridImportantAdress.addItemClickListener(event -> {
-			if(gridImportantAdress.getSelectedItems().isEmpty()) {
-				btnDeleteAdr.setVisible(false);
+		grdImportantAddress.addItemClickListener(event -> {
+			if(grdImportantAddress.getSelectedItems().isEmpty()) {
+				btnDeleteAddr.setVisible(false);
 			} else {
-				btnDeleteAdr.setVisible(true);
+				btnDeleteAddr.setVisible(true);
 			}					
 		});
 
-		super.addContent(gridImportantAdress);
+		super.addContent(grdImportantAddress);
 
 		new InfoboxPresenter(this);
 
@@ -126,27 +126,27 @@ public class InfoboxViewImpl extends TemplateView implements InfoboxView {
 
 	public void fillGridWithUsers(List<PersonModel> listPerson) {
 
-		gridImportantPerson.setItems(listPerson);
+		grdImportantPerson.setItems(listPerson);
 	}
 
 	public void fillGridWithAdress(List<AddressModel> listAdress) {
 
-		gridImportantAdress.setItems(listAdress);
+		grdImportantAddress.setItems(listAdress);
 	}
 
 	@Override
 	public void addListener(InfoboxViewListener listener) {
-		listeners.add(listener);
+		lstListeners.add(listener);
 	}
 
 	@Override
 	public Set<PersonModel> getSelectedPerson() {
-		return gridImportantPerson.getSelectedItems();
+		return grdImportantPerson.getSelectedItems();
 	}
 
 	@Override
 	public Set<AddressModel> getSelectedAdress() {
-		return gridImportantAdress.getSelectedItems();
+		return grdImportantAddress.getSelectedItems();
 	}
 
 }
