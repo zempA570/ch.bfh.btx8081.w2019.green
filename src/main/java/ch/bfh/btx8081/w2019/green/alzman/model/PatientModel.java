@@ -6,6 +6,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
+/**
+ * In this class all information about the important persons is collected
+ * 
+ * @author gausegan
+ *
+ */
 @Entity
 @Table(name = "Patient")
 public class PatientModel {
