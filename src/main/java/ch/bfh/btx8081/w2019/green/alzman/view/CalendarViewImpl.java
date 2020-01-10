@@ -57,13 +57,13 @@ public class CalendarViewImpl extends TemplateView implements CalendarView {
 		// appointment.
 		// The Button "calDel" is for delete an entry.
 
-		Button calAdd = new Button("Eintrag hinzufügen");
+		Button calAdd = new Button("Add entry");
 		calAdd.addClickListener(e -> {
 			for (CalendarListener listener : listeners)
 				listener.buttonClick(e.getSource());
 		});
 
-		Button calDel = new Button("Eintrag löschen");
+		Button calDel = new Button("Delete entry");
 		calDel.addClickListener(e -> {
 			for (CalendarListener listener : listeners)
 				listener.buttonClick(e.getSource());
@@ -71,21 +71,21 @@ public class CalendarViewImpl extends TemplateView implements CalendarView {
 
 		dp = new DatePicker();
 		dp.setValue(LocalDate.now());
-		dp.setLabel("Datum");
+		dp.setLabel("Date");
 		// Display an icon which can be clicked to clear the value:
 		dp.setClearButtonVisible(true);
 
 		tp = new TimePicker();
 		tp.setValue(LocalTime.now());
-		tp.setLabel("Zeit");
+		tp.setLabel("Time");
 		// Display an icon which can be clicked to clear the value:
 		tp.setClearButtonVisible(true);
 
 		txtfAuthor = new TextField();
-		txtfAuthor.setLabel("Geschrieben von");
+		txtfAuthor.setLabel("Written by");
 
 		txtfEntry = new TextField();
-		txtfEntry.setLabel("Eintrag");
+		txtfEntry.setLabel("Entry");
 
 		txtfDeleteId = new TextField();
 		txtfDeleteId.setLabel("ID for delete an entry");

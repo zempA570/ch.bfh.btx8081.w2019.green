@@ -79,11 +79,11 @@ public class CalendarPresenter implements CalendarView.CalendarListener {
 		String buttonText = button.getText();
 
 		switch (buttonText) {
-		case "Eintrag hinzufügen":
+		case "Add entry":
 			addAppointmentToDB();
 			reloadPage();
 			break;
-		case "Eintrag löschen":
+		case "Delete entry":
 			deleteAppointment();
 			reloadPage();
 			break;
