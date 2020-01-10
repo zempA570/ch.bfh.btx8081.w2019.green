@@ -40,24 +40,40 @@ public class StatusViewImpl extends TemplateView implements StatusView {
 	private List<StatusListener> listeners = new ArrayList<StatusListener>();
 
 	HorizontalLayout hlIndepContent;
-	HorizontalLayout hlDepContent;
 	HorizontalLayout hlWhelpContent;
 
+	HorizontalLayout hlDepContent;
 	HorizontalLayout hlIndepWrapper;
-	HorizontalLayout hlDepWrapper;
 	HorizontalLayout hlWhelpWrapper;
 
-	SubMenu sbmnuIndepDelete;
-	SubMenu sbmnuDepDelete;
-	SubMenu sbmnuWhelpDelete;
+	HorizontalLayout hlDepWrapper;
+	// SubMenu sbmnuIndependentMove;
+	// SubMenu sbmnuWithHelpMove;
+	// SubMenu sbmnuDependentMove;
+	
+	// SubMenu sbmnuIndependentMove;
+	// SubMenu sbmnuWithHelpMove;
+	// SubMenu sbmnuDependentMove;
+	
+	TextField tfIndependent;
 
-	SubMenu sbmnuIndepMove;
-	SubMenu sbmnuWhelpMove;
-	SubMenu sbmnuDepMove;
+	// SubMenu sbmnuIndependentMove;
+	// SubMenu sbmnuWithHelpMove;
+	// SubMenu sbmnuDependentMove;
+	
+	TextField tfWithHelp;
 
-	TextField tfDep;
-	TextField tfIndep;
-	TextField tfWhelp;
+	TextField tfDependent;
+
+	SubMenu sbmnuIndependentDelete;
+	SubMenu sbmnuWithHelpDelete;
+
+	SubMenu sbmnuDependentDelete;
+	
+
+	// SubMenu sbmnuIndependentMove;
+	// SubMenu sbmnuWithHelpMove;
+	// SubMenu sbmnuDependentMove;
 
 	public StatusViewImpl() {
 
@@ -72,38 +88,38 @@ public class StatusViewImpl extends TemplateView implements StatusView {
 		 * A Layout from Vaadin, with which you can align the elements vertically.
 		 */
 
-		FormLayout detailsLayout = new FormLayout();
+		FormLayout frmlytDetailsLayout = new FormLayout();
 		/**
 		 * Details is a component of Vaadin with which you can expand a text to get more
 		 * information. infocomponent01 explains what is meant by "independent".
 		 */
-		Details infocomponent01 = new Details("Independend", new Text("Here you can add activities and properties that "
+		Details dtlsDetailsIndependend = new Details("Independend", new Text("Here you can add activities and properties that "
 				+ "your relative can practise independently and without " + "outside help."));
 
 		/**
 		 * infocomponent02 explains what is meant by "with help".
 		 */
 
-		Details infocomponent02 = new Details("With Help", new Text(
+		Details dtllDetailsWithHelp = new Details("With Help", new Text(
 				"Here you can add activities and properties that " + "your relative can perform with support."));
 
 		/**
 		 * infocomponent03 explains what is meant by "dependent".
 		 */
 
-		Details infocomponent03 = new Details("Dependend", new Text("Here you can add activities and features that your"
+		Details dtlsDetailsDependent = new Details("Dependend", new Text("Here you can add activities and features that your"
 				+ " loved one can no longer perform " + "independently and needs full help.."));
 
 		/**
 		 * With this layout feature the Details components are displayed in a structured
 		 * way.
 		 */
-		detailsLayout.setResponsiveSteps(new ResponsiveStep("25em", 1), new ResponsiveStep("32em", 2),
+		frmlytDetailsLayout.setResponsiveSteps(new ResponsiveStep("25em", 1), new ResponsiveStep("32em", 2),
 				new ResponsiveStep("40em", 3));
 
-		detailsLayout.add(infocomponent01, infocomponent02, infocomponent03);
+		frmlytDetailsLayout.add(dtlsDetailsIndependend, dtllDetailsWithHelp, dtlsDetailsDependent);
 
-		super.addContent(detailsLayout);
+		super.addContent(frmlytDetailsLayout);
 
 //---------------------------------------------------------------------------------
 		/**
@@ -112,9 +128,9 @@ public class StatusViewImpl extends TemplateView implements StatusView {
 		 * orderly way.
 		 */
 
-		FormLayout textLayout04 = new FormLayout();
+		FormLayout frmlyttextLayout04 = new FormLayout();
 
-		textLayout04.setResponsiveSteps(new ResponsiveStep("20em", 1), new ResponsiveStep("25em", 2),
+		frmlyttextLayout04.setResponsiveSteps(new ResponsiveStep("20em", 1), new ResponsiveStep("25em", 2),
 				new ResponsiveStep("30em", 3));
 
 		/**
@@ -127,15 +143,15 @@ public class StatusViewImpl extends TemplateView implements StatusView {
 		 *         See the Click Events section for more details.
 		 */
 
-		Icon plus01 = new Icon(VaadinIcon.PLUS);
-		plus01.setSize("60px");
-		plus01.setColor("lightgreen");
+		Icon icnPlus01 = new Icon(VaadinIcon.PLUS);
+		icnPlus01.setSize("60px");
+		icnPlus01.setColor("lightgreen");
 
-		Button plusButton = new Button("Click here to add a new Task ", plus01);
+		Button btnPlusButton = new Button("Click here to add a new Task ", icnPlus01);
 
-		textLayout04.add(plusButton);
+		frmlyttextLayout04.add(btnPlusButton);
 
-		super.addContent(textLayout04);
+		super.addContent(frmlyttextLayout04);
 
 //---------------------------------------------------------------------------------
 		/**
@@ -145,77 +161,77 @@ public class StatusViewImpl extends TemplateView implements StatusView {
 		 * icon and enter a text.
 		 * 
 		 */
-		Icon icnCheckIndep = new Icon(VaadinIcon.CHECK_CIRCLE);
-		icnCheckIndep.setSize("25px");
-		icnCheckIndep.setColor("blue");
-		icnCheckIndep.setVisible(false);
+		Icon icnCheckIndependent = new Icon(VaadinIcon.CHECK_CIRCLE);
+		icnCheckIndependent.setSize("25px");
+		icnCheckIndependent.setColor("blue");
+		icnCheckIndependent.setVisible(false);
 
-		Icon icnCheckWhelp = new Icon(VaadinIcon.CHECK_CIRCLE);
-		icnCheckWhelp.setSize("25px");
-		icnCheckWhelp.setColor("blue");
-		icnCheckWhelp.setVisible(false);
+		Icon icnCheckWithHelp = new Icon(VaadinIcon.CHECK_CIRCLE);
+		icnCheckWithHelp.setSize("25px");
+		icnCheckWithHelp.setColor("blue");
+		icnCheckWithHelp.setVisible(false);
 
-		Icon icnCheckDep = new Icon(VaadinIcon.CHECK_CIRCLE);
-		icnCheckDep.setSize("25px");
-		icnCheckDep.setColor("blue");
-		icnCheckDep.setVisible(false);
+		Icon icnCheckDependent = new Icon(VaadinIcon.CHECK_CIRCLE);
+		icnCheckDependent.setSize("25px");
+		icnCheckDependent.setColor("blue");
+		icnCheckDependent.setVisible(false);
 //-----------------------------------------------------------------------------------------------------	
 
-		FormLayout textLayout05 = new FormLayout();
+		FormLayout frmlytTextLayout05 = new FormLayout();
 
-		textLayout05.setResponsiveSteps(new ResponsiveStep("20em", 1), new ResponsiveStep("25em", 2),
+		frmlytTextLayout05.setResponsiveSteps(new ResponsiveStep("20em", 1), new ResponsiveStep("25em", 2),
 				new ResponsiveStep("30em", 3));
 
-		tfIndep = new TextField();
-		tfIndep.addClassName("wrapperField");
-		tfIndep.setEnabled(false);
-		tfIndep.setVisible(false);
+		tfIndependent = new TextField();
+		tfIndependent.addClassName("wrapperField");
+		tfIndependent.setEnabled(false);
+		tfIndependent.setVisible(false);
 
-		tfWhelp = new TextField();
-		tfWhelp.addClassName("wrapperField");
-		tfWhelp.setEnabled(false);
-		tfWhelp.setVisible(false);
+		tfWithHelp = new TextField();
+		tfWithHelp.addClassName("wrapperField");
+		tfWithHelp.setEnabled(false);
+		tfWithHelp.setVisible(false);
 
-		tfDep = new TextField();
-		tfDep.addClassName("wrapperField");
-		tfDep.setEnabled(false);
-		tfDep.setVisible(false);
+		tfDependent = new TextField();
+		tfDependent.addClassName("wrapperField");
+		tfDependent.setEnabled(false);
+		tfDependent.setVisible(false);
 
-		textLayout05.add(tfIndep, icnCheckIndep, tfWhelp, icnCheckWhelp, tfDep, icnCheckDep);
+		frmlytTextLayout05.add(tfIndependent, icnCheckIndependent, tfWithHelp, icnCheckWithHelp, tfDependent, icnCheckDependent);
 
-		super.addContent(textLayout05);
+		super.addContent(frmlytTextLayout05);
 //----------------------------------------------------------------------------------		
 
-		plusButton.addClickListener(event -> tfDep.setVisible(true));
-		plusButton.addClickListener(event -> tfDep.setEnabled(true));
-		plusButton.addClickListener(event -> icnCheckDep.setVisible(true));
+		btnPlusButton.addClickListener(event -> tfDependent.setVisible(true));
+		btnPlusButton.addClickListener(event -> tfDependent.setEnabled(true));
+		btnPlusButton.addClickListener(event -> icnCheckDependent.setVisible(true));
 
-		plusButton.addClickListener(event -> tfIndep.setVisible(true));
-		plusButton.addClickListener(event -> tfIndep.setEnabled(true));
-		plusButton.addClickListener(event -> icnCheckIndep.setVisible(true));
+		btnPlusButton.addClickListener(event -> tfIndependent.setVisible(true));
+		btnPlusButton.addClickListener(event -> tfIndependent.setEnabled(true));
+		btnPlusButton.addClickListener(event -> icnCheckIndependent.setVisible(true));
 
-		plusButton.addClickListener(event -> tfWhelp.setVisible(true));
-		plusButton.addClickListener(event -> tfWhelp.setEnabled(true));
-		plusButton.addClickListener(event -> icnCheckWhelp.setVisible(true));
+		btnPlusButton.addClickListener(event -> tfWithHelp.setVisible(true));
+		btnPlusButton.addClickListener(event -> tfWithHelp.setEnabled(true));
+		btnPlusButton.addClickListener(event -> icnCheckWithHelp.setVisible(true));
 
 //----------------------------------------------------------------------------------
-		MenuBar mnubrIndep = new MenuBar();
-		MenuItem mnuitmIndepDelete = mnubrIndep.addItem("Delete");
-		MenuItem mnuitmIndepMove = mnubrIndep.addItem("Move down");
-		sbmnuIndepDelete = mnuitmIndepDelete.getSubMenu();
-		sbmnuIndepMove = mnuitmIndepMove.getSubMenu();
+		MenuBar mnubrIndependent = new MenuBar();
+		MenuItem mnuitmIndepDelete = mnubrIndependent.addItem("Delete");
+		MenuItem mnuitmIndepMove = mnubrIndependent.addItem("Move down");
+		sbmnuIndependentDelete = mnuitmIndepDelete.getSubMenu();
+		// sbmnuIndependentMove = mnuitmIndepMove.getSubMenu();
 		
-		MenuBar mnubrWhelp = new MenuBar();
-		MenuItem mnuitmWhelpDelete = mnubrWhelp.addItem("Delete");
-		MenuItem mnuitmWhelpMove = mnubrWhelp.addItem("Move down");
-		sbmnuWhelpDelete = mnuitmWhelpDelete.getSubMenu();
-		sbmnuWhelpMove = mnuitmWhelpMove.getSubMenu();
+		MenuBar mnubrWithHelp = new MenuBar();
+		MenuItem mnuitmWhelpDelete = mnubrWithHelp.addItem("Delete");
+		MenuItem mnuitmWhelpMove = mnubrWithHelp.addItem("Move down");
+		sbmnuWithHelpDelete = mnuitmWhelpDelete.getSubMenu();
+		// sbmnuWithHelpMove = mnuitmWhelpMove.getSubMenu();
 
-		MenuBar mnubrDep = new MenuBar();
-		MenuItem mnuitmDepDelete = mnubrDep.addItem("Delete");
-		MenuItem mnuitmDepMove = mnubrDep.addItem("Move up");
-		sbmnuDepDelete = mnuitmDepDelete.getSubMenu();
-		sbmnuDepMove = mnuitmDepMove.getSubMenu();
+		MenuBar mnubrDependent = new MenuBar();
+		MenuItem mnuitmDepDelete = mnubrDependent.addItem("Delete");
+		MenuItem mnuitmDepMove = mnubrDependent.addItem("Move up");
+		sbmnuDependentDelete = mnuitmDepDelete.getSubMenu();
+		// sbmnuDependentMove = mnuitmDepMove.getSubMenu();
 
 //----------------------------------------------------------------------------------		
 
@@ -223,19 +239,19 @@ public class StatusViewImpl extends TemplateView implements StatusView {
 		hlIndepWrapper.addClassName("wrapper");
 		hlIndepContent = new HorizontalLayout();
 		hlIndepContent.addClassNames("column", "column-a");
-		hlIndepWrapper.add(new Label("Independent"), mnubrIndep, hlIndepContent);
+		hlIndepWrapper.add(new Label("Independent"), mnubrIndependent, hlIndepContent);
 
 		hlWhelpWrapper = new HorizontalLayout();
 		hlWhelpWrapper.addClassName("wrapper");
 		hlWhelpContent = new HorizontalLayout();
 		hlWhelpContent.addClassNames("column", "column-b");
-		hlWhelpWrapper.add(new Label("With help"), mnubrWhelp, hlWhelpContent);
+		hlWhelpWrapper.add(new Label("With help"), mnubrWithHelp, hlWhelpContent);
 
 		hlDepWrapper = new HorizontalLayout();
 		hlDepWrapper.addClassName("wrapper");
 		hlDepContent = new HorizontalLayout();
 		hlDepContent.addClassNames("column", "column-c");
-		hlDepWrapper.add(new Label("Dependent"), mnubrDep, hlDepContent);
+		hlDepWrapper.add(new Label("Dependent"), mnubrDependent, hlDepContent);
 
 		super.addContent(hlIndepWrapper);
 		super.addContent(hlWhelpWrapper);
@@ -243,15 +259,15 @@ public class StatusViewImpl extends TemplateView implements StatusView {
 
 //----------------------------------------------------------------------------------------------------------------
 		
-		icnCheckIndep.addClickListener(event -> {
+		icnCheckIndependent.addClickListener(event -> {
 			for (StatusListener listener : listeners)
 				listener.iconClick();
 		});
-		icnCheckWhelp.addClickListener(event -> {
+		icnCheckWithHelp.addClickListener(event -> {
 			for (StatusListener listener : listeners)
 				listener.iconClick();
 		});
-		icnCheckDep.addClickListener(event -> {
+		icnCheckDependent.addClickListener(event -> {
 			for (StatusListener listener : listeners)
 				listener.iconClick();
 		});
@@ -266,13 +282,13 @@ public class StatusViewImpl extends TemplateView implements StatusView {
 
 		StatusLevel targetLevel = StatusLevel.valueOf(model.getLevel());
 		
-		Button btnNew = new Button(model.Gettask());
+		Button btnNew = new Button(model.getTask());
 		btnNew.setId(Integer.toString(model.getId()));
 		
 		switch (targetLevel) {
 		case INDEPENDENT:
 			hlIndepContent.add(btnNew);
-			sbmnuIndepDelete.addItem(model.Gettask(), event -> {
+			sbmnuIndependentDelete.addItem(model.getTask(), event -> {
 				for (StatusListener listener : listeners)
 					listener.buttonClick(btnNew);
 			});
@@ -280,8 +296,8 @@ public class StatusViewImpl extends TemplateView implements StatusView {
 			break;
 
 		case DEPENDENT:
-			hlDepContent.add(new Button(model.Gettask()));
-			sbmnuDepDelete.addItem(model.Gettask(), event -> {
+			hlDepContent.add(new Button(model.getTask()));
+			sbmnuDependentDelete.addItem(model.getTask(), event -> {
 				for (StatusListener listener : listeners)
 					listener.buttonClick(btnNew);
 			});
@@ -289,8 +305,8 @@ public class StatusViewImpl extends TemplateView implements StatusView {
 			break;
 
 		case WITHHELP:
-			hlWhelpContent.add(new Button(model.Gettask()));
-			sbmnuWhelpDelete.addItem(model.Gettask(), event -> {
+			hlWhelpContent.add(new Button(model.getTask()));
+			sbmnuWithHelpDelete.addItem(model.getTask(), event -> {
 				for (StatusListener listener : listeners)
 					listener.buttonClick(btnNew);
 			});
@@ -311,24 +327,24 @@ public class StatusViewImpl extends TemplateView implements StatusView {
 
 	@Override
 	public String getIndepTfValue() {
-		return tfIndep.getValue();
+		return tfIndependent.getValue();
 	}
 
 	@Override
 	public String getWhelpTfValue() {
-		return tfWhelp.getValue();
+		return tfWithHelp.getValue();
 	}
 
 	@Override
 	public String getDepTfValue() {
-		return tfDep.getValue();
+		return tfDependent.getValue();
 	}
 
 	@Override
 	public void clearTextfields() {
-		tfIndep.clear();
-		tfWhelp.clear();
-		tfDep.clear();
+		tfIndependent.clear();
+		tfWithHelp.clear();
+		tfDependent.clear();
 	}
 
 	@Override
@@ -337,13 +353,13 @@ public class StatusViewImpl extends TemplateView implements StatusView {
 		hlWhelpContent.removeAll();
 		hlDepContent.removeAll();
 		
-		sbmnuDepDelete.removeAll();
-		sbmnuIndepDelete.removeAll();
-		sbmnuWhelpDelete.removeAll();
+		sbmnuDependentDelete.removeAll();
+		sbmnuIndependentDelete.removeAll();
+		sbmnuWithHelpDelete.removeAll();
 		
-		sbmnuDepMove.removeAll();
-		sbmnuIndepMove.removeAll();
-		sbmnuWhelpMove.removeAll();
+		// sbmnuDependentMove.removeAll();
+		// sbmnuIndependentMove.removeAll();
+		// sbmnuWithHelpMove.removeAll();
 	}
 
 }

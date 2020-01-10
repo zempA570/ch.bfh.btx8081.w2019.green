@@ -37,14 +37,14 @@ public class StatusModel {
 
 	}
 
-	public String Gettask() {
+	public String getTask() {
 		return task;
 	}
 	
 	public void setTask(String task) {
 		this.task = task;
 	}
-	
+
 	public int getLevel() {
 		return level;
 	}

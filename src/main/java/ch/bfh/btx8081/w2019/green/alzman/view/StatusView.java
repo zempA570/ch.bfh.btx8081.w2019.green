@@ -13,9 +13,9 @@ public interface StatusView {
 		void iconClick();
 	}
 
-	public void addListener(StatusListener listener);
-
 	public void addToView(StatusModel status);
+
+	public void addListener(StatusListener listener);
 
 	public String getIndepTfValue();
 	

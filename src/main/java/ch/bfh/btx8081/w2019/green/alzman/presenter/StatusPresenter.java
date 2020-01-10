@@ -16,7 +16,7 @@ import ch.bfh.btx8081.w2019.green.alzman.view.StatusView;
 public class StatusPresenter implements StatusView.StatusListener {
 
 	private StatusView view;
-	private List<StatusModel> lstAllStatus;
+	private List<StatusModel> listAllStatus;
 
 	public StatusPresenter(StatusView view) {
 		this.view = view;
@@ -29,30 +29,26 @@ public class StatusPresenter implements StatusView.StatusListener {
 	private void fillGuiWithContent() {
 
 		// get list of users out of the query
-		lstAllStatus = DbService.getAllStatus();
+		listAllStatus = DbService.getAllStatus();
 
 		// for every user in our list
-		for (StatusModel status : lstAllStatus) {
+		for (StatusModel status : listAllStatus) {
 			view.addToView(status);
 		}
 	}
 
 	private void addTaskToDB(String str, int level) {
-
-		StatusModel sm = new StatusModel(level, str);
-
-		DbService.em.getTransaction().begin();
-		DbService.em.persist(sm);
-		DbService.em.getTransaction().commit();
-
-	}
 	
+		StatusModel statusToSave = new StatusModel(level, str);
+	
+		DbService.persist(statusToSave);
+	}
 
 	private void deleteStatusFromDB(int idToDelete) {
 
 		StatusModel statusToDelete = null;
 
-		for (StatusModel status : lstAllStatus) {
+		for (StatusModel status : listAllStatus) {
 			if (Objects.equals(status.getId(), idToDelete)) {
 				statusToDelete = status;
 			}
@@ -61,7 +57,7 @@ public class StatusPresenter implements StatusView.StatusListener {
 		DbService.remove(statusToDelete);
 
 	}
-	
+
 	private void reloadContent() {
 		view.clearContent();
 		fillGuiWithContent();
@@ -69,9 +65,9 @@ public class StatusPresenter implements StatusView.StatusListener {
 
 	@Override
 	public void buttonClick(Button button) {
-		
-		//TODO move functionality would be differentiated here
-		
+
+		// TODO move functionality would be differentiated here
+
 		deleteStatusFromDB(Integer.parseInt(button.getId().get()));
 		reloadContent();
 
