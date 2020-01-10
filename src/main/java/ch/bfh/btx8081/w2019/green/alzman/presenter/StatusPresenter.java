@@ -2,6 +2,7 @@ package ch.bfh.btx8081.w2019.green.alzman.presenter;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Query;
 
@@ -26,11 +27,9 @@ public class StatusPresenter implements StatusView.StatusListener {
 	}
 
 	private void fillGuiWithContent() {
-		// DB stuff where we get all the users
-		Query query = DbService.em.createNativeQuery("SELECT * FROM status", StatusModel.class);
 
 		// get list of users out of the query
-		lstAllStatus = query.getResultList();
+		lstAllStatus = DbService.getAllStatus();
 
 		// for every user in our list
 		for (StatusModel status : lstAllStatus) {
@@ -47,6 +46,7 @@ public class StatusPresenter implements StatusView.StatusListener {
 		DbService.em.getTransaction().commit();
 
 	}
+	
 
 	private void deleteStatusFromDB(int idToDelete) {
 

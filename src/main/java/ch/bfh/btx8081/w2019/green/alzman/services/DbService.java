@@ -1,7 +1,12 @@
 package ch.bfh.btx8081.w2019.green.alzman.services;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
+
+import ch.bfh.btx8081.w2019.green.alzman.model.StatusModel;
 
 /**
  * The dbService is used to execute statements on the database
@@ -28,6 +33,12 @@ public class DbService {
 		em.remove(entity);
 		em.getTransaction().commit();
 		
+	}
+	
+	public static List<StatusModel> getAllStatus() {
+		Query query = DbService.em.createNativeQuery("SELECT * FROM status",
+		StatusModel.class);
+		return query.getResultList();
 	}
 	
 }
