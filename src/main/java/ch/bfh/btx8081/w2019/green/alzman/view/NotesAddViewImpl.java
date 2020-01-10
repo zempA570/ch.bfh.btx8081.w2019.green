@@ -18,16 +18,21 @@ import com.vaadin.flow.router.Route;
 import ch.bfh.btx8081.w2019.green.alzman.presenter.NotesAddPresenter;
 
 /**
- * The user management view will be used to add and remove users of the app
+ * This class represents the view which models the (Key-) Notes functionality
+ * an author can create an entry and choose a date, then save it and the
+ * entry is added automatically to the NotesView via DB
+ * @author simon
  */
+
 @Route("NotesAddView")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class NotesAddViewImpl extends TemplateView implements NotesAddView {
 
-	private List<NotesAddListener> listeners = new ArrayList<NotesAddListener>();
+	private DatePicker dpEntryDate;
+
+	private List<NotesAddListener> lstNotesListener = new ArrayList<NotesAddListener>();
 
 	private TextField txtfAuthor;
-	private DatePicker dpEntryDate;
 	private TextArea txtaEntry;
 
 	public NotesAddViewImpl() {
@@ -52,8 +57,8 @@ public class NotesAddViewImpl extends TemplateView implements NotesAddView {
 
 		// Click Listener that triggers an Event for Add-To-Key-Notes-Button
 		btnAddEntry.addClickListener(e -> {
-			for (NotesAddListener listener : listeners)
-				listener.buttonClick(e.getSource());
+			for (NotesAddListener listener : lstNotesListener)
+				listener.addToKeyNotes(e.getSource());
 		});
 
 		Notification infoNotification2 = new Notification("Entry added to Key-Notes!", 3000);
@@ -78,17 +83,17 @@ public class NotesAddViewImpl extends TemplateView implements NotesAddView {
 
 	@Override
 	public void addListener(NotesAddListener listener) {
-		listeners.add(listener);
-	}
-
-	@Override
-	public LocalDate getDate() {
-		return dpEntryDate.getValue();
+		lstNotesListener.add(listener);
 	}
 
 	@Override
 	public String getAuthor() {
 		return txtfAuthor.getValue();
+	}
+
+	@Override
+	public LocalDate getDate() {
+		return dpEntryDate.getValue();
 	}
 
 	@Override

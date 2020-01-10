@@ -22,6 +22,13 @@ import ch.bfh.btx8081.w2019.green.alzman.presenter.NotesPresenter;
  */
 @Route("Notes")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
+/**
+ * this class represents the (Key-)Notes View which the user can use to
+ * either see the entries he made or delete them
+ * by clicking the button he can create a new entry and is redirected to another View
+ * @author simon
+ *
+ */
 public class NotesViewImpl extends TemplateView implements NotesView {
 	
 	private List<NotesListener> lstNotesList = new ArrayList<NotesListener>();

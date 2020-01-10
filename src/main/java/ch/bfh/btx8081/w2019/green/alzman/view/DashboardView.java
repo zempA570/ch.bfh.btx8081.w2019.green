@@ -20,6 +20,13 @@ import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 @Route("dashboard")
 @PWA(name = "Project Base for Vaadin", shortName = "Project Base")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
+/**
+ * This class represents the dashboard which is also the main-window of the application
+ * the dashboard has clickable icons that are linked with their related functionalities
+ * 
+ * @author simon
+ *
+ */
 public class DashboardView extends TemplateView {
 
 	public DashboardView() {
@@ -77,11 +84,6 @@ public class DashboardView extends TemplateView {
 		HorizontalLayout hlComposedIconLayout = new HorizontalLayout(vlLeftSideIcons, vlRightSideIcons);
 
 		// configuring the icons so they can be clicked on
-		/**
-		 * the code below is working, waiting for the other View Classes to be finished
-		 * so they can be implemented just as the one below
-		 */
-
 		icnCalendar.addClickListener(e -> UI.getCurrent().navigate(CalendarViewImpl.class));
 		icnStatus.addClickListener(e -> UI.getCurrent().navigate(StatusViewImpl.class));
 		icnToDo.addClickListener(e -> UI.getCurrent().navigate(ToDoListViewImpl.class));
@@ -89,6 +91,8 @@ public class DashboardView extends TemplateView {
 		icnKeyNotes.addClickListener(e -> UI.getCurrent().navigate(NotesViewImpl.class));
 		icnInfoBox.addClickListener(e -> UI.getCurrent().navigate(InfoboxViewImpl.class));
 
+		//composing the layout
+		
 		super.addContent(hlComposedIconLayout);
 
 	}

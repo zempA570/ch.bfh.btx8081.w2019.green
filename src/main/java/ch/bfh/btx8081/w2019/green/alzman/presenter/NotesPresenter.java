@@ -14,6 +14,12 @@ import ch.bfh.btx8081.w2019.green.alzman.view.NotesAddViewImpl;
 import ch.bfh.btx8081.w2019.green.alzman.view.NotesView;
 import ch.bfh.btx8081.w2019.green.alzman.view.NotesViewImpl;
 
+/**
+ * This class acts as Presenter for the (Key-)Notes Functionality
+ * @author simon
+ *
+ */
+
 public class NotesPresenter implements NotesView.NotesListener {
 
 	private NotesView view;
@@ -27,50 +33,13 @@ public class NotesPresenter implements NotesView.NotesListener {
 
 	}
 
-	public void fillTableWithNotes() {
-
-		// get list of notes out of the query
-		lstKeyNotesList = DbService.getAllNotes();
-
-		view.fillGridWithEntries(lstKeyNotesList);
-
-	}
-
-	public void deleteEntry() {
-		
-		Set<NotesModel> notes = view.getSelectedNote();
-		NotesModel noteToDelete = notes.stream().findFirst().get();
-
-		DbService.em.getTransaction().begin();
-
-//		// get the id number of the entry which is at the beginning of the string
-//		int entryID = notetoDelete.getEntryID();
-//
-//		ImportantNotesDataModel noteToDelete = null;
-//
-//		// for every user we have in our list
-//		for (ImportantNotesDataModel noteIn : notes) {
-//			// if the id of that entry is equal to the id we got from the entryID
-//			if (Objects.equals(noteIn.getEntryID(), entryID)) {
-//				// this is the user we want to delete
-//				noteToDelete = noteIn;
-//			}
-//		}
-
-		// this is the part where we use the DB
-		DbService.em.remove(noteToDelete);
-		DbService.em.getTransaction().commit();
-
-		fillTableWithNotes();
-
-		DbService.em.close();
-
-	}
-
 	@Override
+	/**
+	 * creates clickable buttons to create or delete an entry or to refresh the page
+	 */
 	public void buttonClick(Button btnClickable) {
 		String buttonDescrption = btnClickable.getText();
-
+	
 		switch (buttonDescrption) {
 		case "Create New Entry":
 			navigateToCreateView();
@@ -80,6 +49,7 @@ public class NotesPresenter implements NotesView.NotesListener {
 			break;
 		case "Refresh":
 			fillTableWithNotes();
+			reloadPage();
 			System.out.println("jo klappt");
 			break;
 		default:
@@ -88,8 +58,48 @@ public class NotesPresenter implements NotesView.NotesListener {
 		}
 	}
 
+	/**
+	 * deletes an Entry from the respective DB Table
+	 */
+	public void deleteEntry() {
+		
+		Set<NotesModel> notes = view.getSelectedNote();
+		NotesModel noteToDelete = notes.stream().findFirst().get();
+	
+		DbService.em.getTransaction().begin();
+		DbService.remove(noteToDelete);
+		DbService.em.getTransaction().commit();
+	
+		fillTableWithNotes();
+	
+		DbService.em.close();
+	
+	}
+	
+	/**
+	 * fills the Table from the DB for this Functionality with Entries
+	 */
+	public void fillTableWithNotes() {
+
+		lstKeyNotesList = DbService.getAllNotes();
+		view.fillGridWithEntries(lstKeyNotesList);
+
+	}
+
+	/**
+	 * reloads the current page
+	 */
+	private void reloadPage() {
+		UI.getCurrent().getPage().reload();
+		
+	}
+
+	/**
+	 * navigates back to the previous view
+	 */
 	private void navigateToCreateView() {
 		UI.getCurrent().navigate(NotesAddViewImpl.class);
 	}
+	
 
 }
