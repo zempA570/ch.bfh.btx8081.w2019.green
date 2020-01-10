@@ -51,12 +51,12 @@ import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxView.InfoboxViewListener;
 public class CalendarViewImpl extends TemplateView implements CalendarView {
 
 	private List<CalendarListener> listeners = new ArrayList<CalendarListener>();
-	public FullCalendar calendar;
-	private DatePicker datePick;
-	private TimePicker time;
-	private TextField author;
-	private TextField entry1;
-	private TextField deleteId;
+	public FullCalendar fc;
+	private DatePicker dp;
+	private TimePicker tp;
+	private TextField txtfAuthor;
+	private TextField txtfEntry;
+	private TextField txtfDeleteId;
 
 	public CalendarViewImpl() {
 
@@ -69,9 +69,9 @@ public class CalendarViewImpl extends TemplateView implements CalendarView {
 		// super.add(progressBar);
 
 		// Create and build a calendar
-		calendar = FullCalendarBuilder.create().build();
+		fc = FullCalendarBuilder.create().build();
 
-		super.addContent(calendar);
+		super.addContent(fc);
 
 //		// Create a initial sample entry
 //		Entry entry = new Entry();
@@ -96,7 +96,7 @@ public class CalendarViewImpl extends TemplateView implements CalendarView {
 		// Create a horizontal Layout with two button. The button "calAdd" is for add an
 		// appointment.
 		// The Button "calDel" is for delete an entry.
-		HorizontalLayout horiLay = new HorizontalLayout();
+		HorizontalLayout hlButtons = new HorizontalLayout();
 		Button calAdd = new Button("Eintrag hinzufügen");
 		calAdd.addClickListener(e -> {
 			for (CalendarListener listener : listeners)
@@ -109,41 +109,41 @@ public class CalendarViewImpl extends TemplateView implements CalendarView {
 				listener.buttonClick(e.getSource());
 		});
 
-		datePick = new DatePicker();
-		datePick.setValue(LocalDate.now());
-		datePick.setLabel("Datum");
+		dp = new DatePicker();
+		dp.setValue(LocalDate.now());
+		dp.setLabel("Datum");
 		// Display an icon which can be clicked to clear the value:
-		datePick.setClearButtonVisible(true);
+		dp.setClearButtonVisible(true);
 
-		time = new TimePicker();
-		time.setValue(LocalTime.now());
-		time.setLabel("Zeit");
+		tp = new TimePicker();
+		tp.setValue(LocalTime.now());
+		tp.setLabel("Zeit");
 		// Display an icon which can be clicked to clear the value:
-		time.setClearButtonVisible(true);
+		tp.setClearButtonVisible(true);
 
-		author = new TextField();
-		author.setLabel("Geschrieben von");
+		txtfAuthor = new TextField();
+		txtfAuthor.setLabel("Geschrieben von");
 
-		entry1 = new TextField();
-		entry1.setLabel("Eintrag");
+		txtfEntry = new TextField();
+		txtfEntry.setLabel("Eintrag");
 
-		deleteId = new TextField();
-		deleteId.setLabel("ID for delete an entry");
+		txtfDeleteId = new TextField();
+		txtfDeleteId.setLabel("ID for delete an entry");
 
 		// Creating horizontal layout
 		HorizontalLayout dateTimeHLayout = new HorizontalLayout();
-		dateTimeHLayout.add(datePick, time);
+		dateTimeHLayout.add(dp, tp);
 
 		// Creating horizontal layout
-		HorizontalLayout textHLayount = new HorizontalLayout();
-		textHLayount.add(author, entry1);
+		HorizontalLayout hlText = new HorizontalLayout();
+		hlText.add(txtfAuthor, txtfEntry);
 
-		horiLay.add(calAdd, calDel, deleteId);
+		hlButtons.add(calAdd, calDel, txtfDeleteId);
 
 		// Adding components to content space
-		super.add(horiLay);
+		super.add(hlButtons);
 		super.add(dateTimeHLayout);
-		super.add(textHLayount);
+		super.add(hlText);
 
 		new CalendarPresenter(this);
 
@@ -164,7 +164,7 @@ public class CalendarViewImpl extends TemplateView implements CalendarView {
 		entry.setColor("#ff3333");
 		entry.setEditable(true);
 
-		calendar.addEntry(entry);
+		fc.addEntry(entry);
 
 	}
 
@@ -178,17 +178,17 @@ public class CalendarViewImpl extends TemplateView implements CalendarView {
 
 		AppointmentModel newCalendarModel = new AppointmentModel();
 
-		newCalendarModel.setAuthor(author.getValue());
-		newCalendarModel.setDate(Date.valueOf(datePick.getValue()));
-		newCalendarModel.setEntry(entry1.getValue());
-		newCalendarModel.setTime(Time.valueOf(time.getValue()));
+		newCalendarModel.setAuthor(txtfAuthor.getValue());
+		newCalendarModel.setDate(Date.valueOf(dp.getValue()));
+		newCalendarModel.setEntry(txtfEntry.getValue());
+		newCalendarModel.setTime(Time.valueOf(tp.getValue()));
 
 		return newCalendarModel;
 	}
 
 	@Override
 	public String getIdForAppointmentToDelete() {
-		return deleteId.getValue();
+		return txtfDeleteId.getValue();
 	}
 
 }

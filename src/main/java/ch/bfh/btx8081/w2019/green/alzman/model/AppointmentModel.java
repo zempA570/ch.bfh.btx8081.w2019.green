@@ -21,29 +21,29 @@ public class AppointmentModel {
 	@GeneratedValue
 	int id;
 	
-	Date datePick;
+	Date date;
 	Time time;
 	String author;
-	String Entry;
+	String entry;
 	
-	public AppointmentModel(Date datePick, Time time, String author, String Entry ) {
-		this.datePick= datePick;
+	public AppointmentModel(Date date, Time time, String author, String entry ) {
+		this.date= date;
 		this.time=time;
 		this.author=author;
-		this.Entry = Entry;
+		this.entry = entry;
 		
 	}
 	public AppointmentModel() {
 		
 	}
 	
-	public void setDate(Date datePick) {
-		this.datePick= datePick;
+	public void setDate(Date date) {
+		this.date= date;
 	
 	}
 	
 	public Date getDate() {
-		return datePick;
+		return date;
 	}
 	public void setTime(Time time) {
 		this.time= time;
@@ -62,11 +62,11 @@ public class AppointmentModel {
 		return author;
 	}
 	
-	public void setEntry(String Entry) {
-		this.Entry =Entry;
+	public void setEntry(String entry) {
+		this.entry =entry;
 	}
 	public String getEntry() {
-		return Entry;
+		return entry;
 	}
 	
 	public int getId() {
