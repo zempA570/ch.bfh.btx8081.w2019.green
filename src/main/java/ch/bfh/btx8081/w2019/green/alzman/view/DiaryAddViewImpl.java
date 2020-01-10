@@ -17,7 +17,11 @@ import ch.bfh.btx8081.w2019.green.alzman.presenter.DiaryAddPresenter;
 
 
 /**
- * The user management view will be used to add and remove users of the app
+ * 
+ * @author Mootaas
+ *
+ *New Records shall be added to the database by clicking the add button
+ *
  */
 
 @Route("EntryRecordDiary")
@@ -33,7 +37,7 @@ public class DiaryAddViewImpl extends TemplateView implements DiaryAddView {
 
 	public DiaryAddViewImpl() {
 
-		super.setHeaderTitle("Entry Record Diarymodel");
+		super.setHeaderTitle("entry Record Diarymodel");
 
 		// Creating a new Datepicker.
 		dpdiary = new DatePicker();
@@ -46,7 +50,7 @@ public class DiaryAddViewImpl extends TemplateView implements DiaryAddView {
 		// Creating a new Textarea
 
 		txtaentry = new TextArea();
-		txtaentry.setLabel("Entry");
+		txtaentry.setLabel("entry");
 
 		// Creating a new Button
 		btnnewRecord = new Button("Add new Record", new Icon(VaadinIcon.PLUS));

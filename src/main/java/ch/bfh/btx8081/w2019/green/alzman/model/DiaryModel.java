@@ -11,19 +11,24 @@ import javax.persistence.Table;
 
 import com.vaadin.flow.component.datepicker.DatePicker;
 
+/**
+ * 
+ * @author Mootaas
+ * 
+ * In this class the getter and setter method will be created
+ *
+ */
+
 @Entity
 @Table(name = "Diary")
 public class DiaryModel {
 
 	@Id
-	// @GeneratedValue means the value of this variable will be generated in the
-	// database by the "userIDGenerator"
 	@GeneratedValue
 	int id;
-
-	LocalDate lcld;
+	LocalDate date;
 	String author;
-	String Entry;
+	String entry;
 
 	public void setId(int id) {
 		this.id = id;
@@ -34,17 +39,17 @@ public class DiaryModel {
 	}
 
 	public DiaryModel(LocalDate date, String author, String entry) {
-		this.lcld = date;
+		this.date = date;
 		this.author = author;
-		this.Entry = entry;
+		this.entry = entry;
 	}
 
 	public LocalDate getDate() {
-		return lcld;
+		return date;
 	}
 
 	public void setDate(LocalDate date) {
-		this.lcld = date;
+		this.date = date;
 	}
 
 	public String getAuthor() {
@@ -56,15 +61,15 @@ public class DiaryModel {
 	}
 
 	public String getEntry() {
-		return Entry;
+		return entry;
 	}
 
 	public void setEntry(String entry) {
-		Entry = entry;
+		this.entry = entry;
 	}
 
 	public String getFullDiary() {
-		return author + " " + lcld + " " + Entry;
+		return author + " " + date + " " + entry;
 	}
 
 	public int getId() {

@@ -17,7 +17,7 @@ public class NotesModel {
 
 	/**
 	 * datatypes for this model: string author for the user who makes the entry
-	 * entryDate for the lcld of the newly entered entry entryContent for the actual
+	 * entryDate for the date of the newly entered entry entryContent for the actual
 	 * entry which is a string
 	 */
 	@Id

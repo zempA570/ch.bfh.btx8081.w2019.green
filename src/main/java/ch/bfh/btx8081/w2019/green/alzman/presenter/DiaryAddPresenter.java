@@ -11,46 +11,30 @@ import ch.bfh.btx8081.w2019.green.alzman.view.DiaryAddView;
 /**
  * 
  * @author Mootaas
+ * 
+ * This is the presenter of the diary. All the logic of the diary is controlled by this class
  *
  */
 public class DiaryAddPresenter implements DiaryAddView.DiaryAddViewListener {
 
 	private DiaryAddView view;
 
-	// constructor for the presenter
 	public DiaryAddPresenter(DiaryAddView diaryView) {
 		this.view = diaryView;
 		view.addListener(this);
 	}
 
 	public void addRecord() {
-
-		System.out.println("i want to add");
-		
-		// create new Record
-
 		LocalDate date = view.getDate();
 		String author = view.getAuthor();
 		String entry = view.getEntry();
-
 		DiaryModel addnewRecord = new DiaryModel(date, author, entry);
-
-		// DB stuff
-		//DbService.em.getTransaction().begin();
-		//DbService.em.persist(addnewRecord);
-		//DbService.em.getTransaction().commit();
-		
 		DbService.persist(addnewRecord);
-
 	}
 
 	@Override
 	public void buttonClick(Button button) {
-		
-		System.out.println("clicked");
-
 		String buttonText = button.getText();
-
 		switch (buttonText) {
 		case "Add new Record":
 			addRecord();
@@ -59,7 +43,5 @@ public class DiaryAddPresenter implements DiaryAddView.DiaryAddViewListener {
 			// TODO
 			;
 		}
-
 	}
-
 }

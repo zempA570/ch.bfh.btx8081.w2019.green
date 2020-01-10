@@ -56,7 +56,7 @@ public class NotesAddViewImpl extends TemplateView implements NotesAddView {
 				listener.buttonClick(e.getSource());
 		});
 
-		Notification infoNotification2 = new Notification("Entry added to Key-Notes!", 3000);
+		Notification infoNotification2 = new Notification("entry added to Key-Notes!", 3000);
 		addEntry.addClickListener(e -> infoNotification2.open());
 
 		// Put components in horizontal layout

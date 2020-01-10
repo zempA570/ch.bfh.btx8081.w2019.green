@@ -43,14 +43,14 @@ public class NotesViewImpl extends TemplateView implements NotesView {
 		super.addContent(titleAddNotes);
 
 		// Button for a new entry
-		Button buttonAddEntry = new Button("Create New Entry");
+		Button buttonAddEntry = new Button("Create New entry");
 		buttonAddEntry.addClickListener(e -> {
 			for (NotesListener listener : listeners)
 				listener.buttonClick(e.getSource());
 		});
 
 		// button to delete an entry
-		Button buttonDeleteEntry = new Button("Delete Selected Entry");
+		Button buttonDeleteEntry = new Button("Delete Selected entry");
 		buttonDeleteEntry.setVisible(false);
 		buttonDeleteEntry.addClickListener(e -> {
 			for (NotesListener listener : listeners)
@@ -58,7 +58,7 @@ public class NotesViewImpl extends TemplateView implements NotesView {
 		});
 
 		// notify the user
-		Notification message = new Notification("Deleted the Entry!");
+		Notification message = new Notification("Deleted the entry!");
 		buttonDeleteEntry.addClickListener(e -> message.open());
 
 		// button to refresh the page

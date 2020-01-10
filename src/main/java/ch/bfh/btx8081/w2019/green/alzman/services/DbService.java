@@ -21,26 +21,20 @@ public class DbService {
 			.createEntityManager();
 
 	public static void persist(Object entity) {
-
 		em.getTransaction().begin();
 		em.persist(entity);
 		em.getTransaction().commit();
-
 	}
 
 	public static List<DiaryModel> getAllDiarys() {
 		Query query = DbService.em.createNativeQuery("SELECT * FROM Diary", DiaryModel.class);
-
 		return query.getResultList();
-
 	}
 
 	public static void remove(Object entity) {
-
 		em.getTransaction().begin();
 		em.remove(entity);
 		em.getTransaction().commit();
 
 	}
-
 }

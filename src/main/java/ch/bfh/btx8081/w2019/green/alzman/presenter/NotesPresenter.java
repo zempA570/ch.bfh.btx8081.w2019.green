@@ -76,10 +76,10 @@ public class NotesPresenter implements NotesView.NotesListener {
 		String buttonText = button.getText();
 
 		switch (buttonText) {
-		case "Create New Entry":
+		case "Create New entry":
 			navigateToCreateView();
 			break;
-		case "Delete Selected Entry":
+		case "Delete Selected entry":
 			deleteEntry();
 			break;
 		case "Refresh":

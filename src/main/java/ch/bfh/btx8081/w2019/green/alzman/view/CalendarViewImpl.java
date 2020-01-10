@@ -74,7 +74,7 @@ public class CalendarViewImpl extends TemplateView implements CalendarView {
 		super.addContent(calendar);
 
 //		// Create a initial sample entry
-//		Entry entry = new Entry();
+//		entry entry = new entry();
 //		entry.setTitle("Some event");
 //		entry.setStart(LocalDate.now().withDayOfMonth(3).atTime(10, 0), calendar.getTimezone());
 //		entry.setEnd(entry.getStart().plusHours(2), calendar.getTimezone());
