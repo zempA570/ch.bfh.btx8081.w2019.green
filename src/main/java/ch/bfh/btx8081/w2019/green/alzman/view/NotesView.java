@@ -10,7 +10,7 @@ import ch.bfh.btx8081.w2019.green.alzman.model.NotesModel;
 public interface NotesView {
 
 	interface NotesListener {
-		void buttonClick(Button button);
+		void buttonClick(Button btnClick);
 	}
 
 	public void addListener(NotesListener listener);

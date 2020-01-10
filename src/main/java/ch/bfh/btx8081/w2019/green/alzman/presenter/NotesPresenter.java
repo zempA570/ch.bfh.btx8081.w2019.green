@@ -17,7 +17,7 @@ import ch.bfh.btx8081.w2019.green.alzman.view.NotesViewImpl;
 public class NotesPresenter implements NotesView.NotesListener {
 
 	private NotesView view;
-	private List<NotesModel> notes;
+	private List<NotesModel> lstKeyNotesList;
 
 	public NotesPresenter(NotesView notesView) {
 		view = notesView;
@@ -30,9 +30,9 @@ public class NotesPresenter implements NotesView.NotesListener {
 	public void fillTableWithNotes() {
 
 		// get list of notes out of the query
-		notes = DbService.getAllNotes();
+		lstKeyNotesList = DbService.getAllNotes();
 
-		view.fillGridWithEntries(notes);
+		view.fillGridWithEntries(lstKeyNotesList);
 
 	}
 
@@ -68,10 +68,10 @@ public class NotesPresenter implements NotesView.NotesListener {
 	}
 
 	@Override
-	public void buttonClick(Button button) {
-		String buttonText = button.getText();
+	public void buttonClick(Button btnClickable) {
+		String buttonDescrption = btnClickable.getText();
 
-		switch (buttonText) {
+		switch (buttonDescrption) {
 		case "Create New Entry":
 			navigateToCreateView();
 			break;

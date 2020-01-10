@@ -7,7 +7,7 @@ import com.vaadin.flow.component.button.Button;
 public interface NotesAddView {
 
 	interface NotesAddListener {
-		void buttonClick(Button button);
+		void buttonClick(Button btnClick);
 	}
 
 	public void addListener(NotesAddListener listener);

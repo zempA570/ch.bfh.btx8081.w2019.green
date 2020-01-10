@@ -20,7 +20,7 @@ import ch.bfh.btx8081.w2019.green.alzman.view.NotesViewImpl;
 public class NotesAddPresenter implements NotesAddView.NotesAddListener {
 
 	private NotesAddView view;
-	private List<NotesModel> keyNotes;
+	private List<NotesModel> lstKeyNotesList;
 
 	// constructor for the presenter
 	public NotesAddPresenter(NotesAddView notesAddView) {
@@ -33,9 +33,9 @@ public class NotesAddPresenter implements NotesAddView.NotesAddListener {
 
 		String author = view.getAuthor();
 		String content = view.getEntry();
-		LocalDate localdate = view.getDate();
+		LocalDate lcldDateOfEntry = view.getDate();
 
-		Date date = Date.valueOf(localdate);
+		Date date = Date.valueOf(lcldDateOfEntry);
 
 		NotesModel noteToSave = new NotesModel(author, content, date);
 
@@ -49,11 +49,11 @@ public class NotesAddPresenter implements NotesAddView.NotesAddListener {
 	}
 
 	@Override
-	public void buttonClick(Button button) {
+	public void buttonClick(Button btnAddTo) {
 
-		String buttonText = button.getText();
+		String buttonDescription = btnAddTo.getText();
 
-		switch (buttonText) {
+		switch (buttonDescription) {
 		case "Add to Key-Notes":
 			addNotesDB();
 			navigateToNotesView();
