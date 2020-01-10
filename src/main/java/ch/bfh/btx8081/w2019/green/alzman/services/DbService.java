@@ -2,6 +2,9 @@ package ch.bfh.btx8081.w2019.green.alzman.services;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
+
+import ch.bfh.btx8081.w2019.green.alzman.model.AppointmentModel;
 
 /**
  * The dbService is used to execute statements on the database
@@ -28,6 +31,13 @@ public class DbService {
 		em.remove(entity);
 		em.getTransaction().commit();
 		
+	}
+	
+	public static Query getAllAppointments() {
+		Query query = DbService.em.createNativeQuery("SELECT * FROM Appointment", AppointmentModel.class);
+		
+		return query;
+
 	}
 	
 }
