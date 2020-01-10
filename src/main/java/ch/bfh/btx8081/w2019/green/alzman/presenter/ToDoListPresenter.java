@@ -1,27 +1,24 @@
 package ch.bfh.btx8081.w2019.green.alzman.presenter;
 
-import java.sql.Date;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Query;
 
-import com.vaadin.flow.component.checkbox.Checkbox;
-import com.vaadin.flow.component.datepicker.DatePicker;
+import com.vaadin.flow.component.button.Button;
 
 import ch.bfh.btx8081.w2019.green.alzman.model.TaskModel;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
-import ch.bfh.btx8081.w2019.green.alzman.view.TaskEntryView;
 import ch.bfh.btx8081.w2019.green.alzman.view.ToDoListView;
+import ch.bfh.btx8081.w2019.green.alzman.view.ToDoListViewImpl;
 
-public class ToDoListPresenter {
+public class ToDoListPresenter implements ToDoListView.ToDoListViewListener {
 
 	private ToDoListView view;
 	private List<TaskModel> taskslist;
 
 	public ToDoListPresenter(ToDoListView view) {
 		this.view = view;
+		view.addListener(this);
 
 		fillListwithTasks();
 	}
@@ -59,6 +56,13 @@ public class ToDoListPresenter {
 			}
 			}
 			}
+
+
+	@Override
+	public void buttonClick(Button button) {
+		// TODO Auto-generated method stub
+		
+	}
 		
 
 	}

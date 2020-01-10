@@ -63,7 +63,7 @@ public class DashboardView extends TemplateView {
 		// creating labels to label the icons
 		Label calendarText = new Label("Calendar");
 		Label statusText = new Label("Status");
-		Label importantNotesText = new Label("Key-Notes");
+		Label importantNotesText = new Label("Notes");
 		Label diaryText = new Label("Diary");
 		Label todoText = new Label("To-Do-List");
 		Label infoBoxText = new Label("Infobox");
@@ -84,7 +84,7 @@ public class DashboardView extends TemplateView {
 
 		calendarIcon.addClickListener(e -> UI.getCurrent().navigate(CalendarViewImpl.class));
 		statusIcon.addClickListener(e -> UI.getCurrent().navigate(StatusViewImpl.class));
-		todoIcon.addClickListener(e -> UI.getCurrent().navigate(ToDoListView.class));
+		todoIcon.addClickListener(e -> UI.getCurrent().navigate(ToDoListViewImpl.class));
 		diaryIcon.addClickListener(e -> UI.getCurrent().navigate(DiaryViewImpl.class));
 		importantNotesIcon.addClickListener(e -> UI.getCurrent().navigate(NotesViewImpl.class));
 		infoBoxIcon.addClickListener(e -> UI.getCurrent().navigate(InfoboxViewImpl.class));

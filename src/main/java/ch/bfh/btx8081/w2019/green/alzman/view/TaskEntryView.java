@@ -56,7 +56,7 @@ public class TaskEntryView extends TemplateView {
 //		presenter = new ToDoListPresenter(this);
 
 		add.addClickListener(e -> presenter.addTaskToDB(newtask.getValue(), choice.getValue(), datePick.getValue())); 
-		add.addClickListener(e -> UI.getCurrent().navigate(ToDoListView.class));
+		add.addClickListener(e -> UI.getCurrent().navigate(ToDoListViewImpl.class));
 		
 		
 		
