@@ -1,55 +1,103 @@
 package ch.bfh.btx8081.w2019.green.alzman.presenter;
 
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.Query;
 
+import com.vaadin.flow.component.button.Button;
+
+import ch.bfh.btx8081.w2019.green.alzman.model.StatusLevel;
 import ch.bfh.btx8081.w2019.green.alzman.model.StatusModel;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 import ch.bfh.btx8081.w2019.green.alzman.view.StatusView;
 
-public class StatusPresenter {
+public class StatusPresenter implements StatusView.StatusListener {
 
 	private StatusView view;
-	private List<StatusModel> status;
+	private List<StatusModel> lstAllStatus;
 
 	public StatusPresenter(StatusView view) {
 		this.view = view;
-		fillLayoutsfromUser();
+		view.addListener(this);
+
+		fillGuiWithContent();
 
 	}
 
-	private void fillLayoutsfromUser() {
+	private void fillGuiWithContent() {
 		// DB stuff where we get all the users
 		Query query = DbService.em.createNativeQuery("SELECT * FROM statusmodel", StatusModel.class);
 
 		// get list of users out of the query
-		status = query.getResultList();
+		lstAllStatus = query.getResultList();
 
 		// for every user in our list
-		for (StatusModel status : status) {
+		for (StatusModel status : lstAllStatus) {
 			view.addToView(status);
 		}
 	}
 
-	public void addTaskToDB(String str, int level) {
+	private void addTaskToDB(String str, int level) {
+
 		StatusModel sm = new StatusModel(level, str);
 
 		DbService.em.getTransaction().begin();
 		DbService.em.persist(sm);
 		DbService.em.getTransaction().commit();
-		
-//		fillLayoutsfromUser();
+
+	}
+
+	private void deleteStatusFromDB(int idToDelete) {
+
+		StatusModel statusToDelete = null;
+
+		for (StatusModel status : lstAllStatus) {
+			if (Objects.equals(status.getId(), idToDelete)) {
+				statusToDelete = status;
+			}
+		}
+
+		DbService.remove(statusToDelete);
+
 	}
 	
-	public void deleteStatusFromDB(StatusModel statusToDelete) {
+	private void reloadContent() {
+		view.clearContent();
+		fillGuiWithContent();
+	}
+
+	@Override
+	public void buttonClick(Button button) {
 		
-		DbService.em.getTransaction().begin();
-		DbService.em.remove(statusToDelete);
-		DbService.em.getTransaction().commit();
+		//TODO move functionality would be differentiated here
 		
-//		fillLayoutsfromUser();
-		
+		deleteStatusFromDB(Integer.parseInt(button.getId().get()));
+		reloadContent();
+
+	}
+
+	@Override
+	public void iconClick() {
+
+		String tfIndep = view.getIndepTfValue().trim();
+		String tfWhelp = view.getWhelpTfValue().trim();
+		String tfDep = view.getDepTfValue().trim();
+
+		if (!tfIndep.isEmpty()) {
+			addTaskToDB(tfIndep, StatusLevel.INDEPENDENT.getLevel());
+		}
+		if (!tfWhelp.isEmpty()) {
+			addTaskToDB(tfWhelp, StatusLevel.WITHHELP.getLevel());
+		}
+		if (!tfDep.isEmpty()) {
+			addTaskToDB(tfDep, StatusLevel.DEPENDENT.getLevel());
+		}
+
+		view.clearTextfields();
+		view.clearContent();
+		fillGuiWithContent();
+
 	}
 
 }
