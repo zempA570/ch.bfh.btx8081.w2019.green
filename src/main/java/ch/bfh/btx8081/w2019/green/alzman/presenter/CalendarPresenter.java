@@ -41,9 +41,9 @@ public class CalendarPresenter implements CalendarView.CalendarListener {
 		AppointmentModel addAppointment = view.getAppointmentFromFields();
 
 		// DB stuff
-		DbService.em.getTransaction().begin();
-		DbService.em.persist(addAppointment);
-		DbService.em.getTransaction().commit();
+	
+		DbService.persist(addAppointment);
+		
 
 	}
 
@@ -61,12 +61,12 @@ public class CalendarPresenter implements CalendarView.CalendarListener {
 		}
 
 		if (calendarModelToDelete != null) {
-			DbService.em.getTransaction().begin();
-			DbService.em.remove(calendarModelToDelete);
-			DbService.em.getTransaction().commit();
+			DbService.remove(calendarModelToDelete);
+			
 		}
 	}
 
+	
 	public void fillCalendar() {
 		
 		allAppointments= DbService.getAllAppointments();

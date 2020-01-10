@@ -137,6 +137,7 @@ public class CalendarViewImpl extends TemplateView implements CalendarView {
 		// Creating horizontal layout
 		HorizontalLayout hlText = new HorizontalLayout();
 		hlText.add(txtfAuthor, txtfEntry);
+		
 
 		hlButtons.add(calAdd, calDel, txtfDeleteId);
 
@@ -153,7 +154,7 @@ public class CalendarViewImpl extends TemplateView implements CalendarView {
 
 		// Create a initial sample entry
 		Entry entry = new Entry();
-		entry.setTitle(cModel.getEntry() + " " + cModel.getId());
+		entry.setTitle(cModel.getEntry() + " **"+"ID: " + cModel.getId());
 		entry.setDescription(cModel.getAuthor());
 
 		LocalDateTime actDateTime = LocalDateTime.of(cModel.getDate().toLocalDate(), cModel.getTime().toLocalTime());
