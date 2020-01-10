@@ -29,12 +29,8 @@ public class NotesPresenter implements NotesView.NotesListener {
 
 	public void fillTableWithNotes() {
 
-		// DB transactions where we get all the notes
-		Query query = DbService.em.createNativeQuery("SELECT * FROM importantnotesdatamodel",
-				NotesModel.class);
-
 		// get list of notes out of the query
-		notes = query.getResultList();
+		notes = DbService.getAllNotes();
 
 		view.fillGridWithEntries(notes);
 
