@@ -2,7 +2,7 @@ package ch.bfh.btx8081.w2019.green.alzman.view;
 
 import com.vaadin.flow.component.button.Button;
 
-import ch.bfh.btx8081.w2019.green.alzman.model.AddPerson;
+import ch.bfh.btx8081.w2019.green.alzman.model.PersonModel;
 
 public interface InfoboxAddPersonView {
 
@@ -12,6 +12,6 @@ public interface InfoboxAddPersonView {
 
 	public void addListener(InfoboxAddPersonListener listener);
 	
-	public AddPerson getPersonFromFields();
+	public PersonModel getPersonFromFields();
 
 }

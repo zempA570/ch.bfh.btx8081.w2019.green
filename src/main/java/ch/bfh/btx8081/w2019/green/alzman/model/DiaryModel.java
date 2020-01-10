@@ -7,11 +7,13 @@ import com.vaadin.flow.component.datepicker.DatePicker;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import com.vaadin.flow.component.datepicker.DatePicker;
 
 @Entity
-public class AddDiaryModel {
+@Table(name = "Diary")
+public class DiaryModel {
 
 	@Id
 	// @GeneratedValue means the value of this variable will be generated in the
@@ -27,11 +29,11 @@ public class AddDiaryModel {
 		this.id = id;
 	}
 
-	public AddDiaryModel() {
+	public DiaryModel() {
 
 	}
 
-	public AddDiaryModel(LocalDate date, String author, String entry) {
+	public DiaryModel(LocalDate date, String author, String entry) {
 		this.date = date;
 		this.author = author;
 		this.Entry = entry;

@@ -7,7 +7,7 @@ import java.util.List;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 
-import ch.bfh.btx8081.w2019.green.alzman.model.ImportantNotesDataModel;
+import ch.bfh.btx8081.w2019.green.alzman.model.NotesModel;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 import ch.bfh.btx8081.w2019.green.alzman.view.NotesAddView;
 import ch.bfh.btx8081.w2019.green.alzman.view.NotesViewImpl;
@@ -20,7 +20,7 @@ import ch.bfh.btx8081.w2019.green.alzman.view.NotesViewImpl;
 public class NotesAddPresenter implements NotesAddView.NotesAddListener {
 
 	private NotesAddView view;
-	private List<ImportantNotesDataModel> keyNotes;
+	private List<NotesModel> keyNotes;
 
 	// constructor for the presenter
 	public NotesAddPresenter(NotesAddView notesAddView) {
@@ -37,7 +37,7 @@ public class NotesAddPresenter implements NotesAddView.NotesAddListener {
 
 		Date date = Date.valueOf(localdate);
 
-		ImportantNotesDataModel noteToSave = new ImportantNotesDataModel(author, content, date);
+		NotesModel noteToSave = new NotesModel(author, content, date);
 
 		// method to add a note to the Database
 		DbService.persist(noteToSave);

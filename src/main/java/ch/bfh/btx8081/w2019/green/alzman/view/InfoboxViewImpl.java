@@ -12,8 +12,8 @@ import com.vaadin.flow.component.html.H4;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.router.Route;
 
-import ch.bfh.btx8081.w2019.green.alzman.model.AddAdress;
-import ch.bfh.btx8081.w2019.green.alzman.model.AddPerson;
+import ch.bfh.btx8081.w2019.green.alzman.model.AddressModel;
+import ch.bfh.btx8081.w2019.green.alzman.model.PersonModel;
 import ch.bfh.btx8081.w2019.green.alzman.presenter.InfoboxPresenter;
 
 @Route("InfoboxView")
@@ -24,8 +24,8 @@ public class InfoboxViewImpl extends TemplateView implements InfoboxView {
 	private H4 titleImportantPerson;
 	private H4 titleImportantAdress;
 
-	private Grid<AddPerson> gridImportantPerson = new Grid<>();
-	private Grid<AddAdress> gridImportantAdress = new Grid<>();
+	private Grid<PersonModel> gridImportantPerson = new Grid<>();
+	private Grid<AddressModel> gridImportantAdress = new Grid<>();
 
 	public InfoboxViewImpl() {
 
@@ -57,15 +57,15 @@ public class InfoboxViewImpl extends TemplateView implements InfoboxView {
 		super.addContent(positionButtonsPer);
 
 		add(gridImportantPerson);
-		gridImportantPerson.addColumn(AddPerson::getId).setVisible(false);
-		gridImportantPerson.addColumn(AddPerson::getGender).setHeader("Gender");
-		gridImportantPerson.addColumn(AddPerson::getFirstname).setHeader("Firstname");
-		gridImportantPerson.addColumn(AddPerson::getLastname).setHeader("Lastname");
-		gridImportantPerson.addColumn(AddPerson::getAdress).setHeader("Adress");
-		gridImportantPerson.addColumn(AddPerson::getAdressNr).setHeader("Adress Number");
-		gridImportantPerson.addColumn(AddPerson::getPostcode).setHeader("Postcode");
-		gridImportantPerson.addColumn(AddPerson::getCity).setHeader("City");
-		gridImportantPerson.addColumn(AddPerson::getPhonenummber).setHeader("Phonenummber");
+		gridImportantPerson.addColumn(PersonModel::getId).setVisible(false);
+		gridImportantPerson.addColumn(PersonModel::getGender).setHeader("Gender");
+		gridImportantPerson.addColumn(PersonModel::getFirstname).setHeader("Firstname");
+		gridImportantPerson.addColumn(PersonModel::getLastname).setHeader("Lastname");
+		gridImportantPerson.addColumn(PersonModel::getAdress).setHeader("Adress");
+		gridImportantPerson.addColumn(PersonModel::getAdressNr).setHeader("Adress Number");
+		gridImportantPerson.addColumn(PersonModel::getPostcode).setHeader("Postcode");
+		gridImportantPerson.addColumn(PersonModel::getCity).setHeader("City");
+		gridImportantPerson.addColumn(PersonModel::getPhonenummber).setHeader("Phonenummber");
 
 		gridImportantPerson.addItemClickListener(event -> {
 			if(gridImportantPerson.getSelectedItems().isEmpty()) {
@@ -102,13 +102,13 @@ public class InfoboxViewImpl extends TemplateView implements InfoboxView {
 		super.addContent(positionButtonsAdr);
 
 		add(gridImportantAdress);
-		gridImportantAdress.addColumn(AddAdress::getId).setVisible(false);
-		gridImportantAdress.addColumn(AddAdress::getName).setHeader("Name");
-		gridImportantAdress.addColumn(AddAdress::getAdress).setHeader("Adress");
-		gridImportantAdress.addColumn(AddAdress::getAdressNr).setHeader("Adress Number");
-		gridImportantAdress.addColumn(AddAdress::getPostcode).setHeader("Postcode");
-		gridImportantAdress.addColumn(AddAdress::getCity).setHeader("City");
-		gridImportantAdress.addColumn(AddAdress::getPhonenummber).setHeader("Phonenummber");
+		gridImportantAdress.addColumn(AddressModel::getId).setVisible(false);
+		gridImportantAdress.addColumn(AddressModel::getName).setHeader("Name");
+		gridImportantAdress.addColumn(AddressModel::getAdress).setHeader("Adress");
+		gridImportantAdress.addColumn(AddressModel::getAdressNr).setHeader("Adress Number");
+		gridImportantAdress.addColumn(AddressModel::getPostcode).setHeader("Postcode");
+		gridImportantAdress.addColumn(AddressModel::getCity).setHeader("City");
+		gridImportantAdress.addColumn(AddressModel::getPhonenummber).setHeader("Phonenummber");
 
 		gridImportantAdress.addItemClickListener(event -> {
 			if(gridImportantAdress.getSelectedItems().isEmpty()) {
@@ -124,12 +124,12 @@ public class InfoboxViewImpl extends TemplateView implements InfoboxView {
 
 	}
 
-	public void fillGridWithUsers(List<AddPerson> listPerson) {
+	public void fillGridWithUsers(List<PersonModel> listPerson) {
 
 		gridImportantPerson.setItems(listPerson);
 	}
 
-	public void fillGridWithAdress(List<AddAdress> listAdress) {
+	public void fillGridWithAdress(List<AddressModel> listAdress) {
 
 		gridImportantAdress.setItems(listAdress);
 	}
@@ -140,12 +140,12 @@ public class InfoboxViewImpl extends TemplateView implements InfoboxView {
 	}
 
 	@Override
-	public Set<AddPerson> getSelectedPerson() {
+	public Set<PersonModel> getSelectedPerson() {
 		return gridImportantPerson.getSelectedItems();
 	}
 
 	@Override
-	public Set<AddAdress> getSelectedAdress() {
+	public Set<AddressModel> getSelectedAdress() {
 		return gridImportantAdress.getSelectedItems();
 	}
 

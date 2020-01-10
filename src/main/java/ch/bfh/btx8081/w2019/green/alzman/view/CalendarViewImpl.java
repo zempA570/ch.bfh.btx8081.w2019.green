@@ -34,7 +34,7 @@ import com.vaadin.flow.component.timepicker.TimePicker;
 import com.vaadin.flow.router.Route;
 import com.vaadin.shared.ui.datefield.LocalDateTimeFieldState;
 
-import ch.bfh.btx8081.w2019.green.alzman.model.CalendarModel;
+import ch.bfh.btx8081.w2019.green.alzman.model.AppointmentModel;
 import ch.bfh.btx8081.w2019.green.alzman.presenter.CalendarPresenter;
 import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxView.InfoboxViewListener;
 
@@ -149,7 +149,7 @@ public class CalendarViewImpl extends TemplateView implements CalendarView {
 
 	}
 
-	public void addEntryToCalendar(CalendarModel cModel) {
+	public void addEntryToCalendar(AppointmentModel cModel) {
 
 		// Create a initial sample entry
 		Entry entry = new Entry();
@@ -174,9 +174,9 @@ public class CalendarViewImpl extends TemplateView implements CalendarView {
 	}
 
 	@Override
-	public CalendarModel getAppointmentFromFields() {
+	public AppointmentModel getAppointmentFromFields() {
 
-		CalendarModel newCalendarModel = new CalendarModel();
+		AppointmentModel newCalendarModel = new AppointmentModel();
 
 		newCalendarModel.setAuthor(author.getValue());
 		newCalendarModel.setDate(Date.valueOf(datePick.getValue()));

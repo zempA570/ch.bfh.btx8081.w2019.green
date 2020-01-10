@@ -9,7 +9,7 @@ import javax.persistence.Query;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 
-import ch.bfh.btx8081.w2019.green.alzman.model.AddDiaryModel;
+import ch.bfh.btx8081.w2019.green.alzman.model.DiaryModel;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 import ch.bfh.btx8081.w2019.green.alzman.view.DiaryView;
 import ch.bfh.btx8081.w2019.green.alzman.view.DiaryAddViewImpl;
@@ -17,7 +17,7 @@ import ch.bfh.btx8081.w2019.green.alzman.view.DiaryAddViewImpl;
 public class DiaryPresenter implements DiaryView.DiaryViewListener {
 
 	private DiaryView view;
-	private List<AddDiaryModel> diarys;
+	private List<DiaryModel> diarys;
 
 	public DiaryPresenter(DiaryView diary) {
 		this.view = diary;
@@ -28,12 +28,12 @@ public class DiaryPresenter implements DiaryView.DiaryViewListener {
 
 	private void getallDiarys() {
 
-		Query query = DbService.em.createNativeQuery("SELECT * FROM adddiarymodel", AddDiaryModel.class);
+		Query query = DbService.em.createNativeQuery("SELECT * FROM adddiarymodel", DiaryModel.class);
 
 		// get list of users out of the query
 		diarys = query.getResultList();
 
-		for (AddDiaryModel model : diarys) {
+		for (DiaryModel model : diarys) {
 			view.addEntryToView(model);
 
 		}
@@ -46,7 +46,7 @@ public class DiaryPresenter implements DiaryView.DiaryViewListener {
 
 		int idtodelete = Integer.parseInt(tempId);
 
-		for (AddDiaryModel model : diarys) {
+		for (DiaryModel model : diarys) {
 
 			if (Objects.equals(idtodelete, model.getId())) {
 

@@ -11,7 +11,7 @@ import javax.persistence.TableGenerator;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 
 @Entity
-
+@Table(name = "Status")
 public class StatusModel {
 
 	// String dependend;

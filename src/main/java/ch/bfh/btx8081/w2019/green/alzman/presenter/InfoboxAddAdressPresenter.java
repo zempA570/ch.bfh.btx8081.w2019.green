@@ -7,8 +7,8 @@ import java.util.Objects;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 
-import ch.bfh.btx8081.w2019.green.alzman.model.AddAdress;
-import ch.bfh.btx8081.w2019.green.alzman.model.AddPerson;
+import ch.bfh.btx8081.w2019.green.alzman.model.AddressModel;
+import ch.bfh.btx8081.w2019.green.alzman.model.PersonModel;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxAddAdressView;
 import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxAddAdressViewImpl;
@@ -18,7 +18,7 @@ import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxViewImpl;
 public class InfoboxAddAdressPresenter implements InfoboxAddAdressView.InfoboxAddAdressListener{
 
 	private InfoboxAddAdressView view;
-	private List<AddAdress> adresses;
+	private List<AddressModel> adresses;
 
 	public InfoboxAddAdressPresenter() {
 
@@ -58,7 +58,7 @@ public class InfoboxAddAdressPresenter implements InfoboxAddAdressView.InfoboxAd
 	public void addAdress() {
 		
 		// create new user
-		AddAdress newAdress = view.getAdressFromFields();
+		AddressModel newAdress = view.getAdressFromFields();
 
 		// DB stuff
 		DbService.em.getTransaction().begin();

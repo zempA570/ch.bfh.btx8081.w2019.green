@@ -21,7 +21,7 @@ import com.vaadin.flow.data.binder.BinderValidationStatus;
 import com.vaadin.flow.data.binder.BindingValidationStatus;
 import com.vaadin.flow.router.Route;
 
-import ch.bfh.btx8081.w2019.green.alzman.model.AddPerson;
+import ch.bfh.btx8081.w2019.green.alzman.model.PersonModel;
 import ch.bfh.btx8081.w2019.green.alzman.presenter.InfoboxAddPersonPresenter;
 import ch.bfh.btx8081.w2019.green.alzman.view.UserManagementView.UserManagagementViewListener;
 
@@ -42,7 +42,7 @@ public class InfoboxAddPersonViewImpl extends TemplateView implements InfoboxAdd
 	private TextField postcode;
 	private TextField city;
 
-	private Binder<AddPerson> binderCheckPerson;
+	private Binder<PersonModel> binderCheckPerson;
 	private Label label;
 
 	public InfoboxAddPersonViewImpl() {
@@ -87,22 +87,22 @@ public class InfoboxAddPersonViewImpl extends TemplateView implements InfoboxAdd
 		this.label = new Label();
 
 		this.binderCheckPerson = new Binder<>();
-		binderCheckPerson.forField(gender).asRequired("The Gender is missing!").bind(AddPerson::getGender,
-				AddPerson::setGender);
-		binderCheckPerson.forField(lastName).asRequired("The Lastname is missing!").bind(AddPerson::getLastname,
-				AddPerson::setLastname);
-		binderCheckPerson.forField(firstName).asRequired("The Firstname is missing!").bind(AddPerson::getFirstname,
-				AddPerson::setFirstname);
-		binderCheckPerson.forField(phoneNo).asRequired("The Phonenumber is missing!").bind(AddPerson::getPhonenummber,
-				AddPerson::setPhonenummber);
-		binderCheckPerson.forField(adress).asRequired("The Adress is missing!").bind(AddPerson::getAdress,
-				AddPerson::setAdress);
-		binderCheckPerson.forField(adrNo).asRequired("The Adress Number is missing!").bind(AddPerson::getAdressNr,
-				AddPerson::setAdressNr);
-		binderCheckPerson.forField(postcode).asRequired("The Postcode is missing!").bind(AddPerson::getPostcode,
-				AddPerson::setPostcode);
-		binderCheckPerson.forField(city).asRequired("The City is missing!").bind(AddPerson::getCity,
-				AddPerson::setCity);
+		binderCheckPerson.forField(gender).asRequired("The Gender is missing!").bind(PersonModel::getGender,
+				PersonModel::setGender);
+		binderCheckPerson.forField(lastName).asRequired("The Lastname is missing!").bind(PersonModel::getLastname,
+				PersonModel::setLastname);
+		binderCheckPerson.forField(firstName).asRequired("The Firstname is missing!").bind(PersonModel::getFirstname,
+				PersonModel::setFirstname);
+		binderCheckPerson.forField(phoneNo).asRequired("The Phonenumber is missing!").bind(PersonModel::getPhonenummber,
+				PersonModel::setPhonenummber);
+		binderCheckPerson.forField(adress).asRequired("The Adress is missing!").bind(PersonModel::getAdress,
+				PersonModel::setAdress);
+		binderCheckPerson.forField(adrNo).asRequired("The Adress Number is missing!").bind(PersonModel::getAdressNr,
+				PersonModel::setAdressNr);
+		binderCheckPerson.forField(postcode).asRequired("The Postcode is missing!").bind(PersonModel::getPostcode,
+				PersonModel::setPostcode);
+		binderCheckPerson.forField(city).asRequired("The City is missing!").bind(PersonModel::getCity,
+				PersonModel::setCity);
 
 		// Button for add the person in the Infobox
 		Button addPerson = new Button("Add Person", new Icon(VaadinIcon.PLUS));
@@ -160,9 +160,9 @@ public class InfoboxAddPersonViewImpl extends TemplateView implements InfoboxAdd
 	}
 
 	@Override
-	public AddPerson getPersonFromFields() {
+	public PersonModel getPersonFromFields() {
 
-		AddPerson person = new AddPerson();
+		PersonModel person = new PersonModel();
 
 		person.setAdress(adress.getValue());
 		person.setAdressNr(adrNo.getValue());

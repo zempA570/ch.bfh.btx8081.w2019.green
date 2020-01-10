@@ -5,7 +5,7 @@ import java.util.Set;
 
 import com.vaadin.flow.component.button.Button;
 
-import ch.bfh.btx8081.w2019.green.alzman.model.ImportantNotesDataModel;
+import ch.bfh.btx8081.w2019.green.alzman.model.NotesModel;
 
 public interface NotesView {
 
@@ -15,8 +15,8 @@ public interface NotesView {
 
 	public void addListener(NotesListener listener);
 
-	public void fillGridWithEntries(List<ImportantNotesDataModel> notes);
+	public void fillGridWithEntries(List<NotesModel> notes);
 	
-	public Set<ImportantNotesDataModel> getSelectedNote();
+	public Set<NotesModel> getSelectedNote();
 	
 }

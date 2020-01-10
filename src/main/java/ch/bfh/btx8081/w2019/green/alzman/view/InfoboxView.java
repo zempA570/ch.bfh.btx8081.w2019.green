@@ -5,8 +5,8 @@ import java.util.Set;
 
 import com.vaadin.flow.component.button.Button;
 
-import ch.bfh.btx8081.w2019.green.alzman.model.AddAdress;
-import ch.bfh.btx8081.w2019.green.alzman.model.AddPerson;
+import ch.bfh.btx8081.w2019.green.alzman.model.AddressModel;
+import ch.bfh.btx8081.w2019.green.alzman.model.PersonModel;
 
 public interface InfoboxView {
 
@@ -16,13 +16,13 @@ public interface InfoboxView {
 
 	public void addListener(InfoboxViewListener listener);
 	
-	public Set<AddPerson> getSelectedPerson();
+	public Set<PersonModel> getSelectedPerson();
 	
-	public Set<AddAdress> getSelectedAdress();
+	public Set<AddressModel> getSelectedAdress();
 
-	public void fillGridWithAdress(List<AddAdress> adresses);
+	public void fillGridWithAdress(List<AddressModel> adresses);
 
-	public void fillGridWithUsers(List<AddPerson> persons);
+	public void fillGridWithUsers(List<PersonModel> persons);
 
 
 }

@@ -7,12 +7,14 @@ import java.sql.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.timepicker.TimePicker;
 
 @Entity
-public class CalendarModel {
+@Table(name = "Appointment")
+public class AppointmentModel {
 	
 	@Id
 	//@GeneratedValue means the value of this variable will be generated in the database by the "userIDGenerator"
@@ -24,14 +26,14 @@ public class CalendarModel {
 	String author;
 	String Entry;
 	
-	public CalendarModel(Date datePick, Time time, String author, String Entry ) {
+	public AppointmentModel(Date datePick, Time time, String author, String Entry ) {
 		this.datePick= datePick;
 		this.time=time;
 		this.author=author;
 		this.Entry = Entry;
 		
 	}
-	public CalendarModel() {
+	public AppointmentModel() {
 		
 	}
 	

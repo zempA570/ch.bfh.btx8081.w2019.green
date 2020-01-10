@@ -14,7 +14,7 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 
-import ch.bfh.btx8081.w2019.green.alzman.model.ImportantNotesDataModel;
+import ch.bfh.btx8081.w2019.green.alzman.model.NotesModel;
 import ch.bfh.btx8081.w2019.green.alzman.presenter.NotesPresenter;
 
 /**
@@ -28,7 +28,7 @@ public class NotesViewImpl extends TemplateView implements NotesView {
 
 	// title header and grid
 	private H4 titleAddNotes;
-	private Grid<ImportantNotesDataModel> notesGrid = new Grid<>();
+	private Grid<NotesModel> notesGrid = new Grid<>();
 
 	// private TextArea diaryText = new TextArea();
 
@@ -77,10 +77,10 @@ public class NotesViewImpl extends TemplateView implements NotesView {
 		// setting up the Grid
 
 		add(notesGrid);
-		notesGrid.addColumn(ImportantNotesDataModel::getEntryID).setVisible(false);
-		notesGrid.addColumn(ImportantNotesDataModel::getAuthor).setHeader("Author");
-		notesGrid.addColumn(ImportantNotesDataModel::getDate).setHeader("Date");
-		notesGrid.addColumn(ImportantNotesDataModel::getContent).setHeader("Note");
+		notesGrid.addColumn(NotesModel::getEntryID).setVisible(false);
+		notesGrid.addColumn(NotesModel::getAuthor).setHeader("Author");
+		notesGrid.addColumn(NotesModel::getDate).setHeader("Date");
+		notesGrid.addColumn(NotesModel::getContent).setHeader("Note");
 
 		notesGrid.addItemClickListener(event -> {
 			buttonDeleteEntry.setVisible(true);
@@ -93,7 +93,7 @@ public class NotesViewImpl extends TemplateView implements NotesView {
 
 	}
 
-	public void fillGridWithEntries(List<ImportantNotesDataModel> entryList) {
+	public void fillGridWithEntries(List<NotesModel> entryList) {
 		notesGrid.setItems(entryList);
 	}
 
@@ -103,7 +103,7 @@ public class NotesViewImpl extends TemplateView implements NotesView {
 	}
 
 	@Override
-	public Set<ImportantNotesDataModel> getSelectedNote() {
+	public Set<NotesModel> getSelectedNote() {
 		return notesGrid.getSelectedItems();
 	};
 

@@ -6,12 +6,14 @@ import java.time.LocalDate;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.ui.DateField;
 
 @Entity
-public class ImportantNotesDataModel {
+@Table(name = "Notes")
+public class NotesModel {
 
 	/**
 	 * datatypes for this model: string author for the user who makes the entry
@@ -26,7 +28,7 @@ public class ImportantNotesDataModel {
 	Date date;
 	String content;
 
-	public ImportantNotesDataModel(String author, String content, Date date) {
+	public NotesModel(String author, String content, Date date) {
 		this.author = author;
 		this.content = content;
 		this.date = date;
@@ -34,7 +36,7 @@ public class ImportantNotesDataModel {
 	}
 
 //must have: an empty constructor
-	public ImportantNotesDataModel() {
+	public NotesModel() {
 
 	}
 

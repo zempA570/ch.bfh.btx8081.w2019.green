@@ -2,15 +2,15 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="alzman" transaction-type="RESOURCE_LOCAL">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-		<class>ch.bfh.btx8081.w2019.green.alzman.model.AddAdress</class>
-		<class>ch.bfh.btx8081.w2019.green.alzman.model.AddDiaryModel</class>
-		<class>ch.bfh.btx8081.w2019.green.alzman.model.AddPerson</class>
-		<class>ch.bfh.btx8081.w2019.green.alzman.model.CalendarModel</class>
-		<class>ch.bfh.btx8081.w2019.green.alzman.model.ImportantNotesDataModel</class>
+		<class>ch.bfh.btx8081.w2019.green.alzman.model.AddressModel</class>
+		<class>ch.bfh.btx8081.w2019.green.alzman.model.DiaryModel</class>
+		<class>ch.bfh.btx8081.w2019.green.alzman.model.PersonModel</class>
+		<class>ch.bfh.btx8081.w2019.green.alzman.model.AppointmentModel</class>
+		<class>ch.bfh.btx8081.w2019.green.alzman.model.NotesModel</class>
 		<class>ch.bfh.btx8081.w2019.green.alzman.model.StatusModel</class>
 		<class>ch.bfh.btx8081.w2019.green.alzman.model.UserModel</class>
-		<class>ch.bfh.btx8081.w2019.green.alzman.model.Task</class>
-		<class>ch.bfh.btx8081.w2019.green.alzman.model.Patient</class>
+		<class>ch.bfh.btx8081.w2019.green.alzman.model.TaskModel</class>
+		<class>ch.bfh.btx8081.w2019.green.alzman.model.PatientModel</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://147.87.116.213/alzman"/>
 			<property name="javax.persistence.jdbc.user" value="Studierende"/>

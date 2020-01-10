@@ -7,7 +7,7 @@ import java.util.Objects;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 
-import ch.bfh.btx8081.w2019.green.alzman.model.AddPerson;
+import ch.bfh.btx8081.w2019.green.alzman.model.PersonModel;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxAddPersonView;
 import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxAddPersonViewImpl;
@@ -16,7 +16,7 @@ import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxViewImpl;
 public class InfoboxAddPersonPresenter implements InfoboxAddPersonView.InfoboxAddPersonListener {
 
 	private InfoboxAddPersonView view;
-	private List<AddPerson> persons;
+	private List<PersonModel> persons;
 
 	public InfoboxAddPersonPresenter() {
 
@@ -62,7 +62,7 @@ public class InfoboxAddPersonPresenter implements InfoboxAddPersonView.InfoboxAd
 	private void addPerson() {
 
 		// create new user
-		AddPerson newPerson = view.getPersonFromFields();
+		PersonModel newPerson = view.getPersonFromFields();
 
 		// DB stuff
 		DbService.em.getTransaction().begin();

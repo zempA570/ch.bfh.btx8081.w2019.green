@@ -20,7 +20,7 @@ import com.vaadin.flow.data.binder.BinderValidationStatus;
 import com.vaadin.flow.data.binder.BindingValidationStatus;
 import com.vaadin.flow.router.Route;
 
-import ch.bfh.btx8081.w2019.green.alzman.model.AddAdress;
+import ch.bfh.btx8081.w2019.green.alzman.model.AddressModel;
 import ch.bfh.btx8081.w2019.green.alzman.presenter.InfoboxAddAdressPresenter;
 import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxAddPersonView.InfoboxAddPersonListener;
 
@@ -39,7 +39,7 @@ public class InfoboxAddAdressViewImpl extends TemplateView implements InfoboxAdd
 	private TextField city;
 	private TextField phoneNo;
 
-	private Binder<AddAdress> binderCheckAdress;
+	private Binder<AddressModel> binderCheckAdress;
 	private Label label;
 
 	public InfoboxAddAdressViewImpl() {
@@ -76,18 +76,18 @@ public class InfoboxAddAdressViewImpl extends TemplateView implements InfoboxAdd
 		this.label = new Label();
 
 		this.binderCheckAdress = new Binder<>();
-		binderCheckAdress.forField(name).asRequired("The Name is missing!").bind(AddAdress::getName,
-				AddAdress::setName);
-		binderCheckAdress.forField(adress).asRequired("The Adress is missing!").bind(AddAdress::getAdress,
-				AddAdress::setAdress);
-		binderCheckAdress.forField(adrNo).asRequired("The Adress Number is missing!").bind(AddAdress::getAdressNr,
-				AddAdress::setAdressNr);
-		binderCheckAdress.forField(postcode).asRequired("The Postcode is missing!").bind(AddAdress::getPostcode,
-				AddAdress::setPostcode);
-		binderCheckAdress.forField(city).asRequired("The City is missing!").bind(AddAdress::getCity,
-				AddAdress::setCity);
-		binderCheckAdress.forField(phoneNo).asRequired("The Phonenumber is missing!").bind(AddAdress::getPhonenummber,
-				AddAdress::setPhonenummber);
+		binderCheckAdress.forField(name).asRequired("The Name is missing!").bind(AddressModel::getName,
+				AddressModel::setName);
+		binderCheckAdress.forField(adress).asRequired("The Adress is missing!").bind(AddressModel::getAdress,
+				AddressModel::setAdress);
+		binderCheckAdress.forField(adrNo).asRequired("The Adress Number is missing!").bind(AddressModel::getAdressNr,
+				AddressModel::setAdressNr);
+		binderCheckAdress.forField(postcode).asRequired("The Postcode is missing!").bind(AddressModel::getPostcode,
+				AddressModel::setPostcode);
+		binderCheckAdress.forField(city).asRequired("The City is missing!").bind(AddressModel::getCity,
+				AddressModel::setCity);
+		binderCheckAdress.forField(phoneNo).asRequired("The Phonenumber is missing!").bind(AddressModel::getPhonenummber,
+				AddressModel::setPhonenummber);
 
 		// Button for add the adress in the Infobox
 
@@ -140,9 +140,9 @@ public class InfoboxAddAdressViewImpl extends TemplateView implements InfoboxAdd
 	}
 
 	@Override
-	public AddAdress getAdressFromFields() {
+	public AddressModel getAdressFromFields() {
 		
-		AddAdress newAdress = new AddAdress();
+		AddressModel newAdress = new AddressModel();
 		
 		newAdress.setAdress(adress.getValue());
 		newAdress.setAdressNr(adrNo.getValue());

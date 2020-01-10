@@ -17,7 +17,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 
-import ch.bfh.btx8081.w2019.green.alzman.model.Task;
+import ch.bfh.btx8081.w2019.green.alzman.model.TaskModel;
 import ch.bfh.btx8081.w2019.green.alzman.presenter.ToDoListPresenter;
 
 /**
@@ -88,7 +88,7 @@ public class ToDoListView extends TemplateView {
 
 	}
 
-	public void addWeeklyTask(Task task) {
+	public void addWeeklyTask(TaskModel task) {
 
 		chBox = new Checkbox(task.getTask());
 		Label date = new Label(task.getDate().toString());
@@ -102,7 +102,7 @@ public class ToDoListView extends TemplateView {
 
 	}
 
-	public void addMonthlyTask(Task task) {
+	public void addMonthlyTask(TaskModel task) {
 
 		chBox = new Checkbox(task.getTask());
 		Label date = new Label(task.getDate().toString());
@@ -115,7 +115,7 @@ public class ToDoListView extends TemplateView {
 		monthlyTasks.add(horiz);
 	}
 
-	public void addAnnualTask(Task task) {
+	public void addAnnualTask(TaskModel task) {
 
 		chBox = new Checkbox(task.getTask());
 		Label date = new Label(task.getDate().toString());
@@ -128,7 +128,7 @@ public class ToDoListView extends TemplateView {
 		annuallyTasks.add(horiz);
 	}
 
-	public void addSpecialTask(Task task) {
+	public void addSpecialTask(TaskModel task) {
 
 		chBox = new Checkbox(task.getTask());
 		Label date = new Label(task.getDate().toString());
@@ -141,7 +141,7 @@ public class ToDoListView extends TemplateView {
 		specialTasks.add(horiz);
 	}
 
-	public void addComplTask(Task task) {
+	public void addComplTask(TaskModel task) {
 
 		if (chBox.getValue() == true)
 			;

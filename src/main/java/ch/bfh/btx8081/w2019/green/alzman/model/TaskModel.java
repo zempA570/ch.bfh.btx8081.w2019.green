@@ -26,7 +26,8 @@ import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 //@Table(name = ..) sets the name for the table. The table name "User" is not allowed so we have to change it.
 //normally this doesn't have to be set, the class name will be used as table name.
 @Entity
-public class Task {
+@Table(name = "Task")
+public class TaskModel {
 
 	// @TableGenerator creates a generator with the chosen name, value etc.
 	// @Id mean this variable is the primary key in the table
@@ -48,14 +49,14 @@ public class Task {
 	// No-Args constructor is required by JPA
 	
 		
-	public Task(String taskname, String choice, Date date) {
+	public TaskModel(String taskname, String choice, Date date) {
 		this.taskname = taskname;
 		this.choice = choice;
 		this.date = date;
 	}
 	
 
-	public Task() {
+	public TaskModel() {
 		
 	}
 

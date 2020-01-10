@@ -2,7 +2,7 @@ package ch.bfh.btx8081.w2019.green.alzman.view;
 
 import com.vaadin.flow.component.button.Button;
 
-import ch.bfh.btx8081.w2019.green.alzman.model.AddDiaryModel;
+import ch.bfh.btx8081.w2019.green.alzman.model.DiaryModel;
 
 public interface DiaryView {
 	
@@ -14,6 +14,6 @@ public interface DiaryView {
 
 	public void clearEntries();
 
-	public void addEntryToView(AddDiaryModel model);
+	public void addEntryToView(DiaryModel model);
 
 }

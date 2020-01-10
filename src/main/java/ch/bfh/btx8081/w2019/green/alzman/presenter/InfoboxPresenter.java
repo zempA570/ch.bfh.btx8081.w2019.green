@@ -9,8 +9,8 @@ import javax.persistence.Query;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 
-import ch.bfh.btx8081.w2019.green.alzman.model.AddAdress;
-import ch.bfh.btx8081.w2019.green.alzman.model.AddPerson;
+import ch.bfh.btx8081.w2019.green.alzman.model.AddressModel;
+import ch.bfh.btx8081.w2019.green.alzman.model.PersonModel;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxAddAdressViewImpl;
 import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxAddPersonViewImpl;
@@ -19,8 +19,8 @@ import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxView;
 public class InfoboxPresenter implements InfoboxView.InfoboxViewListener {
 
 	private InfoboxView view;
-	private List<AddPerson> persons;
-	private List<AddAdress> adresses;
+	private List<PersonModel> persons;
+	private List<AddressModel> adresses;
 
 	public InfoboxPresenter(InfoboxView infoboxView) {
 		view = infoboxView;
@@ -33,7 +33,7 @@ public class InfoboxPresenter implements InfoboxView.InfoboxViewListener {
 	public void fillTabelleWithPersons() {
 
 		// DB stuff where we get all the users
-		Query query = DbService.em.createNativeQuery("SELECT * FROM ImportantPerson", AddPerson.class);
+		Query query = DbService.em.createNativeQuery("SELECT * FROM ImportantPerson", PersonModel.class);
 
 		// get list of users out of the query
 		persons = query.getResultList();
@@ -45,7 +45,7 @@ public class InfoboxPresenter implements InfoboxView.InfoboxViewListener {
 	public void fillTabelleWithAdress() {
 
 		// DB stuff where we get all the users
-		Query query = DbService.em.createNativeQuery("SELECT * FROM ImportantAdress", AddAdress.class);
+		Query query = DbService.em.createNativeQuery("SELECT * FROM ImportantAdress", AddressModel.class);
 
 		// get list of users out of the query
 		adresses = query.getResultList();
@@ -56,18 +56,18 @@ public class InfoboxPresenter implements InfoboxView.InfoboxViewListener {
 
 	public void deletePerson() {
 
-		Set<AddPerson> person = view.getSelectedPerson();
+		Set<PersonModel> person = view.getSelectedPerson();
 
-		AddPerson test = person.stream().findFirst().get();
+		PersonModel test = person.stream().findFirst().get();
 		test.getId();
 
 		// get the id number of the user which is at the beginning of the string
 		int PersonId = test.getId();
 
-		AddPerson personToDelete = null;
+		PersonModel personToDelete = null;
 
 		// for every user we have in our list
-		for (AddPerson pers : persons) {
+		for (PersonModel pers : persons) {
 			// if the id of that user is the same as the id we got from the userIdFullname
 			if (Objects.equals(pers.getId(), PersonId)) {
 				// this is the user we want to delete
@@ -84,18 +84,18 @@ public class InfoboxPresenter implements InfoboxView.InfoboxViewListener {
 
 	public void deleteAdress() {
 
-		Set<AddAdress> adress = view.getSelectedAdress();
+		Set<AddressModel> adress = view.getSelectedAdress();
 
-		AddAdress adressdelete = adress.stream().findFirst().get();
+		AddressModel adressdelete = adress.stream().findFirst().get();
 		adressdelete.getId();
 
 		// get the id number of the user which is at the beginning of the string
 		int AdressId = adressdelete.getId();
 
-		AddAdress adressToDelete = null;
+		AddressModel adressToDelete = null;
 
 		// for every user we have in our list
-		for (AddAdress adr : adresses) {
+		for (AddressModel adr : adresses) {
 			// if the id of that user is the same as the id we got from the userIdFullname
 			if (Objects.equals(adr.getId(), AdressId)) {
 				// this is the user we want to delete

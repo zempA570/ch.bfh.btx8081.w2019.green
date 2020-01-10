@@ -12,7 +12,7 @@ import javax.persistence.Query;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 
-import ch.bfh.btx8081.w2019.green.alzman.model.CalendarModel;
+import ch.bfh.btx8081.w2019.green.alzman.model.AppointmentModel;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 import ch.bfh.btx8081.w2019.green.alzman.view.CalendarView;
 import ch.bfh.btx8081.w2019.green.alzman.view.CalendarViewImpl;
@@ -25,7 +25,7 @@ import ch.bfh.btx8081.w2019.green.alzman.view.CalendarViewImpl;
 public class CalendarPresenter implements CalendarView.CalendarListener {
 
 	private CalendarView view;
-	private List<CalendarModel> allAppointments;
+	private List<AppointmentModel> allAppointments;
 
 	// constructor for the presenter
 	public CalendarPresenter(CalendarView calendarView) {
@@ -37,7 +37,7 @@ public class CalendarPresenter implements CalendarView.CalendarListener {
 
 	public void addAppointmentToDB() {
 
-		CalendarModel addAppointment = view.getAppointmentFromFields();
+		AppointmentModel addAppointment = view.getAppointmentFromFields();
 
 		// DB stuff
 		DbService.em.getTransaction().begin();
@@ -50,10 +50,10 @@ public class CalendarPresenter implements CalendarView.CalendarListener {
 
 		int idToDelete = Integer.parseInt(view.getIdForAppointmentToDelete());
 		
-		CalendarModel calendarModelToDelete = null;
+		AppointmentModel calendarModelToDelete = null;
 		
 
-		for (CalendarModel entry : allAppointments) {
+		for (AppointmentModel entry : allAppointments) {
 			if (Objects.equals(entry.getId(), idToDelete)) {
 				calendarModelToDelete = entry;
 			}
@@ -67,10 +67,10 @@ public class CalendarPresenter implements CalendarView.CalendarListener {
 	}
 
 	public void fillCalendar() {
-		Query query = DbService.em.createNativeQuery("SELECT * FROM CALENDARMODEL", CalendarModel.class);
+		Query query = DbService.em.createNativeQuery("SELECT * FROM CALENDARMODEL", AppointmentModel.class);
 		allAppointments = query.getResultList();
 
-		for (CalendarModel appointment : allAppointments) {
+		for (AppointmentModel appointment : allAppointments) {
 			view.addEntryToCalendar(appointment);
 		}
 	}

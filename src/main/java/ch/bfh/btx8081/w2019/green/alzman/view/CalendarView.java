@@ -2,7 +2,7 @@ package ch.bfh.btx8081.w2019.green.alzman.view;
 
 import com.vaadin.flow.component.button.Button;
 
-import ch.bfh.btx8081.w2019.green.alzman.model.CalendarModel;
+import ch.bfh.btx8081.w2019.green.alzman.model.AppointmentModel;
 
 public interface CalendarView {
 
@@ -12,9 +12,9 @@ public interface CalendarView {
 
 	public void addListener(CalendarListener listener);
 
-	public void addEntryToCalendar(CalendarModel entries);
+	public void addEntryToCalendar(AppointmentModel entries);
 	
-	public CalendarModel getAppointmentFromFields();
+	public AppointmentModel getAppointmentFromFields();
 	
 	public String getIdForAppointmentToDelete();
 

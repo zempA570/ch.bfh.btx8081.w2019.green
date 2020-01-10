@@ -8,8 +8,8 @@ import javax.persistence.TableGenerator;
 
 
 @Entity
-@Table(name = "ImportantAdress")
-public class AddAdress {
+@Table(name = "Address")
+public class AddressModel {
 
 	@TableGenerator(name = "ImportantAdressIDGenerator", allocationSize = 1, initialValue = 1)
 	@Id
@@ -23,11 +23,11 @@ public class AddAdress {
 	String city;
 	String phonenummber;
 
-	public AddAdress() {
+	public AddressModel() {
 
 	}
 
-	public AddAdress(String name, String adress, String adressNr, String postcode, String city,
+	public AddressModel(String name, String adress, String adressNr, String postcode, String city,
 			String phonenummber) {
 		super();
 		this.name = name;

@@ -2,7 +2,7 @@ package ch.bfh.btx8081.w2019.green.alzman.view;
 
 import com.vaadin.flow.component.button.Button;
 
-import ch.bfh.btx8081.w2019.green.alzman.model.AddAdress;
+import ch.bfh.btx8081.w2019.green.alzman.model.AddressModel;
 
 public interface InfoboxAddAdressView {
 
@@ -12,6 +12,6 @@ public interface InfoboxAddAdressView {
 
 	public void addListener(InfoboxAddAdressListener listener);
 
-	public AddAdress getAdressFromFields();
+	public AddressModel getAdressFromFields();
 
 }

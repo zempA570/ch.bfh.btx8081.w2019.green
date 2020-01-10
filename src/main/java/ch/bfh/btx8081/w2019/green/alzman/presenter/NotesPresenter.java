@@ -8,7 +8,7 @@ import javax.persistence.Query;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 
-import ch.bfh.btx8081.w2019.green.alzman.model.ImportantNotesDataModel;
+import ch.bfh.btx8081.w2019.green.alzman.model.NotesModel;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 import ch.bfh.btx8081.w2019.green.alzman.view.NotesAddViewImpl;
 import ch.bfh.btx8081.w2019.green.alzman.view.NotesView;
@@ -17,7 +17,7 @@ import ch.bfh.btx8081.w2019.green.alzman.view.NotesViewImpl;
 public class NotesPresenter implements NotesView.NotesListener {
 
 	private NotesView view;
-	private List<ImportantNotesDataModel> notes;
+	private List<NotesModel> notes;
 
 	public NotesPresenter(NotesView notesView) {
 		view = notesView;
@@ -31,7 +31,7 @@ public class NotesPresenter implements NotesView.NotesListener {
 
 		// DB transactions where we get all the notes
 		Query query = DbService.em.createNativeQuery("SELECT * FROM importantnotesdatamodel",
-				ImportantNotesDataModel.class);
+				NotesModel.class);
 
 		// get list of notes out of the query
 		notes = query.getResultList();
@@ -42,8 +42,8 @@ public class NotesPresenter implements NotesView.NotesListener {
 
 	public void deleteEntry() {
 		
-		Set<ImportantNotesDataModel> notes = view.getSelectedNote();
-		ImportantNotesDataModel noteToDelete = notes.stream().findFirst().get();
+		Set<NotesModel> notes = view.getSelectedNote();
+		NotesModel noteToDelete = notes.stream().findFirst().get();
 
 		DbService.em.getTransaction().begin();
 

@@ -10,7 +10,7 @@ import javax.persistence.Query;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.datepicker.DatePicker;
 
-import ch.bfh.btx8081.w2019.green.alzman.model.Task;
+import ch.bfh.btx8081.w2019.green.alzman.model.TaskModel;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 import ch.bfh.btx8081.w2019.green.alzman.view.TaskEntryView;
 import ch.bfh.btx8081.w2019.green.alzman.view.ToDoListView;
@@ -18,7 +18,7 @@ import ch.bfh.btx8081.w2019.green.alzman.view.ToDoListView;
 public class ToDoListPresenter {
 
 	private ToDoListView view;
-	private List<Task> taskslist;
+	private List<TaskModel> taskslist;
 
 	public ToDoListPresenter(ToDoListView view) {
 		this.view = view;
@@ -27,7 +27,7 @@ public class ToDoListPresenter {
 	}
 
 
-	public void deleteTask(Task task) {
+	public void deleteTask(TaskModel task) {
 		DbService.em.getTransaction().begin();
 		DbService.em.remove(task);
 		DbService.em.getTransaction().commit();
@@ -39,13 +39,13 @@ public class ToDoListPresenter {
 
 	public void fillListwithTasks() {
 		// get the data from DB
-		Query query = DbService.em.createNativeQuery("SELECT * FROM task", Task.class);
+		Query query = DbService.em.createNativeQuery("SELECT * FROM task", TaskModel.class);
 
 		// get list of tasks out of the query
 		taskslist = query.getResultList();
 
 		// tasknames in the correct list
-		for (Task task : taskslist) {
+		for (TaskModel task : taskslist) {
 			if (task.getChoice().contentEquals("Weekly")) {
 				view.addWeeklyTask(task);
 			} else if (task.getChoice().contentEquals("Monthly")) {

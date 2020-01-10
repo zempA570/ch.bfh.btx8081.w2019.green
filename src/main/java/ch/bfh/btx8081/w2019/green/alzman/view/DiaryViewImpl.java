@@ -13,7 +13,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.router.Route;
 
-import ch.bfh.btx8081.w2019.green.alzman.model.AddDiaryModel;
+import ch.bfh.btx8081.w2019.green.alzman.model.DiaryModel;
 import ch.bfh.btx8081.w2019.green.alzman.presenter.DiaryPresenter;
 
 
@@ -49,7 +49,7 @@ public class DiaryViewImpl extends TemplateView implements DiaryView {
 		new DiaryPresenter(this);
 	}
 
-	public void addEntryToView(AddDiaryModel model) {
+	public void addEntryToView(DiaryModel model) {
 
 		TextArea textarea = new TextArea();
 		textarea.setValue(model.getEntry());

@@ -3,10 +3,12 @@ package ch.bfh.btx8081.w2019.green.alzman.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
 @Entity
-public class Patient {
+@Table(name = "Patient")
+public class PatientModel {
 	@TableGenerator(name = "patientIDGenerator", allocationSize = 1, initialValue = 123456)
 	@GeneratedValue(generator = "patientIDGenerator")
 	@Id
@@ -15,13 +17,13 @@ public class Patient {
 	String firstname;
 	String lastname;
 
-	public Patient(String password, String firstname, String lastname) {
+	public PatientModel(String password, String firstname, String lastname) {
 		this.password = password;
 		this.firstname = firstname;
 		this.lastname = lastname;
 	}
 
-	public Patient() {
+	public PatientModel() {
 
 	}
 

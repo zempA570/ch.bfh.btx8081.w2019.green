@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 import com.vaadin.flow.component.button.Button;
 
-import ch.bfh.btx8081.w2019.green.alzman.model.AddDiaryModel;
+import ch.bfh.btx8081.w2019.green.alzman.model.DiaryModel;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 import ch.bfh.btx8081.w2019.green.alzman.view.DiaryAddView;
 
@@ -33,7 +33,7 @@ public class DiaryAddPresenter implements DiaryAddView.DiaryAddViewListener {
 		String author = view.getAuthor();
 		String entry = view.getEntry();
 
-		AddDiaryModel addnewRecord = new AddDiaryModel(date, author, entry);
+		DiaryModel addnewRecord = new DiaryModel(date, author, entry);
 
 		// DB stuff
 		DbService.em.getTransaction().begin();

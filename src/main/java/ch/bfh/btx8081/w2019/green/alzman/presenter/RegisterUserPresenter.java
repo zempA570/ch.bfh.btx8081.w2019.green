@@ -2,7 +2,7 @@ package ch.bfh.btx8081.w2019.green.alzman.presenter;
 
 import com.vaadin.flow.component.UI;
 
-import ch.bfh.btx8081.w2019.green.alzman.model.Patient;
+import ch.bfh.btx8081.w2019.green.alzman.model.PatientModel;
 import ch.bfh.btx8081.w2019.green.alzman.model.UserModel;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 import ch.bfh.btx8081.w2019.green.alzman.view.DashboardView;
@@ -23,7 +23,7 @@ public class RegisterUserPresenter {
 		// TODO validation passwords the same
 		
 		UserModel newUser = new UserModel(firstnameUser, lastnameUser);
-		Patient newPatient = new Patient(passwordPatient, firstnamePatient, lastnamePatient);
+		PatientModel newPatient = new PatientModel(passwordPatient, firstnamePatient, lastnamePatient);
 
 		// DB stuff
 		DbService.em.getTransaction().begin();
