@@ -30,31 +30,6 @@ public class InfoboxAddAdressPresenter implements InfoboxAddAdressView.InfoboxAd
 		view.addListener(this);
 	}
 
-//	ADRIAN: i dont think you need this here.. deleting is in InfoboxPresenter
-//	public void deleteAdress(String inportantAdress) {
-//
-//		DbService.em.getTransaction().begin();
-//
-//		// get the id number of the user which is at the beginning of the string
-//		int AdressId = Integer.parseInt(inportantAdress.substring(0, inportantAdress.indexOf(" ")));
-//
-//		AddAdress adressToDelete = null;
-//
-//		// for every user we have in our list
-//		for (AddAdress adr : adresses) {
-//			// if the id of that user is the same as the id we got from the userIdFullname
-//			if (Objects.equals(adr.getId(), AdressId)) {
-//				// this is the user we want to delete
-//				adressToDelete = adr;
-//			}
-//		}
-//
-//		// this is the part where we use the DB
-//		DbService.em.remove(adressToDelete);
-//		DbService.em.getTransaction().commit();
-//
-//	}
-
 	public void addAdress() {
 		
 		// create new user

@@ -29,36 +29,6 @@ public class InfoboxAddPersonPresenter implements InfoboxAddPersonView.InfoboxAd
 
 	}
 
-//	ADRIAN: I dont think you need this function here? you are only adding not deleting stuff..
-//	public void deletePerson(String inportantPerson) {
-//
-//		DbService.em.getTransaction().begin();
-//
-//		// get the id number of the user which is at the beginning of the string
-//		int PersonId = Integer.parseInt(inportantPerson.substring(0, inportantPerson.indexOf(" ")));
-//
-//		AddPerson personToDelete = null;
-//
-//		// for every user we have in our list
-//		for (AddPerson pers : persons) {
-//			// if the id of that user is the same as the id we got from the userIdFullname
-//			if (Objects.equals(pers.getId(), PersonId)) {
-//				// this is the user we want to delete
-//				personToDelete = pers;
-//			}
-//		}
-//
-//		// this is the part where we use the DB
-//		DbService.em.remove(personToDelete);
-//		DbService.em.getTransaction().commit();
-//
-//		// after the user is deleted we "refresh" the list in the combobox so the
-//		// deleted user is gone
-//		
-//		
-//
-//	}
-
 	private void addPerson() {
 
 		// create new user
