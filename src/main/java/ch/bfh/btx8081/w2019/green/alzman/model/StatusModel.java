@@ -5,17 +5,29 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * This class represents the model of the status function.
+ * 
+ * @author Emily Estée
+ *
+ */
+
 @Entity
 @Table(name = "Status")
 public class StatusModel {
 
-	
 	@Id
 	@GeneratedValue
 	int id;
 	int level;
 	String task;
 
+	/**
+	 * 
+	 * @param level 1 = "Independent"; 2 = "With help"; 3 = "Dependent"
+	 * @param task  The user's entry, e.g. "Wash Hair"
+	 * @param id    The Identification Number
+	 */
 	public StatusModel(int level, String task, int id) {
 		this.level = level;
 		this.task = task;

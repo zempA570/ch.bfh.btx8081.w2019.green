@@ -28,6 +28,10 @@ import ch.bfh.btx8081.w2019.green.alzman.presenter.StatusPresenter;
  * this task to one of the three FormLayouts. The user can also remove the added
  * task afterwards.
  * 
+ * The commented part could be further developed in a continuation of this
+ * project. The idea is that the user can move his entry from one section to
+ * another.
+ * 
  * @author Emily Torresan
  */
 
@@ -80,7 +84,6 @@ public class StatusViewImpl extends TemplateView implements StatusView {
 		setSizeFull();
 		setAlignItems(Alignment.CENTER);
 
-//---------------------------------------------------------------------------------------------------------------		
 		/**
 		 * A Layout from Vaadin, with which you can align the elements vertically.
 		 */
@@ -127,7 +130,6 @@ public class StatusViewImpl extends TemplateView implements StatusView {
 
 		super.addContent(frmlytDetailsLayout);
 
-//---------------------------------------------------------------------------------------------------------------------------
 		/**
 		 * Below the Details components a new layout for the buttons will be created.
 		 * The form layout of Vaadin allows to display the different components in an
@@ -159,11 +161,11 @@ public class StatusViewImpl extends TemplateView implements StatusView {
 
 		super.addContent(frmlyttextLayout04);
 
-//---------------------------------------------------------------------------------
 		/**
 		 * Three Icons from Vaadin with the check symbol. Each text field receives the
 		 * corresponding icon. They are added next to each text field
 		 */
+		
 		Icon icnCheckIndependent = new Icon(VaadinIcon.CHECK_CIRCLE);
 		icnCheckIndependent.setSize("25px");
 		icnCheckIndependent.setColor("blue");
@@ -178,10 +180,12 @@ public class StatusViewImpl extends TemplateView implements StatusView {
 		icnCheckDependent.setSize("25px");
 		icnCheckDependent.setColor("blue");
 		icnCheckDependent.setVisible(false);
-//-----------------------------------------------------------------------------------------------------------	
+		
+		
 		/**
 		 * @frmlyTextLayout05 is needet for the three textfield.
 		 */
+		
 		FormLayout frmlytTextLayout05 = new FormLayout();
 
 		frmlytTextLayout05.setResponsiveSteps(new ResponsiveStep("20em", 1), new ResponsiveStep("25em", 2),
@@ -221,11 +225,13 @@ public class StatusViewImpl extends TemplateView implements StatusView {
 				icnCheckDependent);
 
 		super.addContent(frmlytTextLayout05);
-//------------------------------------------------------------------------------------------------------------------		
+		
+		
 		/**
 		 * When the user clicks this button, all three text fields become visible and
 		 * enabled. In addition, the icons with the Check symbol become visible.
 		 */
+		
 		btnPlusButton.addClickListener(event -> tfDependent.setVisible(true));
 		btnPlusButton.addClickListener(event -> tfDependent.setEnabled(true));
 		btnPlusButton.addClickListener(event -> icnCheckDependent.setVisible(true));
@@ -238,7 +244,6 @@ public class StatusViewImpl extends TemplateView implements StatusView {
 		btnPlusButton.addClickListener(event -> tfWithHelp.setEnabled(true));
 		btnPlusButton.addClickListener(event -> icnCheckWithHelp.setVisible(true));
 
-//---------------------------------------------------------------------------------------------------------------------
 		/**
 		 * For all three horizontal layouts ("Independent", "With Help", "Dependent") a
 		 * menu component with only one submenu "Delete" is created. When the user adds
@@ -250,22 +255,24 @@ public class StatusViewImpl extends TemplateView implements StatusView {
 		MenuBar mnubrIndependent = new MenuBar();
 		MenuItem mnuitmIndepDelete = mnubrIndependent.addItem("Delete");
 		sbmnuIndependentDelete = mnuitmIndepDelete.getSubMenu();
+		
 		// MenuItem mnuitmIndepMove = mnubrIndependent.addItem("Move down");
 		// sbmnuIndependentMove = mnuitmIndepMove.getSubMenu();
 
 		MenuBar mnubrWithHelp = new MenuBar();
 		MenuItem mnuitmWhelpDelete = mnubrWithHelp.addItem("Delete");
 		sbmnuWithHelpDelete = mnuitmWhelpDelete.getSubMenu();
+		
 		// MenuItem mnuitmWhelpMove = mnubrWithHelp.addItem("Move down");
 		// sbmnuWithHelpMove = mnuitmWhelpMove.getSubMenu();
 
 		MenuBar mnubrDependent = new MenuBar();
 		MenuItem mnuitmDepDelete = mnubrDependent.addItem("Delete");
 		sbmnuDependentDelete = mnuitmDepDelete.getSubMenu();
+		
 		// MenuItem mnuitmDepMove = mnubrDependent.addItem("Move up");
 		// sbmnuDependentMove = mnuitmDepMove.getSubMenu();
 
-//----------------------------------------------------------------------------------------------------------------------		
 		/**
 		 * This layout represents the column for the tasks that a relative of the user
 		 * can do independently.
@@ -301,9 +308,13 @@ public class StatusViewImpl extends TemplateView implements StatusView {
 		hlDepContent.addClassNames("column", "column-c");
 		hlDepWrapper.add(new Label("Dependent"), mnubrDependent, hlDepContent);
 		super.addContent(hlDepWrapper);
+		
 
-//--------------------------------------------------------------------------------------------------------------------
-
+		/**
+		 * If the user has entered a text in one of the three text fields and clicks on
+		 * the check icon next to the text field, the entry is added to the
+		 * corresponding category.
+		 */
 		icnCheckIndependent.addClickListener(event -> {
 			for (StatusListener listener : listeners)
 				listener.iconClick();
@@ -319,12 +330,14 @@ public class StatusViewImpl extends TemplateView implements StatusView {
 				listener.iconClick();
 		});
 
-//----------------------------------------------------------------------------------------------------------------------		
-
+		
+		// !!! Bitte hier den Kommentar prüfen !!! Stimmt das so???
+		/**
+		 * The logic of this class is passed to the presenter class.
+		 */
 		new StatusPresenter(this);
 
 	}
-//!!! Bitte hier den Kommentar prüfen !!! Stimmt das so???
 
 	/**
 	 * When the user writes a task in the first text field and clicks on the check
@@ -381,27 +394,51 @@ public class StatusViewImpl extends TemplateView implements StatusView {
 		listeners.add(listener);
 	}
 
+	/**
+	 * @return the Value from the tfIndependent textField
+	 */
+
 	@Override
 	public String getIndepTfValue() {
 		return tfIndependent.getValue();
 	}
+
+	/**
+	 * @return the Value from the tfWithHelp textField
+	 */
 
 	@Override
 	public String getWhelpTfValue() {
 		return tfWithHelp.getValue();
 	}
 
+	/**
+	 * @return the Value from the tfDependent textField
+	 */
+
 	@Override
 	public String getDepTfValue() {
 		return tfDependent.getValue();
 	}
 
+	/**
+	 * If the user has added a task to the appropriate category ("Independent",
+	 * "With help", " Dependent") via the corresponding text field, the text of the
+	 * text field is deleted again.
+	 */
+	
 	@Override
 	public void clearTextfields() {
 		tfIndependent.clear();
 		tfWithHelp.clear();
 		tfDependent.clear();
 	}
+
+	
+	/**
+	 * This method removes all user entries. These are added later, when the web
+	 * page is loaded from the DB.
+	 */
 
 	@Override
 	public void clearContent() {
