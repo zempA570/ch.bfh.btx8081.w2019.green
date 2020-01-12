@@ -3,162 +3,152 @@ package ch.bfh.btx8081.w2019.green.alzman.view;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.vaadin.flow.component.UI;
-import com.vaadin.flow.component.accordion.Accordion;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
-import com.vaadin.flow.component.listbox.ListBox;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 
 import ch.bfh.btx8081.w2019.green.alzman.model.TaskModel;
 import ch.bfh.btx8081.w2019.green.alzman.presenter.ToDoListPresenter;
-import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxView.InfoboxViewListener;
 
 /**
  * The user management view will be used to add and remove users of the app
  */
-@Route("todoList")
+@Route("todolist")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
-public class ToDoListViewImpl extends TemplateView implements ToDoListView{
+public class ToDoListViewImpl extends TemplateView implements ToDoListView {
 
 	private List<ToDoListViewListener> listeners = new ArrayList<ToDoListViewListener>();
-	
-	private VerticalLayout weeklyTasksWrapper = new VerticalLayout();
-	private VerticalLayout weeklyTasks = new VerticalLayout();
-	private VerticalLayout monthlyTasksWrapper = new VerticalLayout();
-	private VerticalLayout monthlyTasks = new VerticalLayout();
-	private VerticalLayout annuallyTasksWrapper = new VerticalLayout();
-	private VerticalLayout annuallyTasks = new VerticalLayout();
-	private VerticalLayout specialTasksWrapper = new VerticalLayout();
-	private VerticalLayout specialTasks = new VerticalLayout();
-	private VerticalLayout complTasksWrapper = new VerticalLayout();
-	private VerticalLayout complTasks = new VerticalLayout();
-	private Checkbox chBox;
+
+	private VerticalLayout vlWeeklyWrapper = new VerticalLayout();
+	private VerticalLayout vlWeeklyContent = new VerticalLayout();
+	private VerticalLayout vlMonthlyWrapper = new VerticalLayout();
+	private VerticalLayout vlMonthlyContent = new VerticalLayout();
+	private VerticalLayout vlAnuallyWrapper = new VerticalLayout();
+	private VerticalLayout vlAnuallyContent = new VerticalLayout();
+	private VerticalLayout vlSpecialWrapper = new VerticalLayout();
+	private VerticalLayout vlSpecialContent = new VerticalLayout();
+	private VerticalLayout vlCompletedWrapper = new VerticalLayout();
+	private VerticalLayout vlCompletedContent = new VerticalLayout();
+	private Checkbox chkbxDone;
 
 	public ToDoListViewImpl() {
 
 		// Change title in header
 		super.setHeaderTitle("To Do List");
-		HorizontalLayout horizManager = new HorizontalLayout();
-		horizManager.setWidthFull();
+		HorizontalLayout hlMainContent = new HorizontalLayout();
+		hlMainContent.setWidthFull();
 
-		// elements for special-tasks row
+		// elements for special-tasks column
 		Label lblSpecialTasks = new Label("Special Tasks");
-		specialTasksWrapper.add(lblSpecialTasks, specialTasks);
-		horizManager.add(specialTasksWrapper);
+		vlSpecialWrapper.add(lblSpecialTasks, vlSpecialContent);
+		hlMainContent.add(vlSpecialWrapper);
 
-		// elements for weekly-tasks row
+		// elements for weekly-tasks column
 		Label lblWeeklyTasks = new Label("Weekly Tasks");
-		weeklyTasksWrapper.add(lblWeeklyTasks, weeklyTasks);
-		horizManager.add(weeklyTasksWrapper);
+		vlWeeklyWrapper.add(lblWeeklyTasks, vlWeeklyContent);
+		hlMainContent.add(vlWeeklyWrapper);
 
-		// elements for monthly-tasks row
-//		VerticalLayout monthlyTasks = new VerticalLayout();
+		// elements for monthly-tasks column
 		Label lblMonthlyTasks = new Label("Monthly Tasks");
-		monthlyTasksWrapper.add(lblMonthlyTasks, monthlyTasks);
-		horizManager.add(monthlyTasksWrapper);
+		vlMonthlyWrapper.add(lblMonthlyTasks, vlMonthlyContent);
+		hlMainContent.add(vlMonthlyWrapper);
 
-		// elements for annual-tasks row
-//		VerticalLayout annualTasks = new VerticalLayout();
+		// elements for annual-tasks column
 		Label lblAnnualTasks = new Label("Annual Tasks");
-		annuallyTasksWrapper.add(lblAnnualTasks,annuallyTasks);
-		horizManager.add(annuallyTasksWrapper);
+		vlAnuallyWrapper.add(lblAnnualTasks, vlAnuallyContent);
+		hlMainContent.add(vlAnuallyWrapper);
 
-		// elements for completed-tasks row
-//		complTasks = new VerticalLayout();
-//		Label lblComplTasks = new Label("Completed Tasks");
-//		complTasks.add(lblComplTasks);
-//		horizManager.add(complTasks);
+		// elements for completed-tasks column
+		Label lblComplTasks = new Label("Completed Tasks");
+		vlCompletedWrapper.add(lblComplTasks, vlCompletedContent);
+		hlMainContent.add(vlCompletedWrapper);
 
-		Button addNewTask = new Button("add new Task", new Icon(VaadinIcon.PLUS));
-		addNewTask.addClickListener(e -> UI.getCurrent().navigate(TaskEntryView.class));
+		Button addNewTask = new Button("Add new Task", new Icon(VaadinIcon.PLUS));
+		addNewTask.addClickListener(e -> {
+			for (ToDoListViewListener listener : listeners)
+				listener.buttonClick(e.getSource());
+		});
 		VerticalLayout vertButton = new VerticalLayout();
 		vertButton.add(addNewTask);
 
 		// adding components to content space
-		super.addContent(horizManager);
+		super.addContent(hlMainContent);
 		super.addContent(vertButton);
 
 		new ToDoListPresenter(this);
 
 	}
 
-	public void addWeeklyTask(TaskModel task) {
+	private HorizontalLayout createGuiElement(TaskModel task) {
 
-		chBox = new Checkbox(task.getTask());
-		Label date = new Label(task.getDate().toString());
+		Label lblDate = new Label(task.getDate().toString());
+		String taskId = Integer.toString(task.getId());
 
 		Button btnDelete = new Button(new Icon(VaadinIcon.TRASH));
-//		btnDelete.addClickListener(e -> presenter.deleteTask(task));
+		btnDelete.setId(taskId);
+		btnDelete.addClickListener(e -> {
+			for (ToDoListViewListener listener : listeners)
+				listener.buttonClick(e.getSource());
+		});
 
-		HorizontalLayout horiz = new HorizontalLayout(chBox, date, btnDelete);
+		// This button is invisible and not added to the view
+		// It's used to differentiate in the ToDoListPresenter what was clicked
+		Button btnInvisible = new Button("Checkbox Clicked");
+		btnInvisible.setId(taskId);
+		
+		chkbxDone = new Checkbox(task.getTask());
+		if(task.isDone()) {
+			chkbxDone.setValue(true);
+		}
+		
+		
+		chkbxDone.addClickListener(e -> {
+			for (ToDoListViewListener listener : listeners)
+				listener.buttonClick(btnInvisible);
+		});
 
-		weeklyTasks.add(horiz);
+		HorizontalLayout hlTask = new HorizontalLayout(chkbxDone, lblDate, btnDelete);
+		return hlTask;
+	}
+
+	public void addWeeklyTask(TaskModel task) {
+
+		vlWeeklyContent.add(createGuiElement(task));
 
 	}
 
 	public void addMonthlyTask(TaskModel task) {
 
-		chBox = new Checkbox(task.getTask());
-		Label date = new Label(task.getDate().toString());
-
-		Button btnDelete = new Button(new Icon(VaadinIcon.TRASH));
-//		btnDelete.addClickListener(e -> presenter.deleteTask(task));
-
-		HorizontalLayout horiz = new HorizontalLayout(chBox, date, btnDelete);
-
-		monthlyTasks.add(horiz);
+		vlMonthlyContent.add(createGuiElement(task));
 	}
 
 	public void addAnnualTask(TaskModel task) {
 
-		chBox = new Checkbox(task.getTask());
-		Label date = new Label(task.getDate().toString());
-
-		Button btnDelete = new Button(new Icon(VaadinIcon.TRASH));
-//		btnDelete.addClickListener(e -> presenter.deleteTask(task));
-
-		HorizontalLayout horiz = new HorizontalLayout(chBox, date, btnDelete);
-
-		annuallyTasks.add(horiz);
+		vlAnuallyContent.add(createGuiElement(task));
 	}
 
 	public void addSpecialTask(TaskModel task) {
 
-		chBox = new Checkbox(task.getTask());
-		Label date = new Label(task.getDate().toString());
-
-		Button btnDelete = new Button(new Icon(VaadinIcon.TRASH));
-//		btnDelete.addClickListener(e -> presenter.deleteTask(task));
-
-		HorizontalLayout horiz = new HorizontalLayout(chBox, date, btnDelete);
-
-		specialTasks.add(horiz);
+		vlSpecialContent.add(createGuiElement(task));
 	}
 
 	public void addComplTask(TaskModel task) {
 
-		if (chBox.getValue() == true)
-			;
-		{
-			complTasks.add(chBox);
-
-		}
+		vlCompletedContent.add(createGuiElement(task));
 	}
 
-	public void deleteAllTaskinGui() {
-		specialTasks.removeAll();
-		weeklyTasks.removeAll();
-		monthlyTasks.removeAll();
-		annuallyTasks.removeAll();
-		complTasks.removeAll();
+	public void deleteAllTasksInGui() {
+		vlSpecialContent.removeAll();
+		vlWeeklyContent.removeAll();
+		vlMonthlyContent.removeAll();
+		vlAnuallyContent.removeAll();
+		vlCompletedContent.removeAll();
 	}
 
 	@Override
