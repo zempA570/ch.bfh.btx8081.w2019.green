@@ -91,7 +91,7 @@ public class InfoboxAddAdressViewImpl extends TemplateView implements InfoboxAdd
 
 		// Button for add the adress in the Infobox
 
-		Button btnAdd = new Button("Add Adress", new Icon(VaadinIcon.PLUS));
+		Button btnAdd = new Button("Add Address", new Icon(VaadinIcon.PLUS));
 		btnAdd.addClickListener(e -> {
 			if (bndrCheckAdress.isValid()) {
 				for (InfoboxAddAdressListener listener : listeners) {

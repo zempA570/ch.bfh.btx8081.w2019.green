@@ -49,7 +49,7 @@ public class InfoboxAddAddressPresenter implements InfoboxAddAddressView.Infobox
 		String buttonText = btnClick.getText();
 
 		switch (buttonText) {
-		case "Add Adress":
+		case "Add Address":
 			addAdress();
 			navigateToInfobox();
 			break;
