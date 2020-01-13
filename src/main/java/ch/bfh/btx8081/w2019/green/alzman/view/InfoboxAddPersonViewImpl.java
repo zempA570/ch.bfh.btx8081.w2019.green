@@ -20,7 +20,8 @@ import ch.bfh.btx8081.w2019.green.alzman.model.PersonModel;
 import ch.bfh.btx8081.w2019.green.alzman.presenter.InfoboxAddPersonPresenter;
 
 /**
- * 
+ * This class implements the view that represents the add important Person View.
+ * The methods come from the InfoboxAddPersonView that also represents the interface class.
  * @author gausegan
  *
  */

@@ -16,7 +16,8 @@ import ch.bfh.btx8081.w2019.green.alzman.model.PersonModel;
 import ch.bfh.btx8081.w2019.green.alzman.presenter.InfoboxPresenter;
 
 /**
- * 
+ * This class implements the view that represents the infobox View.
+ * The methods come from the InfoboxView that also represents the interface class.
  * @author gausegan
  *
  */

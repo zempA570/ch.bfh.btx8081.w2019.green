@@ -19,7 +19,8 @@ import ch.bfh.btx8081.w2019.green.alzman.model.AddressModel;
 import ch.bfh.btx8081.w2019.green.alzman.presenter.InfoboxAddAddressPresenter;
 
 /**
- * 
+ * This class implements the view that represents the add important address View.
+ * The methods come from the InfoboxAddAddressView that also represents the interface class.
  * @author gausegan
  *
  */
