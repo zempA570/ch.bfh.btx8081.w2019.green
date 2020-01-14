@@ -18,7 +18,7 @@ import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 /**
  * This class is used to store new tasks of patients.
  * 
- * @author Jasmitha
+ * @author Jasmitha Devarasa
  *
  */
 @Entity
@@ -35,6 +35,12 @@ public class TaskModel {
 	Date date;
 	Boolean isDone = false;
 
+	/**
+	 * 
+	 * @param task describe the name of the task
+	 * @param repetition describe how often it will be repeated, can be chosen between daily, weekly and annually or none
+	 * @param date 
+	 */
 	public TaskModel(String task, String repetition, Date date) {
 		this.task = task;
 		this.repetition = repetition;

@@ -11,6 +11,11 @@ import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 import ch.bfh.btx8081.w2019.green.alzman.view.ToDoListAddViewImpl;
 import ch.bfh.btx8081.w2019.green.alzman.view.ToDoListView;
 
+/**
+ * 
+ * @author Jasmitha Devarasa
+ *
+ */
 public class ToDoListPresenter implements ToDoListView.ToDoListViewListener {
 
 	private ToDoListView view;
@@ -23,6 +28,7 @@ public class ToDoListPresenter implements ToDoListView.ToDoListViewListener {
 		fillGuiWithTasks();
 	}
 
+	// delete the task
 	public void deleteTask(Optional<String> optional) {
 
 		int id = Integer.parseInt(optional.get());
@@ -41,6 +47,7 @@ public class ToDoListPresenter implements ToDoListView.ToDoListViewListener {
 
 	}
 
+	
 	public void fillGuiWithTasks() {
 
 		// clean the gui before adding tasks
@@ -65,6 +72,7 @@ public class ToDoListPresenter implements ToDoListView.ToDoListViewListener {
 		}
 	}
 
+	//
 	@Override
 	public void buttonClick(Button button) {
 
@@ -90,6 +98,7 @@ public class ToDoListPresenter implements ToDoListView.ToDoListViewListener {
 
 	}
 
+	
 	private void changeStatus(Optional<String> optional) {
 
 		int id = Integer.parseInt(optional.get());

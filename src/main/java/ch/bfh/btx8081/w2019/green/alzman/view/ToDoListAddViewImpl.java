@@ -18,7 +18,9 @@ import com.vaadin.flow.router.Route;
 import ch.bfh.btx8081.w2019.green.alzman.presenter.ToDoListAddPresenter;
 
 /**
- * The user management view will be used to add and remove users of the app
+ * @author Jasmitha
+ * 
+ * The ToDoList adding show the page, where the task can be created and added
  */
 @Route("todolistadd")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")

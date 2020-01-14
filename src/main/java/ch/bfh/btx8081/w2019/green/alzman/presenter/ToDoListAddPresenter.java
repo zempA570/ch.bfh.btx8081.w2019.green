@@ -1,6 +1,7 @@
 package ch.bfh.btx8081.w2019.green.alzman.presenter;
 
 import java.sql.Date;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -12,6 +13,12 @@ import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 import ch.bfh.btx8081.w2019.green.alzman.view.ToDoListAddView;
 import ch.bfh.btx8081.w2019.green.alzman.view.ToDoListViewImpl;
 
+/**
+ * 
+ * @author Jasmitha Devarasa
+ *
+ */
+
 public class ToDoListAddPresenter implements ToDoListAddView.ToDoListAddViewListener {
 
 	private ToDoListAddView view;
@@ -22,6 +29,7 @@ public class ToDoListAddPresenter implements ToDoListAddView.ToDoListAddViewList
 		view.addListener(this);
 	}
 
+	// add the created task to the database
 	public void addTaskToDB() {
 		
 		String task = view.getTask();

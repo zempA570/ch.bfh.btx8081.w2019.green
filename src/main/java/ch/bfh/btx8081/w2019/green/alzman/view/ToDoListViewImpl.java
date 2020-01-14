@@ -17,7 +17,9 @@ import ch.bfh.btx8081.w2019.green.alzman.model.TaskModel;
 import ch.bfh.btx8081.w2019.green.alzman.presenter.ToDoListPresenter;
 
 /**
- * The user management view will be used to add and remove users of the app
+ * @author Jasmitha Devarasa
+ * 
+ *         The TodoList View shows all added tasks
  */
 @Route("todolist")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
@@ -25,6 +27,7 @@ public class ToDoListViewImpl extends TemplateView implements ToDoListView {
 
 	private List<ToDoListViewListener> listeners = new ArrayList<ToDoListViewListener>();
 
+	// all needed verticalLayouts
 	private VerticalLayout vlWeeklyWrapper = new VerticalLayout();
 	private VerticalLayout vlWeeklyContent = new VerticalLayout();
 	private VerticalLayout vlMonthlyWrapper = new VerticalLayout();
@@ -101,22 +104,23 @@ public class ToDoListViewImpl extends TemplateView implements ToDoListView {
 		// It's used to differentiate in the ToDoListPresenter what was clicked
 		Button btnInvisible = new Button("Checkbox Clicked");
 		btnInvisible.setId(taskId);
-		
+
 		chkbxDone = new Checkbox(task.getTask());
-		if(task.isDone()) {
+		if (task.isDone()) {
 			chkbxDone.setValue(true);
 		}
-		
-		
+
 		chkbxDone.addClickListener(e -> {
 			for (ToDoListViewListener listener : listeners)
 				listener.buttonClick(btnInvisible);
 		});
 
+		// horizontallayout for show a complete task
 		HorizontalLayout hlTask = new HorizontalLayout(chkbxDone, lblDate, btnDelete);
 		return hlTask;
 	}
 
+	// adding tasks per repetition-groups
 	public void addWeeklyTask(TaskModel task) {
 
 		vlWeeklyContent.add(createGuiElement(task));
@@ -143,6 +147,7 @@ public class ToDoListViewImpl extends TemplateView implements ToDoListView {
 		vlCompletedContent.add(createGuiElement(task));
 	}
 
+	// delete all tasks
 	public void deleteAllTasksInGui() {
 		vlSpecialContent.removeAll();
 		vlWeeklyContent.removeAll();
