@@ -10,7 +10,7 @@
 		<class>ch.bfh.btx8081.w2019.green.alzman.model.StatusModel</class>
 		<class>ch.bfh.btx8081.w2019.green.alzman.model.UserModel</class>
 		<class>ch.bfh.btx8081.w2019.green.alzman.model.TaskModel</class>
-		<class>ch.bfh.btx8081.w2019.green.alzman.model.PatientModel</class>
+		<class>ch.bfh.btx8081.w2019.green.alzman.trash.PatientModel</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://147.87.116.213/alzman"/>
 			<property name="javax.persistence.jdbc.user" value="Studierende"/>

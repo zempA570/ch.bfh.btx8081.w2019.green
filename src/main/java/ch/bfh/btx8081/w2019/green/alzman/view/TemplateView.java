@@ -50,7 +50,7 @@ public abstract class TemplateView extends VerticalLayout {
 
 		Button btnBack = new Button("Home", new Icon(VaadinIcon.HOME));
 		hlHeader.add(btnBack);
-		btnBack.addClickListener(e -> UI.getCurrent().navigate(DashboardView.class));
+		btnBack.addClickListener(e -> UI.getCurrent().navigate(DashboardViewImpl.class));
 
 		title = new H2("blank");
 		hlHeader.add(title);
