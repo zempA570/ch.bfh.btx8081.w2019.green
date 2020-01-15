@@ -41,13 +41,12 @@ public class NotesPresenter implements NotesView.NotesListener {
 		case "Create New Entry":
 			navigateToCreateView();
 			break;
-		case "Delete Selected entry":
+		case "Delete Selected Entry":
 			deleteEntry();
 			break;
 		case "Refresh":
 			fillTableWithNotes();
 			reloadPage();
-			System.out.println("jo klappt");
 			break;
 		default:
 			// TODO

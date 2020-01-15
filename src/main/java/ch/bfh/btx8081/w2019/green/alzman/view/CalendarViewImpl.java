@@ -62,8 +62,8 @@ public class CalendarViewImpl extends TemplateView implements CalendarView {
 				listener.buttonClick(e.getSource());
 		});
 
-		Button calDel = new Button("Delete entry");
-		calDel.addClickListener(e -> {
+		Button btnDeleteEntry = new Button("Delete entry");
+		btnDeleteEntry.addClickListener(e -> {
 			for (CalendarListener listener : listeners)
 				listener.buttonClick(e.getSource());
 		});
@@ -87,7 +87,7 @@ public class CalendarViewImpl extends TemplateView implements CalendarView {
 		txtfEntry.setLabel("Entry");
 
 		txtfDeleteId = new TextField();
-		txtfDeleteId.setLabel("ID for delete an entry");
+		txtfDeleteId.setLabel("Enter ID to delete that entry");
 
 		// Creating horizontal layout
 		HorizontalLayout dateTimeHLayout = new HorizontalLayout();
@@ -98,7 +98,7 @@ public class CalendarViewImpl extends TemplateView implements CalendarView {
 		hlText.add(txtfAuthor, txtfEntry, calAdd);
 
 		HorizontalLayout hlDelete = new HorizontalLayout();
-		hlDelete.add(calDel, txtfDeleteId);
+		hlDelete.add(txtfDeleteId, btnDeleteEntry);
 
 		// Progressbar for design
 		ProgressBar progressBar = new ProgressBar();

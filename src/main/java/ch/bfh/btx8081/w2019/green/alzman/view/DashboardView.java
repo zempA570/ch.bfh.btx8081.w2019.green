@@ -17,7 +17,7 @@ import com.vaadin.flow.server.PWA;
  * @author simon
  *
  */
-@Route("dashboard")
+@Route("")
 @PWA(name = "Project Base for Vaadin", shortName = "Project Base")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class DashboardView extends TemplateView {

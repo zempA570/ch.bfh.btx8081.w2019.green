@@ -20,7 +20,7 @@ import ch.bfh.btx8081.w2019.green.alzman.presenter.UserManagementPresenter;
  * 
  * @author Adrian
  */
-@Route("usermanagementview")
+@Route("usermanagement")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class UserManagementViewImpl extends TemplateView implements UserManagementView {
 

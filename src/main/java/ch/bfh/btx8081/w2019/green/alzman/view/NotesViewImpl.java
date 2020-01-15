@@ -32,19 +32,13 @@ public class NotesViewImpl extends TemplateView implements NotesView {
 
 	private List<NotesListener> lstNotes = new ArrayList<NotesListener>();
 
-	// title header and grid
-	private H4 h4titleAddNotes;
+	// grid
 	private Grid<NotesModel> grdNotes = new Grid<>();
 
 	public NotesViewImpl() {
 
 		// Change title in header
-		super.setHeaderTitle("Important Notes");
-
-		// manipulating title
-		h4titleAddNotes = new H4();
-		h4titleAddNotes.setText("Key-Notes");
-		super.addContent(h4titleAddNotes);
+		super.setHeaderTitle("Key-Notes");
 
 		// Button for a new entry
 		Button btnAddEntry = new Button("Create New Entry");
@@ -75,7 +69,7 @@ public class NotesViewImpl extends TemplateView implements NotesView {
 		// Creating horizontal layout & filling it
 		HorizontalLayout hlButtonControlCenter = new HorizontalLayout();
 
-		hlButtonControlCenter.add(btnAddEntry, btnDeleteEntry, btnRefreshPage);
+		hlButtonControlCenter.add(btnAddEntry, btnRefreshPage, btnDeleteEntry);
 		super.addContent(hlButtonControlCenter);
 
 		// setting up the Grid
@@ -86,7 +80,11 @@ public class NotesViewImpl extends TemplateView implements NotesView {
 		grdNotes.addColumn(NotesModel::getContent).setHeader("Note");
 
 		grdNotes.addItemClickListener(event -> {
-			btnDeleteEntry.setVisible(true);
+			if (grdNotes.getSelectedItems().isEmpty()) {
+				btnDeleteEntry.setVisible(false);
+			} else {
+				btnDeleteEntry.setVisible(true);
+			}
 		});
 
 		super.addContent(grdNotes);

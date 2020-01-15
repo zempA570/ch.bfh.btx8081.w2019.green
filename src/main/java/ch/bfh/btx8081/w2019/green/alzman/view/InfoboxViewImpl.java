@@ -22,7 +22,7 @@ import ch.bfh.btx8081.w2019.green.alzman.presenter.InfoboxPresenter;
  * @author Gausegan
  *
  */
-@Route("InfoboxView")
+@Route("infobox")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class InfoboxViewImpl extends TemplateView implements InfoboxView {
 

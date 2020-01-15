@@ -10,60 +10,59 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
 /**
- * Abstract class for any future views, includes header and footer.
+ * Abstract class for any future views, includes header. Footer disabled at the
+ * moment because it doesnt add value
  * 
  * @author Adrian
  *
  */
 public abstract class TemplateView extends VerticalLayout {
 
-	private HorizontalLayout header;
-	private VerticalLayout content;
-	private HorizontalLayout footer;
+	private HorizontalLayout hlHeader;
+	private VerticalLayout vlContent;
+//	private HorizontalLayout hlFooter;
 	private H2 title;
 
 	public TemplateView() {
 
 		// instantiate
-		header = new HorizontalLayout();
-		content = new VerticalLayout();
-		footer = new HorizontalLayout();
+		hlHeader = new HorizontalLayout();
+		vlContent = new VerticalLayout();
+//		hlFooter = new HorizontalLayout();
 
 		// set id for styling in .css file
-		header.setId("headerStyle");
-		content.setId("contentStyle");
-		footer.setId("footerStyle");
+		hlHeader.setId("headerStyle");
+		vlContent.setId("contentStyle");
+//		hlFooter.setId("footerStyle");
 
 		// add the three parts to the vertical layout.
-		add(header);
-		add(content);
-		add(footer);
+		add(hlHeader);
+		add(vlContent);
+//		add(hlFooter);
 
 		// fill the header and footer with stuff
 		createStandardHeader();
-		createStandardFooter();
+//		createStandardFooter();
 
 	}
 
 	private void createStandardHeader() {
 
-
-		Button btnBack = new Button("Back", new Icon(VaadinIcon.CHEVRON_LEFT_SMALL));
-		header.add(btnBack);
+		Button btnBack = new Button("Home", new Icon(VaadinIcon.HOME));
+		hlHeader.add(btnBack);
 		btnBack.addClickListener(e -> UI.getCurrent().navigate(DashboardView.class));
 
-
 		title = new H2("blank");
-		header.add(title);
+		hlHeader.add(title);
 
 	}
 
-	private void createStandardFooter() {
-
-		Button btnLogOut = new Button("Logout", new Icon(VaadinIcon.CLOSE_CIRCLE_O));
-		footer.add(btnLogOut);
-		btnLogOut.addClickListener(e -> UI.getCurrent().navigate(LogIn.class));
-	}
+//	private void createStandardFooter() {
+//
+//		Button btnLogOut = new Button("Logout", new Icon(VaadinIcon.CLOSE_CIRCLE_O));
+//		hlFooter.add(btnLogOut);
+//		btnLogOut.addClickListener(e -> UI.getCurrent().navigate(LogIn.class));
+//	}
 
 	/**
 	 * Adds new components to the "header" area of the site Header is a horizontal
@@ -72,7 +71,7 @@ public abstract class TemplateView extends VerticalLayout {
 	 * @param component The component to be added to the header
 	 */
 	public void addHeader(Component component) {
-		header.add(component);
+		hlHeader.add(component);
 	}
 
 	/**
@@ -82,18 +81,18 @@ public abstract class TemplateView extends VerticalLayout {
 	 * @param component The component to be added to the content
 	 */
 	public void addContent(Component component) {
-		content.add(component);
+		vlContent.add(component);
 	}
-
-	/**
-	 * Adds new components to the "footer" area of the site Footer is a vertical
-	 * layout
-	 * 
-	 * @param component The component to be added to the footer
-	 */
-	public void addFooter(Component component) {
-		footer.add(component);
-	}
+//
+//	/**
+//	 * Adds new components to the "footer" area of the site Footer is a vertical
+//	 * layout
+//	 * 
+//	 * @param component The component to be added to the footer
+//	 */
+//	public void addFooter(Component component) {
+//		hlFooter.add(component);
+//	}
 
 	/**
 	 * Changes the title in the header
