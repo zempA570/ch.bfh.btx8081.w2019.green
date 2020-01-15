@@ -1,13 +1,7 @@
 package ch.bfh.btx8081.w2019.green.alzman.presenter;
 
-import java.sql.Date;
-import java.sql.Time;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 import java.util.Objects;
-
-import javax.persistence.Query;
 
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
@@ -15,7 +9,6 @@ import com.vaadin.flow.component.button.Button;
 import ch.bfh.btx8081.w2019.green.alzman.model.AppointmentModel;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 import ch.bfh.btx8081.w2019.green.alzman.view.CalendarView;
-import ch.bfh.btx8081.w2019.green.alzman.view.CalendarViewImpl;
 
 /**
  * 
@@ -35,23 +28,21 @@ public class CalendarPresenter implements CalendarView.CalendarListener {
 		fillCalendar();
 	}
 
+	// Insert an Appointment in DB
 	public void addAppointmentToDB() {
 
 		AppointmentModel addAppointment = view.getAppointmentFromFields();
 
-		// DB stuff
-		DbService.em.getTransaction().begin();
-		DbService.em.persist(addAppointment);
-		DbService.em.getTransaction().commit();
+		DbService.persist(addAppointment);
 
 	}
 
+	// Delete an Appointment from DB
 	public void deleteAppointment() {
 
 		int idToDelete = Integer.parseInt(view.getIdForAppointmentToDelete());
-		
+
 		AppointmentModel calendarModelToDelete = null;
-		
 
 		for (AppointmentModel entry : allAppointments) {
 			if (Objects.equals(entry.getId(), idToDelete)) {
@@ -60,20 +51,22 @@ public class CalendarPresenter implements CalendarView.CalendarListener {
 		}
 
 		if (calendarModelToDelete != null) {
-			DbService.em.getTransaction().begin();
-			DbService.em.remove(calendarModelToDelete);
-			DbService.em.getTransaction().commit();
+			DbService.remove(calendarModelToDelete);
+
 		}
 	}
 
+	// Fills the Calendar with the entries
 	public void fillCalendar() {
-		Query query = DbService.em.createNativeQuery("SELECT * FROM CALENDARMODEL", AppointmentModel.class);
-		allAppointments = query.getResultList();
+
+		allAppointments = DbService.getAllAppointments();
 
 		for (AppointmentModel appointment : allAppointments) {
 			view.addEntryToCalendar(appointment);
 		}
 	}
+
+	// Reload the Page
 
 	private void reloadPage() {
 		UI.getCurrent().getPage().reload();
@@ -86,11 +79,11 @@ public class CalendarPresenter implements CalendarView.CalendarListener {
 		String buttonText = button.getText();
 
 		switch (buttonText) {
-		case "Eintrag hinzufügen":
+		case "Add entry":
 			addAppointmentToDB();
 			reloadPage();
 			break;
-		case "Eintrag löschen":
+		case "Delete entry":
 			deleteAppointment();
 			reloadPage();
 			break;

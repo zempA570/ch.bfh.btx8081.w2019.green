@@ -8,6 +8,7 @@ import javax.persistence.Query;
 
 import ch.bfh.btx8081.w2019.green.alzman.model.AddressModel;
 import ch.bfh.btx8081.w2019.green.alzman.model.PersonModel;
+import ch.bfh.btx8081.w2019.green.alzman.model.AppointmentModel;
 
 /**
  * The dbService is used to execute statements on the database
@@ -50,5 +51,11 @@ public static List<AddressModel> getAllAddress() {
 		return query.getResultList();
 	}
 
+	public static List<AppointmentModel> getAllAppointments() {
+		Query query = DbService.em.createNativeQuery("SELECT * FROM Appointment", AppointmentModel.class);
+		
+		return query.getResultList();
+
+	}
 	
 }
