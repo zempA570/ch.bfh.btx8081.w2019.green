@@ -17,7 +17,11 @@ import ch.bfh.btx8081.w2019.green.alzman.presenter.DiaryAddPresenter;
 
 
 /**
- * The user management view will be used to add and remove users of the app
+ * 
+ * @author Mootaas
+ *
+ *New Records shall be added to the database by clicking the add button
+ *
  */
 
 @Route("EntryRecordDiary")
@@ -25,39 +29,39 @@ import ch.bfh.btx8081.w2019.green.alzman.presenter.DiaryAddPresenter;
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class DiaryAddViewImpl extends TemplateView implements DiaryAddView {
 
-	private List<DiaryAddViewListener> listeners = new ArrayList<DiaryAddViewListener>();
-	private TextArea tauthor;
-	private TextArea tentry;
-	private DatePicker datePicker;
-	private Button button;
+	private List<DiaryAddViewListener> lstlisteners = new ArrayList<DiaryAddViewListener>();
+	private TextArea txtauthor;
+	private TextArea txtaentry;
+	private DatePicker dpdiary;
+	private Button btnnewRecord;
 
 	public DiaryAddViewImpl() {
 
-		super.setHeaderTitle("Entry Record Diarymodel");
+		super.setHeaderTitle("entry Record Diarymodel");
 
 		// Creating a new Datepicker.
-		datePicker = new DatePicker();
-		datePicker.setValue(LocalDate.now());
+		dpdiary = new DatePicker();
+		dpdiary.setValue(LocalDate.now());
 
 		// Creating a new Textarea
-		tauthor = new TextArea();
-		tauthor.setLabel("Author");
+		txtauthor = new TextArea();
+		txtauthor.setLabel("Author");
 
 		// Creating a new Textarea
 
-		tentry = new TextArea();
-		tentry.setLabel("Entry");
+		txtaentry = new TextArea();
+		txtaentry.setLabel("entry");
 
 		// Creating a new Button
-		button = new Button("Add new Record", new Icon(VaadinIcon.PLUS));
-		button.addClickListener(e -> {
-			for (DiaryAddViewListener listener : listeners)
+		btnnewRecord = new Button("Add new Record", new Icon(VaadinIcon.PLUS));
+		btnnewRecord.addClickListener(e -> {
+			for (DiaryAddViewListener listener : lstlisteners)
 				listener.buttonClick(e.getSource());
 		});
 
 		// Creating a new Vertical Layout
 		VerticalLayout verticalLayout = new VerticalLayout();
-		verticalLayout.add(datePicker, tauthor, tentry, button);
+		verticalLayout.add(dpdiary, txtauthor, txtaentry, btnnewRecord);
 
 		// Adding components to content space
 		super.addContent(verticalLayout);
@@ -67,21 +71,21 @@ public class DiaryAddViewImpl extends TemplateView implements DiaryAddView {
 
 	@Override
 	public String getEntry() {
-		return tentry.getValue();
+		return txtaentry.getValue();
 	}
 
 	@Override
 	public LocalDate getDate() {
-		return datePicker.getValue();
+		return dpdiary.getValue();
 	}
 
 	@Override
 	public String getAuthor() {
-		return tauthor.getValue();
+		return txtauthor.getValue();
 	}
 
 	@Override
 	public void addListener(DiaryAddViewListener listener) {
-		listeners.add(listener);
+		lstlisteners.add(listener);
 	}
 }
