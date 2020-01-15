@@ -55,8 +55,8 @@ public class NotesViewImpl extends TemplateView implements NotesView {
 				listener.buttonClick(e.getSource());
 		});
 
-		// notify the user
-		Notification message = new Notification("Deleted the Entry!");
+//		// notify the user
+		Notification message = new Notification("Deleted the Entry!", 3000);
 		btnDeleteEntry.addClickListener(e -> message.open());
 
 		// button to refresh the page
