@@ -44,10 +44,6 @@ public class NotesPresenter implements NotesView.NotesListener {
 		case "Delete Selected Entry":
 			deleteEntry();
 			break;
-		case "Refresh":
-			fillTableWithNotes();
-			reloadPage();
-			break;
 		default:
 			// TODO
 			;
@@ -73,14 +69,6 @@ public class NotesPresenter implements NotesView.NotesListener {
 
 		lstKeyNotesList = DbService.getAllNotes();
 		view.fillGridWithEntries(lstKeyNotesList);
-
-	}
-
-	/**
-	 * reloads the current page
-	 */
-	private void reloadPage() {
-		UI.getCurrent().getPage().reload();
 
 	}
 

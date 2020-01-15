@@ -94,7 +94,7 @@ public class InfoboxPresenter implements InfoboxView.InfoboxViewListener {
 		case "Add Address":
 			navigateToAddAdress();
 			break;
-		case "Delete Adress":
+		case "Delete Address":
 			deleteAddress();
 			break;
 		default:

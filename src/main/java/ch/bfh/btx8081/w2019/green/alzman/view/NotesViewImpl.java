@@ -59,17 +59,10 @@ public class NotesViewImpl extends TemplateView implements NotesView {
 		Notification message = new Notification("Deleted the Entry!", 3000);
 		btnDeleteEntry.addClickListener(e -> message.open());
 
-		// button to refresh the page
-		Button btnRefreshPage = new Button("Refresh", new Icon(VaadinIcon.RECYCLE));
-		btnRefreshPage.addClickListener(e -> {
-			for (NotesListener listener : lstNotes)
-				listener.buttonClick(e.getSource());
-		});
-
 		// Creating horizontal layout & filling it
 		HorizontalLayout hlButtonControlCenter = new HorizontalLayout();
 
-		hlButtonControlCenter.add(btnAddEntry, btnRefreshPage, btnDeleteEntry);
+		hlButtonControlCenter.add(btnAddEntry, btnDeleteEntry);
 		super.addContent(hlButtonControlCenter);
 
 		// setting up the Grid
