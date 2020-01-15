@@ -1,19 +1,11 @@
 package ch.bfh.btx8081.w2019.green.alzman.model;
 
 import java.sql.Date;
-import java.time.LocalDate;
 
 import javax.persistence.Entity;
-import javax.persistence.EntityManager;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Persistence;
 import javax.persistence.Table;
-import javax.persistence.TableGenerator;
-
-import com.vaadin.flow.component.datepicker.DatePicker;
-
-import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 
 /**
  * This class is used to store new tasks of patients.

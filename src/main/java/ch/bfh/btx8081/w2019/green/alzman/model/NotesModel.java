@@ -1,15 +1,11 @@
 package ch.bfh.btx8081.w2019.green.alzman.model;
 
 import java.sql.Date;
-import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import com.vaadin.flow.component.datepicker.DatePicker;
-import com.vaadin.ui.DateField;
 
 @Entity
 @Table(name = "Notes")

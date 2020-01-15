@@ -13,6 +13,7 @@ import ch.bfh.btx8081.w2019.green.alzman.model.NotesModel;
 import ch.bfh.btx8081.w2019.green.alzman.model.StatusModel;
 import ch.bfh.btx8081.w2019.green.alzman.model.DiaryModel;
 import ch.bfh.btx8081.w2019.green.alzman.model.TaskModel;
+import ch.bfh.btx8081.w2019.green.alzman.model.UserModel;
 
 /**
  * The dbService is used to execute statements on the database
@@ -87,6 +88,12 @@ public class DbService{
 	 */
 	public static List<StatusModel> getAllStatus() {
 		Query query = DbService.em.createNativeQuery("SELECT * FROM status", StatusModel.class);
+		return query.getResultList();
+	}
+
+	public static List<UserModel> getAllUsers() {
+		
+		Query query = DbService.em.createNativeQuery("SELECT * FROM Relative", UserModel.class);
 		return query.getResultList();
 	}
 

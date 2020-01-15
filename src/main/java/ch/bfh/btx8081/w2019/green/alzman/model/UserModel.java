@@ -1,14 +1,10 @@
 package ch.bfh.btx8081.w2019.green.alzman.model;
 
 import javax.persistence.Entity;
-import javax.persistence.EntityManager;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Persistence;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
-
-import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 
 /**
  * This class is used to store information about the users/relatives of patients.

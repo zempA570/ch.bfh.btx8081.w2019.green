@@ -22,7 +22,6 @@ import ch.bfh.btx8081.w2019.green.alzman.view.ToDoListViewImpl;
 public class ToDoListAddPresenter implements ToDoListAddView.ToDoListAddViewListener {
 
 	private ToDoListAddView view;
-	private List<TaskModel> taskslist;
 
 	public ToDoListAddPresenter(ToDoListAddView view) {
 		this.view = view;

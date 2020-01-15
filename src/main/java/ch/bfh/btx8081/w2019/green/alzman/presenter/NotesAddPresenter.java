@@ -20,7 +20,6 @@ import ch.bfh.btx8081.w2019.green.alzman.view.NotesViewImpl;
 public class NotesAddPresenter implements NotesAddView.NotesAddListener {
 
 	private NotesAddView view;
-	private List<NotesModel> lstKeyNotesList;
 
 	public NotesAddPresenter(NotesAddView notesAddView) {
 		view = notesAddView;

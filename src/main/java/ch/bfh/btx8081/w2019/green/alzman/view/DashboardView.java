@@ -1,10 +1,7 @@
 package ch.bfh.btx8081.w2019.green.alzman.view;
 
-import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.UI;
-import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
-import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
@@ -12,10 +9,6 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.PWA;
-import com.vaadin.server.BrowserWindowOpener;
-import com.vaadin.ui.renderers.ImageRenderer;
-
-import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 
 @Route("dashboard")
 @PWA(name = "Project Base for Vaadin", shortName = "Project Base")

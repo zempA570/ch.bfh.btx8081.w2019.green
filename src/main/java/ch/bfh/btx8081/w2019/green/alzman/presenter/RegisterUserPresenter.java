@@ -26,10 +26,8 @@ public class RegisterUserPresenter {
 		PatientModel newPatient = new PatientModel(passwordPatient, firstnamePatient, lastnamePatient);
 
 		// DB stuff
-		DbService.em.getTransaction().begin();
-		DbService.em.persist(newUser);
-		DbService.em.persist(newPatient);
-		DbService.em.getTransaction().commit();
+		DbService.persist(newUser);
+		DbService.persist(newPatient);
 		
 		UI.getCurrent().navigate(DashboardView.class);
 

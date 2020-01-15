@@ -1,15 +1,11 @@
 package ch.bfh.btx8081.w2019.green.alzman.model;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
-import com.vaadin.flow.component.datepicker.DatePicker;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import com.vaadin.flow.component.datepicker.DatePicker;
 
 /**
  * 

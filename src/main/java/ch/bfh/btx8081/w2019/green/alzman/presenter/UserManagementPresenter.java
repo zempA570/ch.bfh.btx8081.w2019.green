@@ -4,14 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.Query;
-
 import com.vaadin.flow.component.button.Button;
 
 import ch.bfh.btx8081.w2019.green.alzman.model.UserModel;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 import ch.bfh.btx8081.w2019.green.alzman.view.UserManagementView;
-import ch.bfh.btx8081.w2019.green.alzman.view.UserManagementView.UserManagagementViewListener;
 
 /**
  * 
@@ -85,10 +82,7 @@ public class UserManagementPresenter implements UserManagementView.UserManagagem
 	private void fillComboboxWithUsers() {
 
 		// DB stuff where we get all the users
-		Query query = DbService.em.createNativeQuery("SELECT * FROM Relative", UserModel.class);
-
-		// get list of users out of the query
-		users = query.getResultList();
+		users = DbService.getAllUsers();
 
 		List<String> userNames = new ArrayList<String>();
 		// for every user in our list
