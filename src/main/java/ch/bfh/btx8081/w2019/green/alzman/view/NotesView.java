@@ -10,7 +10,8 @@ import ch.bfh.btx8081.w2019.green.alzman.model.NotesModel;
 
 /**
  * This interface is being used by the NotesView class
- * @author simon
+ * 
+ * @author Simon
  *
  */
 
@@ -23,7 +24,7 @@ public interface NotesView {
 	public void addListener(NotesListener listener);
 
 	public void fillGridWithEntries(List<NotesModel> lstNotesList);
-	
+
 	public Set<NotesModel> getSelectedNote();
-	
+
 }

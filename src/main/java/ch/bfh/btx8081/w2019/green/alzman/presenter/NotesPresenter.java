@@ -14,7 +14,7 @@ import ch.bfh.btx8081.w2019.green.alzman.view.NotesView;
 /**
  * This class acts as Presenter for the (Key-)Notes Functionality
  * 
- * @author simon
+ * @author Simon
  *
  */
 
@@ -28,13 +28,12 @@ public class NotesPresenter implements NotesView.NotesListener {
 		view.addListener(this);
 
 		fillTableWithNotes();
-
 	}
 
-	@Override
 	/**
-	 * creates clickable buttons to create or delete an entry or to refresh the page
+	 * this method is called when a button is clicked
 	 */
+	@Override
 	public void buttonClick(Button btnClickable) {
 		String buttonDescrption = btnClickable.getText();
 
@@ -57,10 +56,9 @@ public class NotesPresenter implements NotesView.NotesListener {
 	}
 
 	/**
-	 * deletes an Entry from the respective DB Table
+	 * deletes an Entry from the DB Table
 	 */
 	public void deleteEntry() {
-
 		Set<NotesModel> notes = view.getSelectedNote();
 		NotesModel noteToDelete = notes.stream().findFirst().get();
 
@@ -70,7 +68,7 @@ public class NotesPresenter implements NotesView.NotesListener {
 	}
 
 	/**
-	 * fills the Table from the DB for this Functionality with Entries
+	 * fills the Table for this Functionality with Entries from the DB 
 	 */
 	public void fillTableWithNotes() {
 
@@ -88,7 +86,7 @@ public class NotesPresenter implements NotesView.NotesListener {
 	}
 
 	/**
-	 * navigates back to the previous view
+	 * navigates to the view where you can add new notes
 	 */
 	private void navigateToCreateView() {
 		UI.getCurrent().navigate(NotesAddViewImpl.class);

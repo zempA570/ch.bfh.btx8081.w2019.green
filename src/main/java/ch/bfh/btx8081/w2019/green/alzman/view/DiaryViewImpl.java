@@ -17,54 +17,54 @@ import ch.bfh.btx8081.w2019.green.alzman.presenter.DiaryPresenter;
  * 
  * @author Mootaas
  * 
- * The whole view of the diary will be created 
+ *         The whole view of the diary will be created
  *
  */
-@Route("Diary")
+@Route("diary")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class DiaryViewImpl extends TemplateView implements DiaryView {
 
-	private List<DiaryViewListener> lstlisteners = new ArrayList<DiaryViewListener>();
-	private VerticalLayout vl1;
-	private VerticalLayout vl2;
+	private List<DiaryViewListener> lstListeners = new ArrayList<DiaryViewListener>();
+	private VerticalLayout vlButton;
+	private VerticalLayout vlDiaryEntries;
 
 	public DiaryViewImpl() {
 		super.setHeaderTitle("Diary");
 		Button btnAddDiary = new Button("Add new Diarymodel", new Icon(VaadinIcon.PLUS));
 		btnAddDiary.addClickListener(e -> {
-			for (DiaryViewListener listener : lstlisteners)
+			for (DiaryViewListener listener : lstListeners)
 				listener.buttonClick(e.getSource());
 		});
 
-		vl1 = new VerticalLayout(btnAddDiary);
-		vl2 = new VerticalLayout();
-		super.addContent(vl1);
-		super.addContent(vl2);
+		vlButton = new VerticalLayout(btnAddDiary);
+		vlDiaryEntries = new VerticalLayout();
+		super.addContent(vlButton);
+		super.addContent(vlDiaryEntries);
 		new DiaryPresenter(this);
 	}
 
 	public void addEntryToView(DiaryModel model) {
-		TextArea txta1 = new TextArea();
-		txta1.setValue(model.getEntry());
-		txta1.setLabel(model.getAuthor() + " " + model.getDate());
-		Button btndelete = new Button("Delete", new Icon(VaadinIcon.TRASH));
-		btndelete.setId(Integer.toString(model.getId()));
-		btndelete.addClickListener(e -> {
-			for (DiaryViewListener listener : lstlisteners)
+		TextArea txtaEntry = new TextArea();
+		txtaEntry.setValue(model.getEntry());
+		txtaEntry.setLabel(model.getAuthor() + " " + model.getDate());
+		Button btnDelete = new Button("Delete", new Icon(VaadinIcon.TRASH));
+		btnDelete.setId(Integer.toString(model.getId()));
+		btnDelete.addClickListener(e -> {
+			for (DiaryViewListener listener : lstListeners)
 				listener.buttonClick(e.getSource());
 		});
-		HorizontalLayout hl = new HorizontalLayout();
-		hl.add(txta1, btndelete);
-		vl2.add(hl);
+		HorizontalLayout hlWrapper = new HorizontalLayout();
+		hlWrapper.add(txtaEntry, btnDelete);
+		vlDiaryEntries.add(hlWrapper);
 	}
 
 	public void clearEntries() {
-		vl2.removeAll();
+		vlDiaryEntries.removeAll();
 	}
 
 	@Override
 	public void addListener(DiaryViewListener listener) {
-		lstlisteners.add(listener);
+		lstListeners.add(listener);
 	}
 
 }

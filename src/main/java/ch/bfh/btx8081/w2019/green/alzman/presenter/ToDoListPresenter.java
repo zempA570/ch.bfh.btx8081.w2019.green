@@ -13,13 +13,13 @@ import ch.bfh.btx8081.w2019.green.alzman.view.ToDoListView;
 
 /**
  * 
- * @author Jasmitha Devarasa
+ * @author Jasmitha
  *
  */
 public class ToDoListPresenter implements ToDoListView.ToDoListViewListener {
 
 	private ToDoListView view;
-	private List<TaskModel> taskslist;
+	private List<TaskModel> lstTasks;
 
 	public ToDoListPresenter(ToDoListView view) {
 		this.view = view;
@@ -35,7 +35,7 @@ public class ToDoListPresenter implements ToDoListView.ToDoListViewListener {
 
 		TaskModel taskToDelete = null;
 
-		for (TaskModel task : taskslist) {
+		for (TaskModel task : lstTasks) {
 			if (id == task.getId()) {
 				taskToDelete = task;
 			}
@@ -47,17 +47,16 @@ public class ToDoListPresenter implements ToDoListView.ToDoListViewListener {
 
 	}
 
-	
 	public void fillGuiWithTasks() {
 
 		// clean the gui before adding tasks
 		view.deleteAllTasksInGui();
 
 		// get the data from DB
-		taskslist = DbService.getAllTasks();
+		lstTasks = DbService.getAllTasks();
 
 		// tasknames in the correct list
-		for (TaskModel task : taskslist) {
+		for (TaskModel task : lstTasks) {
 			if (task.isDone()) {
 				view.addComplTask(task);
 			} else if (task.getRepetition().contentEquals("Weekly")) {
@@ -82,6 +81,7 @@ public class ToDoListPresenter implements ToDoListView.ToDoListViewListener {
 		case "Add new Task":
 			openTodoListAddView();
 			break;
+		// if the button has no text a delete button was pressed
 		case "":
 			deleteTask(button.getId());
 			view.deleteAllTasksInGui();
@@ -98,28 +98,28 @@ public class ToDoListPresenter implements ToDoListView.ToDoListViewListener {
 
 	}
 
-	
+	/**
+	 * 
+	 * @param optional contains the ID of the task where the checkbox was clicked
+	 */
 	private void changeStatus(Optional<String> optional) {
-
 		int id = Integer.parseInt(optional.get());
-
 		TaskModel taskToUpdate = null;
 
-		for (TaskModel task : taskslist) {
+		// get the corresponding task to the ID
+		for (TaskModel task : lstTasks) {
 			if (id == task.getId()) {
 				taskToUpdate = task;
 			}
 		}
 
 		if (taskToUpdate != null) {
-			
+			// change the status of the task to the opposite of what it was
 			taskToUpdate.setDone(!taskToUpdate.isDone());
-			
 			DbService.update(taskToUpdate);
 			view.deleteAllTasksInGui();
 			fillGuiWithTasks();
 		}
-
 	}
 
 	private void openTodoListAddView() {

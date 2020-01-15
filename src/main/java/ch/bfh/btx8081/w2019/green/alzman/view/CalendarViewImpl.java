@@ -32,7 +32,7 @@ import ch.bfh.btx8081.w2019.green.alzman.presenter.CalendarPresenter;
  *
  */
 
-@Route("Calendar")
+@Route("calendar")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class CalendarViewImpl extends TemplateView implements CalendarView {
 
@@ -56,7 +56,6 @@ public class CalendarViewImpl extends TemplateView implements CalendarView {
 		// Create a horizontal Layout with two button. The button "calAdd" is for add an
 		// appointment.
 		// The Button "calDel" is for delete an entry.
-
 		Button calAdd = new Button("Add entry");
 		calAdd.addClickListener(e -> {
 			for (CalendarListener listener : listeners)
@@ -106,7 +105,6 @@ public class CalendarViewImpl extends TemplateView implements CalendarView {
 		progressBar.setValue(1);
 
 		// Adding components to content space
-
 		super.add(dateTimeHLayout);
 		super.add(hlText);
 		super.add(progressBar);
@@ -117,10 +115,8 @@ public class CalendarViewImpl extends TemplateView implements CalendarView {
 	}
 
 	// Add an Entry to the Calendar
-
 	public void addEntryToCalendar(AppointmentModel cModel) {
 
-		// Create a initial sample entry
 		Entry entry = new Entry();
 		entry.setTitle(cModel.getEntry() + " **" + "ID: " + cModel.getId());
 		entry.setDescription(cModel.getAuthor());
@@ -133,7 +129,6 @@ public class CalendarViewImpl extends TemplateView implements CalendarView {
 		entry.setEditable(true);
 
 		fc.addEntry(entry);
-
 	}
 
 	@Override
@@ -143,7 +138,6 @@ public class CalendarViewImpl extends TemplateView implements CalendarView {
 
 	@Override
 	public AppointmentModel getAppointmentFromFields() {
-
 		AppointmentModel newCalendarModel = new AppointmentModel();
 
 		newCalendarModel.setAuthor(txtfAuthor.getValue());

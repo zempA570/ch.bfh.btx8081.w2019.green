@@ -17,7 +17,7 @@ import ch.bfh.btx8081.w2019.green.alzman.model.TaskModel;
 import ch.bfh.btx8081.w2019.green.alzman.presenter.ToDoListPresenter;
 
 /**
- * @author Jasmitha Devarasa
+ * @author Jasmitha
  * 
  *         The TodoList View shows all added tasks
  */
@@ -88,63 +88,57 @@ public class ToDoListViewImpl extends TemplateView implements ToDoListView {
 
 	}
 
-	private HorizontalLayout createGuiElement(TaskModel task) {
+	// adding tasks per repetition-groups
+	public void addWeeklyTask(TaskModel task) {
+		vlWeeklyContent.add(createGuiElement(task));
+	}
 
+	public void addMonthlyTask(TaskModel task) {
+		vlMonthlyContent.add(createGuiElement(task));
+	}
+
+	public void addAnnualTask(TaskModel task) {
+		vlAnuallyContent.add(createGuiElement(task));
+	}
+
+	public void addSpecialTask(TaskModel task) {
+		vlSpecialContent.add(createGuiElement(task));
+	}
+
+	public void addComplTask(TaskModel task) {
+		vlCompletedContent.add(createGuiElement(task));
+	}
+
+	private HorizontalLayout createGuiElement(TaskModel task) {
+	
 		Label lblDate = new Label(task.getDate().toString());
 		String taskId = Integer.toString(task.getId());
-
+	
 		Button btnDelete = new Button(new Icon(VaadinIcon.TRASH));
 		btnDelete.setId(taskId);
 		btnDelete.addClickListener(e -> {
 			for (ToDoListViewListener listener : listeners)
 				listener.buttonClick(e.getSource());
 		});
-
+	
 		// This button is invisible and not added to the view
 		// It's used to differentiate in the ToDoListPresenter what was clicked
 		Button btnInvisible = new Button("Checkbox Clicked");
 		btnInvisible.setId(taskId);
-
+	
 		chkbxDone = new Checkbox(task.getTask());
 		if (task.isDone()) {
 			chkbxDone.setValue(true);
 		}
-
+	
 		chkbxDone.addClickListener(e -> {
 			for (ToDoListViewListener listener : listeners)
 				listener.buttonClick(btnInvisible);
 		});
-
+	
 		// horizontallayout for show a complete task
 		HorizontalLayout hlTask = new HorizontalLayout(chkbxDone, lblDate, btnDelete);
 		return hlTask;
-	}
-
-	// adding tasks per repetition-groups
-	public void addWeeklyTask(TaskModel task) {
-
-		vlWeeklyContent.add(createGuiElement(task));
-
-	}
-
-	public void addMonthlyTask(TaskModel task) {
-
-		vlMonthlyContent.add(createGuiElement(task));
-	}
-
-	public void addAnnualTask(TaskModel task) {
-
-		vlAnuallyContent.add(createGuiElement(task));
-	}
-
-	public void addSpecialTask(TaskModel task) {
-
-		vlSpecialContent.add(createGuiElement(task));
-	}
-
-	public void addComplTask(TaskModel task) {
-
-		vlCompletedContent.add(createGuiElement(task));
 	}
 
 	// delete all tasks

@@ -20,11 +20,11 @@ import ch.bfh.btx8081.w2019.green.alzman.presenter.InfoboxAddAddressPresenter;
 
 /**
  * This class implements the view that represents the add important address View.
- * The methods come from the InfoboxAddAddressView that also represents the interface class.
- * @author gausegan
+ * The methods come from the {@link InfoboxAddAddressView} that also represents the interface class.
+ * @author Gausegan
  *
  */
-@Route("AddAdressInfobox")
+@Route("infoboxaddaddress")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class InfoboxAddAdressViewImpl extends TemplateView implements InfoboxAddAddressView {
 
@@ -33,8 +33,8 @@ public class InfoboxAddAdressViewImpl extends TemplateView implements InfoboxAdd
 	// variabel for the suptitel Add Adress
 	private H4 h4TitleAddress;
 	private TextField txtfName;
-	private TextField txtfAddress;
-	private TextField txtfAddrNo;
+	private TextField txtfStreet;
+	private TextField txtfHouseNo;
 	private TextField txtfPostcode;
 	private TextField txtfCity;
 	private TextField txtfPhoneNo;
@@ -56,10 +56,10 @@ public class InfoboxAddAdressViewImpl extends TemplateView implements InfoboxAdd
 		this.txtfName = new TextField("Name");
 
 		// Textfield for adress
-		this.txtfAddress = new TextField("Adress");
+		this.txtfStreet = new TextField("Street");
 
 		// Textfield for adress
-		this.txtfAddrNo = new TextField("Adress Number");
+		this.txtfHouseNo = new TextField("House Number");
 
 		// Textfield for pstcode
 		this.txtfPostcode = new TextField("Postcode");
@@ -78,19 +78,18 @@ public class InfoboxAddAdressViewImpl extends TemplateView implements InfoboxAdd
 		this.bndrCheckAdress = new Binder<>();
 		bndrCheckAdress.forField(txtfName).asRequired("The Name is missing!").bind(AddressModel::getName,
 				AddressModel::setName);
-		bndrCheckAdress.forField(txtfAddress).asRequired("The Adress is missing!").bind(AddressModel::getStreet,
+		bndrCheckAdress.forField(txtfStreet).asRequired("The Street is missing!").bind(AddressModel::getStreet,
 				AddressModel::setStreet);
-		bndrCheckAdress.forField(txtfAddrNo).asRequired("The Adress Number is missing!").bind(AddressModel::getHouseNo,
+		bndrCheckAdress.forField(txtfHouseNo).asRequired("The House Number is missing!").bind(AddressModel::getHouseNo,
 				AddressModel::setHouseNo);
 		bndrCheckAdress.forField(txtfPostcode).asRequired("The Postcode is missing!").bind(AddressModel::getPostcode,
 				AddressModel::setPostcode);
 		bndrCheckAdress.forField(txtfCity).asRequired("The City is missing!").bind(AddressModel::getCity,
 				AddressModel::setCity);
-		bndrCheckAdress.forField(txtfPhoneNo).asRequired("The Phonenummber is missing!")
+		bndrCheckAdress.forField(txtfPhoneNo).asRequired("The Phonenumber is missing!")
 				.bind(AddressModel::getPhonenumber, AddressModel::setPhonenummber);
 
 		// Button for add the adress in the Infobox
-
 		Button btnAdd = new Button("Add Address", new Icon(VaadinIcon.PLUS));
 		btnAdd.addClickListener(e -> {
 			if (bndrCheckAdress.isValid()) {
@@ -103,7 +102,7 @@ public class InfoboxAddAdressViewImpl extends TemplateView implements InfoboxAdd
 			}
 		});
 
-		// Button for cancel the prosses for to add the adress in the Infobox
+		// Button for cancel the process for to add the address in the Infobox
 		Button btnCancel = new Button("Cancel");
 		btnCancel.addClickListener(event -> {
 			for (InfoboxAddAdressListener listener : listeners)
@@ -114,7 +113,7 @@ public class InfoboxAddAdressViewImpl extends TemplateView implements InfoboxAdd
 		hlNamePos.add(txtfName);
 
 		HorizontalLayout hlAddressPos = new HorizontalLayout();
-		hlAddressPos.add(txtfAddress, txtfAddrNo);
+		hlAddressPos.add(txtfStreet, txtfHouseNo);
 
 		HorizontalLayout hlCityPos = new HorizontalLayout();
 		hlCityPos.add(txtfPostcode, txtfCity);
@@ -144,8 +143,8 @@ public class InfoboxAddAdressViewImpl extends TemplateView implements InfoboxAdd
 
 		AddressModel newAdress = new AddressModel();
 
-		newAdress.setStreet(txtfAddress.getValue());
-		newAdress.setHouseNo(txtfAddrNo.getValue());
+		newAdress.setStreet(txtfStreet.getValue());
+		newAdress.setHouseNo(txtfHouseNo.getValue());
 		newAdress.setCity(txtfCity.getValue());
 		newAdress.setName(txtfName.getValue());
 		newAdress.setPhonenummber(txtfPhoneNo.getValue());

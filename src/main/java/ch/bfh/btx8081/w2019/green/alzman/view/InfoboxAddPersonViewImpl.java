@@ -26,7 +26,7 @@ import ch.bfh.btx8081.w2019.green.alzman.presenter.InfoboxAddPersonPresenter;
  *
  */
 
-@Route("AddPersonInfoboxView")
+@Route("infoboxaddperson")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class InfoboxAddPersonViewImpl extends TemplateView implements InfoboxAddPersonView {
 
@@ -38,10 +38,10 @@ public class InfoboxAddPersonViewImpl extends TemplateView implements InfoboxAdd
 	private TextField txtfLastName;
 	private TextField txtfFirstName;
 	private TextField txtfPhoneNo;
-	private TextField txtfAddress;
-	private TextField txtfAddrNo;
+	private TextField txtfStreet;
+	private TextField txtfHouseNo;
 	private TextField txtfPostcode;
-	private TextField city;
+	private TextField txtfCity;
 
 	private Binder<PersonModel> bndrCheckPerson;
 	private Label lblMessage;
@@ -68,22 +68,22 @@ public class InfoboxAddPersonViewImpl extends TemplateView implements InfoboxAdd
 		this.txtfFirstName = new TextField("Firstname");
 
 		// Textfield for telephone nummber
-		this.txtfPhoneNo = new TextField("Phonenummber");
+		this.txtfPhoneNo = new TextField("Phonenumber");
 		txtfPhoneNo.setPlaceholder("0041 xx xxx xx xx");
 
 		// Textfield for adress
-		this.txtfAddress = new TextField("Adress");
+		this.txtfStreet = new TextField("Street");
 
 		// Textfield for adress
-		this.txtfAddrNo = new TextField("Adress Number");
+		this.txtfHouseNo = new TextField("House Number");
 
 		// Textfield for pstcode
 		this.txtfPostcode = new TextField("Postcode");
 		txtfPostcode.setPlaceholder("3000");
 
 		// Textfield for city
-		this.city = new TextField("City");
-		city.setPlaceholder("Bern");
+		this.txtfCity = new TextField("City");
+		txtfCity.setPlaceholder("Bern");
 
 		this.lblMessage = new Label();
 
@@ -96,13 +96,13 @@ public class InfoboxAddPersonViewImpl extends TemplateView implements InfoboxAdd
 				PersonModel::setFirstname);
 		bndrCheckPerson.forField(txtfPhoneNo).asRequired("The Phonenumber is missing!")
 				.bind(PersonModel::getPhonenumber, PersonModel::setPhonenumber);
-		bndrCheckPerson.forField(txtfAddress).asRequired("The Adress is missing!").bind(PersonModel::getStreet,
+		bndrCheckPerson.forField(txtfStreet).asRequired("The Street is missing!").bind(PersonModel::getStreet,
 				PersonModel::setStreet);
-		bndrCheckPerson.forField(txtfAddrNo).asRequired("The Adress Number is missing!").bind(PersonModel::getHouseNo,
+		bndrCheckPerson.forField(txtfHouseNo).asRequired("The House Number is missing!").bind(PersonModel::getHouseNo,
 				PersonModel::setHouseNo);
 		bndrCheckPerson.forField(txtfPostcode).asRequired("The Postcode is missing!").bind(PersonModel::getPostcode,
 				PersonModel::setPostcode);
-		bndrCheckPerson.forField(city).asRequired("The City is missing!").bind(PersonModel::getCity,
+		bndrCheckPerson.forField(txtfCity).asRequired("The City is missing!").bind(PersonModel::getCity,
 				PersonModel::setCity);
 
 		// Button for add the person in the Infobox
@@ -135,10 +135,10 @@ public class InfoboxAddPersonViewImpl extends TemplateView implements InfoboxAdd
 		hlNamePos.add(txtfLastName, txtfFirstName);
 
 		HorizontalLayout hlAddressPos = new HorizontalLayout();
-		hlAddressPos.add(txtfAddress, txtfAddrNo);
+		hlAddressPos.add(txtfStreet, txtfHouseNo);
 
 		HorizontalLayout hlCityPos = new HorizontalLayout();
-		hlCityPos.add(txtfPostcode, city);
+		hlCityPos.add(txtfPostcode, txtfCity);
 
 		HorizontalLayout hlPhoneNoPos = new HorizontalLayout();
 		hlPhoneNoPos.add(txtfPhoneNo);
@@ -153,7 +153,6 @@ public class InfoboxAddPersonViewImpl extends TemplateView implements InfoboxAdd
 		super.addContent(vlEndPos);
 
 		new InfoboxAddPersonPresenter(this);
-
 	}
 
 	@Override
@@ -164,9 +163,9 @@ public class InfoboxAddPersonViewImpl extends TemplateView implements InfoboxAdd
 	@Override
 	public PersonModel getPersonFromField() {
 		PersonModel person = new PersonModel();
-		person.setStreet(txtfAddress.getValue());
-		person.setHouseNo(txtfAddrNo.getValue());
-		person.setCity(city.getValue());
+		person.setStreet(txtfStreet.getValue());
+		person.setHouseNo(txtfHouseNo.getValue());
+		person.setCity(txtfCity.getValue());
 		person.setFirstname(txtfFirstName.getValue());
 		person.setLastname(txtfLastName.getValue());
 		person.setGender(cmbbxGender.getValue().toString());

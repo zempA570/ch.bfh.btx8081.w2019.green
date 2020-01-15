@@ -6,7 +6,7 @@ import ch.bfh.btx8081.w2019.green.alzman.model.StatusModel;
 /**
  * This Interface represents the view of the status function.
  * 
- * @author Emily Estée
+ * @author Emily
  *
  */
 public interface StatusView {

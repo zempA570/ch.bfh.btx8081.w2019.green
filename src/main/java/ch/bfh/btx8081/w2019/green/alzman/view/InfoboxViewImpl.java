@@ -16,9 +16,10 @@ import ch.bfh.btx8081.w2019.green.alzman.model.PersonModel;
 import ch.bfh.btx8081.w2019.green.alzman.presenter.InfoboxPresenter;
 
 /**
- * This class implements the view that represents the infobox View.
- * The methods come from the InfoboxView that also represents the interface class.
- * @author gausegan
+ * This class implements the view that represents the infobox View. The methods
+ * come from the InfoboxView that also represents the interface class.
+ * 
+ * @author Gausegan
  *
  */
 @Route("InfoboxView")
@@ -66,11 +67,11 @@ public class InfoboxViewImpl extends TemplateView implements InfoboxView {
 		grdImportantPerson.addColumn(PersonModel::getGender).setHeader("Gender");
 		grdImportantPerson.addColumn(PersonModel::getFirstname).setHeader("Firstname");
 		grdImportantPerson.addColumn(PersonModel::getLastname).setHeader("Lastname");
-		grdImportantPerson.addColumn(PersonModel::getStreet).setHeader("Adress");
-		grdImportantPerson.addColumn(PersonModel::getHouseNo).setHeader("Adress Number");
+		grdImportantPerson.addColumn(PersonModel::getStreet).setHeader("Street");
+		grdImportantPerson.addColumn(PersonModel::getHouseNo).setHeader("House Number");
 		grdImportantPerson.addColumn(PersonModel::getPostcode).setHeader("Postcode");
 		grdImportantPerson.addColumn(PersonModel::getCity).setHeader("City");
-		grdImportantPerson.addColumn(PersonModel::getPhonenumber).setHeader("Phonenummber");
+		grdImportantPerson.addColumn(PersonModel::getPhonenumber).setHeader("Phonenumber");
 
 		grdImportantPerson.addItemClickListener(event -> {
 			if (grdImportantPerson.getSelectedItems().isEmpty()) {
@@ -84,17 +85,17 @@ public class InfoboxViewImpl extends TemplateView implements InfoboxView {
 
 		// Suptitel in H4 format for important adres
 		h4TitleImportantAddress = new H4();
-		h4TitleImportantAddress.setText("Important Adress");
+		h4TitleImportantAddress.setText("Important Address");
 		super.addContent(h4TitleImportantAddress);
 
 		// Button for to Add a important adress
-		Button btnAddAddr = new Button("Add Adress");
+		Button btnAddAddr = new Button("Add Address");
 		btnAddAddr.addClickListener(e -> {
 			for (InfoboxViewListener listener : lstListeners)
 				listener.buttonClick(e.getSource());
 		});
 
-		Button btnDeleteAddr = new Button("Delete Adress");
+		Button btnDeleteAddr = new Button("Delete Address");
 		btnDeleteAddr.setVisible(false);
 		btnDeleteAddr.addClickListener(e -> {
 			for (InfoboxViewListener listener : lstListeners)
@@ -109,11 +110,11 @@ public class InfoboxViewImpl extends TemplateView implements InfoboxView {
 		add(grdImportantAddress);
 		grdImportantAddress.addColumn(AddressModel::getId).setVisible(false);
 		grdImportantAddress.addColumn(AddressModel::getName).setHeader("Name");
-		grdImportantAddress.addColumn(AddressModel::getStreet).setHeader("Adress");
-		grdImportantAddress.addColumn(AddressModel::getHouseNo).setHeader("Adress Number");
+		grdImportantAddress.addColumn(AddressModel::getStreet).setHeader("Street");
+		grdImportantAddress.addColumn(AddressModel::getHouseNo).setHeader("House Number");
 		grdImportantAddress.addColumn(AddressModel::getPostcode).setHeader("Postcode");
 		grdImportantAddress.addColumn(AddressModel::getCity).setHeader("City");
-		grdImportantAddress.addColumn(AddressModel::getPhonenumber).setHeader("Phonenummber");
+		grdImportantAddress.addColumn(AddressModel::getPhonenumber).setHeader("Phonenumber");
 
 		grdImportantAddress.addItemClickListener(event -> {
 			if (grdImportantAddress.getSelectedItems().isEmpty()) {
@@ -130,12 +131,10 @@ public class InfoboxViewImpl extends TemplateView implements InfoboxView {
 	}
 
 	public void fillGridWithUsers(List<PersonModel> listPerson) {
-
 		grdImportantPerson.setItems(listPerson);
 	}
 
 	public void fillGridWithAdress(List<AddressModel> listAdress) {
-
 		grdImportantAddress.setItems(listAdress);
 	}
 

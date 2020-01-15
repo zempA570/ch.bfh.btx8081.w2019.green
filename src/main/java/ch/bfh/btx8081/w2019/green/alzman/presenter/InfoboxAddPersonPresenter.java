@@ -9,10 +9,10 @@ import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxAddPersonView;
 import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxViewImpl;
 
 /**
- * This class InfoboxAddPersonPresenter controls all methods used in the
- * InfoboxAddPersonView class
+ * This class {@link InfoboxAddPersonPresenter} controls all methods used in the
+ * {@link InfoboxAddPersonView} class
  * 
- * @author gausegan
+ * @author Gausegan
  *
  */
 public class InfoboxAddPersonPresenter implements InfoboxAddPersonView.InfoboxAddPersonListener {
@@ -31,13 +31,11 @@ public class InfoboxAddPersonPresenter implements InfoboxAddPersonView.InfoboxAd
 	}
 
 	private void addPerson() {
-
 		// create new user
 		PersonModel newPerson = view.getPersonFromField();
 
 		// DB stuff
 		DbService.persist(newPerson);
-
 	}
 
 	private void navigateToInfobox() {

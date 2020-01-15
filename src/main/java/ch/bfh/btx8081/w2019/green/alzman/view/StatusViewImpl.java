@@ -28,14 +28,14 @@ import ch.bfh.btx8081.w2019.green.alzman.presenter.StatusPresenter;
  * this task to one of the three FormLayouts. The user can also remove the added
  * task afterwards.
  * 
- * The commented part could be further developed in a continuation of this
- * project. The idea is that the user can move his entry from one section to
- * another.
+ * The part that has been excluded with comments could be further developed in a
+ * continuation of this project. The idea is that the user can move his entry
+ * from one section to another.
  * 
- * @author Emily Torresan
+ * @author Emily
  */
 
-@Route("statusview")
+@Route("status")
 @CssImport(value = "./styles/statusStyle.css", include = "common-styles")
 
 public class StatusViewImpl extends TemplateView implements StatusView {
@@ -50,28 +50,12 @@ public class StatusViewImpl extends TemplateView implements StatusView {
 	HorizontalLayout hlWhelpWrapper;
 	HorizontalLayout hlDepWrapper;
 
-	// SubMenu sbmnuIndependentMove;
-	// SubMenu sbmnuWithHelpMove;
-	// SubMenu sbmnuDependentMove;
-
-	// SubMenu sbmnuIndependentMove;
-	// SubMenu sbmnuWithHelpMove;
-	// SubMenu sbmnuDependentMove;
-
-	// SubMenu sbmnuIndependentMove;
-	// SubMenu sbmnuWithHelpMove;
-	// SubMenu sbmnuDependentMove;
-
 	TextField tfIndependent;
-
 	TextField tfWithHelp;
-
 	TextField tfDependent;
 
 	SubMenu sbmnuIndependentDelete;
-
 	SubMenu sbmnuWithHelpDelete;
-
 	SubMenu sbmnuDependentDelete;
 
 	// SubMenu sbmnuIndependentMove;
@@ -165,7 +149,7 @@ public class StatusViewImpl extends TemplateView implements StatusView {
 		 * Three Icons from Vaadin with the check symbol. Each text field receives the
 		 * corresponding icon. They are added next to each text field
 		 */
-		
+
 		Icon icnCheckIndependent = new Icon(VaadinIcon.CHECK_CIRCLE);
 		icnCheckIndependent.setSize("25px");
 		icnCheckIndependent.setColor("blue");
@@ -180,12 +164,11 @@ public class StatusViewImpl extends TemplateView implements StatusView {
 		icnCheckDependent.setSize("25px");
 		icnCheckDependent.setColor("blue");
 		icnCheckDependent.setVisible(false);
-		
-		
+
 		/**
 		 * @frmlyTextLayout05 is needet for the three textfield.
 		 */
-		
+
 		FormLayout frmlytTextLayout05 = new FormLayout();
 
 		frmlytTextLayout05.setResponsiveSteps(new ResponsiveStep("20em", 1), new ResponsiveStep("25em", 2),
@@ -225,13 +208,12 @@ public class StatusViewImpl extends TemplateView implements StatusView {
 				icnCheckDependent);
 
 		super.addContent(frmlytTextLayout05);
-		
-		
+
 		/**
 		 * When the user clicks this button, all three text fields become visible and
 		 * enabled. In addition, the icons with the Check symbol become visible.
 		 */
-		
+
 		btnPlusButton.addClickListener(event -> tfDependent.setVisible(true));
 		btnPlusButton.addClickListener(event -> tfDependent.setEnabled(true));
 		btnPlusButton.addClickListener(event -> icnCheckDependent.setVisible(true));
@@ -255,21 +237,21 @@ public class StatusViewImpl extends TemplateView implements StatusView {
 		MenuBar mnubrIndependent = new MenuBar();
 		MenuItem mnuitmIndepDelete = mnubrIndependent.addItem("Delete");
 		sbmnuIndependentDelete = mnuitmIndepDelete.getSubMenu();
-		
+
 		// MenuItem mnuitmIndepMove = mnubrIndependent.addItem("Move down");
 		// sbmnuIndependentMove = mnuitmIndepMove.getSubMenu();
 
 		MenuBar mnubrWithHelp = new MenuBar();
 		MenuItem mnuitmWhelpDelete = mnubrWithHelp.addItem("Delete");
 		sbmnuWithHelpDelete = mnuitmWhelpDelete.getSubMenu();
-		
+
 		// MenuItem mnuitmWhelpMove = mnubrWithHelp.addItem("Move down");
 		// sbmnuWithHelpMove = mnuitmWhelpMove.getSubMenu();
 
 		MenuBar mnubrDependent = new MenuBar();
 		MenuItem mnuitmDepDelete = mnubrDependent.addItem("Delete");
 		sbmnuDependentDelete = mnuitmDepDelete.getSubMenu();
-		
+
 		// MenuItem mnuitmDepMove = mnubrDependent.addItem("Move up");
 		// sbmnuDependentMove = mnuitmDepMove.getSubMenu();
 
@@ -308,7 +290,6 @@ public class StatusViewImpl extends TemplateView implements StatusView {
 		hlDepContent.addClassNames("column", "column-c");
 		hlDepWrapper.add(new Label("Dependent"), mnubrDependent, hlDepContent);
 		super.addContent(hlDepWrapper);
-		
 
 		/**
 		 * If the user has entered a text in one of the three text fields and clicks on
@@ -330,10 +311,8 @@ public class StatusViewImpl extends TemplateView implements StatusView {
 				listener.iconClick();
 		});
 
-		
-		// !!! Bitte hier den Kommentar prüfen !!! Stimmt das so???
 		/**
-		 * The logic of this class is passed to the presenter class.
+		 * A new presenter is created with the view as a listener.
 		 */
 		new StatusPresenter(this);
 
@@ -359,9 +338,7 @@ public class StatusViewImpl extends TemplateView implements StatusView {
 				for (StatusListener listener : listeners)
 					listener.buttonClick(btnNew);
 			});
-
 //			sbmnuIndepMove.addItem(model.Gettask());
-
 			break;
 
 		case DEPENDENT:
@@ -384,7 +361,6 @@ public class StatusViewImpl extends TemplateView implements StatusView {
 
 		default:
 			break;
-
 		}
 
 	}
@@ -397,7 +373,6 @@ public class StatusViewImpl extends TemplateView implements StatusView {
 	/**
 	 * @return the Value from the tfIndependent textField
 	 */
-
 	@Override
 	public String getIndepTfValue() {
 		return tfIndependent.getValue();
@@ -406,7 +381,6 @@ public class StatusViewImpl extends TemplateView implements StatusView {
 	/**
 	 * @return the Value from the tfWithHelp textField
 	 */
-
 	@Override
 	public String getWhelpTfValue() {
 		return tfWithHelp.getValue();
@@ -426,7 +400,6 @@ public class StatusViewImpl extends TemplateView implements StatusView {
 	 * "With help", " Dependent") via the corresponding text field, the text of the
 	 * text field is deleted again.
 	 */
-	
 	@Override
 	public void clearTextfields() {
 		tfIndependent.clear();
@@ -434,12 +407,10 @@ public class StatusViewImpl extends TemplateView implements StatusView {
 		tfDependent.clear();
 	}
 
-	
 	/**
 	 * This method removes all user entries. These are added later, when the web
 	 * page is loaded from the DB.
 	 */
-
 	@Override
 	public void clearContent() {
 		hlIndepContent.removeAll();

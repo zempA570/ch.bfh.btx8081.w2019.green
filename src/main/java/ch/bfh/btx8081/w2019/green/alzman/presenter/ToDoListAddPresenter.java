@@ -1,9 +1,7 @@
 package ch.bfh.btx8081.w2019.green.alzman.presenter;
 
 import java.sql.Date;
-
 import java.time.LocalDate;
-import java.util.List;
 
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
@@ -15,7 +13,7 @@ import ch.bfh.btx8081.w2019.green.alzman.view.ToDoListViewImpl;
 
 /**
  * 
- * @author Jasmitha Devarasa
+ * @author Jasmitha
  *
  */
 
@@ -43,7 +41,6 @@ public class ToDoListAddPresenter implements ToDoListAddView.ToDoListAddViewList
 
 	@Override
 	public void buttonClick(Button button) {
-
 		String buttonText = button.getText();
 
 		switch (buttonText) {
@@ -54,7 +51,6 @@ public class ToDoListAddPresenter implements ToDoListAddView.ToDoListAddViewList
 		default:
 			break;
 		}
-
 	}
 
 	private void openToDoListView() {

@@ -20,7 +20,8 @@ import ch.bfh.btx8081.w2019.green.alzman.presenter.ToDoListAddPresenter;
 /**
  * @author Jasmitha
  * 
- * The ToDoList adding show the page, where the task can be created and added
+ *         The ToDoList adding show the page, where the task can be created and
+ *         added
  */
 @Route("todolistadd")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
@@ -55,12 +56,12 @@ public class ToDoListAddViewImpl extends TemplateView implements ToDoListAddView
 		});
 
 		// Creating horizontal layout
-		HorizontalLayout hlASDF = new HorizontalLayout(tfNewTask, cmbbxRepetition);
-		HorizontalLayout hlASDF2 = new HorizontalLayout(lblDate, dpDate, btnAdd);
+		HorizontalLayout hlTaskAndRepetition = new HorizontalLayout(tfNewTask, cmbbxRepetition);
+		HorizontalLayout hlDateAndAdd = new HorizontalLayout(lblDate, dpDate, btnAdd);
 
 		// Adding components to content space
-		super.addContent(hlASDF);
-		super.addContent(hlASDF2);
+		super.addContent(hlTaskAndRepetition);
+		super.addContent(hlDateAndAdd);
 
 		new ToDoListAddPresenter(this);
 	}

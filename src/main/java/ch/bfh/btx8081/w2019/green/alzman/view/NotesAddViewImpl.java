@@ -18,20 +18,19 @@ import com.vaadin.flow.router.Route;
 import ch.bfh.btx8081.w2019.green.alzman.presenter.NotesAddPresenter;
 
 /**
- * This class represents the view which models the (Key-) Notes functionality
- * an author can create an entry and choose a date, then save it and the
- * entry is added automatically to the NotesView via DB
- * @author simon
+ * This class represents the view which models the (Key-) Notes functionality an
+ * author can create an entry and choose a date, then save it and the entry is
+ * added automatically to the NotesView via DB
+ * 
+ * @author Simon
  */
 
-@Route("NotesAddView")
+@Route("notesadd")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class NotesAddViewImpl extends TemplateView implements NotesAddView {
 
 	private DatePicker dpEntryDate;
-
 	private List<NotesAddListener> lstNotesListener = new ArrayList<NotesAddListener>();
-
 	private TextField txtfAuthor;
 	private TextArea txtaEntry;
 
@@ -76,9 +75,8 @@ public class NotesAddViewImpl extends TemplateView implements NotesAddView {
 		// Adding components to content space
 		super.addContent(hlComponents1);
 		super.addContent(hlComponents2);
-		
-		new NotesAddPresenter(this);
 
+		new NotesAddPresenter(this);
 	}
 
 	@Override

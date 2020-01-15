@@ -12,7 +12,8 @@ import ch.bfh.btx8081.w2019.green.alzman.view.DiaryAddView;
  * 
  * @author Mootaas
  * 
- * This is the presenter of the diary. All the logic of the diary is controlled by this class
+ *         This is the presenter of the view where we add new entries to the
+ *         diary. All the logic of that view is controlled by this class
  *
  */
 public class DiaryAddPresenter implements DiaryAddView.DiaryAddViewListener {

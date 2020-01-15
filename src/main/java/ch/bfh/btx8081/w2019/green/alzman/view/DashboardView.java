@@ -10,9 +10,6 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.PWA;
 
-@Route("dashboard")
-@PWA(name = "Project Base for Vaadin", shortName = "Project Base")
-@CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 /**
  * This class represents the dashboard which is also the main-window of the application
  * the dashboard has clickable icons that are linked with their related functionalities
@@ -20,6 +17,9 @@ import com.vaadin.flow.server.PWA;
  * @author simon
  *
  */
+@Route("dashboard")
+@PWA(name = "Project Base for Vaadin", shortName = "Project Base")
+@CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class DashboardView extends TemplateView {
 
 	public DashboardView() {

@@ -30,18 +30,13 @@ public class CalendarPresenter implements CalendarView.CalendarListener {
 
 	// Insert an Appointment in DB
 	public void addAppointmentToDB() {
-
 		AppointmentModel addAppointment = view.getAppointmentFromFields();
-
 		DbService.persist(addAppointment);
-
 	}
 
 	// Delete an Appointment from DB
 	public void deleteAppointment() {
-
 		int idToDelete = Integer.parseInt(view.getIdForAppointmentToDelete());
-
 		AppointmentModel calendarModelToDelete = null;
 
 		for (AppointmentModel entry : allAppointments) {
@@ -52,25 +47,20 @@ public class CalendarPresenter implements CalendarView.CalendarListener {
 
 		if (calendarModelToDelete != null) {
 			DbService.remove(calendarModelToDelete);
-
 		}
 	}
 
 	// Fills the Calendar with the entries
 	public void fillCalendar() {
-
 		allAppointments = DbService.getAllAppointments();
-
 		for (AppointmentModel appointment : allAppointments) {
 			view.addEntryToCalendar(appointment);
 		}
 	}
 
 	// Reload the Page
-
 	private void reloadPage() {
 		UI.getCurrent().getPage().reload();
-
 	}
 
 	@Override

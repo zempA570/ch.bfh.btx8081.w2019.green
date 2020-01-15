@@ -14,19 +14,20 @@ import ch.bfh.btx8081.w2019.green.alzman.view.DiaryAddViewImpl;
  * 
  * @author Mootaas
  * 
- * This is the presenter of the diary. All the logic of the diary is controlled by this class
+ *         This is the presenter of the diary. All the logic of the diary is
+ *         controlled by this class
  *
  */
 
 public class DiaryPresenter implements DiaryView.DiaryViewListener {
 
 	private DiaryView view;
-	private List<DiaryModel> lstdiarys;
+	private List<DiaryModel> lstDiarys;
 
 	public DiaryPresenter(DiaryView diary) {
 		this.view = diary;
 		view.addListener(this);
-		getallDiarys();
+		getAllDiarys();
 	}
 
 	@Override
@@ -42,9 +43,9 @@ public class DiaryPresenter implements DiaryView.DiaryViewListener {
 		}
 	}
 
-	private void getallDiarys() {
-		lstdiarys = DbService.getAllDiarys();
-		for (DiaryModel model : lstdiarys) {
+	private void getAllDiarys() {
+		lstDiarys = DbService.getAllDiarys();
+		for (DiaryModel model : lstDiarys) {
 			view.addEntryToView(model);
 		}
 	}
@@ -52,12 +53,12 @@ public class DiaryPresenter implements DiaryView.DiaryViewListener {
 	private void deleteEntry(Optional<String> id) {
 		String tempId = id.get();
 		int idtodelete = Integer.parseInt(tempId);
-		for (DiaryModel model : lstdiarys) {
+		for (DiaryModel model : lstDiarys) {
 			if (Objects.equals(idtodelete, model.getId())) {
 				DbService.remove(model);
 			}
 			view.clearEntries();
-			getallDiarys();
+			getAllDiarys();
 		}
 	}
 

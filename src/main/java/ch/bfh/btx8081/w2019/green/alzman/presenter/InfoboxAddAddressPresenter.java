@@ -9,10 +9,10 @@ import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxAddAddressView;
 import ch.bfh.btx8081.w2019.green.alzman.view.InfoboxViewImpl;
 
 /**
- * This class InfoboxAddAdressPresenter controls all methods that are used in
- * the class InfoboxAddAdressView
+ * This class {@link InfoboxAddAdressPresenter} controls all methods that are
+ * used in the class {@link InfoboxAddAdressView}
  * 
- * @author gausegan
+ * @author Gausegan
  *
  */
 public class InfoboxAddAddressPresenter implements InfoboxAddAddressView.InfoboxAddAdressListener {
@@ -30,13 +30,11 @@ public class InfoboxAddAddressPresenter implements InfoboxAddAddressView.Infobox
 	}
 
 	private void addAdress() {
-
 		// create new user
 		AddressModel newAdress = view.getAdressFromField();
 
 		// DB stuff
 		DbService.persist(newAdress);
-
 	}
 
 	private void navigateToInfobox() {
@@ -45,7 +43,6 @@ public class InfoboxAddAddressPresenter implements InfoboxAddAddressView.Infobox
 
 	@Override
 	public void buttonClick(Button btnClick) {
-
 		String buttonText = btnClick.getText();
 
 		switch (buttonText) {
@@ -60,7 +57,6 @@ public class InfoboxAddAddressPresenter implements InfoboxAddAddressView.Infobox
 			// TODO
 			;
 		}
-
 	}
 
 }

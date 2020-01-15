@@ -15,53 +15,50 @@ import com.vaadin.flow.router.Route;
 
 import ch.bfh.btx8081.w2019.green.alzman.presenter.DiaryAddPresenter;
 
-
 /**
  * 
  * @author Mootaas
  *
- *New Records shall be added to the database by clicking the add button
+ *         New Records shall be added to the database by clicking the add button
  *
  */
 
-@Route("EntryRecordDiary")
-
+@Route("diaryadd")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class DiaryAddViewImpl extends TemplateView implements DiaryAddView {
 
-	private List<DiaryAddViewListener> lstlisteners = new ArrayList<DiaryAddViewListener>();
-	private TextArea txtauthor;
-	private TextArea txtaentry;
-	private DatePicker dpdiary;
-	private Button btnnewRecord;
+	private List<DiaryAddViewListener> lstListeners = new ArrayList<DiaryAddViewListener>();
+	private TextArea txtaAuthor;
+	private TextArea txtaEntry;
+	private DatePicker dpDiary;
+	private Button btnAddEntry;
 
 	public DiaryAddViewImpl() {
 
-		super.setHeaderTitle("entry Record Diarymodel");
+		super.setHeaderTitle("Add new entry to diary");
 
 		// Creating a new Datepicker.
-		dpdiary = new DatePicker();
-		dpdiary.setValue(LocalDate.now());
+		dpDiary = new DatePicker();
+		dpDiary.setValue(LocalDate.now());
 
 		// Creating a new Textarea
-		txtauthor = new TextArea();
-		txtauthor.setLabel("Author");
+		txtaAuthor = new TextArea();
+		txtaAuthor.setLabel("Author");
 
 		// Creating a new Textarea
-
-		txtaentry = new TextArea();
-		txtaentry.setLabel("entry");
+		txtaEntry = new TextArea();
+		txtaEntry.setLabel("entry");
 
 		// Creating a new Button
-		btnnewRecord = new Button("Add new Record", new Icon(VaadinIcon.PLUS));
-		btnnewRecord.addClickListener(e -> {
-			for (DiaryAddViewListener listener : lstlisteners)
+		btnAddEntry = new Button("Add new Record", new Icon(VaadinIcon.PLUS));
+		btnAddEntry.addClickListener(e -> {
+			for (DiaryAddViewListener listener : lstListeners)
 				listener.buttonClick(e.getSource());
 		});
 
 		// Creating a new Vertical Layout
 		VerticalLayout verticalLayout = new VerticalLayout();
-		verticalLayout.add(dpdiary, txtauthor, txtaentry, btnnewRecord);
+		verticalLayout.add(dpDiary, txtaAuthor, txtaEntry, btnAddEntry);
 
 		// Adding components to content space
 		super.addContent(verticalLayout);
@@ -71,21 +68,21 @@ public class DiaryAddViewImpl extends TemplateView implements DiaryAddView {
 
 	@Override
 	public String getEntry() {
-		return txtaentry.getValue();
+		return txtaEntry.getValue();
 	}
 
 	@Override
 	public LocalDate getDate() {
-		return dpdiary.getValue();
+		return dpDiary.getValue();
 	}
 
 	@Override
 	public String getAuthor() {
-		return txtauthor.getValue();
+		return txtaAuthor.getValue();
 	}
 
 	@Override
 	public void addListener(DiaryAddViewListener listener) {
-		lstlisteners.add(listener);
+		lstListeners.add(listener);
 	}
 }
