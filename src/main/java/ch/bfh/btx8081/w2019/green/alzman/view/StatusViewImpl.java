@@ -2,9 +2,6 @@ package ch.bfh.btx8081.w2019.green.alzman.view;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.vaadin.flow.component.ComponentEvent;
-import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.contextmenu.MenuItem;
@@ -20,19 +17,25 @@ import com.vaadin.flow.component.menubar.MenuBar;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
-
 import ch.bfh.btx8081.w2019.green.alzman.model.StatusLevel;
 import ch.bfh.btx8081.w2019.green.alzman.model.StatusModel;
 import ch.bfh.btx8081.w2019.green.alzman.presenter.StatusPresenter;
 
 /**
- * The user management view will be used to add and remove users of the app
+ * The functionality of the Status View is implemented in this class. The user
+ * receives important information about the application in the Components
+ * details. The user can create a task in the text fields. The user can then add
+ * this task to one of the three FormLayouts. The user can also remove the added
+ * task afterwards.
+ * 
+ * The commented part could be further developed in a continuation of this
+ * project. The idea is that the user can move his entry from one section to
+ * another.
  * 
  * @author Emily Torresan
  */
 
 @Route("statusview")
-//@CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 @CssImport(value = "./styles/statusStyle.css", include = "common-styles")
 
 public class StatusViewImpl extends TemplateView implements StatusView {
@@ -40,24 +43,40 @@ public class StatusViewImpl extends TemplateView implements StatusView {
 	private List<StatusListener> listeners = new ArrayList<StatusListener>();
 
 	HorizontalLayout hlIndepContent;
-	HorizontalLayout hlDepContent;
 	HorizontalLayout hlWhelpContent;
+	HorizontalLayout hlDepContent;
 
 	HorizontalLayout hlIndepWrapper;
-	HorizontalLayout hlDepWrapper;
 	HorizontalLayout hlWhelpWrapper;
+	HorizontalLayout hlDepWrapper;
 
-	SubMenu sbmnuIndepDelete;
-	SubMenu sbmnuDepDelete;
-	SubMenu sbmnuWhelpDelete;
+	// SubMenu sbmnuIndependentMove;
+	// SubMenu sbmnuWithHelpMove;
+	// SubMenu sbmnuDependentMove;
 
-	SubMenu sbmnuIndepMove;
-	SubMenu sbmnuWhelpMove;
-	SubMenu sbmnuDepMove;
+	// SubMenu sbmnuIndependentMove;
+	// SubMenu sbmnuWithHelpMove;
+	// SubMenu sbmnuDependentMove;
 
-	TextField tfDep;
-	TextField tfIndep;
-	TextField tfWhelp;
+	// SubMenu sbmnuIndependentMove;
+	// SubMenu sbmnuWithHelpMove;
+	// SubMenu sbmnuDependentMove;
+
+	TextField tfIndependent;
+
+	TextField tfWithHelp;
+
+	TextField tfDependent;
+
+	SubMenu sbmnuIndependentDelete;
+
+	SubMenu sbmnuWithHelpDelete;
+
+	SubMenu sbmnuDependentDelete;
+
+	// SubMenu sbmnuIndependentMove;
+	// SubMenu sbmnuWithHelpMove;
+	// SubMenu sbmnuDependentMove;
 
 	public StatusViewImpl() {
 
@@ -65,223 +84,289 @@ public class StatusViewImpl extends TemplateView implements StatusView {
 		setSizeFull();
 		setAlignItems(Alignment.CENTER);
 
-		// GUI Layout
-
-//---------------------------------------------------------------------------------------------------------------		
 		/**
 		 * A Layout from Vaadin, with which you can align the elements vertically.
 		 */
 
-		FormLayout detailsLayout = new FormLayout();
+		FormLayout frmlytDetailsLayout = new FormLayout();
+
 		/**
 		 * Details is a component of Vaadin with which you can expand a text to get more
-		 * information. infocomponent01 explains what is meant by "independent".
+		 * information.
+		 * 
+		 * The dtlsDetailsIndependend Details Component explains what is meant by
+		 * "independent".
 		 */
-		Details infocomponent01 = new Details("Independend", new Text("Here you can add activities and properties that "
-				+ "your relative can practise independently and without " + "outside help."));
+
+		Details dtlsDetailsIndependend = new Details("Independend",
+				new Text("Here you can add activities and properties that "
+						+ "your relative can practise independently and without " + "outside help."));
 
 		/**
-		 * infocomponent02 explains what is meant by "with help".
+		 * The dtllDetailsWithHelp Details Component explains what is meant by
+		 * "independent".
 		 */
 
-		Details infocomponent02 = new Details("With Help", new Text(
+		Details dtllDetailsWithHelp = new Details("With Help", new Text(
 				"Here you can add activities and properties that " + "your relative can perform with support."));
 
 		/**
-		 * infocomponent03 explains what is meant by "dependent".
+		 * The ddtlsDetailsDependent Details Component explains what is meant by
+		 * "independent".
 		 */
 
-		Details infocomponent03 = new Details("Dependend", new Text("Here you can add activities and features that your"
-				+ " loved one can no longer perform " + "independently and needs full help.."));
+		Details dtlsDetailsDependent = new Details("Dependend",
+				new Text("Here you can add activities and features that your" + " loved one can no longer perform "
+						+ "independently and needs full help.."));
 
 		/**
-		 * With this layout feature the Details components are displayed in a structured
-		 * way.
+		 * The method setResponsiveSteps structures the Detail Layout
 		 */
-		detailsLayout.setResponsiveSteps(new ResponsiveStep("25em", 1), new ResponsiveStep("32em", 2),
+
+		frmlytDetailsLayout.setResponsiveSteps(new ResponsiveStep("25em", 1), new ResponsiveStep("32em", 2),
 				new ResponsiveStep("40em", 3));
 
-		detailsLayout.add(infocomponent01, infocomponent02, infocomponent03);
+		frmlytDetailsLayout.add(dtlsDetailsIndependend, dtllDetailsWithHelp, dtlsDetailsDependent);
 
-		super.addContent(detailsLayout);
+		super.addContent(frmlytDetailsLayout);
 
-//---------------------------------------------------------------------------------
 		/**
 		 * Below the Details components a new layout for the buttons will be created.
 		 * The form layout of Vaadin allows to display the different components in an
 		 * orderly way.
 		 */
 
-		FormLayout textLayout04 = new FormLayout();
+		FormLayout frmlyttextLayout04 = new FormLayout();
 
-		textLayout04.setResponsiveSteps(new ResponsiveStep("20em", 1), new ResponsiveStep("25em", 2),
+		frmlyttextLayout04.setResponsiveSteps(new ResponsiveStep("20em", 1), new ResponsiveStep("25em", 2),
 				new ResponsiveStep("30em", 3));
 
 		/**
-		 * In this form layout, three icons with the plus symbol are added. The size of
-		 * these icons is determined, as is the color.
-		 * 
-		 * @plus01 This icon is implemented for the functionality of the area
-		 *         "independent".
-		 * 
-		 *         See the Click Events section for more details.
+		 * @icnplus01 Is a Icon from Vaadin with the plus symbol. It will be added in
+		 *            the btnPlusButton.
 		 */
 
-		Icon plus01 = new Icon(VaadinIcon.PLUS);
-		plus01.setSize("60px");
-		plus01.setColor("lightgreen");
+		Icon icnPlus01 = new Icon(VaadinIcon.PLUS);
+		icnPlus01.setSize("60px");
+		icnPlus01.setColor("lightgreen");
 
-		Button plusButton = new Button("Click here to add a new Task ", plus01);
-
-		textLayout04.add(plusButton);
-
-		super.addContent(textLayout04);
-
-//---------------------------------------------------------------------------------
 		/**
-		 * In this form layout, three icons with a check symbol are added. The size of
-		 * these icons is determined, as is the color. At the beginning these icons are
-		 * not visible, because the user must first unlock the text field with the plus
-		 * icon and enter a text.
-		 * 
+		 * @btnPlusButton If this button is clicked by the user, three text fields
+		 *                become visible.
 		 */
-		Icon icnCheckIndep = new Icon(VaadinIcon.CHECK_CIRCLE);
-		icnCheckIndep.setSize("25px");
-		icnCheckIndep.setColor("blue");
-		icnCheckIndep.setVisible(false);
 
-		Icon icnCheckWhelp = new Icon(VaadinIcon.CHECK_CIRCLE);
-		icnCheckWhelp.setSize("25px");
-		icnCheckWhelp.setColor("blue");
-		icnCheckWhelp.setVisible(false);
+		Button btnPlusButton = new Button("Click here to add a new Task ", icnPlus01);
 
-		Icon icnCheckDep = new Icon(VaadinIcon.CHECK_CIRCLE);
-		icnCheckDep.setSize("25px");
-		icnCheckDep.setColor("blue");
-		icnCheckDep.setVisible(false);
-//-----------------------------------------------------------------------------------------------------	
+		frmlyttextLayout04.add(btnPlusButton);
 
-		FormLayout textLayout05 = new FormLayout();
+		super.addContent(frmlyttextLayout04);
 
-		textLayout05.setResponsiveSteps(new ResponsiveStep("20em", 1), new ResponsiveStep("25em", 2),
-				new ResponsiveStep("30em", 3));
-
-		tfIndep = new TextField();
-		tfIndep.addClassName("wrapperField");
-		tfIndep.setEnabled(false);
-		tfIndep.setVisible(false);
-
-		tfWhelp = new TextField();
-		tfWhelp.addClassName("wrapperField");
-		tfWhelp.setEnabled(false);
-		tfWhelp.setVisible(false);
-
-		tfDep = new TextField();
-		tfDep.addClassName("wrapperField");
-		tfDep.setEnabled(false);
-		tfDep.setVisible(false);
-
-		textLayout05.add(tfIndep, icnCheckIndep, tfWhelp, icnCheckWhelp, tfDep, icnCheckDep);
-
-		super.addContent(textLayout05);
-//----------------------------------------------------------------------------------		
-
-		plusButton.addClickListener(event -> tfDep.setVisible(true));
-		plusButton.addClickListener(event -> tfDep.setEnabled(true));
-		plusButton.addClickListener(event -> icnCheckDep.setVisible(true));
-
-		plusButton.addClickListener(event -> tfIndep.setVisible(true));
-		plusButton.addClickListener(event -> tfIndep.setEnabled(true));
-		plusButton.addClickListener(event -> icnCheckIndep.setVisible(true));
-
-		plusButton.addClickListener(event -> tfWhelp.setVisible(true));
-		plusButton.addClickListener(event -> tfWhelp.setEnabled(true));
-		plusButton.addClickListener(event -> icnCheckWhelp.setVisible(true));
-
-//----------------------------------------------------------------------------------
-		MenuBar mnubrIndep = new MenuBar();
-		MenuItem mnuitmIndepDelete = mnubrIndep.addItem("Delete");
-		MenuItem mnuitmIndepMove = mnubrIndep.addItem("Move down");
-		sbmnuIndepDelete = mnuitmIndepDelete.getSubMenu();
-		sbmnuIndepMove = mnuitmIndepMove.getSubMenu();
+		/**
+		 * Three Icons from Vaadin with the check symbol. Each text field receives the
+		 * corresponding icon. They are added next to each text field
+		 */
 		
-		MenuBar mnubrWhelp = new MenuBar();
-		MenuItem mnuitmWhelpDelete = mnubrWhelp.addItem("Delete");
-		MenuItem mnuitmWhelpMove = mnubrWhelp.addItem("Move down");
-		sbmnuWhelpDelete = mnuitmWhelpDelete.getSubMenu();
-		sbmnuWhelpMove = mnuitmWhelpMove.getSubMenu();
+		Icon icnCheckIndependent = new Icon(VaadinIcon.CHECK_CIRCLE);
+		icnCheckIndependent.setSize("25px");
+		icnCheckIndependent.setColor("blue");
+		icnCheckIndependent.setVisible(false);
 
-		MenuBar mnubrDep = new MenuBar();
-		MenuItem mnuitmDepDelete = mnubrDep.addItem("Delete");
-		MenuItem mnuitmDepMove = mnubrDep.addItem("Move up");
-		sbmnuDepDelete = mnuitmDepDelete.getSubMenu();
-		sbmnuDepMove = mnuitmDepMove.getSubMenu();
+		Icon icnCheckWithHelp = new Icon(VaadinIcon.CHECK_CIRCLE);
+		icnCheckWithHelp.setSize("25px");
+		icnCheckWithHelp.setColor("blue");
+		icnCheckWithHelp.setVisible(false);
 
-//----------------------------------------------------------------------------------		
+		Icon icnCheckDependent = new Icon(VaadinIcon.CHECK_CIRCLE);
+		icnCheckDependent.setSize("25px");
+		icnCheckDependent.setColor("blue");
+		icnCheckDependent.setVisible(false);
+		
+		
+		/**
+		 * @frmlyTextLayout05 is needet for the three textfield.
+		 */
+		
+		FormLayout frmlytTextLayout05 = new FormLayout();
+
+		frmlytTextLayout05.setResponsiveSteps(new ResponsiveStep("20em", 1), new ResponsiveStep("25em", 2),
+				new ResponsiveStep("30em", 3));
+
+		/**
+		 * @tfIndependent is a text field where the user can enter a task that his
+		 *                relative can do independently.
+		 */
+
+		tfIndependent = new TextField();
+		tfIndependent.addClassName("wrapperField");
+		tfIndependent.setEnabled(false);
+		tfIndependent.setVisible(false);
+
+		/**
+		 * @tfWithHelp is a text field where the user can enter a task that his relative
+		 *             can only do with help.
+		 */
+
+		tfWithHelp = new TextField();
+		tfWithHelp.addClassName("wrapperField");
+		tfWithHelp.setEnabled(false);
+		tfWithHelp.setVisible(false);
+
+		/**
+		 * @tfDependent is a text field where the user can enter a task that his
+		 *              relative can't do independently.
+		 */
+
+		tfDependent = new TextField();
+		tfDependent.addClassName("wrapperField");
+		tfDependent.setEnabled(false);
+		tfDependent.setVisible(false);
+
+		frmlytTextLayout05.add(tfIndependent, icnCheckIndependent, tfWithHelp, icnCheckWithHelp, tfDependent,
+				icnCheckDependent);
+
+		super.addContent(frmlytTextLayout05);
+		
+		
+		/**
+		 * When the user clicks this button, all three text fields become visible and
+		 * enabled. In addition, the icons with the Check symbol become visible.
+		 */
+		
+		btnPlusButton.addClickListener(event -> tfDependent.setVisible(true));
+		btnPlusButton.addClickListener(event -> tfDependent.setEnabled(true));
+		btnPlusButton.addClickListener(event -> icnCheckDependent.setVisible(true));
+
+		btnPlusButton.addClickListener(event -> tfIndependent.setVisible(true));
+		btnPlusButton.addClickListener(event -> tfIndependent.setEnabled(true));
+		btnPlusButton.addClickListener(event -> icnCheckIndependent.setVisible(true));
+
+		btnPlusButton.addClickListener(event -> tfWithHelp.setVisible(true));
+		btnPlusButton.addClickListener(event -> tfWithHelp.setEnabled(true));
+		btnPlusButton.addClickListener(event -> icnCheckWithHelp.setVisible(true));
+
+		/**
+		 * For all three horizontal layouts ("Independent", "With Help", "Dependent") a
+		 * menu component with only one submenu "Delete" is created. When the user adds
+		 * a new task to the three HorizontalLayouts, it is added to the submenu at the
+		 * same time. With the help of the submenu "Delete" the user can select the
+		 * entry he wants to delete.
+		 */
+
+		MenuBar mnubrIndependent = new MenuBar();
+		MenuItem mnuitmIndepDelete = mnubrIndependent.addItem("Delete");
+		sbmnuIndependentDelete = mnuitmIndepDelete.getSubMenu();
+		
+		// MenuItem mnuitmIndepMove = mnubrIndependent.addItem("Move down");
+		// sbmnuIndependentMove = mnuitmIndepMove.getSubMenu();
+
+		MenuBar mnubrWithHelp = new MenuBar();
+		MenuItem mnuitmWhelpDelete = mnubrWithHelp.addItem("Delete");
+		sbmnuWithHelpDelete = mnuitmWhelpDelete.getSubMenu();
+		
+		// MenuItem mnuitmWhelpMove = mnubrWithHelp.addItem("Move down");
+		// sbmnuWithHelpMove = mnuitmWhelpMove.getSubMenu();
+
+		MenuBar mnubrDependent = new MenuBar();
+		MenuItem mnuitmDepDelete = mnubrDependent.addItem("Delete");
+		sbmnuDependentDelete = mnuitmDepDelete.getSubMenu();
+		
+		// MenuItem mnuitmDepMove = mnubrDependent.addItem("Move up");
+		// sbmnuDependentMove = mnuitmDepMove.getSubMenu();
+
+		/**
+		 * This layout represents the column for the tasks that a relative of the user
+		 * can do independently.
+		 */
 
 		hlIndepWrapper = new HorizontalLayout();
 		hlIndepWrapper.addClassName("wrapper");
 		hlIndepContent = new HorizontalLayout();
 		hlIndepContent.addClassNames("column", "column-a");
-		hlIndepWrapper.add(new Label("Independent"), mnubrIndep, hlIndepContent);
+		hlIndepWrapper.add(new Label("Independent"), mnubrIndependent, hlIndepContent);
+		super.addContent(hlIndepWrapper);
+
+		/**
+		 * This layout represents the column for the tasks that a relative of the user
+		 * can only do with help.
+		 */
 
 		hlWhelpWrapper = new HorizontalLayout();
 		hlWhelpWrapper.addClassName("wrapper");
 		hlWhelpContent = new HorizontalLayout();
 		hlWhelpContent.addClassNames("column", "column-b");
-		hlWhelpWrapper.add(new Label("With help"), mnubrWhelp, hlWhelpContent);
+		hlWhelpWrapper.add(new Label("With help"), mnubrWithHelp, hlWhelpContent);
+		super.addContent(hlWhelpWrapper);
+
+		/**
+		 * This layout represents the column for the tasks that a relative of the user
+		 * can't do independently.
+		 */
 
 		hlDepWrapper = new HorizontalLayout();
 		hlDepWrapper.addClassName("wrapper");
 		hlDepContent = new HorizontalLayout();
 		hlDepContent.addClassNames("column", "column-c");
-		hlDepWrapper.add(new Label("Dependent"), mnubrDep, hlDepContent);
-
-		super.addContent(hlIndepWrapper);
-		super.addContent(hlWhelpWrapper);
+		hlDepWrapper.add(new Label("Dependent"), mnubrDependent, hlDepContent);
 		super.addContent(hlDepWrapper);
-
-//----------------------------------------------------------------------------------------------------------------
 		
-		icnCheckIndep.addClickListener(event -> {
-			for (StatusListener listener : listeners)
-				listener.iconClick();
-		});
-		icnCheckWhelp.addClickListener(event -> {
-			for (StatusListener listener : listeners)
-				listener.iconClick();
-		});
-		icnCheckDep.addClickListener(event -> {
+
+		/**
+		 * If the user has entered a text in one of the three text fields and clicks on
+		 * the check icon next to the text field, the entry is added to the
+		 * corresponding category.
+		 */
+		icnCheckIndependent.addClickListener(event -> {
 			for (StatusListener listener : listeners)
 				listener.iconClick();
 		});
 
-//------------------------------------------------------------------------------------------------------------------		
+		icnCheckWithHelp.addClickListener(event -> {
+			for (StatusListener listener : listeners)
+				listener.iconClick();
+		});
 
+		icnCheckDependent.addClickListener(event -> {
+			for (StatusListener listener : listeners)
+				listener.iconClick();
+		});
+
+		
+		// !!! Bitte hier den Kommentar prüfen !!! Stimmt das so???
+		/**
+		 * The logic of this class is passed to the presenter class.
+		 */
 		new StatusPresenter(this);
-		
+
 	}
+
+	/**
+	 * When the user writes a task in the first text field and clicks on the check
+	 * icon, a new button is created with the text from the text field and added to
+	 * the corresponding HorizontalLayout and its menu.
+	 */
 
 	public void addToView(StatusModel model) {
 
 		StatusLevel targetLevel = StatusLevel.valueOf(model.getLevel());
-		
-		Button btnNew = new Button(model.Gettask());
+
+		Button btnNew = new Button(model.getTask());
 		btnNew.setId(Integer.toString(model.getId()));
-		
+
 		switch (targetLevel) {
 		case INDEPENDENT:
 			hlIndepContent.add(btnNew);
-			sbmnuIndepDelete.addItem(model.Gettask(), event -> {
+			sbmnuIndependentDelete.addItem(model.getTask(), event -> {
 				for (StatusListener listener : listeners)
 					listener.buttonClick(btnNew);
 			});
+
 //			sbmnuIndepMove.addItem(model.Gettask());
+
 			break;
 
 		case DEPENDENT:
-			hlDepContent.add(new Button(model.Gettask()));
-			sbmnuDepDelete.addItem(model.Gettask(), event -> {
+			hlDepContent.add(new Button(model.getTask()));
+			sbmnuDependentDelete.addItem(model.getTask(), event -> {
 				for (StatusListener listener : listeners)
 					listener.buttonClick(btnNew);
 			});
@@ -289,8 +374,8 @@ public class StatusViewImpl extends TemplateView implements StatusView {
 			break;
 
 		case WITHHELP:
-			hlWhelpContent.add(new Button(model.Gettask()));
-			sbmnuWhelpDelete.addItem(model.Gettask(), event -> {
+			hlWhelpContent.add(new Button(model.getTask()));
+			sbmnuWithHelpDelete.addItem(model.getTask(), event -> {
 				for (StatusListener listener : listeners)
 					listener.buttonClick(btnNew);
 			});
@@ -301,7 +386,7 @@ public class StatusViewImpl extends TemplateView implements StatusView {
 			break;
 
 		}
-		
+
 	}
 
 	@Override
@@ -309,41 +394,65 @@ public class StatusViewImpl extends TemplateView implements StatusView {
 		listeners.add(listener);
 	}
 
+	/**
+	 * @return the Value from the tfIndependent textField
+	 */
+
 	@Override
 	public String getIndepTfValue() {
-		return tfIndep.getValue();
+		return tfIndependent.getValue();
 	}
+
+	/**
+	 * @return the Value from the tfWithHelp textField
+	 */
 
 	@Override
 	public String getWhelpTfValue() {
-		return tfWhelp.getValue();
+		return tfWithHelp.getValue();
 	}
+
+	/**
+	 * @return the Value from the tfDependent textField
+	 */
 
 	@Override
 	public String getDepTfValue() {
-		return tfDep.getValue();
+		return tfDependent.getValue();
 	}
 
+	/**
+	 * If the user has added a task to the appropriate category ("Independent",
+	 * "With help", " Dependent") via the corresponding text field, the text of the
+	 * text field is deleted again.
+	 */
+	
 	@Override
 	public void clearTextfields() {
-		tfIndep.clear();
-		tfWhelp.clear();
-		tfDep.clear();
+		tfIndependent.clear();
+		tfWithHelp.clear();
+		tfDependent.clear();
 	}
+
+	
+	/**
+	 * This method removes all user entries. These are added later, when the web
+	 * page is loaded from the DB.
+	 */
 
 	@Override
 	public void clearContent() {
 		hlIndepContent.removeAll();
 		hlWhelpContent.removeAll();
 		hlDepContent.removeAll();
-		
-		sbmnuDepDelete.removeAll();
-		sbmnuIndepDelete.removeAll();
-		sbmnuWhelpDelete.removeAll();
-		
-		sbmnuDepMove.removeAll();
-		sbmnuIndepMove.removeAll();
-		sbmnuWhelpMove.removeAll();
+
+		sbmnuDependentDelete.removeAll();
+		sbmnuIndependentDelete.removeAll();
+		sbmnuWithHelpDelete.removeAll();
+
+		// sbmnuDependentMove.removeAll();
+		// sbmnuIndependentMove.removeAll();
+		// sbmnuWithHelpMove.removeAll();
 	}
 
 }
