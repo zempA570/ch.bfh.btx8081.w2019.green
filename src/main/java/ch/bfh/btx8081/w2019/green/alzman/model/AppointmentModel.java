@@ -8,16 +8,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * 
+ * @author Thevian
+ *
+ */
 @Entity
 @Table(name = "Appointment")
 public class AppointmentModel {
 
 	@Id
-	// @GeneratedValue means the value of this variable will be generated in the
-	// database by the "userIDGenerator"
 	@GeneratedValue
 	int id;
-
+	
 	Date date;
 	Time time;
 	String author;
@@ -28,7 +31,6 @@ public class AppointmentModel {
 		this.time = time;
 		this.author = author;
 		this.entry = entry;
-
 	}
 
 	public AppointmentModel() {
@@ -37,7 +39,6 @@ public class AppointmentModel {
 
 	public void setDate(Date date) {
 		this.date = date;
-
 	}
 
 	public Date getDate() {
@@ -46,7 +47,6 @@ public class AppointmentModel {
 
 	public void setTime(Time time) {
 		this.time = time;
-
 	}
 
 	public Time getTime() {

@@ -95,11 +95,11 @@ public class InfoboxAddPersonViewImpl extends TemplateView implements InfoboxAdd
 		bndrCheckPerson.forField(txtfFirstName).asRequired("The Firstname is missing!").bind(PersonModel::getFirstname,
 				PersonModel::setFirstname);
 		bndrCheckPerson.forField(txtfPhoneNo).asRequired("The Phonenumber is missing!")
-				.bind(PersonModel::getPhonenummber, PersonModel::setPhonenummber);
-		bndrCheckPerson.forField(txtfAddress).asRequired("The Adress is missing!").bind(PersonModel::getAdress,
-				PersonModel::setAdress);
-		bndrCheckPerson.forField(txtfAddrNo).asRequired("The Adress Number is missing!").bind(PersonModel::getAdressNr,
-				PersonModel::setAdressNr);
+				.bind(PersonModel::getPhonenumber, PersonModel::setPhonenumber);
+		bndrCheckPerson.forField(txtfAddress).asRequired("The Adress is missing!").bind(PersonModel::getStreet,
+				PersonModel::setStreet);
+		bndrCheckPerson.forField(txtfAddrNo).asRequired("The Adress Number is missing!").bind(PersonModel::getHouseNo,
+				PersonModel::setHouseNo);
 		bndrCheckPerson.forField(txtfPostcode).asRequired("The Postcode is missing!").bind(PersonModel::getPostcode,
 				PersonModel::setPostcode);
 		bndrCheckPerson.forField(city).asRequired("The City is missing!").bind(PersonModel::getCity,
@@ -164,13 +164,13 @@ public class InfoboxAddPersonViewImpl extends TemplateView implements InfoboxAdd
 	@Override
 	public PersonModel getPersonFromField() {
 		PersonModel person = new PersonModel();
-		person.setAdress(txtfAddress.getValue());
-		person.setAdressNr(txtfAddrNo.getValue());
+		person.setStreet(txtfAddress.getValue());
+		person.setHouseNo(txtfAddrNo.getValue());
 		person.setCity(city.getValue());
 		person.setFirstname(txtfFirstName.getValue());
 		person.setLastname(txtfLastName.getValue());
 		person.setGender(cmbbxGender.getValue().toString());
-		person.setPhonenummber(txtfPhoneNo.getValue());
+		person.setPhonenumber(txtfPhoneNo.getValue());
 		person.setPostcode(txtfPostcode.getValue());
 		return person;
 	}

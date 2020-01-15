@@ -78,16 +78,16 @@ public class InfoboxAddAdressViewImpl extends TemplateView implements InfoboxAdd
 		this.bndrCheckAdress = new Binder<>();
 		bndrCheckAdress.forField(txtfName).asRequired("The Name is missing!").bind(AddressModel::getName,
 				AddressModel::setName);
-		bndrCheckAdress.forField(txtfAddress).asRequired("The Adress is missing!").bind(AddressModel::getAdress,
-				AddressModel::setAdress);
-		bndrCheckAdress.forField(txtfAddrNo).asRequired("The Adress Number is missing!").bind(AddressModel::getAdressNr,
-				AddressModel::setAdressNr);
+		bndrCheckAdress.forField(txtfAddress).asRequired("The Adress is missing!").bind(AddressModel::getStreet,
+				AddressModel::setStreet);
+		bndrCheckAdress.forField(txtfAddrNo).asRequired("The Adress Number is missing!").bind(AddressModel::getHouseNo,
+				AddressModel::setHouseNo);
 		bndrCheckAdress.forField(txtfPostcode).asRequired("The Postcode is missing!").bind(AddressModel::getPostcode,
 				AddressModel::setPostcode);
 		bndrCheckAdress.forField(txtfCity).asRequired("The City is missing!").bind(AddressModel::getCity,
 				AddressModel::setCity);
 		bndrCheckAdress.forField(txtfPhoneNo).asRequired("The Phonenummber is missing!")
-				.bind(AddressModel::getPhonenummber, AddressModel::setPhonenummber);
+				.bind(AddressModel::getPhonenumber, AddressModel::setPhonenummber);
 
 		// Button for add the adress in the Infobox
 
@@ -144,8 +144,8 @@ public class InfoboxAddAdressViewImpl extends TemplateView implements InfoboxAdd
 
 		AddressModel newAdress = new AddressModel();
 
-		newAdress.setAdress(txtfAddress.getValue());
-		newAdress.setAdressNr(txtfAddrNo.getValue());
+		newAdress.setStreet(txtfAddress.getValue());
+		newAdress.setHouseNo(txtfAddrNo.getValue());
 		newAdress.setCity(txtfCity.getValue());
 		newAdress.setName(txtfName.getValue());
 		newAdress.setPhonenummber(txtfPhoneNo.getValue());

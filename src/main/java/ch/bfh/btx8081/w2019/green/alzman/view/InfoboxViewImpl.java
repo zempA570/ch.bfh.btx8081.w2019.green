@@ -66,11 +66,11 @@ public class InfoboxViewImpl extends TemplateView implements InfoboxView {
 		grdImportantPerson.addColumn(PersonModel::getGender).setHeader("Gender");
 		grdImportantPerson.addColumn(PersonModel::getFirstname).setHeader("Firstname");
 		grdImportantPerson.addColumn(PersonModel::getLastname).setHeader("Lastname");
-		grdImportantPerson.addColumn(PersonModel::getAdress).setHeader("Adress");
-		grdImportantPerson.addColumn(PersonModel::getAdressNr).setHeader("Adress Number");
+		grdImportantPerson.addColumn(PersonModel::getStreet).setHeader("Adress");
+		grdImportantPerson.addColumn(PersonModel::getHouseNo).setHeader("Adress Number");
 		grdImportantPerson.addColumn(PersonModel::getPostcode).setHeader("Postcode");
 		grdImportantPerson.addColumn(PersonModel::getCity).setHeader("City");
-		grdImportantPerson.addColumn(PersonModel::getPhonenummber).setHeader("Phonenummber");
+		grdImportantPerson.addColumn(PersonModel::getPhonenumber).setHeader("Phonenummber");
 
 		grdImportantPerson.addItemClickListener(event -> {
 			if (grdImportantPerson.getSelectedItems().isEmpty()) {
@@ -109,11 +109,11 @@ public class InfoboxViewImpl extends TemplateView implements InfoboxView {
 		add(grdImportantAddress);
 		grdImportantAddress.addColumn(AddressModel::getId).setVisible(false);
 		grdImportantAddress.addColumn(AddressModel::getName).setHeader("Name");
-		grdImportantAddress.addColumn(AddressModel::getAdress).setHeader("Adress");
-		grdImportantAddress.addColumn(AddressModel::getAdressNr).setHeader("Adress Number");
+		grdImportantAddress.addColumn(AddressModel::getStreet).setHeader("Adress");
+		grdImportantAddress.addColumn(AddressModel::getHouseNo).setHeader("Adress Number");
 		grdImportantAddress.addColumn(AddressModel::getPostcode).setHeader("Postcode");
 		grdImportantAddress.addColumn(AddressModel::getCity).setHeader("City");
-		grdImportantAddress.addColumn(AddressModel::getPhonenummber).setHeader("Phonenummber");
+		grdImportantAddress.addColumn(AddressModel::getPhonenumber).setHeader("Phonenummber");
 
 		grdImportantAddress.addItemClickListener(event -> {
 			if (grdImportantAddress.getSelectedItems().isEmpty()) {

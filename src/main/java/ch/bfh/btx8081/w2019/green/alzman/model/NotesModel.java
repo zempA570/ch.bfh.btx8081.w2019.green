@@ -7,34 +7,31 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "Notes")
 /**
- * This class models the data which is being used in the Key-Notes Function
- * It features some variables and their respective getters and setters
+ * This class models the data which is being used in the Key-Notes Function It
+ * features some variables and their respective getters and setters
+ * 
  * @author simon
  *
  */
+@Entity
+@Table(name = "Notes")
 public class NotesModel {
-
-	String author;
-
-	String content;
-
-	Date date;
 
 	@Id
 	@GeneratedValue
 	int entryID;
+	String author;
+	String content;
+	Date date;
 
 	public NotesModel(String author, String content, Date date) {
 		this.author = author;
 		this.content = content;
 		this.date = date;
-
 	}
 
-//must have: an empty constructor
+	//must have: an empty constructor
 	public NotesModel() {
 
 	}

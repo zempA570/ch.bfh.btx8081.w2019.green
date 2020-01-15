@@ -10,7 +10,7 @@ import javax.persistence.Table;
 /**
  * This class is used to store new tasks of patients.
  * 
- * @author Jasmitha Devarasa
+ * @author Jasmitha
  *
  */
 @Entity

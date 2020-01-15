@@ -9,38 +9,37 @@ import javax.persistence.TableGenerator;
 /**
  * In this class all information about the important addresses is collected
  * 
- * @author gausegan
+ * @author Gausegan
  *
  */
 @Entity
 @Table(name = "Address")
 public class AddressModel {
 
-	@TableGenerator(name = "ImportantAddressIDGenerator", allocationSize = 1, initialValue = 1)
 	@Id
-	@GeneratedValue(generator = "ImportantAddressIDGenerator")
+	@GeneratedValue
 	int id;
 
 	String name;
-	String address;
+	String street;
 	String houseNo;
 	String postcode;
 	String city;
-	String phonenummber;
+	String phonenumber;
 
 	public AddressModel() {
 
 	}
 
-	public AddressModel(String name, String address, String houseNo, String postcode, String city,
-			String phonenummber) {
+	public AddressModel(String name, String street, String houseNo, String postcode, String city,
+			String phonenumber) {
 		super();
 		this.name = name;
-		this.address = address;
+		this.street = street;
 		this.houseNo = houseNo;
 		this.postcode = postcode;
 		this.city = city;
-		this.phonenummber = phonenummber;
+		this.phonenumber = phonenumber;
 	}
 
 	public int getId() {
@@ -59,19 +58,19 @@ public class AddressModel {
 		this.name = name;
 	}
 
-	public String getAdress() {
-		return address;
+	public String getStreet() {
+		return street;
 	}
 
-	public void setAdress(String address) {
-		this.address = address;
+	public void setStreet(String street) {
+		this.street = street;
 	}
 
-	public String getAdressNr() {
+	public String getHouseNo() {
 		return houseNo;
 	}
 
-	public void setAdressNr(String houseNo) {
+	public void setHouseNo(String houseNo) {
 		this.houseNo = houseNo;
 	}
 
@@ -91,16 +90,16 @@ public class AddressModel {
 		this.city = city;
 	}
 
-	public String getPhonenummber() {
-		return phonenummber;
+	public String getPhonenumber() {
+		return phonenumber;
 	}
 
-	public void setPhonenummber(String phonenummber) {
-		this.phonenummber = phonenummber;
+	public void setPhonenummber(String phonenumber) {
+		this.phonenumber = phonenumber;
 	}
 
 	public String getFullDetailsAdress() {
-		return name + " " + address + " " + houseNo + " " + postcode + " " + city + " " + phonenummber;
+		return name + " " + street + " " + houseNo + " " + postcode + " " + city + " " + phonenumber;
 	}
 
 }

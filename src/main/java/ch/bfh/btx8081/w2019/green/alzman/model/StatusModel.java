@@ -8,7 +8,7 @@ import javax.persistence.Table;
 /**
  * This class represents the model of the status function.
  * 
- * @author Emily Estée
+ * @author Emily
  *
  */
 

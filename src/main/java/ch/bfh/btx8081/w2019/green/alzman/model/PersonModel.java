@@ -9,7 +9,7 @@ import javax.persistence.TableGenerator;
 /**
  * In this class all information about the important persons is collected
  * 
- * @author gausegan
+ * @author Gausegan
  *
  */
 @Entity
@@ -24,27 +24,27 @@ public class PersonModel {
 	String gender;
 	String firstname;
 	String lastname;
-	String address;
+	String street;
 	String houseNo;
 	String postcode;
 	String city;
-	String phonenummber;
+	String phonenumber;
 
 	public PersonModel() {
 
 	}
 
-	public PersonModel(String gender, String firstname, String lastname, String address, String houseNo,
-			String postcode, String city, String phonenummber) {
+	public PersonModel(String gender, String firstname, String lastname, String street, String houseNo,
+			String postcode, String city, String phonenumber) {
 		super();
 		this.gender = gender;
 		this.firstname = firstname;
 		this.lastname = lastname;
-		this.address = address;
+		this.street = street;
 		this.houseNo = houseNo;
 		this.postcode = postcode;
 		this.city = city;
-		this.phonenummber = phonenummber;
+		this.phonenumber = phonenumber;
 	}
 
 	public int getId() {
@@ -79,19 +79,19 @@ public class PersonModel {
 		this.lastname = lastname;
 	}
 
-	public String getAdress() {
-		return address;
+	public String getStreet() {
+		return street;
 	}
 
-	public void setAdress(String address) {
-		this.address = address;
+	public void setStreet(String street) {
+		this.street = street;
 	}
 
-	public String getAdressNr() {
+	public String getHouseNo() {
 		return houseNo;
 	}
 
-	public void setAdressNr(String houseNo) {
+	public void setHouseNo(String houseNo) {
 		this.houseNo = houseNo;
 	}
 
@@ -111,17 +111,17 @@ public class PersonModel {
 		this.city = city;
 	}
 
-	public String getPhonenummber() {
-		return phonenummber;
+	public String getPhonenumber() {
+		return phonenumber;
 	}
 
-	public void setPhonenummber(String phonenummber) {
-		this.phonenummber = phonenummber;
+	public void setPhonenumber(String phonenumber) {
+		this.phonenumber = phonenumber;
 	}
 
 	public String getFullDetailsPerson() {
-		return gender + " " + firstname + " " + lastname + " " + address + " " + houseNo + " " + postcode + " " + city
-				+ " " + phonenummber;
+		return gender + " " + firstname + " " + lastname + " " + street + " " + houseNo + " " + postcode + " " + city
+				+ " " + phonenumber;
 	}
 
 }

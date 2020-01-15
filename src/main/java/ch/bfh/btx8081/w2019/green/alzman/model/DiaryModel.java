@@ -11,10 +11,9 @@ import javax.persistence.Table;
  * 
  * @author Mootaas
  * 
- * In this class the getter and setter method will be created
+ *         In this class the getter and setter method will be created
  *
  */
-
 @Entity
 @Table(name = "Diary")
 public class DiaryModel {
@@ -26,10 +25,6 @@ public class DiaryModel {
 	String author;
 	String entry;
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public DiaryModel() {
 
 	}
@@ -38,6 +33,14 @@ public class DiaryModel {
 		this.date = date;
 		this.author = author;
 		this.entry = entry;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public LocalDate getDate() {
@@ -66,10 +69,6 @@ public class DiaryModel {
 
 	public String getFullDiary() {
 		return author + " " + date + " " + entry;
-	}
-
-	public int getId() {
-		return id;
 	}
 
 }

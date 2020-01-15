@@ -14,7 +14,7 @@ import javax.persistence.TableGenerator;
  */
 //@Entity means this class should be a table in the database
 //@Table(name = ..) sets the name for the table. The table name "User" is not allowed so we have to change it.
-//normally this doesn't have to be set, the class name will be used as table name.
+//Normally this doesn't have to be set and the class name is used as table name.
 @Entity
 @Table(name = "Relative")
 public class UserModel {
@@ -42,20 +42,16 @@ public class UserModel {
 		
 	}
 	
-	// setters
-
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;
 	}
 
-	public void setLastname(String name) {
-		this.lastname = name;
-	}
-
-	// getters
-	
 	public String getFirstname() {
 		return firstname;
+	}
+
+	public void setLastname(String name) {
+		this.lastname = name;
 	}
 
 	public String getLastname() {
