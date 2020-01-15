@@ -2,11 +2,13 @@ package ch.bfh.btx8081.w2019.green.alzman.presenter;
 
 import java.time.LocalDate;
 
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 
 import ch.bfh.btx8081.w2019.green.alzman.model.DiaryModel;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 import ch.bfh.btx8081.w2019.green.alzman.view.DiaryAddView;
+import ch.bfh.btx8081.w2019.green.alzman.view.DiaryViewImpl;
 
 /**
  * 
@@ -19,6 +21,7 @@ import ch.bfh.btx8081.w2019.green.alzman.view.DiaryAddView;
 public class DiaryAddPresenter implements DiaryAddView.DiaryAddViewListener {
 
 	private DiaryAddView view;
+	
 
 	public DiaryAddPresenter(DiaryAddView diaryView) {
 		this.view = diaryView;
@@ -32,6 +35,10 @@ public class DiaryAddPresenter implements DiaryAddView.DiaryAddViewListener {
 		DiaryModel addnewRecord = new DiaryModel(date, author, entry);
 		DbService.persist(addnewRecord);
 	}
+	
+	private void openDiaryView() {
+		UI.getCurrent().navigate(DiaryViewImpl.class);
+	}
 
 	@Override
 	public void buttonClick(Button button) {
@@ -39,6 +46,7 @@ public class DiaryAddPresenter implements DiaryAddView.DiaryAddViewListener {
 		switch (buttonText) {
 		case "Add new Record":
 			addRecord();
+			openDiaryView();
 			break;
 		default:
 			// TODO

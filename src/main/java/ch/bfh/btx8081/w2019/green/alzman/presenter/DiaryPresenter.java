@@ -63,7 +63,6 @@ public class DiaryPresenter implements DiaryView.DiaryViewListener {
 	}
 
 	private void openAddDiaryView() {
-		System.out.println("take me");
 		UI.getCurrent().navigate(DiaryAddViewImpl.class);
 	}
 }
