@@ -18,17 +18,22 @@ import com.vaadin.flow.router.Route;
 import ch.bfh.btx8081.w2019.green.alzman.presenter.NotesAddPresenter;
 
 /**
- * The user management view will be used to add and remove users of the app
+ * This class represents the view which models the (Key-) Notes functionality
+ * an author can create an entry and choose a date, then save it and the
+ * entry is added automatically to the NotesView via DB
+ * @author simon
  */
+
 @Route("NotesAddView")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
 public class NotesAddViewImpl extends TemplateView implements NotesAddView {
 
-	private List<NotesAddListener> listeners = new ArrayList<NotesAddListener>();
+	private DatePicker dpEntryDate;
 
-	private TextField author;
-	private DatePicker datePicker;
-	private TextArea textArea;
+	private List<NotesAddListener> lstNotesListener = new ArrayList<NotesAddListener>();
+
+	private TextField txtfAuthor;
+	private TextArea txtaEntry;
 
 	public NotesAddViewImpl() {
 
@@ -36,41 +41,41 @@ public class NotesAddViewImpl extends TemplateView implements NotesAddView {
 		super.setHeaderTitle("Add Key-Notes");
 
 		// Label and a Textfield
-		author = new TextField("Author");
-		textArea = new TextArea("Notes");
-		datePicker = new DatePicker("Date");
+		txtfAuthor = new TextField("Author");
+		txtaEntry = new TextArea("Notes");
+		dpEntryDate = new DatePicker("Date");
 
 		// Display an icon which can be clicked to clear the value:
-		datePicker.setClearButtonVisible(true);
-		datePicker.setValue(LocalDate.now());
+		dpEntryDate.setClearButtonVisible(true);
+		dpEntryDate.setValue(LocalDate.now());
 
-		textArea.getStyle().set("minHeight", "250px");
-		textArea.setPlaceholder("Write here ...");
+		txtaEntry.getStyle().set("minHeight", "250px");
+		txtaEntry.setPlaceholder("Write here ...");
 
 		// Buttons to be clickd on
-		Button addEntry = new Button("Add to Key-Notes", new Icon(VaadinIcon.PLUS));
+		Button btnAddEntry = new Button("Add to Key-Notes", new Icon(VaadinIcon.PLUS));
 
 		// Click Listener that triggers an Event for Add-To-Key-Notes-Button
-		addEntry.addClickListener(e -> {
-			for (NotesAddListener listener : listeners)
-				listener.buttonClick(e.getSource());
+		btnAddEntry.addClickListener(e -> {
+			for (NotesAddListener listener : lstNotesListener)
+				listener.addToKeyNotes(e.getSource());
 		});
 
 		Notification infoNotification2 = new Notification("Entry added to Key-Notes!", 3000);
-		addEntry.addClickListener(e -> infoNotification2.open());
+		btnAddEntry.addClickListener(e -> infoNotification2.open());
 
 		// Put components in horizontal layout
-		HorizontalLayout addIN = new HorizontalLayout();
-		addIN.setAlignItems(Alignment.BASELINE);
-		addIN.add(author, datePicker);
+		HorizontalLayout hlComponents1 = new HorizontalLayout();
+		hlComponents1.setAlignItems(Alignment.BASELINE);
+		hlComponents1.add(txtfAuthor, dpEntryDate);
 
-		HorizontalLayout addIN2 = new HorizontalLayout();
-		addIN2.setAlignItems(Alignment.BASELINE);
-		addIN2.add(textArea, addEntry);
+		HorizontalLayout hlComponents2 = new HorizontalLayout();
+		hlComponents2.setAlignItems(Alignment.BASELINE);
+		hlComponents2.add(txtaEntry, btnAddEntry);
 
 		// Adding components to content space
-		super.addContent(addIN);
-		super.addContent(addIN2);
+		super.addContent(hlComponents1);
+		super.addContent(hlComponents2);
 		
 		new NotesAddPresenter(this);
 
@@ -78,22 +83,22 @@ public class NotesAddViewImpl extends TemplateView implements NotesAddView {
 
 	@Override
 	public void addListener(NotesAddListener listener) {
-		listeners.add(listener);
-	}
-
-	@Override
-	public LocalDate getDate() {
-		return datePicker.getValue();
+		lstNotesListener.add(listener);
 	}
 
 	@Override
 	public String getAuthor() {
-		return author.getValue();
+		return txtfAuthor.getValue();
+	}
+
+	@Override
+	public LocalDate getDate() {
+		return dpEntryDate.getValue();
 	}
 
 	@Override
 	public String getEntry() {
-		return textArea.getValue();
+		return txtaEntry.getValue();
 	};
 
 }

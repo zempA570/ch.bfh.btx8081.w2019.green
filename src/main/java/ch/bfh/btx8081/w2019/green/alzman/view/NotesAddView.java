@@ -2,19 +2,26 @@ package ch.bfh.btx8081.w2019.green.alzman.view;
 
 import java.time.LocalDate;
 
+
 import com.vaadin.flow.component.button.Button;
+
+/**
+ * this interface is being used by the NotesAddViewImpl class
+ * @author simon
+ *
+ */
 
 public interface NotesAddView {
 
 	interface NotesAddListener {
-		void buttonClick(Button button);
+		void addToKeyNotes(Button btnClick);
 	}
 
 	public void addListener(NotesAddListener listener);
 
-	public LocalDate getDate();
-
 	public String getAuthor();
+
+	public LocalDate getDate();
 
 	public String getEntry();
 

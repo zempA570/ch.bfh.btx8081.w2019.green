@@ -20,6 +20,13 @@ import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 @Route("dashboard")
 @PWA(name = "Project Base for Vaadin", shortName = "Project Base")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
+/**
+ * This class represents the dashboard which is also the main-window of the application
+ * the dashboard has clickable icons that are linked with their related functionalities
+ * 
+ * @author simon
+ *
+ */
 public class DashboardView extends TemplateView {
 
 	public DashboardView() {
@@ -28,37 +35,37 @@ public class DashboardView extends TemplateView {
 		super.setHeaderTitle("Dashboard");
 
 		// create and add icon to header
-		Icon userIcon = new Icon(VaadinIcon.USERS);
-		userIcon.setSize("40px");
-		userIcon.addClickListener(e -> UI.getCurrent().navigate(UserManagementViewImpl.class));
-		super.addHeader(userIcon);
+		Icon icnUser = new Icon(VaadinIcon.USERS);
+		icnUser.setSize("40px");
+		icnUser.addClickListener(e -> UI.getCurrent().navigate(UserManagementViewImpl.class));
+		super.addHeader(icnUser);
 
 		// creating Icons that are clickable
-		Icon calendarIcon = new Icon(VaadinIcon.CALENDAR);
-		calendarIcon.setSize("80px");
+		Icon icnCalendar = new Icon(VaadinIcon.CALENDAR);
+		icnCalendar.setSize("80px");
 
-		Icon statusIcon = new Icon(VaadinIcon.BULLETS);
-		statusIcon.setSize("80px");
+		Icon icnStatus = new Icon(VaadinIcon.BULLETS);
+		icnStatus.setSize("80px");
 
-		Icon importantNotesIcon = new Icon(VaadinIcon.NOTEBOOK);
-		importantNotesIcon.setSize("80px");
+		Icon icnKeyNotes = new Icon(VaadinIcon.NOTEBOOK);
+		icnKeyNotes.setSize("80px");
 
-		Icon diaryIcon = new Icon(VaadinIcon.EDIT);
-		diaryIcon.setSize("80px");
+		Icon icnDiary = new Icon(VaadinIcon.EDIT);
+		icnDiary.setSize("80px");
 
-		Icon todoIcon = new Icon(VaadinIcon.TASKS);
-		todoIcon.setSize("80px");
+		Icon icnToDo = new Icon(VaadinIcon.TASKS);
+		icnToDo.setSize("80px");
 
-		Icon infoBoxIcon = new Icon(VaadinIcon.INFO_CIRCLE);
-		infoBoxIcon.setSize("80px");
+		Icon icnInfoBox = new Icon(VaadinIcon.INFO_CIRCLE);
+		icnInfoBox.setSize("80px");
 
 		// change Icon Size and Shape
-		calendarIcon.setSize("80px");
-		statusIcon.setSize("80px");
-		importantNotesIcon.setSize("80px");
-		diaryIcon.setSize("80px");
-		todoIcon.setSize("80px");
-		infoBoxIcon.setSize("80px");
+		icnCalendar.setSize("80px");
+		icnStatus.setSize("80px");
+		icnKeyNotes.setSize("80px");
+		icnDiary.setSize("80px");
+		icnToDo.setSize("80px");
+		icnInfoBox.setSize("80px");
 
 		// creating labels to label the icons
 		Label calendarText = new Label("Calendar");
@@ -69,27 +76,24 @@ public class DashboardView extends TemplateView {
 		Label infoBoxText = new Label("Infobox");
 
 		// configuring the layout
-		VerticalLayout iconViewLeft = new VerticalLayout(calendarText, calendarIcon, statusText, statusIcon,
-				importantNotesText, importantNotesIcon);
-		VerticalLayout iconViewRight = new VerticalLayout(diaryText, diaryIcon, todoText, todoIcon, infoBoxText,
-				infoBoxIcon);
+		VerticalLayout vlLeftSideIcons = new VerticalLayout(calendarText, icnCalendar, statusText, icnStatus,
+				importantNotesText, icnKeyNotes);
+		VerticalLayout vlRightSideIcons = new VerticalLayout(diaryText, icnDiary, todoText, icnToDo, infoBoxText,
+				icnInfoBox);
 
-		HorizontalLayout iconViewCentral = new HorizontalLayout(iconViewLeft, iconViewRight);
+		HorizontalLayout hlComposedIconLayout = new HorizontalLayout(vlLeftSideIcons, vlRightSideIcons);
 
 		// configuring the icons so they can be clicked on
-		/**
-		 * the code below is working, waiting for the other View Classes to be finished
-		 * so they can be implemented just as the one below
-		 */
+		icnCalendar.addClickListener(e -> UI.getCurrent().navigate(CalendarViewImpl.class));
+		icnStatus.addClickListener(e -> UI.getCurrent().navigate(StatusViewImpl.class));
+		icnToDo.addClickListener(e -> UI.getCurrent().navigate(ToDoListViewImpl.class));
+		icnDiary.addClickListener(e -> UI.getCurrent().navigate(DiaryViewImpl.class));
+		icnKeyNotes.addClickListener(e -> UI.getCurrent().navigate(NotesViewImpl.class));
+		icnInfoBox.addClickListener(e -> UI.getCurrent().navigate(InfoboxViewImpl.class));
 
-		calendarIcon.addClickListener(e -> UI.getCurrent().navigate(CalendarViewImpl.class));
-		statusIcon.addClickListener(e -> UI.getCurrent().navigate(StatusViewImpl.class));
-		todoIcon.addClickListener(e -> UI.getCurrent().navigate(ToDoListViewImpl.class));
-		diaryIcon.addClickListener(e -> UI.getCurrent().navigate(DiaryViewImpl.class));
-		importantNotesIcon.addClickListener(e -> UI.getCurrent().navigate(NotesViewImpl.class));
-		infoBoxIcon.addClickListener(e -> UI.getCurrent().navigate(InfoboxViewImpl.class));
-
-		super.addContent(iconViewCentral);
+		//composing the layout
+		
+		super.addContent(hlComposedIconLayout);
 
 	}
 

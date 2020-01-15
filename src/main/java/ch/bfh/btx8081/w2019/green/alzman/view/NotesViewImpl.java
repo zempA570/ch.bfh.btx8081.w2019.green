@@ -22,13 +22,20 @@ import ch.bfh.btx8081.w2019.green.alzman.presenter.NotesPresenter;
  */
 @Route("Notes")
 @CssImport(value = "./styles/shared-styles.css", include = "common-styles")
+/**
+ * this class represents the (Key-)Notes View which the user can use to
+ * either see the entries he made or delete them
+ * by clicking the button he can create a new entry and is redirected to another View
+ * @author simon
+ *
+ */
 public class NotesViewImpl extends TemplateView implements NotesView {
 	
-	private List<NotesListener> listeners = new ArrayList<NotesListener>();
+	private List<NotesListener> lstNotesList = new ArrayList<NotesListener>();
 
 	// title header and grid
-	private H4 titleAddNotes;
-	private Grid<NotesModel> notesGrid = new Grid<>();
+	private H4 h4titleAddNotes;
+	private Grid<NotesModel> grdNotes = new Grid<>();
 
 	// private TextArea diaryText = new TextArea();
 
@@ -38,73 +45,73 @@ public class NotesViewImpl extends TemplateView implements NotesView {
 		super.setHeaderTitle("Important Notes");
 
 		// manipulating title
-		titleAddNotes = new H4();
-		titleAddNotes.setText("Key-Notes");
-		super.addContent(titleAddNotes);
+		h4titleAddNotes = new H4();
+		h4titleAddNotes.setText("Key-Notes");
+		super.addContent(h4titleAddNotes);
 
 		// Button for a new entry
-		Button buttonAddEntry = new Button("Create New Entry");
-		buttonAddEntry.addClickListener(e -> {
-			for (NotesListener listener : listeners)
+		Button btnAddEntry = new Button("Create New Entry");
+		btnAddEntry.addClickListener(e -> {
+			for (NotesListener listener : lstNotesList)
 				listener.buttonClick(e.getSource());
 		});
 
 		// button to delete an entry
-		Button buttonDeleteEntry = new Button("Delete Selected Entry");
-		buttonDeleteEntry.setVisible(false);
-		buttonDeleteEntry.addClickListener(e -> {
-			for (NotesListener listener : listeners)
+		Button btnDeleteEntry = new Button("Delete Selected Entry");
+		btnDeleteEntry.setVisible(false);
+		btnDeleteEntry.addClickListener(e -> {
+			for (NotesListener listener : lstNotesList)
 				listener.buttonClick(e.getSource());
 		});
 
 		// notify the user
 		Notification message = new Notification("Deleted the Entry!");
-		buttonDeleteEntry.addClickListener(e -> message.open());
+		btnDeleteEntry.addClickListener(e -> message.open());
 
 		// button to refresh the page
 		Button btnRefreshPage = new Button("Refresh", new Icon(VaadinIcon.RECYCLE));
 		btnRefreshPage.addClickListener(e -> {
-			for (NotesListener listener : listeners)
+			for (NotesListener listener : lstNotesList)
 				listener.buttonClick(e.getSource());
 		});
 
 		// Creating horizontal layout & filling it
-		VerticalLayout verticalLayout = new VerticalLayout();
+		VerticalLayout vlComponents1 = new VerticalLayout();
 
-		verticalLayout.add(buttonAddEntry, buttonDeleteEntry, btnRefreshPage);
-		super.addContent(verticalLayout);
+		vlComponents1.add(btnAddEntry, btnDeleteEntry, btnRefreshPage);
+		super.addContent(vlComponents1);
 
 		// setting up the Grid
 
-		add(notesGrid);
-		notesGrid.addColumn(NotesModel::getEntryID).setVisible(false);
-		notesGrid.addColumn(NotesModel::getAuthor).setHeader("Author");
-		notesGrid.addColumn(NotesModel::getDate).setHeader("Date");
-		notesGrid.addColumn(NotesModel::getContent).setHeader("Note");
+		add(grdNotes);
+		grdNotes.addColumn(NotesModel::getEntryID).setVisible(false);
+		grdNotes.addColumn(NotesModel::getAuthor).setHeader("Author");
+		grdNotes.addColumn(NotesModel::getDate).setHeader("Date");
+		grdNotes.addColumn(NotesModel::getContent).setHeader("Note");
 
-		notesGrid.addItemClickListener(event -> {
-			buttonDeleteEntry.setVisible(true);
+		grdNotes.addItemClickListener(event -> {
+			btnDeleteEntry.setVisible(true);
 
 		});
 
-		super.addContent(notesGrid);
+		super.addContent(grdNotes);
 
 		new NotesPresenter(this);
 
 	}
 
-	public void fillGridWithEntries(List<NotesModel> entryList) {
-		notesGrid.setItems(entryList);
+	public void fillGridWithEntries(List<NotesModel> lstEntries) {
+		grdNotes.setItems(lstEntries);
 	}
 
 	@Override
 	public void addListener(NotesListener listener) {
-		listeners.add(listener);
+		lstNotesList.add(listener);
 	}
 
 	@Override
 	public Set<NotesModel> getSelectedNote() {
-		return notesGrid.getSelectedItems();
+		return grdNotes.getSelectedItems();
 	};
 
 }
