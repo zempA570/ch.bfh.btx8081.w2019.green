@@ -1,3 +1,4 @@
+package ch.bfh.btx8081.w2019.green.alzman.deepfreezer;
 //package ch.bfh.btx8081.w2019.green.alzman.trash;
 //
 //import javax.persistence.Entity;
