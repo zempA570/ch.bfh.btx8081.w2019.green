@@ -12,11 +12,10 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 
-import ch.bfh.btx8081.w2019.green.alzman.model.UserModel;
 import ch.bfh.btx8081.w2019.green.alzman.presenter.UserManagementPresenter;
 
 /**
- * The user management view will be used to add and remove users of the app
+ * The user management view is used to add and remove users of the app
  * 
  * @author Adrian
  */
@@ -28,14 +27,14 @@ public class UserManagementViewImpl extends TemplateView implements UserManageme
 	private ComboBox<String> cmbbxUserSelection;
 	private TextField tfFirstName;
 	private TextField tfLastName;
-	
+
 	public UserManagementViewImpl() {
-		
+
 		// Change title in header
 		super.setHeaderTitle("User Management");
 
 		// Create components to choose and delete users
-//		TODO make combobox value first of available values (default value)
+		// TODO make combobox value first of available values (default value)
 		cmbbxUserSelection = new ComboBox<>("Choose your user");
 
 		Button btnDeleteUser = new Button("Delete User", new Icon(VaadinIcon.TRASH));
@@ -69,10 +68,9 @@ public class UserManagementViewImpl extends TemplateView implements UserManageme
 		// Adding components to content space
 		super.addContent(hlChooseDeleteUser);
 		super.addContent(hlAddUser);
-		
-		UserModel model = new UserModel();
-		// The presenter connects the model and view
-		new UserManagementPresenter(this, model);
+
+		// tell the presenter to wake up and get to work
+		new UserManagementPresenter(this);
 
 	}
 

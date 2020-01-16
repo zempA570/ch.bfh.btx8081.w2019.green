@@ -9,6 +9,7 @@ import com.vaadin.flow.component.button.Button;
 import ch.bfh.btx8081.w2019.green.alzman.model.UserModel;
 import ch.bfh.btx8081.w2019.green.alzman.services.DbService;
 import ch.bfh.btx8081.w2019.green.alzman.view.UserManagementView;
+import ch.bfh.btx8081.w2019.green.alzman.view.UserManagementViewImpl;
 
 /**
  * 
@@ -18,13 +19,11 @@ import ch.bfh.btx8081.w2019.green.alzman.view.UserManagementView;
 public class UserManagementPresenter implements UserManagementView.UserManagagementViewListener {
 
 	private UserManagementView view;
-	private UserModel model;
 	private List<UserModel> users;
 
 	// constructor for the presenter
-	public UserManagementPresenter(UserManagementView view, UserModel model) {
+	public UserManagementPresenter(UserManagementView view) {
 		this.view = view;
-		this.model = model;
 		view.addListener(this);
 
 		fillComboboxWithUsers();
@@ -53,10 +52,6 @@ public class UserManagementPresenter implements UserManagementView.UserManagagem
 		// after the user is deleted we "refresh" the list in the combobox so the
 		// deleted user is gone
 		fillComboboxWithUsers();
-
-//		TODO when to close
-		// DbService.em.close();
-
 	}
 
 	public void addUser() {
@@ -93,11 +88,11 @@ public class UserManagementPresenter implements UserManagementView.UserManagagem
 
 		// then we tell the view to fill the combobox with the List<String>
 		view.setComboboxItems(userNames);
-
-//		TODO message to user that was deleted?
-
 	}
 
+	/**
+	 * This message is called when a button is clicked in the {@link UserManagementViewImpl}
+	 */
 	@Override
 	public void buttonClick(Button button) {
 
